@@ -31,6 +31,7 @@
       --color-faint: #8e8e93;
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     }
+    html { scrollbar-gutter: stable; }
     body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text-main); position: relative; }
     body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
       background: radial-gradient(ellipse 80% 50% at 20% 30%,rgba(255,26,26,.04)0%,transparent 50%),
@@ -41,6 +42,7 @@
     .gradient-text { background:linear-gradient(135deg,var(--color-accent),#ff6b6b); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     .card-hover { transition: border-color .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1), box-shadow .7s cubic-bezier(.16,1,.3,1); }
     .card-hover:hover { border-color:var(--color-border-hover); transform:translateY(-3px); box-shadow:0 16px 48px rgba(0,0,0,.08),0 0 0 1px rgba(255,26,26,.04); }
+    .tilt-card { transform-style:preserve-3d; }
     .accent-hover:hover { border-color:var(--color-border-accent)!important; box-shadow:0 16px 48px rgba(0,0,0,.08),0 0 30px rgba(255,26,26,.05)!important; }
     .accent-hover { position:relative; }
     .accent-hover::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,26,26,.3),transparent); opacity:0; transition:opacity .5s ease; }
@@ -54,11 +56,19 @@
     .faq-question__icon::before { width:14px; height:2px; top:50%; left:50%; transform:translate(-50%,-50%); }
     .faq-question__icon::after { width:2px; height:14px; top:50%; left:50%; transform:translate(-50%,-50%); }
     .faq-item--open .faq-question__icon::after { transform:translate(-50%,-50%) rotate(90deg); opacity:0; }
+    /* ── Highlight Progress Rings ── */
+    .highlight-ring { transition:stroke-dashoffset 1.8s cubic-bezier(.22,1,.36,1) .3s; }
+    .reveal--visible .highlight-ring { stroke-dashoffset:0; }
+    /* ── Tech Stack Marquee ── */
+    .marquee { overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+    .marquee__track { display:flex; gap:12px; width:max-content; animation:marquee-scroll 30s linear infinite; }
+    .marquee:hover .marquee__track { animation-play-state:paused; }
+    @keyframes marquee-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
     /* ── Magnetic Button ── */
     .magnetic-btn { position:relative; display:inline-block; transition:transform .3s cubic-bezier(.16,1,.3,1); }
 
     /* ── Typing Animation ── */
-    .typing-cursor { display:inline-block; width:3px; height:.85em; background:var(--color-accent); margin-left:4px; vertical-align:text-bottom; animation:blink-cursor .7s step-end infinite; }
+    .typing-cursor { display:inline-block; width:3px; height:.75em; background:var(--color-accent); margin-left:2px; vertical-align:baseline; -webkit-text-fill-color:initial; animation:blink-cursor .7s step-end infinite; }
     @keyframes blink-cursor { 0%,100%{opacity:1} 50%{opacity:0} }
 
     /* ── Gradient Border Animation ── */
@@ -141,9 +151,15 @@
       .rm__cell--hide { display:none; }
       .rm__branch { display:none; }
     }
-    .rm__end { display:flex; justify-content:center; padding-top:48px; position:relative; z-index:3; }
-    .rm__end-dot { width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.08); border:3px solid rgba(255,255,255,.15); transition:all .7s cubic-bezier(.16,1,.3,1); opacity:0; transform:scale(0); }
-    .rm__end-dot--active { opacity:1; transform:scale(1); background:linear-gradient(135deg,var(--color-accent),#ff6b6b); border-color:transparent; box-shadow:0 0 30px rgba(255,26,26,.5),0 0 60px rgba(255,26,26,.15); }
+    .rm__end { display:flex; justify-content:center; padding-top:64px; position:relative; z-index:3; }
+    .rm__end-marker { display:flex; flex-direction:column; align-items:center; gap:12px; opacity:0; transform:translateY(20px); transition:all .7s cubic-bezier(.16,1,.3,1); }
+    .rm__end-marker--active { opacity:1; transform:translateY(0); }
+    .rm__end-ring { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.06); border:2px solid rgba(255,255,255,.12); transition:all .7s cubic-bezier(.16,1,.3,1); }
+    .rm__end-marker--active .rm__end-ring { background:linear-gradient(135deg,var(--color-accent),#ff6b6b); border-color:transparent; box-shadow:0 0 30px rgba(255,26,26,.5),0 0 60px rgba(255,26,26,.15); }
+    .rm__end-ring svg { color:rgba(255,255,255,.2); transition:color .6s ease; }
+    .rm__end-marker--active .rm__end-ring svg { color:#fff; }
+    .rm__end-label { font-size:.875rem; font-weight:600; color:rgba(255,255,255,.15); transition:color .7s ease; letter-spacing:.02em; }
+    .rm__end-marker--active .rm__end-label { color:#f0f0f2; }
     .icon { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
     .logo-img { filter:invert(1); }
     .hero-grid { opacity:.06!important; }
@@ -358,20 +374,58 @@
             data-suffix="%" data-prefix="bis ">0</span><span class="block text-base font-medium mb-1">Abbruchquote
             FIAE</span><span class="block text-sm text-faint">Quelle: BIBB Datenreport</span></div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
-        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><span
-            class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">Verwaltungstools</span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
+        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
+          <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">Verwaltungstools</span>
           <h3 class="text-xl font-semibold tracking-tight mb-3">Digitaler Papierkram</h3>
-          <p class="text-sm text-muted leading-relaxed mb-5">Digitalisieren Formulare und Berichtshefte, ignorieren aber
-            die fachliche Kompetenzentwicklung.</p><span
-            class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Verwaltet das Dokument. Nicht
-            den Skill.</span>
+          <p class="text-sm text-muted leading-relaxed mb-5">Digitalisieren Formulare und Berichtshefte, ignorieren aber die fachliche Kompetenzentwicklung.</p>
+          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Verwaltet das Dokument. Nicht den Skill.</span>
+          <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
+            <span class="block text-xs font-semibold text-accent mb-1">LFA loest das:</span>
+            <span class="block text-sm text-muted">Berichtshefte, Zeugnisse und Berichte automatisch generiert — Ausbilder konzentrieren sich auf echte Betreuung.</span>
+          </div>
         </div>
-        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><span
-            class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">E-Learning-Plattformen</span>
+        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
+          <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">E-Learning-Plattformen</span>
           <h3 class="text-xl font-semibold tracking-tight mb-3">Kontext-Blindheit</h3>
-          <p class="text-sm text-muted leading-relaxed mb-5">Programmiersprachen werden abstrakt aus Lehrbuechern vermittelt — ohne Szenarien, Use Cases oder praxisnahe Quizze.</p><span
-            class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Lehrt die Theorie. Nicht die Praxis.</span>
+          <p class="text-sm text-muted leading-relaxed mb-5">Programmiersprachen werden abstrakt aus Lehrbuechern vermittelt — ohne Szenarien, Use Cases oder praxisnahe Quizze.</p>
+          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Lehrt die Theorie. Nicht die Praxis.</span>
+          <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
+            <span class="block text-xs font-semibold text-accent mb-1">LFA loest das:</span>
+            <span class="block text-sm text-muted">Aus IHK-Buechern entstehen praxisnahe Szenarien, Use Cases und Quizze — Lernen wird greifbar statt abstrakt.</span>
+          </div>
+        </div>
+        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
+          <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">Fehlende Struktur</span>
+          <h3 class="text-xl font-semibold tracking-tight mb-3">Orientierungslos im Alltag</h3>
+          <p class="text-sm text-muted leading-relaxed mb-5">Azubis starten ohne klare Struktur: Kein Ueberblick ueber Lernfortschritt, anstehende Pruefungen oder naechste Schritte.</p>
+          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Improvisiert die Ausbildung. Statt sie zu fuehren.</span>
+          <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
+            <span class="block text-xs font-semibold text-accent mb-1">LFA loest das:</span>
+            <span class="block text-sm text-muted">Klare Struktur mit Lernfortschritt, Kalender, Deadlines und naechsten Aufgaben — Azubis organisieren ihre Ausbildung selbst.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vorteile fuer den Ausbildungsbetrieb -->
+      <div class="reveal mt-14 p-8 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.12);">
+        <h3 class="text-xl font-semibold tracking-tight mb-6" style="color:#f0f0f2;">
+          <svg class="icon inline-block mr-2 text-accent" style="vertical-align:-4px;"><use href="#i-building" /></svg>
+          Vorteile fuer den Ausbildungsbetrieb
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Geringere Abbruchquote</span>
+            <span class="block text-sm text-muted">Strukturierte Ausbildung reduziert Frustrationsabbrueche — jeder vermiedene Abbruch spart bis zu 30.000 EUR.</span>
+          </div>
+          <div>
+            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Weniger Verwaltungsaufwand</span>
+            <span class="block text-sm text-muted">Berichtshefte, Arbeitszeugnisse und Berichte automatisiert — Ausbilder gewinnen Zeit fuer echte Betreuung.</span>
+          </div>
+          <div>
+            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Hoehere Ausbildungsqualitaet</span>
+            <span class="block text-sm text-muted">IHK-konforme Inhalte und personalisiertes Feedback steigern die Bestehensquote bei Abschlusspruefungen.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -383,6 +437,69 @@
       <path d="M0 40C240 100 480 0 720 50C960 100 1200 20 1440 60V100H0Z" fill="var(--color-bg)"/>
     </svg>
   </div>
+
+  <!-- ROLLEN — Für wen ist LFA? -->
+  <section class="py-24 md:py-36 section-organic" id="rollen">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-14">
+        <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Fuer wen ist LFA?</span>
+        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Zwei Rollen.<br>Eine Plattform.</h2>
+        <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">LFA bringt Ausbilder und Auszubildende zusammen — mit klarem Nutzen fuer beide Seiten.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Ausbilder -->
+        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border tilt-card">
+          <div class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
+            <svg class="icon w-6 h-6"><use href="#i-users" /></svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Fuer Ausbilder</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
+              <span class="text-sm text-muted"><strong class="text-text-main">Alle Azubis auf einen Blick:</strong> Dashboard zeigt aktuellen Lernfortschritt, offene Aufgaben und Leistungsbewertungen.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
+              <span class="text-sm text-muted"><strong class="text-text-main">Weniger Verwaltung:</strong> Berichtshefte, Arbeitszeugnisse und Nachweise automatisch generiert.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
+              <span class="text-sm text-muted"><strong class="text-text-main">Persoenliches Feedback geben:</strong> Aufgaben direkt in der Plattform reviewen und individuelles Feedback schreiben.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
+              <span class="text-sm text-muted"><strong class="text-text-main">IHK-konform ab Tag 1:</strong> Alle Inhalte basieren auf offiziellen IHK-Verordnungen.</span>
+            </li>
+          </ul>
+        </div>
+        <!-- Auszubildende -->
+        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border tilt-card">
+          <div class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
+            <svg class="icon w-6 h-6"><use href="#i-book" /></svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Fuer Auszubildende</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
+              <span class="text-sm text-muted"><strong class="text-text-main">Ausbildung organisieren:</strong> Klare Struktur mit Lernfortschritt, naechsten Aufgaben und Deadlines — kein planloses Lernen mehr.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
+              <span class="text-sm text-muted"><strong class="text-text-main">Pruefungstermine im Blick:</strong> Kalender mit IHK-Pruefungen, Berufsschulbloecken und Abgabefristen.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
+              <span class="text-sm text-muted"><strong class="text-text-main">Praxisnahes Lernen:</strong> Szenarien, Use Cases und Quizze statt trockener Theorie — vorbereitet auf die echte Pruefung.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
+              <span class="text-sm text-muted"><strong class="text-text-main">KI-Assistent HAI:</strong> Fragen jederzeit stellen — Antworten basieren auf offiziellen IHK-Quellen, nicht auf Halluzinationen.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- WARUM LFA — Organic floating blobs -->
   <section class="py-24 md:py-36 relative section-organic" id="warum">
@@ -512,7 +629,7 @@
       <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte Module und mehr — alles in einer Plattform vereint.</p>
       <!-- Featured modules -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14">
-        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border">
+        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border tilt-card">
           <div class="flex items-start gap-4 mb-5">
             <div class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent shrink-0">
               <svg class="icon w-6 h-6"><use href="#i-book" /></svg>
@@ -527,7 +644,7 @@
             <span class="lightbox-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></span>
           </div>
         </div>
-        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border">
+        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border tilt-card">
           <div class="flex items-start gap-4 mb-5">
             <div class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent shrink-0">
               <svg class="icon w-6 h-6"><use href="#i-bot" /></svg>
@@ -621,10 +738,10 @@
               fiae-learn.com/demo
             </div>
           </div>
-          <div class="w-full" style="position:relative;overflow:hidden;background:#ffffff;">
+          <div class="w-full" style="position:relative;overflow:hidden;background:#ffffff;overscroll-behavior:contain;">
             <iframe src="https://fiae-learn.com/demo" title="LFA Plattform Demo"
-              style="width:100%;height:820px;border:none;display:block;opacity:1;background:#ffffff;" loading="lazy"
-              allow="clipboard-read; clipboard-write"></iframe>
+              style="width:100%;height:820px;border:none;display:block;opacity:1;background:#ffffff;overscroll-behavior:contain;" loading="lazy"
+              allow="clipboard-read; clipboard-write" scrolling="auto"></iframe>
           </div>
         </div>
       </div>
@@ -642,20 +759,39 @@
   <section class="py-16 md:py-24 section-dark" id="highlights">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="reveal grid grid-cols-3 text-center" style="border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.02);">
-        <div class="px-4 md:px-8 py-8" style="border-right:1px solid rgba(255,255,255,.06);">
-          <div class="text-3xl md:text-5xl font-bold gradient-text leading-none mb-2 tabular-nums" data-target="100" data-suffix="%">0</div>
+        <div class="px-4 md:px-8 py-8 flex flex-col items-center" style="border-right:1px solid rgba(255,255,255,.06);">
+          <div class="relative inline-flex items-center justify-center mb-3" style="width:170px;height:170px;">
+            <svg class="absolute inset-0" viewBox="0 0 170 170" fill="none">
+              <defs><linearGradient id="hlGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e01515"/><stop offset="100%" stop-color="#ff6b6b"/></linearGradient></defs>
+              <circle cx="85" cy="85" r="74" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
+              <circle class="highlight-ring" cx="85" cy="85" r="74" stroke="url(#hlGrad)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="464.96" stroke-dashoffset="464.96" transform="rotate(-90 85 85)"/>
+            </svg>
+            <div class="text-3xl md:text-5xl font-bold gradient-text leading-none tabular-nums" data-target="100" data-suffix="%">0</div>
+          </div>
           <span class="block text-sm font-medium">IHK-konforme Antworten</span>
           <span class="block text-xs text-faint mt-1">Geschlossene RAG-Pipeline</span>
         </div>
-        <div class="px-4 md:px-8 py-8" style="border-right:1px solid rgba(255,255,255,.06);">
-          <div class="text-3xl md:text-5xl font-bold gradient-text leading-none mb-2 tabular-nums" data-target="12">0</div>
+        <div class="px-4 md:px-8 py-8 flex flex-col items-center" style="border-right:1px solid rgba(255,255,255,.06);">
+          <div class="relative inline-flex items-center justify-center mb-3" style="width:170px;height:170px;">
+            <svg class="absolute inset-0" viewBox="0 0 170 170" fill="none">
+              <circle cx="85" cy="85" r="74" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
+              <circle class="highlight-ring" cx="85" cy="85" r="74" stroke="url(#hlGrad)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="464.96" stroke-dashoffset="464.96" transform="rotate(-90 85 85)"/>
+            </svg>
+            <div class="text-3xl md:text-5xl font-bold gradient-text leading-none tabular-nums" data-target="12">0</div>
+          </div>
           <span class="block text-sm font-medium">IHK-Lernfelder</span>
           <span class="block text-xs text-faint mt-1">LF1 bis LF12a integriert</span>
         </div>
-        <div class="px-4 md:px-8 py-8">
-          <div class="text-3xl md:text-5xl font-bold gradient-text leading-none mb-2 tabular-nums" data-target="50" data-suffix="+">0</div>
-          <span class="block text-sm font-medium">Datenbanktabellen</span>
-          <span class="block text-xs text-faint mt-1">PostgreSQL mit pgvector</span>
+        <div class="px-4 md:px-8 py-8 flex flex-col items-center">
+          <div class="relative inline-flex items-center justify-center mb-3" style="width:170px;height:170px;">
+            <svg class="absolute inset-0" viewBox="0 0 170 170" fill="none">
+              <circle cx="85" cy="85" r="74" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
+              <circle class="highlight-ring" cx="85" cy="85" r="74" stroke="url(#hlGrad)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="464.96" stroke-dashoffset="464.96" transform="rotate(-90 85 85)"/>
+            </svg>
+            <div class="text-3xl md:text-5xl font-bold gradient-text leading-none tabular-nums" data-target="100" data-suffix="+">0</div>
+          </div>
+          <span class="block text-sm font-medium">Enabler</span>
+          <span class="block text-xs text-faint mt-1">Praxisnahe Lerneinheiten</span>
         </div>
       </div>
     </div>
@@ -672,33 +808,47 @@
   <section class="py-24 md:py-36 section-organic" id="roi">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Der Effekt</span>
-      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Messbare Entlastung.</h2>
-      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed mb-12">Jeder Ausbildungsabbruch kostet. Jede Stunde Verwaltungsarbeit ist eine Stunde weniger Mentoring.</p>
+      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">So entlastet LFA<br>Betrieb und Azubi.</h2>
+      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed mb-12">Konkrete Zahlen, die zeigen, was LFA fuer Ausbildungsbetriebe und Auszubildende veraendert.</p>
       <div class="grid grid-cols-1 md:grid-cols-5 gap-5 items-stretch">
-        <!-- Big featured stat -->
+        <!-- Big featured stat — warning: this is a COST -->
         <div class="reveal md:col-span-2 relative p-10 rounded-2xl border border-border-hover overflow-hidden flex flex-col items-center justify-center text-center" style="background:linear-gradient(160deg,var(--color-surface-bright),var(--color-surface))">
           <div class="absolute top-0 left-0 right-0 h-[2px]" style="background:linear-gradient(90deg,transparent,var(--color-accent),transparent)"></div>
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background:rgba(255,180,0,.12);border:1px solid rgba(255,180,0,.2);">
+            <svg class="w-6 h-6" style="color:#e6a700;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
           <div class="text-5xl md:text-6xl font-bold gradient-text leading-none mb-3 tabular-nums" data-target="30000" data-separator="." data-suffix=" EUR">0</div>
-          <span class="block text-lg font-medium mb-1">Kosten pro Abbruch</span>
-          <span class="block text-sm text-faint">Direkte und indirekte Kosten</span>
+          <span class="block text-lg font-medium mb-1">Kosten pro Ausbildungsabbruch</span>
+          <span class="block text-sm text-faint mb-4">Direkte und indirekte Kosten fuer den Betrieb</span>
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background:rgba(255,26,26,.08);color:var(--color-accent);">LFA reduziert Abbrueche durch Struktur und Betreuung</span>
         </div>
-        <!-- Two stacked stats -->
+        <!-- Two stacked stats — POSITIVE reductions -->
         <div class="md:col-span-3 grid grid-rows-2 gap-5">
-          <div class="reveal relative p-8 rounded-2xl border border-border-hover overflow-hidden flex items-center gap-8" style="background:linear-gradient(160deg,var(--color-surface-bright),var(--color-surface))">
+          <div class="reveal relative p-8 rounded-2xl border border-border-hover overflow-hidden flex items-center gap-6" style="background:linear-gradient(160deg,var(--color-surface-bright),var(--color-surface))">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background:rgba(40,200,64,.1);border:1px solid rgba(40,200,64,.2);">
+              <svg class="w-5 h-5" style="color:#28c840;" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
+            </div>
             <div class="text-4xl md:text-5xl font-bold gradient-text leading-none tabular-nums shrink-0" data-target="40" data-suffix="%">0</div>
             <div class="text-left">
               <span class="block font-medium">weniger Papierkram</span>
-              <span class="block text-sm text-faint mt-1">Dank Automatisierung</span>
+              <span class="block text-sm text-faint mt-1">Berichtshefte, Zeugnisse und Berichte automatisch generiert</span>
             </div>
           </div>
-          <div class="reveal relative p-8 rounded-2xl border border-border-hover overflow-hidden flex items-center gap-8" style="background:linear-gradient(160deg,var(--color-surface-bright),var(--color-surface))">
+          <div class="reveal relative p-8 rounded-2xl border border-border-hover overflow-hidden flex items-center gap-6" style="background:linear-gradient(160deg,var(--color-surface-bright),var(--color-surface))">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background:rgba(40,200,64,.1);border:1px solid rgba(40,200,64,.2);">
+              <svg class="w-5 h-5" style="color:#28c840;" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
+            </div>
             <div class="text-4xl md:text-5xl font-bold gradient-text leading-none tabular-nums shrink-0" data-target="60" data-suffix="%">0</div>
             <div class="text-left">
-              <span class="block font-medium">weniger private Lernzeit</span>
-              <span class="block text-sm text-faint mt-1">Gezielte Vorbereitung statt blindes Bueffeln</span>
+              <span class="block font-medium">weniger private Lernzeit noetig</span>
+              <span class="block text-sm text-faint mt-1">Gezielte Vorbereitung auf IHK-Pruefungen statt blindes Bueffeln</span>
             </div>
           </div>
         </div>
+      </div>
+      <!-- Summary callout -->
+      <div class="reveal mt-8 p-6 rounded-2xl text-center" style="background:rgba(40,200,64,.04);border:1px solid rgba(40,200,64,.12);">
+        <p class="text-sm font-medium" style="color:#1a8f2d;">Zusammengefasst: LFA spart dem Betrieb Geld, reduziert Verwaltungsaufwand und gibt Azubis effektivere Lernzeit zurueck.</p>
       </div>
     </div>
   </section>
@@ -716,68 +866,62 @@
       <span
         class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Technologie
         und Vertrauen</span>
-      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Praezision in jeder Schicht.
+      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Sicher, schnell und<br>durchdacht gebaut.
       </h2>
-      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Keine Kompromisse bei Sicherheit, Performance
-        oder Compliance.</p>
+      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Moderne Technologie, die zuverlaessig funktioniert — und deine Daten schuetzt.</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
-        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
+        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover tilt-card">
           <div
             class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
             <svg class="icon">
               <use href="#i-shield" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">Closed-Context KI</h3>
-          <p class="text-sm text-muted leading-relaxed">RAG-Pipeline mit Vektorsuche. Anti-Halluzinations-Regeln
-            verhindern erfundene Daten.</p>
+          <h3 class="text-lg font-semibold mb-2">KI, die keine Fakten erfindet</h3>
+          <p class="text-sm text-muted leading-relaxed">Unsere KI antwortet nur mit Wissen aus echten IHK-Buechern und Firmendaten. Eingebaute Regeln verhindern, dass sie sich Antworten ausdenkt.</p>
         </div>
-        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
+        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover tilt-card">
           <div
             class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
             <svg class="icon">
               <use href="#i-lock" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">Datensicherheit</h3>
-          <p class="text-sm text-muted leading-relaxed">Rollenbasierte Zugriffskontrolle, DSGVO-konform, EU-Hosting und verschluesselte Datenuebertragung.</p>
+          <h3 class="text-lg font-semibold mb-2">Deine Daten sind geschuetzt</h3>
+          <p class="text-sm text-muted leading-relaxed">Jeder Nutzer sieht nur das, was er sehen darf. Alle Daten werden verschluesselt, in der EU gespeichert und nach DSGVO-Standards verarbeitet.</p>
         </div>
-        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
+        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover tilt-card">
           <div
             class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
             <svg class="icon">
               <use href="#i-zap" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">5-Schichten-Caching</h3>
-          <p class="text-sm text-muted leading-relaxed">Browser, React Query, Server-Cache, HTTP-Cache-Control und
-            CDN-Edge.</p>
+          <h3 class="text-lg font-semibold mb-2">Blitzschnelle Ladezeiten</h3>
+          <p class="text-sm text-muted leading-relaxed">Fuenf Ebenen intelligentes Caching sorgen dafuer, dass Seiten sofort laden — egal ob im Buero oder unterwegs.</p>
         </div>
       </div>
-      <div class="flex flex-wrap gap-3 mt-10">
-        <span
-          class="reveal px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted">Next.js
-          15</span>
-        <span
-          class="reveal px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted">TypeScript</span>
-        <span class="reveal px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted">React
-          18</span>
-        <span
-          class="reveal px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted">PostgreSQL</span>
-        <span
-          class="reveal px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted">pgvector</span>
-        <span
-          class="reveal px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted">Drizzle
-          ORM</span>
-        <span
-          class="reveal px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted">Supabase
-          Auth</span>
-        <span
-          class="reveal px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted">Gemini
-          AI</span>
-        <span
-          class="reveal px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted">Vercel
-          Edge</span>
+      <div class="marquee reveal mt-10">
+        <div class="marquee__track">
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">Next.js 15</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">TypeScript</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">React 18</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">PostgreSQL</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">pgvector</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">Drizzle ORM</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">Supabase Auth</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">Gemini AI</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">Vercel Edge</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">Next.js 15</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">TypeScript</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">React 18</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">PostgreSQL</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">pgvector</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">Drizzle ORM</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">Supabase Auth</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">Gemini AI</span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium bg-surface border border-border text-muted whitespace-nowrap">Vercel Edge</span>
+        </div>
       </div>
     </div>
   </section>
@@ -899,7 +1043,12 @@
 
         <!-- End node -->
         <div class="rm__end">
-          <div class="rm__end-dot" id="rmEndDot"></div>
+          <div class="rm__end-marker" id="rmEndDot">
+            <div class="rm__end-ring">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <span class="rm__end-label">Und das ist erst der Anfang.</span>
+          </div>
         </div>
 
       </div>
@@ -1114,6 +1263,30 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeLightbox(e);
     });
+
+    /* Prevent parent page scrolling while mouse is over demo iframe */
+    (function() {
+      var demoSection = document.getElementById('demo');
+      if (!demoSection) return;
+      var demoWrap = demoSection.querySelector('.browser-chrome');
+      if (!demoWrap) return;
+
+      var lockedY = null;
+      function enforceLock() {
+        if (lockedY !== null) window.scrollTo(0, lockedY);
+      }
+
+      demoWrap.addEventListener('mouseenter', function() {
+        lockedY = window.scrollY;
+        document.documentElement.style.overflow = 'hidden';
+        window.addEventListener('scroll', enforceLock);
+      });
+      demoWrap.addEventListener('mouseleave', function() {
+        window.removeEventListener('scroll', enforceLock);
+        lockedY = null;
+        document.documentElement.style.overflow = '';
+      });
+    })();
   </script>
 
   <!-- Cookie Consent Banner (TTDSG / DSGVO 2026) -->

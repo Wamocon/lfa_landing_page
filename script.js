@@ -231,6 +231,27 @@
       totalLen = pathFill.getTotalLength();
       pathFill.style.strokeDasharray = totalLen;
       pathFill.style.strokeDashoffset = totalLen;
+
+      /* Sync dot thresholds to actual path positions */
+      if (totalLen > 0) {
+        var timelineRect = timeline.getBoundingClientRect();
+        rows.forEach(function (row) {
+          var dot = row.querySelector('.rm__dot');
+          if (!dot) return;
+          var dotRect = dot.getBoundingClientRect();
+          var dotY = dotRect.top + dotRect.height / 2 - timelineRect.top;
+
+          /* Binary search along path for the length where path Y == dot Y */
+          var lo = 0, hi = totalLen;
+          for (var iter = 0; iter < 50; iter++) {
+            var mid = (lo + hi) / 2;
+            var pt = pathFill.getPointAtLength(mid);
+            if (pt.y < dotY) lo = mid;
+            else hi = mid;
+          }
+          row.dataset.rmProgress = ((lo + hi) / 2 / totalLen).toFixed(4);
+        });
+      }
     }
 
     buildSnakePath();
@@ -257,7 +278,7 @@
           var pt = pathFill.getPointAtLength(progress * totalLen);
           glow.style.top = pt.y + 'px';
           glow.style.left = pt.x + 'px';
-          glow.style.opacity = (progress > 0.01 && progress < 0.99) ? '1' : '0';
+          glow.style.opacity = (progress > 0.01 && progress < 0.92) ? '1' : '0';
         }
 
         rows.forEach(function (row) {
@@ -265,12 +286,9 @@
           var card = row.querySelector('.rm__card');
           var branch = row.querySelector('.rm__branch');
 
-          var isActive = false;
-          if (dot) {
-            var dotRect = dot.getBoundingClientRect();
-            var dotCenter = dotRect.top + dotRect.height / 2;
-            isActive = dotCenter < vh * 0.75 && dotCenter > -vh * 0.3;
-          }
+          /* Sync card activation with path progress */
+          var rowProgress = parseFloat(row.dataset.rmProgress) || 0;
+          var isActive = progress >= rowProgress;
 
           if (dot) dot.classList.toggle('rm__dot--active', isActive);
           if (card) card.classList.toggle('rm__card--active', isActive);
@@ -279,7 +297,7 @@
 
         var endDot = document.getElementById('rmEndDot');
         if (endDot) {
-          endDot.classList.toggle('rm__end-dot--active', progress >= 0.95);
+          endDot.classList.toggle('rm__end-marker--active', progress >= 0.92);
         }
 
         ticking = false;
@@ -579,26 +597,29 @@
     var el = document.getElementById('heroTyping');
     if (!el || prefersReduced) return;
 
-    var words = ['FIAE Ausbildung.', 'IT-Karriere.', 'Deine Zukunft.', 'Duale Bildung.'];
+    var words = ['FIAE Ausbildung.', 'IT-Karriere.'];
     var wordIdx = 0;
     var charIdx = 0;
     var isDeleting = false;
     var delay = 100;
 
-    /* Add cursor */
+    /* Place cursor inside the typing span so it stays right next to text */
+    var textNode = document.createTextNode(el.textContent);
+    el.textContent = '';
+    el.appendChild(textNode);
     var cursor = document.createElement('span');
     cursor.className = 'typing-cursor';
-    el.parentNode.insertBefore(cursor, el.nextSibling);
+    el.appendChild(cursor);
 
     function tick() {
       var current = words[wordIdx];
       if (isDeleting) {
         charIdx--;
-        el.textContent = current.substring(0, charIdx);
+        textNode.textContent = current.substring(0, charIdx);
         delay = 50;
       } else {
         charIdx++;
-        el.textContent = current.substring(0, charIdx);
+        textNode.textContent = current.substring(0, charIdx);
         delay = 80 + Math.random() * 60;
       }
 
@@ -619,6 +640,34 @@
   }
 
   /* ==============================================
+     11. 3D TILT ON CARDS
+     ============================================== */
+  function initTiltCards() {
+    var cards = $$('.tilt-card');
+    if (!cards.length || prefersReduced) return;
+
+    cards.forEach(function (card) {
+      card.addEventListener('mouseenter', function () {
+        /* Remove transform transition during tilt for instant response */
+        card.style.transition = 'border-color .7s cubic-bezier(.16,1,.3,1), box-shadow .7s cubic-bezier(.16,1,.3,1)';
+      });
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width;
+        var y = (e.clientY - rect.top) / rect.height;
+        var tiltX = (0.5 - y) * 14;
+        var tiltY = (x - 0.5) * 14;
+        card.style.transform = 'perspective(800px) rotateX(' + tiltX + 'deg) rotateY(' + tiltY + 'deg) scale3d(1.02,1.02,1.02)';
+      });
+      card.addEventListener('mouseleave', function () {
+        /* Restore transition for smooth spring-back */
+        card.style.transition = 'border-color .7s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1), box-shadow .7s cubic-bezier(.16,1,.3,1)';
+        card.style.transform = '';
+      });
+    });
+  }
+
+  /* ==============================================
      INIT
      ============================================== */
   function init() {
@@ -632,6 +681,7 @@
     initScrollEffects();
     initMagneticButtons();
     initTyping();
+    initTiltCards();
   }
 
   if (document.readyState === 'loading') {
