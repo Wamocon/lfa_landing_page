@@ -33,9 +33,15 @@
     }
     html { scrollbar-gutter: stable; }
     body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text-main); position: relative; }
-    body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
-      background: radial-gradient(ellipse 80% 50% at 20% 30%,rgba(255,26,26,.04)0%,transparent 50%),
-      radial-gradient(ellipse 60% 60% at 80% 70%,rgba(100,60,180,.03)0%,transparent 50%); }
+    /* Animated Gradient Orbs */
+    .gradient-orbs { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+    .orb { position:absolute; border-radius:50%; filter:blur(100px); will-change:transform; }
+    .orb--1 { width:600px; height:600px; background:#e01515; opacity:.04; top:5%; left:10%; animation:orb-drift-1 25s ease-in-out infinite; }
+    .orb--2 { width:500px; height:500px; background:#6432b4; opacity:.035; top:40%; right:5%; animation:orb-drift-2 30s ease-in-out infinite; }
+    .orb--3 { width:450px; height:450px; background:#e01515; opacity:.03; bottom:15%; left:50%; animation:orb-drift-3 22s ease-in-out infinite; }
+    @keyframes orb-drift-1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(80px,-50px) scale(1.15)} 66%{transform:translate(-40px,60px) scale(.9)} }
+    @keyframes orb-drift-2 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(-60px,40px) scale(1.1)} 70%{transform:translate(50px,-70px) scale(.85)} }
+    @keyframes orb-drift-3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-80px,-50px) scale(1.2)} }
     ::selection { background: var(--color-accent); color:#fff; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
     .nav-scrolled { background:rgba(255,255,255,.82)!important; backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid rgba(255,26,26,.08); }
@@ -77,6 +83,12 @@
     .gradient-border:hover::after { opacity:1; }
     @keyframes rotate-border { 0%{--border-angle:0deg} 100%{--border-angle:360deg} }
     @property --border-angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }
+
+    /* ── Bento Grid Enhancements ── */
+    .bento-featured { position:relative; overflow:hidden; }
+    .bento-featured::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle, rgba(255,26,26,.06) 1px, transparent 1px); background-size:24px 24px; opacity:0; transition:opacity .5s ease; pointer-events:none; }
+    .bento-featured:hover::before { opacity:1; }
+    .bento-featured:hover { border-color:var(--color-border-accent)!important; box-shadow:0 20px 60px rgba(0,0,0,.1), 0 0 40px rgba(255,26,26,.06)!important; }
 
     /* ── Cookie Consent ── */
     .cookie-banner { position:fixed; bottom:0; left:0; right:0; z-index:9998; transform:translateY(100%); transition:transform .5s cubic-bezier(.16,1,.3,1); }
@@ -167,16 +179,8 @@
     section { background:var(--color-bg); position:relative; z-index:1; }
     .section-alt { background:var(--color-bg-alt); }
 
-    /* Diagonal slice divider */
-    .divider-slant { position:relative; height:120px; margin-top:-2px; margin-bottom:-2px; overflow:hidden; z-index:2; }
-    .divider-slant svg { position:absolute; inset:-1px; width:calc(100% + 2px); height:calc(100% + 2px); display:block; }
-
-    /* Wave divider */
-    .divider-wave { position:relative; height:100px; margin-top:-2px; margin-bottom:-2px; overflow:hidden; z-index:2; }
-    .divider-wave svg { position:absolute; inset:-1px; width:calc(100% + 2px); height:calc(100% + 2px); display:block; }
-
-    /* Gradient fade divider */
-    .divider-fade { height:160px; margin-top:-80px; margin-bottom:-80px; position:relative; z-index:2; pointer-events:none; }
+    /* Gradient transition divider */
+    .divider-gradient { height:120px; position:relative; z-index:2; pointer-events:none; margin-top:-1px; margin-bottom:-1px; }
 
     /* Dark premium section */
     .section-dark { background:#0f0f11; color:#f0f0f2; }
@@ -207,6 +211,13 @@
 </head>
 
 <body class="overflow-x-hidden antialiased leading-relaxed">
+
+  <!-- Gradient Orbs -->
+  <div class="gradient-orbs" aria-hidden="true">
+    <div class="orb orb--1"></div>
+    <div class="orb orb--2"></div>
+    <div class="orb orb--3"></div>
+  </div>
 
   <!-- SVG Sprite -->
   <svg class="hidden" xmlns="http://www.w3.org/2000/svg">
@@ -344,12 +355,8 @@
       <p class="reveal text-lg md:text-xl text-muted max-w-[600px] mx-auto leading-relaxed">Die Plattform, auf der Ausbilder und Auszubildende direkt miteinander kommunizieren. Persoenliches Feedback auf jede Aufgabe — verankert in IHK-Verordnungen und firmeneigenen Daten.</p>
       <p class="reveal text-xs text-faint mt-4 tracking-wide">Ein Produkt der WAMOCON GmbH</p>
     </div>
-    <!-- Diagonal slice inside hero so particles/gradient extend behind it -->
-    <div class="absolute bottom-0 left-0 right-0 h-[120px] z-20 overflow-hidden">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none" class="absolute" style="inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);">
-        <path d="M0 120L1440 0V120H0Z" fill="#0f0f11"/>
-      </svg>
-    </div>
+    <!-- Gradient fade into dark section -->
+    <div class="absolute bottom-0 left-0 right-0 h-[120px] z-20" style="background:linear-gradient(to bottom, transparent, #0f0f11);"></div>
   </section>
 
   <!-- PROBLEM — Dark dramatic section for impact -->
@@ -431,12 +438,7 @@
     </div>
   </section>
 
-  <!-- PROBLEM → LFA: Wave divider -->
-  <div class="divider-wave" style="background:#0f0f11;">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" fill="none">
-      <path d="M0 40C240 100 480 0 720 50C960 100 1200 20 1440 60V100H0Z" fill="var(--color-bg)"/>
-    </svg>
-  </div>
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
 
   <!-- ROLLEN — Für wen ist LFA? -->
   <section class="py-24 md:py-36 section-organic" id="rollen">
@@ -515,7 +517,7 @@
       <!-- Bento Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
         <!-- Featured: large card with image -->
-        <div class="reveal md:col-span-2 p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border">
+        <div class="reveal md:col-span-2 p-8 rounded-2xl bg-surface border border-border card-hover bento-featured">
           <div class="flex flex-col md:flex-row gap-6">
             <div class="flex-1">
               <div class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
@@ -547,7 +549,7 @@
           <p class="text-sm text-muted leading-relaxed">Juristische Arbeitszeugnisvorlagen, ARP-Referenzen, Lernfeld-Zuordnung LF1 bis LF12a.</p>
         </div>
         <!-- Featured: large card with image -->
-        <div class="reveal md:col-span-2 p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border">
+        <div class="reveal md:col-span-2 p-8 rounded-2xl bg-surface border border-border card-hover bento-featured">
           <div class="flex flex-col md:flex-row gap-6">
             <div class="md:w-[240px] shrink-0 order-2 md:order-1 self-center">
               <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden" onclick="openLightbox(this.querySelector('img'))">
@@ -612,12 +614,6 @@
     </div>
   </section>
 
-  <!-- LFA → FUNKTIONEN: Reverse diagonal -->
-  <div class="divider-slant" style="background:var(--color-bg);">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none">
-      <path d="M0 0L1440 120V120H0Z" fill="var(--color-bg-alt)"/>
-    </svg>
-  </div>
 
   <!-- FUNKTIONEN — Soft glow section -->
   <section class="py-24 md:py-36 text-center section-alt section-glow" id="funktionen">
@@ -629,7 +625,7 @@
       <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte Module und mehr — alles in einer Plattform vereint.</p>
       <!-- Featured modules -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14">
-        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border tilt-card">
+        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover bento-featured tilt-card">
           <div class="flex items-start gap-4 mb-5">
             <div class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent shrink-0">
               <svg class="icon w-6 h-6"><use href="#i-book" /></svg>
@@ -644,7 +640,7 @@
             <span class="lightbox-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></span>
           </div>
         </div>
-        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border tilt-card">
+        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover bento-featured tilt-card">
           <div class="flex items-start gap-4 mb-5">
             <div class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent shrink-0">
               <svg class="icon w-6 h-6"><use href="#i-bot" /></svg>
@@ -709,12 +705,6 @@
   </section>
 
 
-  <!-- FUNKTIONEN → DEMO: Wave organic -->
-  <div class="divider-wave" style="background:var(--color-bg-alt);">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" fill="none">
-      <path d="M0 60C360 0 720 100 1080 30C1260 0 1380 40 1440 20V100H0Z" fill="var(--color-bg)"/>
-    </svg>
-  </div>
 
   <!-- PLATTFORM ERLEBEN -->
   <section class="py-24 md:py-36" id="demo">
@@ -748,12 +738,7 @@
     </div>
   </section>
 
-  <!-- DEMO → HIGHLIGHTS: Slant -->
-  <div class="divider-slant" style="background:var(--color-bg);">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none">
-      <path d="M0 120L1440 0V120H0Z" fill="#0f0f11"/>
-    </svg>
-  </div>
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg), #0f0f11);"></div>
 
   <!-- HIGHLIGHTS — Dark dramatic strip -->
   <section class="py-16 md:py-24 section-dark" id="highlights">
@@ -797,12 +782,7 @@
     </div>
   </section>
 
-  <!-- HIGHLIGHTS → ROI: Wave -->
-  <div class="divider-wave" style="background:#0f0f11;">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" fill="none">
-      <path d="M0 30C200 80 400 10 600 50C800 90 1000 20 1200 60C1320 80 1400 40 1440 50V100H0Z" fill="var(--color-bg)"/>
-    </svg>
-  </div>
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
 
   <!-- ROI — Organic blobs, light -->
   <section class="py-24 md:py-36 section-organic" id="roi">
@@ -853,12 +833,6 @@
     </div>
   </section>
 
-  <!-- ROI → ARCHITEKTUR: Slant reverse -->
-  <div class="divider-slant" style="background:var(--color-bg);">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none">
-      <path d="M0 0L1440 120V120H0Z" fill="var(--color-bg-alt)"/>
-    </svg>
-  </div>
 
   <!-- ARCHITEKTUR — Subtle alt bg with glow -->
   <section class="py-24 md:py-36 section-alt section-glow" id="architektur">
@@ -926,12 +900,7 @@
     </div>
   </section>
 
-  <!-- ARCHITEKTUR → ROADMAP: Wave -->
-  <div class="divider-wave" style="background:var(--color-bg-alt);">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" fill="none">
-      <path d="M0 50C180 10 360 80 540 40C720 0 900 70 1080 30C1260 -10 1380 50 1440 30V100H0Z" fill="#0f0f11"/>
-    </svg>
-  </div>
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #0f0f11);"></div>
 
   <!-- ROADMAP — Dark premium -->
   <section class="py-24 md:py-36 section-dark" id="roadmap">
@@ -1055,12 +1024,7 @@
     </div>
   </section>
 
-  <!-- ROADMAP → FAQ: Slant -->
-  <div class="divider-slant" style="background:#0f0f11;">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none">
-      <path d="M0 120L1440 0V120H0Z" fill="var(--color-bg)"/>
-    </svg>
-  </div>
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
 
   <!-- FAQ — Clean light with organic blobs -->
   <section class="py-24 md:py-36 section-organic" id="faq">
