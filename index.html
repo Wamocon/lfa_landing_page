@@ -398,12 +398,18 @@
         <img src="wamocon-logo.png" alt="WAMOCON" class="logo-img h-32 w-auto">
       </a>
       <!-- Desktop links -->
-      <div class="hidden md:flex gap-8">
-        <a href="#problem" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">Problemstellung</a>
-        <a href="#warum" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">LFA</a>
-        <a href="#funktionen" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">Funktionen</a>
-        <a href="#demo" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">Demo</a>
-        <a href="#faq" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">FAQ</a>
+      <div class="hidden md:flex gap-5">
+        <a href="#problem" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Problem</a>
+        <a href="#rollen" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Rollen</a>
+        <a href="#warum" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">LFA</a>
+        <a href="#funktionen" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Module</a>
+        <a href="#demo" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Demo</a>
+        <a href="#solarsystem" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Universum</a>
+        <a href="#hai" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">HAI</a>
+        <a href="#roi" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Kosten</a>
+        <a href="#architektur" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Technik</a>
+        <a href="#roadmap" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Gründe</a>
+        <a href="#faq" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">FAQ</a>
       </div>
       <!-- Mobile hamburger -->
       <button class="nav-hamburger md:hidden" id="navHamburger" aria-label="Menü öffnen" aria-expanded="false">
@@ -414,13 +420,25 @@
 
   <!-- Mobile fullscreen menu -->
   <div id="mobileMenu" aria-hidden="true" role="dialog" aria-label="Navigation">
-    <a href="#problem" class="mm-link" onclick="closeMobileMenu()">Problemstellung</a>
+    <a href="#problem" class="mm-link" onclick="closeMobileMenu()">Problem</a>
+    <div class="mm-divider"></div>
+    <a href="#rollen" class="mm-link" onclick="closeMobileMenu()">Rollen</a>
     <div class="mm-divider"></div>
     <a href="#warum" class="mm-link" onclick="closeMobileMenu()">LFA</a>
     <div class="mm-divider"></div>
-    <a href="#funktionen" class="mm-link" onclick="closeMobileMenu()">Funktionen</a>
+    <a href="#funktionen" class="mm-link" onclick="closeMobileMenu()">Module</a>
     <div class="mm-divider"></div>
     <a href="#demo" class="mm-link" onclick="closeMobileMenu()">Demo</a>
+    <div class="mm-divider"></div>
+    <a href="#solarsystem" class="mm-link" onclick="closeMobileMenu()">Universum</a>
+    <div class="mm-divider"></div>
+    <a href="#hai" class="mm-link" onclick="closeMobileMenu()">HAI</a>
+    <div class="mm-divider"></div>
+    <a href="#roi" class="mm-link" onclick="closeMobileMenu()">Kosten</a>
+    <div class="mm-divider"></div>
+    <a href="#architektur" class="mm-link" onclick="closeMobileMenu()">Technik</a>
+    <div class="mm-divider"></div>
+    <a href="#roadmap" class="mm-link" onclick="closeMobileMenu()">Gründe</a>
     <div class="mm-divider"></div>
     <a href="#faq" class="mm-link" onclick="closeMobileMenu()">FAQ</a>
   </div>
@@ -801,7 +819,7 @@
     <div class="max-w-[1100px] mx-auto px-5 md:px-10 text-center pt-24 md:pt-36 pb-8">
       <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Inhaltsarchitektur</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Vom Chaos &#x2192; zur Klarheit.</h2>
-      <p class="reveal text-lg max-w-[560px] mx-auto leading-relaxed mb-10" style="color:#9999a1;">Klicke auf <strong style="color:#ff6060;">FIAE</strong> und fliege durch das gesamte : Lernfelder, Komponenten und Use Cases.</p>
+      <p class="reveal text-lg max-w-[560px] mx-auto leading-relaxed mb-10" style="color:#9999a1;">Klicke auf <strong style="color:#ff6060;">FIAE</strong> und fliege durch das gesamte Lernuniversum: Lernfelder, Komponenten und Use Cases.</p>
 
       <!-- Begriffserklärung -->
       <div class="reveal flex flex-wrap justify-center gap-3 md:gap-5 mb-2">
@@ -1705,7 +1723,7 @@
     </div>
     <div id="galaxySvgContainer"></div>
     <div id="galaxyTooltip"></div>
-    <p id="galaxyHint" style="position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:9590;color:#4a4a58;font-size:.63rem;letter-spacing:.04em;text-align:center;pointer-events:none;white-space:nowrap;">Klicke auf <span style="color:#ff7777;">Lernfeld</span> oder <span style="color:#c8ccd4;">Komponente</span> zum Einzoomen &nbsp;·&nbsp; Hover für Details</p>
+    <p id="galaxyHint" style="position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:9590;color:#4a4a58;font-size:.63rem;letter-spacing:.04em;text-align:center;pointer-events:none;white-space:nowrap;">Klicke <span style="color:#ff7777;">Lernfeld</span> zum Einzoomen &nbsp;·&nbsp; Klicke <span style="color:#ff6060;">Komponente</span> um ihre Gruppe zu erkunden &nbsp;·&nbsp; Hover für Details</p>
     <input id="galaxySearch" type="text" placeholder="Suchen…" oninput="galaxySearch(this.value)">
   </div>
 

@@ -835,41 +835,36 @@
           ctx.beginPath(); ctx.arc(px,py,pr+(3+pulse*5)*sc,0,6.2832); ctx.stroke();
         }
 
-        /* Planet body — matte, no specular gloss.
-           Rim-light angle calculated from planet's actual orbit position
-           relative to the sun (cx/cy), so the lit edge always faces the sun. */
-        var pg = ctx.createRadialGradient(px, py, pr*0.05, px, py, pr);
+        /* Planet body */
         if (p.active) {
-          pg.addColorStop(0,   '#c01818'); /* centre: saturated dark red */
-          pg.addColorStop(0.55,'#7a0505'); /* mid: deeper */
-          pg.addColorStop(1,   '#180000'); /* edge: near-black */
-        } else {
-          pg.addColorStop(0,   '#52526a'); /* centre: lighter slate for text contrast */
-          pg.addColorStop(0.6, '#32323f'); /* mid */
-          pg.addColorStop(1,   '#14141e'); /* edge: near-black */
-        }
-        ctx.fillStyle = pg; ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.fill();
+          /* Active: atmospheric red gradient + sun-direction rim-light */
+          var pg = ctx.createRadialGradient(px, py, pr*0.05, px, py, pr);
+          pg.addColorStop(0,   '#c01818');
+          pg.addColorStop(0.55,'#7a0505');
+          pg.addColorStop(1,   '#180000');
+          ctx.fillStyle = pg;
+          ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.fill();
 
-        /* Rim light from sun (LFA at cx/cy) — clip to planet disc */
-        var rimAngle = Math.atan2(py - cy, px - cx); /* angle planet → sun */
-        var rlx = px - Math.cos(rimAngle) * pr * 0.72;
-        var rly = py - Math.sin(rimAngle) * pr * 0.72;
-        var rl = ctx.createRadialGradient(rlx, rly, pr * 0.05, rlx, rly, pr * 1.35);
-        if (p.active) {
+          var rimAngle = Math.atan2(py - cy, px - cx);
+          var rlx = px - Math.cos(rimAngle) * pr * 0.72;
+          var rly = py - Math.sin(rimAngle) * pr * 0.72;
+          var rl = ctx.createRadialGradient(rlx, rly, pr * 0.05, rlx, rly, pr * 1.35);
           rl.addColorStop(0,    'rgba(255,100,60,0)');
           rl.addColorStop(0.55, 'rgba(255,100,60,0)');
           rl.addColorStop(0.78, 'rgba(255,120,60,.30)');
           rl.addColorStop(1,    'rgba(255,100,60,0)');
+          ctx.save();
+          ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.clip();
+          ctx.fillStyle = rl; ctx.fillRect(px-pr*2, py-pr*2, pr*4, pr*4);
+          ctx.restore();
         } else {
-          rl.addColorStop(0,    'rgba(0,0,0,0)');
-          rl.addColorStop(0.6,  'rgba(0,0,0,0)');
-          rl.addColorStop(0.82, 'rgba(90,95,130,.20)');
-          rl.addColorStop(1,    'rgba(0,0,0,0)');
+          /* Inactive: clean flat outlined circle — modern minimal */
+          ctx.fillStyle = 'rgba(255,255,255,.04)';
+          ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.fill();
+          ctx.strokeStyle = 'rgba(255,255,255,.22)';
+          ctx.lineWidth = 1.2;
+          ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.stroke();
         }
-        ctx.save();
-        ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.clip();
-        ctx.fillStyle = rl; ctx.fillRect(px-pr*2, py-pr*2, pr*4, pr*4);
-        ctx.restore();
 
         /* Label — bold, large, clear */
         var fSize = Math.max(10, Math.round(12*sc));
@@ -1198,18 +1193,124 @@
     })
     .on('mouseout',function(){resetHighlight();tooltip.style.display='none';});
 
-    /* Click LF or Comp → zoom into cluster */
+    /* Comp-focus state — tracks which Comp is currently in focus mode */
+    var compFocus = null;
+
+    /* Build comp→parent-LF map via shared UC connections */
+    function getCompLF(compNode) {
+      /* Find UCs connected to this Comp via parent links */
+      var compUCs = new Set();
+      links.forEach(function(l) {
+        var si = typeof l.source==='object' ? l.source.id : l.source;
+        var ti = typeof l.target==='object' ? l.target.id : l.target;
+        if ((si===compNode.id || ti===compNode.id) && l.type==='parent') {
+          if (si===compNode.id) compUCs.add(ti); else compUCs.add(si);
+        }
+      });
+      /* Find which LF those UCs connect to via cluster links */
+      var lfCounts = {};
+      links.forEach(function(l) {
+        var si = typeof l.source==='object' ? l.source.id : l.source;
+        var ti = typeof l.target==='object' ? l.target.id : l.target;
+        if (l.type==='cluster') {
+          if (compUCs.has(si) || compUCs.has(ti)) {
+            var lfId = compUCs.has(si) ? ti : si;
+            lfCounts[lfId] = (lfCounts[lfId]||0) + 1;
+          }
+        }
+      });
+      /* Return the LF node with most shared UCs */
+      var bestId = null, best = 0;
+      Object.keys(lfCounts).forEach(function(id) { if (lfCounts[id]>best){best=lfCounts[id];bestId=id;} });
+      if (!bestId) return null;
+      return nodes.find(function(n){return n.id===bestId;});
+    }
+
+    /* Get UC nodes connected to a Comp via parent links */
+    function getCompUCs(compNode) {
+      var ids = new Set([compNode.id]);
+      links.forEach(function(l) {
+        var si = typeof l.source==='object' ? l.source.id : l.source;
+        var ti = typeof l.target==='object' ? l.target.id : l.target;
+        if ((si===compNode.id || ti===compNode.id) && l.type==='parent') {
+          ids.add(si); ids.add(ti);
+        }
+      });
+      return ids;
+    }
+
+    function enterCompFocus(d) {
+      compFocus = d;
+      var ucSet = getCompUCs(d);
+
+      /* Dim everything outside this comp's UCs */
+      node.style('opacity', function(n){ return ucSet.has(n.id) ? 1 : 0.04; });
+      nodeGlow.style('opacity', function(n){ return ucSet.has(n.id) ? 1 : 0; });
+      link.attr('stroke-opacity', function(l){
+        var si = typeof l.source==='object' ? l.source.id : l.source;
+        var ti = typeof l.target==='object' ? l.target.id : l.target;
+        return (si===d.id || ti===d.id) ? 0.75 : 0.01;
+      });
+      label.style('opacity', function(n){
+        return n.id===d.id ? 1 : (ucSet.has(n.id) && n.group!=='UC' ? 0.7 : 0.03);
+      });
+
+      /* Fix comp at the LF's current position — it "takes over" the centre */
+      var lf = getCompLF(d);
+      if (lf) {
+        d.fx = lf.x; d.fy = lf.y;
+        lf.fx = null; lf.fy = null; /* release LF so it drifts away */
+      } else {
+        d.fx = GW/2; d.fy = GH/2;
+      }
+      sim.alpha(0.45).restart();
+
+      /* Zoom to where the comp now sits */
+      setTimeout(function(){
+        var t = d3.zoomIdentity.translate(GW/2,GH/2).scale(3.8).translate(-d.fx,-d.fy);
+        svg.transition().duration(700).call(zb.transform,t);
+      }, 80);
+    }
+
+    function exitCompFocus() {
+      if (compFocus) { compFocus.fx = null; compFocus.fy = null; }
+      compFocus = null;
+      resetHighlight();
+      sim.alpha(0.3).restart();
+      svg.transition().duration(500).call(zb.transform,d3.zoomIdentity);
+    }
+
+    /* Click handler */
     node.on('click',function(ev,d){
-      if(d.group==='UC') return; ev.stopPropagation();
-      doHighlight(d);
-      var scale = d.group==='LF' ? 2.8 : 4.5;
-      var t = d3.zoomIdentity.translate(GW/2,GH/2).scale(scale).translate(-d.x,-d.y);
-      svg.transition().duration(650).call(zb.transform,t);
+      if(d.group==='UC') return;
+      ev.stopPropagation();
+      tooltip.style.display='none';
+
+      if (d.group==='LF') {
+        if (compFocus) {
+          /* LF click while Comp is focused → exit focus mode */
+          exitCompFocus();
+        } else {
+          /* Normal LF zoom */
+          doHighlight(d);
+          var t = d3.zoomIdentity.translate(GW/2,GH/2).scale(2.8).translate(-d.x,-d.y);
+          svg.transition().duration(650).call(zb.transform,t);
+        }
+      } else {
+        /* Comp click */
+        if (compFocus && compFocus.id===d.id) {
+          exitCompFocus(); /* second click on same comp → reset */
+        } else {
+          if (compFocus) exitCompFocus(); /* switch from another comp */
+          enterCompFocus(d);
+        }
+      }
     });
 
     /* Click background → reset */
     svg.on('click',function(){
-      resetHighlight(); tooltip.style.display='none';
+      if (compFocus) exitCompFocus();
+      else { resetHighlight(); tooltip.style.display='none'; }
       svg.transition().duration(500).call(zb.transform,d3.zoomIdentity);
     });
 
