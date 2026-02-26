@@ -722,10 +722,10 @@
     var raf = null;
     var stars = [];
     var PLANETS = [
-      { abbr: 'FIAE',   orbitR0: 148, r0: 36, speed: 0.00035, angle: Math.PI * 0.25, active: true,  _sx: 0, _sy: 0 },
-      { abbr: 'FISI',   orbitR0: 230, r0: 36, speed: 0.00022, angle: Math.PI * 1.6,  active: false, _sx: 0, _sy: 0 },
-      { abbr: 'IT-Kfm', orbitR0: 315, r0: 36, speed: 0.00016, angle: Math.PI * 0.9,  active: false, _sx: 0, _sy: 0 },
-      { abbr: 'IT-Sys', orbitR0: 395, r0: 36, speed: 0.00011, angle: Math.PI * 2.4,  active: false, _sx: 0, _sy: 0 }
+      { abbr: 'FIAE',   orbitR0: 100, r0: 30, speed: 0.00035, angle: Math.PI * 0.25, active: true,  _sx: 0, _sy: 0 },
+      { abbr: 'FISI',   orbitR0: 175, r0: 30, speed: 0.00022, angle: Math.PI * 1.6,  active: false, _sx: 0, _sy: 0 },
+      { abbr: 'IT-Kfm', orbitR0: 250, r0: 30, speed: 0.00016, angle: Math.PI * 0.9,  active: false, _sx: 0, _sy: 0 },
+      { abbr: 'IT-Sys', orbitR0: 318, r0: 30, speed: 0.00011, angle: Math.PI * 2.4,  active: false, _sx: 0, _sy: 0 }
     ];
 
     function genStars() {
@@ -745,7 +745,7 @@
       W = canvas.width  = canvas.parentElement.offsetWidth;
       H = canvas.height = canvas.parentElement.offsetHeight;
       cx = W/2; cy = H/2;
-      sc = Math.min(1, Math.min(W, H*1.6) / 880);
+      sc = Math.min(1, Math.min(W, H*1.5) / 1000);
       genStars();
     }
 
@@ -766,12 +766,12 @@
       var sunPulse = 0.5+0.5*Math.sin(ts*0.0012);   /* slow corona breathe */
 
       /* Far outer haze */
-      var sh = ctx.createRadialGradient(cx,cy,0,cx,cy,160*sc);
+      var sh = ctx.createRadialGradient(cx,cy,0,cx,cy,210*sc);
       sh.addColorStop(0,'rgba(255,80,0,.18)'); sh.addColorStop(0.5,'rgba(220,40,0,.07)'); sh.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.fillStyle=sh; ctx.beginPath(); ctx.arc(cx,cy,160*sc,0,6.2832); ctx.fill();
+      ctx.fillStyle=sh; ctx.beginPath(); ctx.arc(cx,cy,210*sc,0,6.2832); ctx.fill();
 
       /* Main corona glow */
-      var sunGlowR = (95+sunPulse*12)*sc;
+      var sunGlowR = (120+sunPulse*16)*sc;
       var sg = ctx.createRadialGradient(cx,cy,0,cx,cy,sunGlowR);
       sg.addColorStop(0,'rgba(255,180,30,.90)');
       sg.addColorStop(0.25,'rgba(255,100,10,.55)');
@@ -780,15 +780,15 @@
       ctx.fillStyle=sg; ctx.beginPath(); ctx.arc(cx,cy,sunGlowR,0,6.2832); ctx.fill();
 
       /* Hot inner corona — tighter ring */
-      var sc1 = ctx.createRadialGradient(cx,cy,30*sc,cx,cy,62*sc);
+      var sc1 = ctx.createRadialGradient(cx,cy,38*sc,cx,cy,80*sc);
       sc1.addColorStop(0,'rgba(255,220,100,.0)');
       sc1.addColorStop(0.4,'rgba(255,200,60,.35)');
       sc1.addColorStop(0.75,'rgba(255,140,20,.18)');
       sc1.addColorStop(1,'rgba(255,80,0,.0)');
-      ctx.fillStyle=sc1; ctx.beginPath(); ctx.arc(cx,cy,62*sc,0,6.2832); ctx.fill();
+      ctx.fillStyle=sc1; ctx.beginPath(); ctx.arc(cx,cy,80*sc,0,6.2832); ctx.fill();
 
       /* Sun core — matte, no gloss */
-      var coreR = 42*sc;
+      var coreR = 54*sc;
       var sc2 = ctx.createRadialGradient(cx,cy,0,cx,cy,coreR);
       sc2.addColorStop(0,'#ffeeaa');      /* bright centre */
       sc2.addColorStop(0.3,'#ffb830');    /* warm yellow */
@@ -797,8 +797,8 @@
       sc2.addColorStop(1,'#3a0500');      /* rim — near black */
       ctx.fillStyle=sc2; ctx.beginPath(); ctx.arc(cx,cy,coreR,0,6.2832); ctx.fill();
 
-      /* LFA label — dark text on bright centre for readability */
-      var fnt = Math.max(9,Math.round(12*sc));
+      /* LFA label */
+      var fnt = Math.max(11,Math.round(15*sc));
       ctx.font = 'bold '+fnt+'px Inter,sans-serif';
       ctx.textAlign='center'; ctx.textBaseline='middle';
       /* Shadow for contrast */
@@ -880,12 +880,12 @@
         ctx.textBaseline='alphabetic';
         if (p.active) {
           ctx.fillStyle='rgba(255,130,130,.80)';
-          ctx.font=Math.max(6,Math.round(7.5*sc))+'px Inter,sans-serif';
-          ctx.fillText('↗ Erkunden',px,py+pr+14*sc);
+          ctx.font=Math.max(8,Math.round(9.5*sc))+'px Inter,sans-serif';
+          ctx.fillText('↗ Erkunden',px,py+pr+16*sc);
         } else {
           ctx.fillStyle='rgba(165,168,210,.88)';
-          ctx.font=Math.max(6,Math.round(7.5*sc))+'px Inter,sans-serif';
-          ctx.fillText('bald verfügbar',px,py+pr+14*sc);
+          ctx.font=Math.max(8,Math.round(9.5*sc))+'px Inter,sans-serif';
+          ctx.fillText('bald verfügbar',px,py+pr+16*sc);
         }
       }
 
