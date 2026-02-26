@@ -1,17 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LFA — Lernplattform fuer Azubis | KI-gestuetzte duale IT-Ausbildung</title>
+  <title>LFA — Lernplattform für Azubis | KI-gestützte duale IT-Ausbildung</title>
   <meta name="description"
-    content="Die KI-gesteuerte Plattform fuer die duale IT-Ausbildung. Closed-Context KI, IHK-konform, sofortiges Feedback fuer Fachinformatiker.">
+    content="Die KI-gesteuerte Plattform für die duale IT-Ausbildung. Closed-Context KI, IHK-konform, sofortiges Feedback für Fachinformatiker.">
   <meta name="theme-color" content="#f5f5f7">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="galaxy_data_compact.js"></script>
   <style type="text/tailwindcss">
     @theme {
       --color-bg: #f5f5f7;
@@ -31,7 +33,7 @@
       --color-faint: #8e8e93;
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     }
-    html { scrollbar-gutter: stable; }
+    html { scrollbar-gutter: auto; }
     body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text-main); position: relative; }
     /* Animated Gradient Orbs */
     .gradient-orbs { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
@@ -62,9 +64,6 @@
     .faq-question__icon::before { width:14px; height:2px; top:50%; left:50%; transform:translate(-50%,-50%); }
     .faq-question__icon::after { width:2px; height:14px; top:50%; left:50%; transform:translate(-50%,-50%); }
     .faq-item--open .faq-question__icon::after { transform:translate(-50%,-50%) rotate(90deg); opacity:0; }
-    /* ── Highlight Progress Rings ── */
-    .highlight-ring { transition:stroke-dashoffset 1.8s cubic-bezier(.22,1,.36,1) .3s; }
-    .reveal--visible .highlight-ring { stroke-dashoffset:0; }
     /* ── Tech Stack Marquee ── */
     .marquee { overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
     .marquee__track { display:flex; gap:12px; width:max-content; animation:marquee-scroll 30s linear infinite; }
@@ -172,6 +171,66 @@
     .rm__end-marker--active .rm__end-ring svg { color:#fff; }
     .rm__end-label { font-size:.875rem; font-weight:600; color:rgba(255,255,255,.15); transition:color .7s ease; letter-spacing:.02em; }
     .rm__end-marker--active .rm__end-label { color:#f0f0f2; }
+    /* ── Solar System ── */
+    .solar-wrap { position:relative; width:100%; height:520px; }
+    @media (max-width:767px) { .solar-wrap { height:380px; } }
+    #solarCanvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
+    /* ── Galaxy Overlay ── */
+    #galaxyOverlay { position:fixed; inset:0; z-index:9500; background:#040810; display:none; flex-direction:column; }
+    #galaxyOverlay.go--open { display:flex; }
+    #galaxyBack { position:absolute; top:18px; left:18px; z-index:20; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); color:#e2e8f0; font-size:.78rem; font-weight:600; padding:7px 16px; border-radius:10px; cursor:pointer; transition:background .2s; font-family:inherit; }
+    #galaxyBack:hover { background:rgba(255,255,255,.15); }
+    #galaxyTitle { position:absolute; top:21px; left:50%; transform:translateX(-50%); font-size:.78rem; font-weight:700; color:#888; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; pointer-events:none; }
+    #galaxyLegend { position:absolute; top:16px; right:18px; z-index:20; display:flex; gap:12px; align-items:center; }
+    .glgd { display:flex; align-items:center; gap:5px; font-size:.67rem; color:#9999a1; }
+    .glgd-dot { border-radius:50%; flex-shrink:0; }
+    #galaxySvgContainer { width:100%; height:100%; }
+    #galaxySvgContainer svg { display:block; }
+    #galaxyTooltip { position:fixed; z-index:9600; background:rgba(4,8,16,.95); border:1px solid rgba(56,189,248,.22); border-radius:10px; padding:10px 14px; font-size:.74rem; color:#e2e8f0; pointer-events:none; display:none; max-width:300px; line-height:1.55; box-shadow:0 8px 32px rgba(0,0,0,.6); }
+    #galaxySearch { position:fixed; bottom:22px; left:50%; transform:translateX(-50%); z-index:9600; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:9px 18px; color:#e2e8f0; font-size:.8rem; width:240px; outline:none; font-family:inherit; }
+    #galaxySearch:focus { border-color:rgba(56,189,248,.5); background:rgba(255,255,255,.1); }
+    #galaxySearch::placeholder { color:#6e6e76; }
+    /* ── Zoom layer ── */
+    #zoomLayer { position:fixed; inset:0; z-index:9400; pointer-events:none; display:none; overflow:hidden; }
+    #zoomCircle { position:absolute; border-radius:50%; background:#040810; }
+    /* ── HAI Section ── */
+    .section-hai { background:#09111f; color:#f0f0f2; position:relative; overflow:hidden; }
+    .section-hai::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:800px; height:500px; background:radial-gradient(ellipse at 50% 0%, rgba(14,165,233,.07) 0%, transparent 65%); pointer-events:none; z-index:0; }
+    .hai-demo-card { background:rgba(255,255,255,.03); border:1px solid rgba(56,189,248,.15); border-radius:18px; padding:24px; display:flex; flex-direction:column; gap:14px; width:100%; max-width:420px; box-shadow:0 0 40px rgba(14,165,233,.06), 0 8px 24px rgba(0,0,0,.3); }
+    .hai-bubble { border-radius:12px; padding:12px 16px; font-size:.875rem; line-height:1.55; }
+    .hai-bubble--bot { background:rgba(56,189,248,.08); border:1px solid rgba(56,189,248,.15); color:#e2e8f0; border-top-left-radius:4px; }
+    .hai-bubble--bot strong { color:#38bdf8; }
+    .hai-bubble--user { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); color:#b0b0b8; text-align:right; border-top-right-radius:4px; align-self:flex-end; max-width:80%; }
+    .hai-feature { display:flex; gap:14px; align-items:flex-start; }
+    .hai-feature-icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .hai-stat { background:rgba(255,255,255,.03); border:1px solid rgba(56,189,248,.12); border-radius:14px; padding:18px 20px; display:flex; flex-direction:column; gap:4px; }
+    .hai-stat-num { font-size:1.5rem; font-weight:800; letter-spacing:-.02em; background:linear-gradient(135deg,#38bdf8,#7dd3fc); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; line-height:1.1; }
+    .hai-stat-label { font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#38bdf8; }
+    .hai-stat-sub { font-size:.72rem; color:#6e6e76; line-height:1.4; }
+    /* ── HAI Deep Section ── */
+    .section-hai-deep { background:#060e1b; background-image:radial-gradient(rgba(56,189,248,.07) 1px, transparent 1px); background-size:36px 36px; color:#f0f0f2; position:relative; overflow:hidden; }
+    .section-hai-deep::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 10% 80%, rgba(56,189,248,.07) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 90% 20%, rgba(129,140,248,.06) 0%, transparent 60%); pointer-events:none; }
+    .rag-pipeline { display:flex; border:1px solid rgba(56,189,248,.12); border-radius:18px; overflow:hidden; }
+    .rag-step { flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:22px 14px; border-right:1px solid rgba(56,189,248,.1); text-align:center; transition:background .3s; }
+    .rag-step:last-child { border-right:none; }
+    .rag-step:hover { background:rgba(56,189,248,.05); }
+    .rag-step__num { font-size:.6rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#38bdf8; }
+    .rag-step__icon { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; }
+    .rag-step__label { font-size:.8rem; font-weight:700; color:#e2e8f0; }
+    .rag-step__sub { font-size:.65rem; color:#6e6e76; line-height:1.45; }
+    .hai2-card { background:rgba(255,255,255,.02); border:1px solid rgba(56,189,248,.1); border-radius:20px; padding:28px 24px; position:relative; overflow:hidden; transition:border-color .4s, box-shadow .4s; }
+    .hai2-card:hover { border-color:rgba(56,189,248,.22); box-shadow:0 8px 40px rgba(0,0,0,.3), 0 0 40px rgba(56,189,248,.06); }
+    .hai2-card::after { content:''; position:absolute; top:0; left:15%; right:15%; height:1px; background:linear-gradient(90deg, transparent, rgba(56,189,248,.45), transparent); }
+    .hai2-card-icon { width:40px; height:40px; border-radius:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .quiz-level { display:flex; align-items:center; gap:12px; padding:11px 14px; border-radius:10px; margin-bottom:8px; }
+    .quiz-level--done { background:rgba(52,211,153,.06); border:1px solid rgba(52,211,153,.2); }
+    .quiz-level--active { background:rgba(56,189,248,.06); border:1px solid rgba(56,189,248,.2); }
+    .quiz-level--locked { background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06); }
+    .quiz-bar { flex:1; height:4px; border-radius:2px; background:rgba(255,255,255,.06); overflow:hidden; }
+    .quiz-bar__fill { height:100%; border-radius:2px; }
+    .trust-row { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.04); }
+    .trust-row:last-child { border-bottom:none; }
+    .trust-dot { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.65rem; font-weight:800; margin-top:1px; }
     .icon { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
     .logo-img { filter:invert(1); }
     .hero-grid { opacity:.06!important; }
@@ -323,7 +382,7 @@
   <nav class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center transition-all duration-400" id="nav">
     <div class="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
       <a href="#" class="flex items-center hover:opacity-70 transition-opacity">
-        <img src="wamocon-logo.png" alt="WAMOCON" class="logo-img h-14 w-auto">
+        <img src="wamocon-logo.png" alt="WAMOCON" class="logo-img h-32 w-auto">
       </a>
       <div class="hidden md:flex gap-8">
         <a href="#problem" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">Problemstellung</a>
@@ -352,7 +411,7 @@
       </div>
       <h1 class="reveal text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight mb-6">Die Zukunft
         der<br><span class="gradient-text" id="heroTyping">FIAE Ausbildung.</span></h1>
-      <p class="reveal text-lg md:text-xl text-muted max-w-[600px] mx-auto leading-relaxed">Die Plattform, auf der Ausbilder und Auszubildende direkt miteinander kommunizieren. Persoenliches Feedback auf jede Aufgabe — verankert in IHK-Verordnungen und firmeneigenen Daten.</p>
+      <p class="reveal text-lg md:text-xl text-muted max-w-[600px] mx-auto leading-relaxed">Die Plattform, auf der Ausbilder und Auszubildende direkt miteinander kommunizieren. Persönliches Feedback auf jede Aufgabe — verankert in IHK-Verordnungen und firmeneigenen Daten.</p>
       <p class="reveal text-xs text-faint mt-4 tracking-wide">Ein Produkt der WAMOCON GmbH</p>
     </div>
     <!-- Gradient fade into dark section -->
@@ -365,13 +424,13 @@
       <span
         class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Problemstellung</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Die FIAE-Ausbildung<br>steht vor dem Kollaps.</h2>
-      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Waehrend die Nachfrage nach IT-Spezialisten
-        jaehrlich um 4,4 Prozent waechst, verbleibt die Ausbildungsinfrastruktur in fragmentierten Zustaenden.</p>
+      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Während die Nachfrage nach IT-Spezialisten
+        jährlich um 4,4 Prozent wächst, verbleibt die Ausbildungsinfrastruktur in fragmentierten Zuständen.</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
         <div class="reveal text-center p-8 rounded-2xl card-hover accent-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><span
             class="block text-4xl md:text-5xl font-bold gradient-text leading-none mb-3 tabular-nums"
             data-target="149000" data-separator=".">0</span><span class="block text-base font-medium mb-1">fehlende
-            IT-Fachkraefte</span><span class="block text-sm text-faint">Quelle: Bitkom, Ende 2025</span></div>
+            IT-Fachkräfte</span><span class="block text-sm text-faint">Quelle: Bitkom, Ende 2025</span></div>
         <div class="reveal text-center p-8 rounded-2xl card-hover accent-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><span
             class="block text-4xl md:text-5xl font-bold gradient-text leading-none mb-3 tabular-nums" data-target="76"
             data-suffix="%">0</span><span class="block text-base font-medium mb-1">ueberlastete Ausbilder</span><span
@@ -388,28 +447,28 @@
           <p class="text-sm text-muted leading-relaxed mb-5">Digitalisieren Formulare und Berichtshefte, ignorieren aber die fachliche Kompetenzentwicklung.</p>
           <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Verwaltet das Dokument. Nicht den Skill.</span>
           <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
-            <span class="block text-xs font-semibold text-accent mb-1">LFA loest das:</span>
+            <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
             <span class="block text-sm text-muted">Berichtshefte, Zeugnisse und Berichte automatisch generiert — Ausbilder konzentrieren sich auf echte Betreuung.</span>
           </div>
         </div>
         <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
           <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">E-Learning-Plattformen</span>
           <h3 class="text-xl font-semibold tracking-tight mb-3">Kontext-Blindheit</h3>
-          <p class="text-sm text-muted leading-relaxed mb-5">Programmiersprachen werden abstrakt aus Lehrbuechern vermittelt — ohne Szenarien, Use Cases oder praxisnahe Quizze.</p>
+          <p class="text-sm text-muted leading-relaxed mb-5">Programmiersprachen werden abstrakt aus Lehrbüchern vermittelt — ohne Szenarien, Use Cases oder praxisnahe Quizze.</p>
           <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Lehrt die Theorie. Nicht die Praxis.</span>
           <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
-            <span class="block text-xs font-semibold text-accent mb-1">LFA loest das:</span>
-            <span class="block text-sm text-muted">Aus IHK-Buechern entstehen praxisnahe Szenarien, Use Cases und Quizze — Lernen wird greifbar statt abstrakt.</span>
+            <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
+            <span class="block text-sm text-muted">Aus IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze — Lernen wird greifbar statt abstrakt.</span>
           </div>
         </div>
         <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
           <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">Fehlende Struktur</span>
           <h3 class="text-xl font-semibold tracking-tight mb-3">Orientierungslos im Alltag</h3>
-          <p class="text-sm text-muted leading-relaxed mb-5">Azubis starten ohne klare Struktur: Kein Ueberblick ueber Lernfortschritt, anstehende Pruefungen oder naechste Schritte.</p>
-          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Improvisiert die Ausbildung. Statt sie zu fuehren.</span>
+          <p class="text-sm text-muted leading-relaxed mb-5">Azubis starten ohne klare Struktur: Kein Ueberblick ueber Lernfortschritt, anstehende Prüfungen oder nächste Schritte.</p>
+          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Improvisiert die Ausbildung. Statt sie zu führen.</span>
           <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
-            <span class="block text-xs font-semibold text-accent mb-1">LFA loest das:</span>
-            <span class="block text-sm text-muted">Klare Struktur mit Lernfortschritt, Kalender, Deadlines und naechsten Aufgaben — Azubis organisieren ihre Ausbildung selbst.</span>
+            <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
+            <span class="block text-sm text-muted">Klare Struktur mit Lernfortschritt, Kalender, Deadlines und nächsten Aufgaben — Azubis organisieren ihre Ausbildung selbst.</span>
           </div>
         </div>
       </div>
@@ -423,15 +482,15 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Geringere Abbruchquote</span>
-            <span class="block text-sm text-muted">Strukturierte Ausbildung reduziert Frustrationsabbrueche — jeder vermiedene Abbruch spart bis zu 30.000 EUR.</span>
+            <span class="block text-sm text-muted">Strukturierte Ausbildung reduziert Frustrationsabbrüche — jeder vermiedene Abbruch spart bis zu 30.000 EUR.</span>
           </div>
           <div>
             <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Weniger Verwaltungsaufwand</span>
             <span class="block text-sm text-muted">Berichtshefte, Arbeitszeugnisse und Berichte automatisiert — Ausbilder gewinnen Zeit fuer echte Betreuung.</span>
           </div>
           <div>
-            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Hoehere Ausbildungsqualitaet</span>
-            <span class="block text-sm text-muted">IHK-konforme Inhalte und personalisiertes Feedback steigern die Bestehensquote bei Abschlusspruefungen.</span>
+            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Höhere Ausbildungsqualität</span>
+            <span class="block text-sm text-muted">IHK-konforme Inhalte und personalisiertes Feedback steigern die Bestehensquote bei Abschlusspüfungen.</span>
           </div>
         </div>
       </div>
@@ -466,7 +525,7 @@
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Persoenliches Feedback geben:</strong> Aufgaben direkt in der Plattform reviewen und individuelles Feedback schreiben.</span>
+              <span class="text-sm text-muted"><strong class="text-text-main">Persönliches Feedback geben:</strong> Aufgaben direkt in der Plattform reviewen und individuelles Feedback schreiben.</span>
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
@@ -483,11 +542,11 @@
           <ul class="space-y-3">
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Ausbildung organisieren:</strong> Klare Struktur mit Lernfortschritt, naechsten Aufgaben und Deadlines — kein planloses Lernen mehr.</span>
+              <span class="text-sm text-muted"><strong class="text-text-main">Ausbildung organisieren:</strong> Klare Struktur mit Lernfortschritt, nächsten Aufgaben und Deadlines — kein planloses Lernen mehr.</span>
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Pruefungstermine im Blick:</strong> Kalender mit IHK-Pruefungen, Berufsschulbloecken und Abgabefristen.</span>
+              <span class="text-sm text-muted"><strong class="text-text-main">Pruefungstermine im Blick:</strong> Kalender mit IHK-Prüfungen, Berufsschulblöcken und Abgabefristen.</span>
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
@@ -524,11 +583,11 @@
                 <svg class="icon"><use href="#i-shield" /></svg>
               </div>
               <h3 class="text-xl font-semibold mb-3">Closed-Context KI</h3>
-              <p class="text-sm text-muted leading-relaxed">Unsere KI greift ausschliesslich auf IHK-Verordnungen und Firmendaten zu. Anti-Halluzinations-Regeln verhindern erfundene Daten. Jede Antwort enthaelt Quellenangaben.</p>
+              <p class="text-sm text-muted leading-relaxed">Unsere KI greift ausschließlich auf IHK-Verordnungen und Firmendaten zu. Anti-Halluzinations-Regeln verhindern erfundene Daten. Jede Antwort enthält Quellenangaben.</p>
             </div>
             <div class="md:w-[240px] shrink-0 self-center">
               <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden" onclick="openLightbox(this.querySelector('img'))">
-                <img src="screen-hai-quellen.png" alt="HAI KI-Chat mit Quellenangaben aus IHK-Buechern" class="w-full" loading="lazy" decoding="async">
+                <img src="screen-hai-quellen.png" alt="HAI KI-Chat mit Quellenangaben aus IHK-Büchern" class="w-full" loading="lazy" decoding="async">
                 <span class="lightbox-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></span>
               </div>
             </div>
@@ -539,7 +598,7 @@
             <svg class="icon"><use href="#i-zap" /></svg>
           </div>
           <h3 class="text-lg font-semibold mb-2">Personalisiertes Feedback</h3>
-          <p class="text-sm text-muted leading-relaxed">Dein Ausbilder reviewed persoenlich deine Aufgaben und gibt dir individuelles Feedback — abgestimmt auf dich und deinen Lernstand.</p>
+          <p class="text-sm text-muted leading-relaxed">Dein Ausbilder reviewed persönlich deine Aufgaben und gibt dir individuelles Feedback — abgestimmt auf dich und deinen Lernstand.</p>
         </div>
         <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
           <div class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
@@ -562,7 +621,7 @@
                 <svg class="icon"><use href="#i-clock" /></svg>
               </div>
               <h3 class="text-xl font-semibold mb-3">Dein Ausbilder, ganz nah</h3>
-              <p class="text-sm text-muted leading-relaxed">Weniger Verwaltung, mehr persoenliche Betreuung — dein Ausbilder reviewed deine Arbeit selbst und gibt dir sein individuelles Feedback.</p>
+              <p class="text-sm text-muted leading-relaxed">Weniger Verwaltung, mehr persönliche Betreuung — dein Ausbilder reviewed deine Arbeit selbst und gibt dir sein individuelles Feedback.</p>
             </div>
           </div>
         </div>
@@ -590,7 +649,7 @@
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernen</span><span
               class="text-sm text-muted">Trockene Theorie auf Papier — ohne Praxisbezug</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Feedback</span><span
-              class="text-sm text-muted">Unpersoenlich, verspätet oder gar nicht</span></div>
+              class="text-sm text-muted">Unpersönlich, verspätet oder gar nicht</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Ausbilder-Rolle</span><span
               class="text-sm text-muted">Korrektor und Administrator</span></div>
           <div class="py-3"><span class="block text-xs text-faint">Wissensquelle</span><span
@@ -600,13 +659,13 @@
           style="background:linear-gradient(135deg,var(--color-accent-soft),transparent)">
           <div class="text-xs font-semibold tracking-widest uppercase text-accent mb-6">Der LFA-Weg</div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernmaterial</span><span
-              class="text-sm font-medium">Offizielle IHK-Buecher als Enabler — daraus entstehen Szenarien, Quizze und Use Cases</span></div>
+              class="text-sm font-medium">Offizielle IHK-Bücher als Enabler — daraus entstehen Szenarien, Quizze und Use Cases</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernen</span><span
               class="text-sm font-medium">Praxisnahe Szenarien und Use Cases statt abstrakter Theorie</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Feedback</span><span
-              class="text-sm font-medium">Persoenliches Feedback von deinem Ausbilder auf jede Aufgabe</span></div>
+              class="text-sm font-medium">Persönliches Feedback von deinem Ausbilder auf jede Aufgabe</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Ausbilder-Rolle</span><span
-              class="text-sm font-medium">Persoenlicher Mentor und Reviewer</span></div>
+              class="text-sm font-medium">Persönlicher Mentor und Reviewer</span></div>
           <div class="py-3"><span class="block text-xs text-faint">Wissensquelle</span><span
               class="text-sm font-medium">IHK-Verordnungen, Firmen-Repository und geschlossene RAG-KI</span></div>
         </div>
@@ -647,7 +706,7 @@
             </div>
             <div>
               <h3 class="text-lg font-semibold mb-1">KI-Assistent HAI</h3>
-              <p class="text-sm text-muted leading-relaxed">RAG-Pipeline mit Closed-Context und Lernempfehlungen — basierend auf offiziellen IHK-Buechern.</p>
+              <p class="text-sm text-muted leading-relaxed">RAG-Pipeline mit Closed-Context und Lernempfehlungen — basierend auf offiziellen IHK-Büchern.</p>
             </div>
           </div>
           <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden" onclick="openLightbox(this.querySelector('img'))">
@@ -684,14 +743,14 @@
             <svg class="icon w-6 h-6"><use href="#i-check" /></svg>
           </div>
           <h3 class="font-semibold mb-1">Arbeitszeugnisse</h3>
-          <p class="text-sm text-faint leading-snug">Juristisch geprueft, auf Knopfdruck generiert.</p>
+          <p class="text-sm text-faint leading-snug">Juristisch geprüft, auf Knopfdruck generiert.</p>
         </div>
         <div class="reveal p-6 rounded-2xl bg-surface border border-border text-center card-hover accent-hover">
           <div class="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center bg-accent-soft border border-border-accent text-accent">
             <svg class="icon w-6 h-6"><use href="#i-calendar" /></svg>
           </div>
           <h3 class="font-semibold mb-1">Kalender</h3>
-          <p class="text-sm text-faint leading-snug">Blockplanung mit CSV-Import und Pruefungen.</p>
+          <p class="text-sm text-faint leading-snug">Blockplanung mit CSV-Import und Prüfungen.</p>
         </div>
         <div class="reveal p-6 rounded-2xl bg-surface border border-border text-center card-hover accent-hover">
           <div class="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center bg-accent-soft border border-border-accent text-accent">
@@ -704,7 +763,22 @@
     </div>
   </section>
 
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #0f0f11);"></div>
 
+  <!-- SOLAR SYSTEM — Lernuniversum -->
+  <section class="section-dark" id="solarsystem" style="position:relative;overflow:hidden;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10 text-center pt-24 md:pt-36 pb-8">
+      <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Inhaltsarchitektur</span>
+      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Vom Chaos &mdash; zur Klarheit.</h2>
+      <p class="reveal text-lg max-w-[560px] mx-auto leading-relaxed" style="color:#9999a1;">Klicke auf <strong style="color:#ff6060;">FIAE</strong> und fliege durch das gesamte Lernuniversum &mdash; Lernfelder, Komponenten und Use Cases.</p>
+    </div>
+    <div class="solar-wrap">
+      <canvas id="solarCanvas"></canvas>
+    </div>
+    <p class="text-center pb-10" style="font-size:.7rem;color:#6e6e76;margin-top:8px;">FIAE ist bereit &mdash; andere Ausbildungszweige folgen bald</p>
+  </section>
+
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
 
   <!-- PLATTFORM ERLEBEN -->
   <section class="py-24 md:py-36" id="demo">
@@ -738,58 +812,271 @@
     </div>
   </section>
 
-  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg), #0f0f11);"></div>
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg), #09111f);"></div>
 
-  <!-- HIGHLIGHTS — Dark dramatic strip -->
-  <section class="py-16 md:py-24 section-dark" id="highlights">
+  <!-- HAI — KI-Assistent -->
+  <section class="py-24 md:py-36 section-hai" id="hai">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-      <div class="reveal grid grid-cols-3 text-center" style="border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.02);">
-        <div class="px-4 md:px-8 py-8 flex flex-col items-center" style="border-right:1px solid rgba(255,255,255,.06);">
-          <div class="relative inline-flex items-center justify-center mb-3" style="width:170px;height:170px;">
-            <svg class="absolute inset-0" viewBox="0 0 170 170" fill="none">
-              <defs><linearGradient id="hlGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e01515"/><stop offset="100%" stop-color="#ff6b6b"/></linearGradient></defs>
-              <circle cx="85" cy="85" r="74" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
-              <circle class="highlight-ring" cx="85" cy="85" r="74" stroke="url(#hlGrad)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="464.96" stroke-dashoffset="464.96" transform="rotate(-90 85 85)"/>
-            </svg>
-            <div class="text-3xl md:text-5xl font-bold gradient-text leading-none tabular-nums" data-target="100" data-suffix="%">0</div>
+      <div class="text-center mb-16 md:mb-20">
+        <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded mb-4" style="color:#38bdf8;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2);">KI-Assistent</span>
+        <div class="reveal flex items-center justify-center gap-4 mb-5">
+          <div style="width:60px;height:60px;border-radius:16px;overflow:hidden;flex-shrink:0;box-shadow:0 0 0 1px rgba(56,189,248,.25),0 0 32px rgba(56,189,248,.25),0 4px 16px rgba(0,0,0,.4);">
+            <img src="shark-new.gif" alt="HAI Logo" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy">
           </div>
-          <span class="block text-sm font-medium">IHK-konforme Antworten</span>
-          <span class="block text-xs text-faint mt-1">Geschlossene RAG-Pipeline</span>
+          <h2 class="text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight" style="color:#f0f0f2;">Lern&shy;assistent <span style="background:linear-gradient(135deg,#38bdf8,#0ea5e9,#7dd3fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">HAI</span></h2>
         </div>
-        <div class="px-4 md:px-8 py-8 flex flex-col items-center" style="border-right:1px solid rgba(255,255,255,.06);">
-          <div class="relative inline-flex items-center justify-center mb-3" style="width:170px;height:170px;">
-            <svg class="absolute inset-0" viewBox="0 0 170 170" fill="none">
-              <circle cx="85" cy="85" r="74" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
-              <circle class="highlight-ring" cx="85" cy="85" r="74" stroke="url(#hlGrad)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="464.96" stroke-dashoffset="464.96" transform="rotate(-90 85 85)"/>
-            </svg>
-            <div class="text-3xl md:text-5xl font-bold gradient-text leading-none tabular-nums" data-target="12">0</div>
+        <p class="reveal text-lg max-w-[640px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Google. Kein Raten. Nur Antworten aus deinen Kursinhalten &mdash; präzise, ehrlich und lernfördernd.</p>
+      </div>
+
+      <!-- 2-col: GIF links, Features rechts -->
+      <div class="reveal grid md:grid-cols-2 gap-12 items-center mb-16">
+        <!-- Left: Visual -->
+        <div class="flex flex-col items-center gap-6">
+          <div class="hai-demo-card">
+            <div class="hai-bubble hai-bubble--bot">
+              <strong>HAI</strong><br>
+              Du fragst nach Polymorphismus &mdash; guter Einstieg. Aber bevor ich antworte: Was vermutest du selbst, was der Begriff bedeutet?
+            </div>
+            <div class="hai-bubble hai-bubble--user">
+              Irgendwas mit Klassen und Vererbung?
+            </div>
+            <div class="hai-bubble hai-bubble--bot">
+              Genau auf dem richtigen Weg. Schau jetzt in Enabler&nbsp;42 in deinem Kurs &mdash; dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.
+            </div>
           </div>
-          <span class="block text-sm font-medium">IHK-Lernfelder</span>
-          <span class="block text-xs text-faint mt-1">LF1 bis LF12a integriert</span>
+          <p class="text-xs" style="color:#6e6e76;text-align:center;">HAI gibt Hinweise &mdash; keine fertigen Lösungen. So lernst du wirklich.</p>
         </div>
-        <div class="px-4 md:px-8 py-8 flex flex-col items-center">
-          <div class="relative inline-flex items-center justify-center mb-3" style="width:170px;height:170px;">
-            <svg class="absolute inset-0" viewBox="0 0 170 170" fill="none">
-              <circle cx="85" cy="85" r="74" stroke="rgba(255,255,255,.06)" stroke-width="2"/>
-              <circle class="highlight-ring" cx="85" cy="85" r="74" stroke="url(#hlGrad)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="464.96" stroke-dashoffset="464.96" transform="rotate(-90 85 85)"/>
-            </svg>
-            <div class="text-3xl md:text-5xl font-bold gradient-text leading-none tabular-nums" data-target="100" data-suffix="+">0</div>
+        <!-- Right: Feature list -->
+        <div class="flex flex-col gap-5">
+          <div class="hai-feature">
+            <div class="hai-feature-icon" style="background:rgba(56,189,248,.12);">
+              <svg class="icon" style="color:#38bdf8;"><use href="#i-book"/></svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Nur aus deinen Kursinhalten</h4>
+              <p class="text-sm" style="color:#9999a1;">HAI antwortet ausschließlich aus den eingebetteten Kursmaterialien &mdash; keine Internetsuche im Standardmodus.</p>
+            </div>
           </div>
-          <span class="block text-sm font-medium">Enabler</span>
-          <span class="block text-xs text-faint mt-1">Praxisnahe Lerneinheiten</span>
+          <div class="hai-feature">
+            <div class="hai-feature-icon" style="background:rgba(56,189,248,.12);">
+              <svg class="icon" style="color:#38bdf8;"><use href="#i-shield"/></svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Keine Halluzinationen bei Plattformdaten</h4>
+              <p class="text-sm" style="color:#9999a1;">Noten, Abgaben, Termine &mdash; HAI erfindet niemals Plattformdaten. Bei unbekannten Themen verweist er klar an den Trainer.</p>
+            </div>
+          </div>
+          <div class="hai-feature">
+            <div class="hai-feature-icon" style="background:rgba(56,189,248,.12);">
+              <svg class="icon" style="color:#38bdf8;"><use href="#i-zap"/></svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Leitfragen statt Lösungen</h4>
+              <p class="text-sm" style="color:#9999a1;">Bei Szenarien gibt HAI Hinweise in kleinen Schritten &mdash; und stellt Gegenfragen. Das Denken bleibt bei dir.</p>
+            </div>
+          </div>
+          <div class="hai-feature">
+            <div class="hai-feature-icon" style="background:rgba(56,189,248,.12);">
+              <svg class="icon" style="color:#38bdf8;"><use href="#i-bot"/></svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Code erklären &amp; debuggen</h4>
+              <p class="text-sm" style="color:#9999a1;">Füge Code ein, HAI erklärt was passiert und wo der Fehler liegt &mdash; ohne die Lösung direkt zu liefern.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom stats row -->
+      <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="hai-stat">
+          <span class="hai-stat-num">0,45</span>
+          <span class="hai-stat-label">Kosinus-Schwellenwert</span>
+          <span class="hai-stat-sub">Nur relevante Inhalte fließen in Antworten ein</span>
+        </div>
+        <div class="hai-stat">
+          <span class="hai-stat-num">3 Stufen</span>
+          <span class="hai-stat-label">Quiz-Schwierigkeit</span>
+          <span class="hai-stat-sub">Leicht → Mittel → Schwer, schrittweise freigeschaltet</span>
+        </div>
+        <div class="hai-stat">
+          <span class="hai-stat-num">1 Versuch</span>
+          <span class="hai-stat-label">Pro Enabler-Quiz</span>
+          <span class="hai-stat-sub">Kein Durchklicken &mdash; wirkliches Verstehen zählt</span>
+        </div>
+        <div class="hai-stat">
+          <span class="hai-stat-num">SHA256</span>
+          <span class="hai-stat-label">Content-Deduplizierung</span>
+          <span class="hai-stat-sub">Identische Inhalte werden nicht doppelt eingebettet</span>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
+  <div class="divider-gradient" style="background:linear-gradient(to bottom,#09111f,#060e1b);"></div>
+
+  <!-- HAI Deep — Technologie & Prinzipien -->
+  <section class="py-24 md:py-36 section-hai-deep" id="hai-deep">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+
+      <!-- Heading -->
+      <div class="text-center mb-16 md:mb-20">
+        <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded mb-4" style="color:#818cf8;background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.2);">Technologie</span>
+        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Wie HAI <span style="background:linear-gradient(135deg,#38bdf8,#818cf8,#c084fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">denkt.</span></h2>
+        <p class="reveal text-lg max-w-[580px] mx-auto leading-relaxed" style="color:#9999a1;">RAG-Architektur, semantische Vektoren und das Sokrates-Prinzip &mdash; gebaut für echtes Verstehen statt Durchklicken.</p>
+      </div>
+
+      <!-- RAG Pipeline -->
+      <div class="reveal mb-14">
+        <p class="text-xs font-semibold tracking-widest uppercase mb-5 text-center" style="color:#6e6e76;">Retrieval-Augmented Generation — so entsteht jede Antwort</p>
+        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+          <div class="rag-pipeline" style="min-width:680px;">
+            <div class="rag-step">
+              <span class="rag-step__num">01</span>
+              <div class="rag-step__icon" style="background:rgba(56,189,248,.1);">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              </div>
+              <span class="rag-step__label">Deine Frage</span>
+              <span class="rag-step__sub">Natürliche Sprache, kein spezielles Format nötig</span>
+            </div>
+            <div class="rag-step">
+              <span class="rag-step__num">02</span>
+              <div class="rag-step__icon" style="background:rgba(129,140,248,.1);">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="8" height="8" rx="1.5"/><rect x="14" y="3" width="8" height="8" rx="1.5"/><rect x="2" y="14" width="8" height="8" rx="1.5"/><path d="M18 14v6M15 17h6"/></svg>
+              </div>
+              <span class="rag-step__label">Embedding</span>
+              <span class="rag-step__sub">3072-dim. Vektor via text-embedding-3-large</span>
+            </div>
+            <div class="rag-step">
+              <span class="rag-step__num">03</span>
+              <div class="rag-step__icon" style="background:rgba(14,165,233,.1);">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#0ea5e9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/><path d="M8 11h6M11 8v6"/></svg>
+              </div>
+              <span class="rag-step__label">pgvector-Suche</span>
+              <span class="rag-step__sub">Kosinus ≥ 0,45 &mdash; nur passende Chunks</span>
+            </div>
+            <div class="rag-step">
+              <span class="rag-step__num">04</span>
+              <div class="rag-step__icon" style="background:rgba(56,189,248,.1);">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <span class="rag-step__label">Kursinhalt</span>
+              <span class="rag-step__sub">Relevante Enabler &amp; Materialien als Kontext</span>
+            </div>
+            <div class="rag-step" style="background:rgba(56,189,248,.025);">
+              <span class="rag-step__num" style="background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">05</span>
+              <div class="rag-step__icon" style="background:linear-gradient(135deg,rgba(56,189,248,.12),rgba(129,140,248,.12));">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#7dd3fc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <span class="rag-step__label" style="background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">HAI antwortet</span>
+              <span class="rag-step__sub">Leitfragen &mdash; keine fertigen Lösungen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Creative Cards -->
+      <div class="reveal grid md:grid-cols-3 gap-6">
+
+        <!-- Card 1: Sokrates-Methode -->
+        <div class="hai2-card">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="hai2-card-icon" style="background:rgba(56,189,248,.12);">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3 class="font-bold text-base" style="color:#f0f0f2;">Sokrates-Methode</h3>
+          </div>
+          <div class="flex flex-col gap-2 mb-4">
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">Wie funktioniert ein LEFT JOIN?</div>
+            <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">Was weißt du bereits über JOIN-Typen? Fang mit dem an, was dir bekannt ist.</div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">Nur INNER JOIN kenn ich...</div>
+            <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">Gut. Schau Enabler&nbsp;38 &mdash; beschreib dann den Unterschied zum LEFT JOIN.</div>
+          </div>
+          <p class="text-xs" style="color:#6e6e76;">HAI führt dich hin &mdash; gibt keine Lösungen direkt.</p>
+        </div>
+
+        <!-- Card 2: Quiz-Progression -->
+        <div class="hai2-card">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="hai2-card-icon" style="background:rgba(129,140,248,.12);">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 4 12 14.01 9 11.01"/><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/></svg>
+            </div>
+            <h3 class="font-bold text-base" style="color:#f0f0f2;">Quiz-Progression</h3>
+          </div>
+          <div class="quiz-level quiz-level--done">
+            <div style="flex:1;">
+              <div class="text-xs font-bold mb-1.5" style="color:#34d399;">LEICHT</div>
+              <div class="quiz-bar"><div class="quiz-bar__fill" style="width:100%;background:linear-gradient(90deg,#34d399,#6ee7b7);"></div></div>
+            </div>
+            <span class="text-xs font-semibold" style="color:#34d399;flex-shrink:0;">✓ Bestanden</span>
+          </div>
+          <div class="quiz-level quiz-level--active">
+            <div style="flex:1;">
+              <div class="text-xs font-bold mb-1.5" style="color:#38bdf8;">MITTEL</div>
+              <div class="quiz-bar"><div class="quiz-bar__fill" style="width:60%;background:linear-gradient(90deg,#38bdf8,#7dd3fc);"></div></div>
+            </div>
+            <span class="text-xs font-semibold" style="color:#38bdf8;flex-shrink:0;">60 %</span>
+          </div>
+          <div class="quiz-level quiz-level--locked">
+            <div style="flex:1;">
+              <div class="text-xs font-bold mb-1.5" style="color:#6e6e76;">SCHWER</div>
+              <div class="quiz-bar"><div class="quiz-bar__fill" style="width:0%;"></div></div>
+            </div>
+            <span class="text-xs" style="color:#6e6e76;flex-shrink:0;">🔒 Gesperrt</span>
+          </div>
+          <p class="text-xs mt-4" style="color:#6e6e76;">Jede Stufe schaltet nach Bestehen frei &mdash; je Enabler-Quiz 1 Versuch.</p>
+        </div>
+
+        <!-- Card 3: Vertrauensregeln -->
+        <div class="hai2-card">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="hai2-card-icon" style="background:rgba(14,165,233,.12);">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#0ea5e9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3 class="font-bold text-base" style="color:#f0f0f2;">Was HAI garantiert</h3>
+          </div>
+          <div class="trust-row">
+            <div class="trust-dot" style="background:rgba(52,211,153,.12);color:#34d399;">✓</div>
+            <div>
+              <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Nur Kursinhalte</div>
+              <div class="text-xs" style="color:#6e6e76;">Antworten kommen aus eingebetteten Materialien</div>
+            </div>
+          </div>
+          <div class="trust-row">
+            <div class="trust-dot" style="background:rgba(52,211,153,.12);color:#34d399;">✓</div>
+            <div>
+              <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Keine erfundenen Daten</div>
+              <div class="text-xs" style="color:#6e6e76;">Noten, Termine &mdash; HAI erfindet niemals Plattformdaten</div>
+            </div>
+          </div>
+          <div class="trust-row">
+            <div class="trust-dot" style="background:rgba(248,113,113,.1);color:#f87171;">✗</div>
+            <div>
+              <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Keine fertigen Lösungen</div>
+              <div class="text-xs" style="color:#6e6e76;">Bei Szenarien und Quizzen immer Leitfragen, nie Copy-Paste</div>
+            </div>
+          </div>
+          <div class="trust-row">
+            <div class="trust-dot" style="background:rgba(248,113,113,.1);color:#f87171;">✗</div>
+            <div>
+              <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Kein unkontrolliertes Internet</div>
+              <div class="text-xs" style="color:#6e6e76;">Websuche ist optional &mdash; Standard ist Closed Context</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-gradient" style="background:linear-gradient(to bottom,#060e1b,var(--color-bg));"></div>
 
   <!-- ROI — Organic blobs, light -->
   <section class="py-24 md:py-36 section-organic" id="roi">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Der Effekt</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">So entlastet LFA<br>Betrieb und Azubi.</h2>
-      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed mb-12">Konkrete Zahlen, die zeigen, was LFA fuer Ausbildungsbetriebe und Auszubildende veraendert.</p>
+      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed mb-12">Konkrete Zahlen, die zeigen, was LFA fuer Ausbildungsbetriebe und Auszubildende verändert.</p>
       <div class="grid grid-cols-1 md:grid-cols-5 gap-5 items-stretch">
         <!-- Big featured stat — warning: this is a COST -->
         <div class="reveal md:col-span-2 relative p-10 rounded-2xl border border-border-hover overflow-hidden flex flex-col items-center justify-center text-center" style="background:linear-gradient(160deg,var(--color-surface-bright),var(--color-surface))">
@@ -797,10 +1084,10 @@
           <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background:rgba(255,180,0,.12);border:1px solid rgba(255,180,0,.2);">
             <svg class="w-6 h-6" style="color:#e6a700;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           </div>
-          <div class="text-5xl md:text-6xl font-bold gradient-text leading-none mb-3 tabular-nums" data-target="30000" data-separator="." data-suffix=" EUR">0</div>
+          <div class="text-5xl md:text-6xl font-bold gradient-text leading-none mb-3 tabular-nums whitespace-nowrap" data-target="30000" data-separator="." data-suffix=" EUR">0</div>
           <span class="block text-lg font-medium mb-1">Kosten pro Ausbildungsabbruch</span>
           <span class="block text-sm text-faint mb-4">Direkte und indirekte Kosten fuer den Betrieb</span>
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background:rgba(255,26,26,.08);color:var(--color-accent);">LFA reduziert Abbrueche durch Struktur und Betreuung</span>
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background:rgba(255,26,26,.08);color:var(--color-accent);">LFA reduziert Abbrüche durch Struktur und Betreuung</span>
         </div>
         <!-- Two stacked stats — POSITIVE reductions -->
         <div class="md:col-span-3 grid grid-rows-2 gap-5">
@@ -820,8 +1107,8 @@
             </div>
             <div class="text-4xl md:text-5xl font-bold gradient-text leading-none tabular-nums shrink-0" data-target="60" data-suffix="%">0</div>
             <div class="text-left">
-              <span class="block font-medium">weniger private Lernzeit noetig</span>
-              <span class="block text-sm text-faint mt-1">Gezielte Vorbereitung auf IHK-Pruefungen statt blindes Bueffeln</span>
+              <span class="block font-medium">weniger private Lernzeit nötig</span>
+              <span class="block text-sm text-faint mt-1">Gezielte Vorbereitung auf IHK-Prüfungen statt blindes Büffeln</span>
             </div>
           </div>
         </div>
@@ -842,7 +1129,7 @@
         und Vertrauen</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Sicher, schnell und<br>durchdacht gebaut.
       </h2>
-      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Moderne Technologie, die zuverlaessig funktioniert — und deine Daten schuetzt.</p>
+      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Moderne Technologie, die zuverlässig funktioniert — und deine Daten schuetzt.</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
         <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover tilt-card">
           <div
@@ -852,7 +1139,7 @@
             </svg>
           </div>
           <h3 class="text-lg font-semibold mb-2">KI, die keine Fakten erfindet</h3>
-          <p class="text-sm text-muted leading-relaxed">Unsere KI antwortet nur mit Wissen aus echten IHK-Buechern und Firmendaten. Eingebaute Regeln verhindern, dass sie sich Antworten ausdenkt.</p>
+          <p class="text-sm text-muted leading-relaxed">Unsere KI antwortet nur mit Wissen aus echten IHK-Büchern und Firmendaten. Eingebaute Regeln verhindern, dass sie sich Antworten ausdenkt.</p>
         </div>
         <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover tilt-card">
           <div
@@ -861,7 +1148,7 @@
               <use href="#i-lock" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">Deine Daten sind geschuetzt</h3>
+          <h3 class="text-lg font-semibold mb-2">Deine Daten sind geschützt</h3>
           <p class="text-sm text-muted leading-relaxed">Jeder Nutzer sieht nur das, was er sehen darf. Alle Daten werden verschluesselt, in der EU gespeichert und nach DSGVO-Standards verarbeitet.</p>
         </div>
         <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover tilt-card">
@@ -872,7 +1159,7 @@
             </svg>
           </div>
           <h3 class="text-lg font-semibold mb-2">Blitzschnelle Ladezeiten</h3>
-          <p class="text-sm text-muted leading-relaxed">Fuenf Ebenen intelligentes Caching sorgen dafuer, dass Seiten sofort laden — egal ob im Buero oder unterwegs.</p>
+          <p class="text-sm text-muted leading-relaxed">Fünf Ebenen intelligentes Caching sorgen dafür, dass Seiten sofort laden — egal ob im Büro oder unterwegs.</p>
         </div>
       </div>
       <div class="marquee reveal mt-10">
@@ -907,7 +1194,7 @@
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-20">
         <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Was LFA einzigartig macht</span>
-        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Sechs Gruende.<br>Eine Plattform.</h2>
+        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Sechs Gründe.<br>Eine Plattform.</h2>
         <p class="reveal text-lg max-w-[620px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Feature-Bingo — sondern echte Alleinstellungsmerkmale, die es so kein zweites Mal gibt.</p>
       </div>
 
@@ -932,7 +1219,7 @@
             <div class="rm__card rm__card--l">
               <span class="rm__label">Fundament</span>
               <h3 class="rm__title">Closed-Context KI</h3>
-              <p class="rm__desc">Keine offene KI, die halluziniert. Unsere RAG-Pipeline antwortet ausschliesslich auf Basis offizieller IHK-Buecher und Firmendaten — mit Quellenangabe in jeder Antwort.</p>
+              <p class="rm__desc">Keine offene KI, die halluziniert. Unsere RAG-Pipeline antwortet ausschließlich auf Basis offizieller IHK-Bücher und Firmendaten — mit Quellenangabe in jeder Antwort.</p>
               <div class="rm__tags"><span class="rm__tag">RAG-Pipeline</span><span class="rm__tag">Anti-Halluzination</span><span class="rm__tag">Quellenangaben</span></div>
             </div>
           </div>
@@ -948,19 +1235,19 @@
             <div class="rm__card rm__card--r">
               <span class="rm__label">Pionierstatus</span>
               <h3 class="rm__title">Erste Plattform dieser Art</h3>
-              <p class="rm__desc">LFA ist die erste Plattform auf dem deutschen Markt, die Ausbilder und Auszubildende in einem geschlossenen Learning-Ecosystem direkt zusammenbringt — mit persoenlichem Feedback, KI-Unterstuetzung und IHK-Konformitaet in einer einzigen Loesung.</p>
+              <p class="rm__desc">LFA ist die erste Plattform auf dem deutschen Markt, die Ausbilder und Auszubildende in einem geschlossenen Learning-Ecosystem direkt zusammenbringt — mit persönlichem Feedback, KI-Unterstützung und IHK-Konformität in einer einzigen Lösung.</p>
               <div class="rm__tags"><span class="rm__tag">Marktneuheit</span><span class="rm__tag">Trainer + Azubi</span><span class="rm__tag">Geschlossenes Ecosystem</span></div>
             </div>
           </div>
         </div>
 
-        <!-- 3 — Persoenliches Feedback — left -->
+        <!-- 3 — Persönliches Feedback — left -->
         <div class="rm__row" data-rm-progress="0.38">
           <div class="rm__cell">
             <div class="rm__card rm__card--l">
               <span class="rm__label">Menschlich</span>
               <h3 class="rm__title">Echtes Feedback, keine Automatik</h3>
-              <p class="rm__desc">Dein Ausbilder reviewed persoenlich jede eingereichte Aufgabe und gibt dir individuelles Feedback — abgestimmt auf deinen Lernstand. Keine generischen Auto-Bewertungen.</p>
+              <p class="rm__desc">Dein Ausbilder reviewed persönlich jede eingereichte Aufgabe und gibt dir individuelles Feedback — abgestimmt auf deinen Lernstand. Keine generischen Auto-Bewertungen.</p>
               <div class="rm__tags"><span class="rm__tag">Trainer-Reviews</span><span class="rm__tag">Individuelles Feedback</span><span class="rm__tag">Lernfortschritt</span></div>
             </div>
           </div>
@@ -976,7 +1263,7 @@
             <div class="rm__card rm__card--r">
               <span class="rm__label">Didaktik</span>
               <h3 class="rm__title">Szenarien statt Schulbuch</h3>
-              <p class="rm__desc">Aus offiziellen IHK-Buechern entstehen praxisnahe Szenarien, Use Cases und Quizze. Lernen wird greifbar — nicht abstrakt aus dem Lehrbuch abgelesen.</p>
+              <p class="rm__desc">Aus offiziellen IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze. Lernen wird greifbar — nicht abstrakt aus dem Lehrbuch abgelesen.</p>
               <div class="rm__tags"><span class="rm__tag">Use Cases</span><span class="rm__tag">Szenarien</span><span class="rm__tag">Adaptive Quizze</span></div>
             </div>
           </div>
@@ -1030,7 +1317,7 @@
   <section class="py-24 md:py-36 section-organic" id="faq">
     <div class="max-w-[780px] mx-auto px-5 md:px-10">
       <span
-        class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Haeufig
+        class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Häufig
         gestellte Fragen</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-12">FAQ</h2>
       <div class="space-y-3" id="faqList">
@@ -1038,11 +1325,11 @@
             class="faq-question w-full flex items-center justify-between p-6 text-left cursor-pointer bg-transparent border-none"
             style="color:var(--color-text-main)" aria-expanded="false"><span class="font-medium pr-4">Was
               unterscheidet
-              LFA von herkoemmlichen LMS-Plattformen?</span><span
+              LFA von herkömmlichen LMS-Plattformen?</span><span
               class="faq-question__icon relative w-5 h-5 shrink-0"></span></button>
           <div class="faq-answer">
             <div class="px-6 pb-6 text-sm text-muted leading-relaxed">LFA ist kein reines LMS, sondern ein Learning
-              Experience und Support System (LXS). Es verbindet Ausbilder und Auszubildende direkt miteinander — mit persoenlichem Feedback auf jede Aufgabe, einer geschlossenen KI-Pipeline (RAG), automatisierter Arbeitszeugniserstellung und IHK-konformen Berichtsheften in einer einzigen Plattform.</div>
+              Experience und Support System (LXS). Es verbindet Ausbilder und Auszubildende direkt miteinander — mit persönlichem Feedback auf jede Aufgabe, einer geschlossenen KI-Pipeline (RAG), automatisierter Arbeitszeugniserstellung und IHK-konformen Berichtsheften in einer einzigen Plattform.</div>
           </div>
         </div>
         <div class="faq-item rounded-2xl bg-surface border border-border overflow-hidden"><button
@@ -1053,7 +1340,7 @@
               class="faq-question__icon relative w-5 h-5 shrink-0"></span></button>
           <div class="faq-answer">
             <div class="px-6 pb-6 text-sm text-muted leading-relaxed">Die KI arbeitet in einem geschlossenen Kontext
-              (Closed-Context) und basiert ausschliesslich auf offiziellen IHK-Buechern und Firmenunterlagen. Anti-Halluzinations-Regeln verhindern erfundene Fakten. Jede Antwort enthaelt
+              (Closed-Context) und basiert ausschließlich auf offiziellen IHK-Büchern und Firmenunterlagen. Anti-Halluzinations-Regeln verhindern erfundene Fakten. Jede Antwort enthält
               Quellenangaben.</div>
           </div>
         </div>
@@ -1062,16 +1349,16 @@
             style="color:var(--color-text-main)" aria-expanded="false"><span class="font-medium pr-4">Wie funktioniert das Feedback auf der Plattform?</span><span
               class="faq-question__icon relative w-5 h-5 shrink-0"></span></button>
           <div class="faq-answer">
-            <div class="px-6 pb-6 text-sm text-muted leading-relaxed">Dein Ausbilder reviewed persoenlich deine eingereichten Aufgaben und gibt dir individuelles Feedback — abgestimmt auf deinen Lernstand. Keine automatischen Bewertungen ohne menschliche Pruefung.</div>
+            <div class="px-6 pb-6 text-sm text-muted leading-relaxed">Dein Ausbilder reviewed persönlich deine eingereichten Aufgaben und gibt dir individuelles Feedback — abgestimmt auf deinen Lernstand. Keine automatischen Bewertungen ohne menschliche Pruefung.</div>
           </div>
         </div>
         <div class="faq-item rounded-2xl bg-surface border border-border overflow-hidden"><button
             class="faq-question w-full flex items-center justify-between p-6 text-left cursor-pointer bg-transparent border-none"
             style="color:var(--color-text-main)" aria-expanded="false"><span class="font-medium pr-4">Wie wird die
-              IHK-Konformitaet sichergestellt?</span><span
+              IHK-Konformität sichergestellt?</span><span
               class="faq-question__icon relative w-5 h-5 shrink-0"></span></button>
           <div class="faq-answer">
-            <div class="px-6 pb-6 text-sm text-muted leading-relaxed">Alle Inhalte basieren auf offiziellen IHK-Buechern. Lernfelder LF1-LF12a, der Ausbildungsrahmenplan als
+            <div class="px-6 pb-6 text-sm text-muted leading-relaxed">Alle Inhalte basieren auf offiziellen IHK-Büchern. Lernfelder LF1-LF12a, der Ausbildungsrahmenplan als
               Datenbank, juristische Arbeitszeugnisformulierungen und die IHK-Notenskala sind integriert. Aus den Quellen entstehen praxisnahe Szenarien, Use Cases und Quizze.</div>
           </div>
         </div>
@@ -1082,7 +1369,7 @@
               DSGVO-konform?</span><span class="faq-question__icon relative w-5 h-5 shrink-0"></span></button>
           <div class="faq-answer">
             <div class="px-6 pb-6 text-sm text-muted leading-relaxed">Ja. EU-Hosting, rollenbasierte
-              Zugriffskontrolle, verschluesselte Datenuebertragung und kaskadierendes Loeschen.</div>
+              Zugriffskontrolle, verschlüsselte Datenübertragung und kaskadierendes Löschen.</div>
           </div>
         </div>
       </div>
@@ -1092,16 +1379,16 @@
 
   <!-- FOOTER -->
   <footer class="border-t border-border" id="footer">
-    <div class="max-w-[1100px] mx-auto px-5 md:px-10 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
       <div>
-        <div class="flex items-center gap-5 mb-4">
-          <img src="wamocon-logo.png" alt="WAMOCON GmbH" class="logo-img h-20 w-auto">
+        <div class="flex items-center gap-5 mb-3">
+          <img src="wamocon-logo.png" alt="WAMOCON GmbH" class="logo-img h-36 w-auto">
           <div>
-            <div class="font-bold text-lg">LFA</div>
+            <div class="font-bold text-xl">LFA</div>
             <div class="text-xs text-faint">by WAMOCON GmbH</div>
           </div>
         </div>
-        <p class="text-sm text-muted leading-relaxed">Die KI-gestuetzte Plattform fuer die duale IT-Ausbildung.
+        <p class="text-sm text-muted leading-relaxed">Die KI-gestützte Plattform für die duale IT-Ausbildung.
           Entwickelt von WAMOCON GmbH fuer Ausbilder und Azubis.</p>
       </div>
       <div>
@@ -1117,7 +1404,7 @@
       <div>
         <div class="font-semibold text-sm mb-4 text-faint uppercase tracking-widest">Rechtliches</div>
         <ul class="space-y-2 text-sm text-muted">
-          <li><a href="datenschutz.html" class="hover:text-text-main transition-colors">Datenschutzerklaerung</a></li>
+          <li><a href="datenschutz.html" class="hover:text-text-main transition-colors">Datenschutzerklärung</a></li>
           <li><a href="impressum.html" class="hover:text-text-main transition-colors">Impressum</a></li>
           <li><a href="agb.html" class="hover:text-text-main transition-colors">AGB</a></li>
           <li><a href="cookies.html" class="hover:text-text-main transition-colors">Cookie-Richtlinie</a></li>
@@ -1126,16 +1413,52 @@
     </div>
     <div class="border-t border-border">
       <div
-        class="max-w-[1100px] mx-auto px-5 md:px-10 py-6 flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-faint">
+        class="max-w-[1100px] mx-auto px-5 md:px-10 py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-faint">
         <span>&copy; 2026 WAMOCON GmbH. Alle Rechte vorbehalten.</span>
-        <span>Designed und entwickelt in Deutschland.</span>
+        <div class="flex items-center gap-2 shrink-0">
+          <svg width="28" height="28" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="96" stroke="#1a1a1a" stroke-width="4" fill="none"/>
+            <circle cx="100" cy="100" r="86" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+            <g opacity=".7">
+              <path d="M38 140 C42 128, 40 115, 35 105" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <ellipse cx="33" cy="108" rx="6" ry="10" transform="rotate(-20 33 108)" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+              <ellipse cx="36" cy="120" rx="6" ry="10" transform="rotate(-10 36 120)" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+              <ellipse cx="37" cy="132" rx="6" ry="10" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+              <path d="M38 140 C34 128, 28 118, 22 110" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <ellipse cx="22" cy="114" rx="5" ry="9" transform="rotate(-30 22 114)" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+              <ellipse cx="27" cy="125" rx="5" ry="9" transform="rotate(-15 27 125)" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+            </g>
+            <g opacity=".7" transform="scale(-1,1) translate(-200,0)">
+              <path d="M38 140 C42 128, 40 115, 35 105" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <ellipse cx="33" cy="108" rx="6" ry="10" transform="rotate(-20 33 108)" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+              <ellipse cx="36" cy="120" rx="6" ry="10" transform="rotate(-10 36 120)" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+              <ellipse cx="37" cy="132" rx="6" ry="10" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+              <path d="M38 140 C34 128, 28 118, 22 110" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <ellipse cx="22" cy="114" rx="5" ry="9" transform="rotate(-30 22 114)" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+              <ellipse cx="27" cy="125" rx="5" ry="9" transform="rotate(-15 27 125)" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+            </g>
+            <polygon points="100,28 106,46 124,46 110,56 115,74 100,64 85,74 90,56 76,46 94,46" fill="#1a1a1a"/>
+            <path id="sealTextTop" d="M 30,100 A 70,70 0 0,1 170,100" fill="none"/>
+            <text font-family="Inter,system-ui,sans-serif" font-size="18" font-weight="700" letter-spacing="4" fill="#1a1a1a">
+              <textPath href="#sealTextTop" startOffset="50%" text-anchor="middle">ENTWICKELT IN</textPath>
+            </text>
+            <path id="sealTextBot" d="M 28,108 A 72,72 0 0,0 172,108" fill="none"/>
+            <text font-family="Inter,system-ui,sans-serif" font-size="18" font-weight="700" letter-spacing="4" fill="#1a1a1a">
+              <textPath href="#sealTextBot" startOffset="50%" text-anchor="middle">DEUTSCHLAND</textPath>
+            </text>
+            <rect x="70" y="82" width="60" height="8" rx="1" fill="#000"/>
+            <rect x="70" y="90" width="60" height="8" fill="#DD0000"/>
+            <rect x="70" y="98" width="60" height="8" rx="1" fill="#FFCC00"/>
+          </svg>
+          <span style="font-size:11px;letter-spacing:.01em;" class="text-faint">Entwickelt in Deutschland</span>
+        </div>
       </div>
     </div>
   </footer>
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-    <button class="lightbox__close" onclick="closeLightbox(event)" aria-label="Schliessen">
+    <button class="lightbox__close" onclick="closeLightbox(event)" aria-label="Schließen">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <img class="lightbox__img" id="lightboxImg" src="" alt="">
@@ -1233,23 +1556,39 @@
       var demoSection = document.getElementById('demo');
       if (!demoSection) return;
       var demoWrap = demoSection.querySelector('.browser-chrome');
+      var demoIframe = demoWrap ? demoWrap.querySelector('iframe') : null;
       if (!demoWrap) return;
 
-      var lockedY = null;
-      function enforceLock() {
-        if (lockedY !== null) window.scrollTo(0, lockedY);
+      function blockScroll(e) { e.preventDefault(); }
+      function blockKeys(e) {
+        var keys = [32, 33, 34, 35, 36, 37, 38, 39, 40];
+        if (keys.indexOf(e.keyCode) !== -1) e.preventDefault();
       }
 
+      var isHovering = false;
+      var savedScrollY = 0;
+
       demoWrap.addEventListener('mouseenter', function() {
-        lockedY = window.scrollY;
-        document.documentElement.style.overflow = 'hidden';
-        window.addEventListener('scroll', enforceLock);
+        isHovering = true;
+        savedScrollY = window.scrollY;
+        window.addEventListener('wheel', blockScroll, { passive: false });
+        window.addEventListener('touchmove', blockScroll, { passive: false });
+        window.addEventListener('keydown', blockKeys);
       });
       demoWrap.addEventListener('mouseleave', function() {
-        window.removeEventListener('scroll', enforceLock);
-        lockedY = null;
-        document.documentElement.style.overflow = '';
+        isHovering = false;
+        window.removeEventListener('wheel', blockScroll);
+        window.removeEventListener('touchmove', blockScroll);
+        window.removeEventListener('keydown', blockKeys);
       });
+
+      /* Fix: clicking inside iframe (e.g. HAI button) triggers browser auto-scroll-into-view.
+         Catch any scroll while hovering the demo and snap back instantly. */
+      window.addEventListener('scroll', function() {
+        if (isHovering && Math.abs(window.scrollY - savedScrollY) > 2) {
+          window.scrollTo(0, savedScrollY);
+        }
+      }, { passive: true });
     })();
   </script>
 
@@ -1257,7 +1596,7 @@
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie-Einstellungen">
     <div class="cookie-banner__inner">
       <div class="cookie-banner__title">Cookie-Einstellungen</div>
-      <p class="cookie-banner__text">Wir verwenden Cookies und aehnliche Technologien, um die Nutzung unserer Website zu analysieren und sie stetig zu verbessern. Technisch notwendige Cookies werden immer gesetzt. Weitere Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklaerung</a> und <a href="cookies.html">Cookie-Richtlinie</a>.</p>
+      <p class="cookie-banner__text">Wir verwenden Cookies und ähnliche Technologien, um die Nutzung unserer Website zu analysieren und sie stetig zu verbessern. Technisch notwendige Cookies werden immer gesetzt. Weitere Informationen finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a> und <a href="cookies.html">Cookie-Richtlinie</a>.</p>
       <div class="cookie-banner__actions">
         <button class="cookie-banner__btn cookie-banner__btn--accept" onclick="setCookieConsent('all')">Alle akzeptieren</button>
         <button class="cookie-banner__btn cookie-banner__btn--reject" onclick="setCookieConsent('essential')">Nur notwendige</button>
@@ -1280,6 +1619,23 @@
       banner.classList.remove('cookie-banner--visible');
     }
   </script>
+
+  <!-- ── GALAXY OVERLAY ── -->
+  <div id="galaxyOverlay">
+    <button id="galaxyBack" onclick="closeGalaxy()">← Zurück</button>
+    <div id="galaxyTitle">FIAE — Lernuniversum</div>
+    <div id="galaxyLegend">
+      <div class="glgd"><div class="glgd-dot" style="width:14px;height:14px;background:#ff3333;"></div>Lernfeld</div>
+      <div class="glgd"><div class="glgd-dot" style="width:9px;height:9px;background:#e2e8f0;"></div>Komponente</div>
+      <div class="glgd"><div class="glgd-dot" style="width:6px;height:6px;background:#38bdf8;"></div>Use Case</div>
+    </div>
+    <div id="galaxySvgContainer"></div>
+    <div id="galaxyTooltip"></div>
+    <input id="galaxySearch" type="text" placeholder="Suchen…" oninput="galaxySearch(this.value)">
+  </div>
+
+  <!-- ── ZOOM LAYER ── -->
+  <div id="zoomLayer"><div id="zoomCircle"></div></div>
 </body>
 
 </html>
