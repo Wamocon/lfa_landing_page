@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LFA: Lernplattform für Azubis | KI-gestützte duale IT-Ausbildung</title>
+  <title>LFA — Lernplattform für Azubis | KI-gestützte duale IT-Ausbildung</title>
   <meta name="description"
     content="Die KI-gesteuerte Plattform für die duale IT-Ausbildung. Closed-Context KI, IHK-konform, sofortiges Feedback für Fachinformatiker.">
   <meta name="theme-color" content="#f5f5f7">
@@ -442,7 +442,7 @@
       </div>
       <h1 class="reveal text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight mb-6">Die Zukunft
         der<br><span class="gradient-text" id="heroTyping">FIAE Ausbildung.</span></h1>
-      <p class="reveal text-lg md:text-xl text-muted max-w-[600px] mx-auto leading-relaxed">Die Plattform, auf der Ausbilder und Auszubildende direkt miteinander kommunizieren. Persönliches Feedback auf jede Aufgabe, verankert in IHK-Verordnungen und firmeneigenen Daten.</p>
+      <p class="reveal text-lg md:text-xl text-muted max-w-[600px] mx-auto leading-relaxed">Die Plattform, auf der Ausbilder und Auszubildende direkt miteinander kommunizieren. Persönliches Feedback auf jede Aufgabe — verankert in IHK-Verordnungen und firmeneigenen Daten.</p>
       <p class="reveal text-xs text-faint mt-4 tracking-wide">Ein Produkt der WAMOCON GmbH</p>
     </div>
     <!-- Gradient fade into dark section -->
@@ -479,17 +479,17 @@
           <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Verwaltet das Dokument. Nicht den Skill.</span>
           <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
             <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
-            <span class="block text-sm text-muted">Berichtshefte, Zeugnisse und Berichte automatisch generiert. Ausbilder konzentrieren sich auf echte Betreuung.</span>
+            <span class="block text-sm text-muted">Berichtshefte, Zeugnisse und Berichte automatisch generiert — Ausbilder konzentrieren sich auf echte Betreuung.</span>
           </div>
         </div>
         <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
           <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">E-Learning-Plattformen</span>
           <h3 class="text-xl font-semibold tracking-tight mb-3">Kontext-Blindheit</h3>
-          <p class="text-sm text-muted leading-relaxed mb-5">Programmiersprachen werden abstrakt aus Lehrbüchern , ohne Szenarien, Use Cases oder praxisnahe Quizze.</p>
+          <p class="text-sm text-muted leading-relaxed mb-5">Programmiersprachen werden abstrakt aus Lehrbüchern vermittelt — ohne Szenarien, Use Cases oder praxisnahe Quizze.</p>
           <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Lehrt die Theorie. Nicht die Praxis.</span>
           <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
             <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
-            <span class="block text-sm text-muted">Aus IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze. Lernen wird greifbar, nicht mehr abstrakt.</span>
+            <span class="block text-sm text-muted">Aus IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze — Lernen wird greifbar statt abstrakt.</span>
           </div>
         </div>
         <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
@@ -499,7 +499,7 @@
           <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Improvisiert die Ausbildung. Statt sie zu führen.</span>
           <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
             <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
-            <span class="block text-sm text-muted">Klare Struktur mit Lernfortschritt, Kalender, Deadlines und . Azubis organisieren ihre Ausbildung selbst.</span>
+            <span class="block text-sm text-muted">Klare Struktur mit Lernfortschritt, Kalender, Deadlines und nächsten Aufgaben — Azubis organisieren ihre Ausbildung selbst.</span>
           </div>
         </div>
       </div>
@@ -513,11 +513,11 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Geringere Abbruchquote</span>
-            <span class="block text-sm text-muted">Strukturierte Ausbildung reduziert . Jeder vermiedene Abbruch spart bis zu 30.000 EUR.</span>
+            <span class="block text-sm text-muted">Strukturierte Ausbildung reduziert Frustrationsabbrüche — jeder vermiedene Abbruch spart bis zu 30.000 EUR.</span>
           </div>
           <div>
             <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Weniger Verwaltungsaufwand</span>
-            <span class="block text-sm text-muted">Berichtshefte, Arbeitszeugnisse und Berichte werden automatisch erstellt. Ausbilder gewinnen Zeit für echte Betreuung.</span>
+            <span class="block text-sm text-muted">Berichtshefte, Arbeitszeugnisse und Berichte automatisiert — Ausbilder gewinnen Zeit für echte Betreuung.</span>
           </div>
           <div>
             <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Höhere Ausbildungsqualität</span>
@@ -536,7 +536,7 @@
       <div class="text-center mb-14">
         <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Für wen ist LFA?</span>
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Zwei Rollen.<br>Eine Plattform.</h2>
-        <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">LFA bringt Ausbilder und Auszubildende , mit klarem Nutzen für beide Seiten.</p>
+        <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">LFA bringt Ausbilder und Auszubildende zusammen — mit klarem Nutzen für beide Seiten.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Ausbilder -->
@@ -573,7 +573,7 @@
           <ul class="space-y-3">
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Ausbildung organisieren:</strong> Klare Struktur mit Lernfortschritt, nächsten Aufgaben und . Kein planloses Lernen mehr.</span>
+              <span class="text-sm text-muted"><strong class="text-text-main">Ausbildung organisieren:</strong> Klare Struktur mit Lernfortschritt, nächsten Aufgaben und Deadlines — kein planloses Lernen mehr.</span>
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
@@ -581,11 +581,11 @@
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Praxisnahes Lernen:</strong> Szenarien, Use Cases und Quizze statt trockener Theorie, vorbereitet auf die echte Prüfung.</span>
+              <span class="text-sm text-muted"><strong class="text-text-main">Praxisnahes Lernen:</strong> Szenarien, Use Cases und Quizze statt trockener Theorie — vorbereitet auf die echte Prüfung.</span>
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">KI-Assistent HAI:</strong> . Antworten basieren auf offiziellen IHK-Quellen, nicht auf Halluzinationen.</span>
+              <span class="text-sm text-muted"><strong class="text-text-main">KI-Assistent HAI:</strong> Fragen jederzeit stellen — Antworten basieren auf offiziellen IHK-Quellen, nicht auf Halluzinationen.</span>
             </li>
           </ul>
         </div>
@@ -629,7 +629,7 @@
             <svg class="icon"><use href="#i-zap" /></svg>
           </div>
           <h3 class="text-lg font-semibold mb-2">Personalisiertes Feedback</h3>
-          <p class="text-sm text-muted leading-relaxed">Dein Ausbilder reviewed persönlich deine Aufgaben und gibt dir individuelles , abgestimmt auf dich und deinen Lernstand.</p>
+          <p class="text-sm text-muted leading-relaxed">Dein Ausbilder reviewed persönlich deine Aufgaben und gibt dir individuelles Feedback — abgestimmt auf dich und deinen Lernstand.</p>
         </div>
         <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
           <div class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
@@ -652,7 +652,7 @@
                 <svg class="icon"><use href="#i-clock" /></svg>
               </div>
               <h3 class="text-xl font-semibold mb-3">Dein Ausbilder, ganz nah</h3>
-              <p class="text-sm text-muted leading-relaxed">. Dein Ausbilder reviewed deine Arbeit selbst und gibt dir sein individuelles Feedback.</p>
+              <p class="text-sm text-muted leading-relaxed">Weniger Verwaltung, mehr persönliche Betreuung — dein Ausbilder reviewed deine Arbeit selbst und gibt dir sein individuelles Feedback.</p>
             </div>
           </div>
         </div>
@@ -678,7 +678,7 @@
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernmaterial</span><span
               class="text-sm text-muted">Stapelweise Bücher, unübersichtliche PDFs, kein roter Faden</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernen</span><span
-              class="text-sm text-muted">, ohne Praxisbezug</span></div>
+              class="text-sm text-muted">Trockene Theorie auf Papier — ohne Praxisbezug</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Feedback</span><span
               class="text-sm text-muted">Unpersönlich, verspätet oder gar nicht</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Ausbilder-Rolle</span><span
@@ -690,7 +690,7 @@
           style="background:linear-gradient(135deg,var(--color-accent-soft),transparent)">
           <div class="text-xs font-semibold tracking-widest uppercase text-accent mb-6">Der LFA-Weg</div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernmaterial</span><span
-              class="text-sm font-medium">Offizielle IHK-Bücher : Daraus entstehen Szenarien, Quizze und Use Cases</span></div>
+              class="text-sm font-medium">Offizielle IHK-Bücher als Enabler — daraus entstehen Szenarien, Quizze und Use Cases</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernen</span><span
               class="text-sm font-medium">Praxisnahe Szenarien und Use Cases statt abstrakter Theorie</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Feedback</span><span
@@ -698,7 +698,7 @@
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Ausbilder-Rolle</span><span
               class="text-sm font-medium">Persönlicher Mentor und Reviewer</span></div>
           <div class="py-3"><span class="block text-xs text-faint">Wissensquelle</span><span
-              class="text-sm font-medium">IHK-Bücher, Firmendaten und eine KI, die nur daraus antwortet</span></div>
+              class="text-sm font-medium">IHK-Verordnungen, Firmen-Repository und geschlossene RAG-KI</span></div>
         </div>
       </div>
     </div>
@@ -712,7 +712,7 @@
         class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Funktionsbereiche</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Alles, was die
         FIAE-Ausbildung<br>braucht.</h2>
-      <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte , alles in einer Plattform vereint.</p>
+      <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte Module und mehr — alles in einer Plattform vereint.</p>
       <!-- Featured modules -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14">
         <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover bento-featured tilt-card">
@@ -722,7 +722,7 @@
             </div>
             <div>
               <h3 class="text-lg font-semibold mb-1">Lernmanagement</h3>
-              <p class="text-sm text-muted leading-relaxed">Kurse, Szenarien, Enabler und Use Cases , strukturiert nach IHK-Lernfeldern.</p>
+              <p class="text-sm text-muted leading-relaxed">Kurse, Szenarien, Enabler und Use Cases mit Fortschrittsverfolgung — strukturiert nach IHK-Lernfeldern.</p>
             </div>
           </div>
           <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden" onclick="openLightbox(this.querySelector('img'))">
@@ -737,7 +737,7 @@
             </div>
             <div>
               <h3 class="text-lg font-semibold mb-1">KI-Assistent HAI</h3>
-              <p class="text-sm text-muted leading-relaxed">Antwortet nur aus deinen Kursmaterialien. Kein freies Internet, basierend auf offiziellen IHK-Büchern.</p>
+              <p class="text-sm text-muted leading-relaxed">RAG-Pipeline mit Closed-Context und Lernempfehlungen — basierend auf offiziellen IHK-Büchern.</p>
             </div>
           </div>
           <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden" onclick="openLightbox(this.querySelector('img'))">
@@ -801,7 +801,7 @@
     <div class="max-w-[1100px] mx-auto px-5 md:px-10 text-center pt-24 md:pt-36 pb-8">
       <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Inhaltsarchitektur</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Vom Chaos &#x2192; zur Klarheit.</h2>
-      <p class="reveal text-lg max-w-[560px] mx-auto leading-relaxed mb-10" style="color:#9999a1;">Klicke auf <strong style="color:#ff6060;">FIAE</strong> und fliege durch das gesamte : Lernfelder, Komponenten und Use Cases.</p>
+      <p class="reveal text-lg max-w-[560px] mx-auto leading-relaxed mb-10" style="color:#9999a1;">Klicke auf <strong style="color:#ff6060;">FIAE</strong> und fliege durch das gesamte Lernuniversum &mdash; Lernfelder, Komponenten und Use Cases.</p>
 
       <!-- Begriffserklärung -->
       <div class="reveal flex flex-wrap justify-center gap-3 md:gap-5 mb-2">
@@ -809,21 +809,21 @@
           <div style="width:12px;height:12px;border-radius:50%;background:#ff3333;flex-shrink:0;margin-top:3px;box-shadow:0 0 8px rgba(255,51,51,.5);"></div>
           <div>
             <div style="font-size:.75rem;font-weight:700;color:#f0f0f2;margin-bottom:2px;">Lernfeld</div>
-            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Berufsschulfach: theoretische Grundlage der IHK-Ausbildung (12 Stück)</div>
+            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Berufsschulfach — theoretische Grundlage der IHK-Ausbildung (12 Stück)</div>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 14px;max-width:200px;text-align:left;">
           <div style="width:10px;height:10px;border-radius:50%;background:#e2e8f0;flex-shrink:0;margin-top:3px;box-shadow:0 0 6px rgba(226,232,240,.3);"></div>
           <div>
             <div style="font-size:.75rem;font-weight:700;color:#f0f0f2;margin-bottom:2px;">Komponente</div>
-            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Prüfungseinheit: IHK-Bewertungskategorie, begleitet alle Lernfelder (26 Stück)</div>
+            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Prüfungseinheit — IHK-Bewertungskategorie, die alle Lernfelder begleitet (26 Stück)</div>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 14px;max-width:200px;text-align:left;">
           <div style="width:8px;height:8px;border-radius:50%;background:#38bdf8;flex-shrink:0;margin-top:3px;box-shadow:0 0 6px rgba(56,189,248,.4);"></div>
           <div>
             <div style="font-size:.75rem;font-weight:700;color:#f0f0f2;margin-bottom:2px;">Use Case</div>
-            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Praxisaufgabe: konkrete Situation aus dem Berufsalltag (86 Stück)</div>
+            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Praxisaufgabe — konkrete Situation aus dem Berufsalltag (86 Stück)</div>
           </div>
         </div>
       </div>
@@ -844,7 +844,7 @@
           class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Live-Demo</span>
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Plattform erleben.</h2>
         <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Klicke dich frei durch die
-          interaktive Demo. Wechsle zwischen Azubi- und Ausbilder-Ansicht über den Button unten links.</p>
+          interaktive Demo — wechsle zwischen Azubi- und Ausbilder-Ansicht über den Button unten links.</p>
       </div>
       <div class="reveal" style="border:2px solid var(--color-border-accent);border-radius:16px;padding:4px;background:var(--color-surface);">
         <div class="browser-chrome" style="box-shadow:0 25px 80px rgba(0,0,0,.45),0 0 60px rgba(255,26,26,.10);opacity:1;">
@@ -881,7 +881,7 @@
           </div>
           <h2 class="text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight" style="color:#f0f0f2;">Lern&shy;assistent <span style="background:linear-gradient(135deg,#38bdf8,#0ea5e9,#7dd3fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">HAI</span></h2>
         </div>
-        <p class="reveal text-lg max-w-[640px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Google. Kein Raten. Nur Antworten aus deinen Kursinhalten: präzise, ehrlich und lernfördernd.</p>
+        <p class="reveal text-lg max-w-[640px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Google. Kein Raten. Nur Antworten aus deinen Kursinhalten &mdash; präzise, ehrlich und lernfördernd.</p>
       </div>
 
       <!-- 2-col: GIF links, Features rechts -->
@@ -891,16 +891,16 @@
           <div class="hai-demo-card">
             <div class="hai-bubble hai-bubble--bot">
               <strong>HAI</strong><br>
-              Du fragst nach Polymorphismus. Guter Einstieg. Aber bevor ich antworte: Was vermutest du selbst, was der Begriff bedeutet?
+              Du fragst nach Polymorphismus &mdash; guter Einstieg. Aber bevor ich antworte: Was vermutest du selbst, was der Begriff bedeutet?
             </div>
             <div class="hai-bubble hai-bubble--user">
               Irgendwas mit Klassen und Vererbung?
             </div>
             <div class="hai-bubble hai-bubble--bot">
-              Genau auf dem richtigen Weg. Schau dir den passenden <span style="display:inline-flex;align-items:center;gap:3px;padding:1px 7px 1px 6px;border-radius:5px;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.3);font-weight:600;color:#7dd3fc;white-space:nowrap;">Enabler <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span> in deinem Kurs an , dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.
+              Genau auf dem richtigen Weg. Schau dir den passenden <span style="display:inline-flex;align-items:center;gap:3px;padding:1px 7px 1px 6px;border-radius:5px;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.3);font-weight:600;color:#7dd3fc;white-space:nowrap;">Enabler <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span> in deinem Kurs an &mdash; dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.
             </div>
           </div>
-          <p class="text-xs" style="color:#6e6e76;text-align:center;">HAI gibt Hinweise, keine fertigen Lösungen. So lernst du wirklich.</p>
+          <p class="text-xs" style="color:#6e6e76;text-align:center;">HAI gibt Hinweise &mdash; keine fertigen Lösungen. So lernst du wirklich.</p>
         </div>
         <!-- Right: Feature list -->
         <div class="flex flex-col gap-5">
@@ -910,7 +910,7 @@
             </div>
             <div>
               <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Nur aus deinen Kursinhalten</h4>
-              <p class="text-sm" style="color:#9999a1;">HAI antwortet ausschließlich aus den eingebetteten Kursmaterialien. Keine Internetsuche im Standardmodus.</p>
+              <p class="text-sm" style="color:#9999a1;">HAI antwortet ausschließlich aus den eingebetteten Kursmaterialien &mdash; keine Internetsuche im Standardmodus.</p>
             </div>
           </div>
           <div class="hai-feature">
@@ -919,7 +919,7 @@
             </div>
             <div>
               <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Keine Halluzinationen bei Plattformdaten</h4>
-              <p class="text-sm" style="color:#9999a1;">Noten, Abgaben, Termine: HAI erfindet niemals Plattformdaten. Bei unbekannten Themen verweist er klar an den Trainer.</p>
+              <p class="text-sm" style="color:#9999a1;">Noten, Abgaben, Termine &mdash; HAI erfindet niemals Plattformdaten. Bei unbekannten Themen verweist er klar an den Trainer.</p>
             </div>
           </div>
           <div class="hai-feature">
@@ -928,7 +928,7 @@
             </div>
             <div>
               <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Leitfragen statt Lösungen</h4>
-              <p class="text-sm" style="color:#9999a1;">Bei Szenarien gibt HAI Hinweise in kleinen Schritten und stellt Gegenfragen. Das Denken bleibt bei dir.</p>
+              <p class="text-sm" style="color:#9999a1;">Bei Szenarien gibt HAI Hinweise in kleinen Schritten &mdash; und stellt Gegenfragen. Das Denken bleibt bei dir.</p>
             </div>
           </div>
           <div class="hai-feature">
@@ -937,7 +937,7 @@
             </div>
             <div>
               <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Code erklären &amp; debuggen</h4>
-              <p class="text-sm" style="color:#9999a1;">Füge Code ein, HAI erklärt, was passiert und wo der Fehler liegt, ohne die Lösung direkt zu liefern.</p>
+              <p class="text-sm" style="color:#9999a1;">Füge Code ein, HAI erklärt was passiert und wo der Fehler liegt &mdash; ohne die Lösung direkt zu liefern.</p>
             </div>
           </div>
         </div>
@@ -946,9 +946,9 @@
       <!-- Bottom stats row -->
       <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="hai-stat">
-          <span class="hai-stat-num">100%</span>
-          <span class="hai-stat-label">Kurs-Fokus</span>
-          <span class="hai-stat-sub">Jede Antwort stammt ausschließlich aus deinen Kursmaterialien</span>
+          <span class="hai-stat-num">0,45</span>
+          <span class="hai-stat-label">Kosinus-Schwellenwert</span>
+          <span class="hai-stat-sub">Nur relevante Inhalte fließen in Antworten ein</span>
         </div>
         <div class="hai-stat">
           <span class="hai-stat-num">3 Stufen</span>
@@ -958,12 +958,12 @@
         <div class="hai-stat">
           <span class="hai-stat-num">Quiz</span>
           <span class="hai-stat-label">Mit HAI lernen</span>
-          <span class="hai-stat-sub">Lass dir Fragen dynamisch generieren und lerne im Dialog: kein Raten, echtes Verstehen.</span>
+          <span class="hai-stat-sub">Lass dir Fragen dynamisch generieren und lerne im Dialog &mdash; kein Raten, echtes Verstehen.</span>
         </div>
         <div class="hai-stat">
-          <span class="hai-stat-num">Immer</span>
-          <span class="hai-stat-label">Mit Quelle</span>
-          <span class="hai-stat-sub">HAI zeigt dir, aus welchem Kursinhalt die Antwort kommt</span>
+          <span class="hai-stat-num">SHA256</span>
+          <span class="hai-stat-label">Content-Deduplizierung</span>
+          <span class="hai-stat-sub">Identische Inhalte werden nicht doppelt eingebettet</span>
         </div>
       </div>
     </div>
@@ -979,12 +979,12 @@
       <div class="text-center mb-16 md:mb-20">
         <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded mb-4" style="color:#818cf8;background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.2);">Technologie</span>
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Wie HAI <span style="background:linear-gradient(135deg,#38bdf8,#818cf8,#c084fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">denkt.</span></h2>
-        <p class="reveal text-lg max-w-[580px] mx-auto leading-relaxed" style="color:#9999a1;">HAI sucht gezielt in deinen Kursmaterialien und antwortet mit Gegenfragen statt fertigen Lösungen. Gebaut für echtes Verstehen, nicht für Durchklicken.</p>
+        <p class="reveal text-lg max-w-[580px] mx-auto leading-relaxed" style="color:#9999a1;">RAG-Architektur, semantische Vektoren und das Sokrates-Prinzip &mdash; gebaut für echtes Verstehen statt Durchklicken.</p>
       </div>
 
       <!-- RAG Pipeline -->
       <div class="reveal mb-14">
-        <p class="text-xs font-semibold tracking-widest uppercase mb-5 text-center" style="color:#6e6e76;">So entsteht jede HAI-Antwort</p>
+        <p class="text-xs font-semibold tracking-widest uppercase mb-5 text-center" style="color:#6e6e76;">Retrieval-Augmented Generation — so entsteht jede Antwort</p>
         <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
           <div class="rag-pipeline" style="min-width:680px;">
             <div class="rag-step">
@@ -1000,16 +1000,16 @@
               <div class="rag-step__icon" style="background:rgba(129,140,248,.1);">
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="8" height="8" rx="1.5"/><rect x="14" y="3" width="8" height="8" rx="1.5"/><rect x="2" y="14" width="8" height="8" rx="1.5"/><path d="M18 14v6M15 17h6"/></svg>
               </div>
-              <span class="rag-step__label">Inhalt vergleichen</span>
-              <span class="rag-step__sub">Die Frage wird mit allen Kursmaterialien verglichen</span>
+              <span class="rag-step__label">Embedding</span>
+              <span class="rag-step__sub">3072-dim. Vektor via text-embedding-3-large</span>
             </div>
             <div class="rag-step">
               <span class="rag-step__num">03</span>
               <div class="rag-step__icon" style="background:rgba(14,165,233,.1);">
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#0ea5e9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/><path d="M8 11h6M11 8v6"/></svg>
               </div>
-              <span class="rag-step__label">Passende Stellen finden</span>
-              <span class="rag-step__sub">Nur die wirklich relevanten Abschnitte werden geladen</span>
+              <span class="rag-step__label">pgvector-Suche</span>
+              <span class="rag-step__sub">Kosinus ≥ 0,45 &mdash; nur passende Chunks</span>
             </div>
             <div class="rag-step">
               <span class="rag-step__num">04</span>
@@ -1017,7 +1017,7 @@
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               </div>
               <span class="rag-step__label">Kursinhalt</span>
-              <span class="rag-step__sub">Passende Abschnitte aus deinen Kursen als Grundlage</span>
+              <span class="rag-step__sub">Relevante Enabler &amp; Materialien als Kontext</span>
             </div>
             <div class="rag-step" style="background:rgba(56,189,248,.025);">
               <span class="rag-step__num" style="background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">05</span>
@@ -1025,7 +1025,7 @@
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#7dd3fc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </div>
               <span class="rag-step__label" style="background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">HAI antwortet</span>
-              <span class="rag-step__sub">Leitfragen, keine fertigen Lösungen</span>
+              <span class="rag-step__sub">Leitfragen &mdash; keine fertigen Lösungen</span>
             </div>
           </div>
         </div>
@@ -1040,15 +1040,15 @@
             <div class="hai2-card-icon" style="background:rgba(56,189,248,.12);">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             </div>
-            <h3 class="font-bold text-base" style="color:#f0f0f2;">Lernen durch Fragen</h3>
+            <h3 class="font-bold text-base" style="color:#f0f0f2;">Sokrates-Methode</h3>
           </div>
           <div class="flex flex-col gap-2 mb-4">
-            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">Was ist Polymorphismus?</div>
-            <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">Gute Frage. Was vermutest du selbst, was der Begriff bedeuten könnte?</div>
-            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">Vielleicht dass ein Objekt mehrere Formen hat?</div>
-            <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">Genau richtig. Schau dir Kapitel 4 an und erkläre mir dann ein konkretes Beispiel dafür.</div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">Wie funktioniert ein LEFT JOIN?</div>
+            <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">Was weißt du bereits über JOIN-Typen? Fang mit dem an, was dir bekannt ist.</div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">Nur INNER JOIN kenn ich...</div>
+            <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">Gut. Schau Enabler&nbsp;38 &mdash; beschreib dann den Unterschied zum LEFT JOIN.</div>
           </div>
-          <p class="text-xs" style="color:#6e6e76;">HAI führt dich hin, gibt keine Lösungen direkt.</p>
+          <p class="text-xs" style="color:#6e6e76;">HAI führt dich hin &mdash; gibt keine Lösungen direkt.</p>
         </div>
 
         <!-- Card 2: Quiz-Progression -->
@@ -1080,7 +1080,7 @@
             </div>
             <span class="text-xs" style="color:#6e6e76;flex-shrink:0;">🔒 Gesperrt</span>
           </div>
-          <p class="text-xs mt-4" style="color:#6e6e76;">Jede Stufe schaltet nach Bestehen frei. Je Quiz 1 Versuch.</p>
+          <p class="text-xs mt-4" style="color:#6e6e76;">Jede Stufe schaltet nach Bestehen frei &mdash; je Enabler-Quiz 1 Versuch.</p>
         </div>
 
         <!-- Card 3: Vertrauensregeln -->
@@ -1102,7 +1102,7 @@
             <div class="trust-dot" style="background:rgba(52,211,153,.12);color:#34d399;">✓</div>
             <div>
               <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Keine erfundenen Daten</div>
-              <div class="text-xs" style="color:#6e6e76;">Noten, Termine: HAI erfindet niemals Plattformdaten</div>
+              <div class="text-xs" style="color:#6e6e76;">Noten, Termine &mdash; HAI erfindet niemals Plattformdaten</div>
             </div>
           </div>
           <div class="trust-row">
@@ -1116,7 +1116,7 @@
             <div class="trust-dot" style="background:rgba(248,113,113,.1);color:#f87171;">✗</div>
             <div>
               <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Kein unkontrolliertes Internet</div>
-              <div class="text-xs" style="color:#6e6e76;">Websuche ist optional. Standard: nur deine Kursinhalte</div>
+              <div class="text-xs" style="color:#6e6e76;">Websuche ist optional &mdash; Standard ist Closed Context</div>
             </div>
           </div>
         </div>
@@ -1185,7 +1185,7 @@
         und Vertrauen</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Sicher, schnell und<br>durchdacht gebaut.
       </h2>
-      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Moderne Technologie, die , und deine Daten schützt.</p>
+      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Moderne Technologie, die zuverlässig funktioniert — und deine Daten schützt.</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
         <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover tilt-card">
           <div
@@ -1215,7 +1215,7 @@
             </svg>
           </div>
           <h3 class="text-lg font-semibold mb-2">Blitzschnelle Ladezeiten</h3>
-          <p class="text-sm text-muted leading-relaxed">Fünf Ebenen intelligentes Caching sorgen dafür, dass Seiten , egal ob im Büro oder unterwegs.</p>
+          <p class="text-sm text-muted leading-relaxed">Fünf Ebenen intelligentes Caching sorgen dafür, dass Seiten sofort laden — egal ob im Büro oder unterwegs.</p>
         </div>
       </div>
       <div class="marquee reveal mt-10">
@@ -1251,7 +1251,7 @@
       <div class="text-center mb-20">
         <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Was LFA einzigartig macht</span>
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Sechs Gründe.<br>Eine Plattform.</h2>
-        <p class="reveal text-lg max-w-[620px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Feature-Bingo, sondern echte Alleinstellungsmerkmale, die es so kein zweites Mal gibt.</p>
+        <p class="reveal text-lg max-w-[620px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Feature-Bingo — sondern echte Alleinstellungsmerkmale, die es so kein zweites Mal gibt.</p>
       </div>
 
       <div class="rm" id="roadmapTimeline">
@@ -1275,8 +1275,8 @@
             <div class="rm__card rm__card--l">
               <span class="rm__label">Fundament</span>
               <h3 class="rm__title">Closed-Context KI</h3>
-              <p class="rm__desc">Keine offene KI, die halluziniert. HAI antwortet ausschließlich auf Basis offizieller IHK-Bücher und eurer Firmendaten, mit Quellenangabe in jeder Antwort.</p>
-              <div class="rm__tags"><span class="rm__tag">Closed-Context</span><span class="rm__tag">Anti-Halluzination</span><span class="rm__tag">Quellenangaben</span></div>
+              <p class="rm__desc">Keine offene KI, die halluziniert. Unsere RAG-Pipeline antwortet ausschließlich auf Basis offizieller IHK-Bücher und Firmendaten — mit Quellenangabe in jeder Antwort.</p>
+              <div class="rm__tags"><span class="rm__tag">RAG-Pipeline</span><span class="rm__tag">Anti-Halluzination</span><span class="rm__tag">Quellenangaben</span></div>
             </div>
           </div>
           <div class="rm__center"><div class="rm__branch rm__branch--l"></div><div class="rm__dot"></div></div>
@@ -1291,7 +1291,7 @@
             <div class="rm__card rm__card--r">
               <span class="rm__label">Pionierstatus</span>
               <h3 class="rm__title">Erste Plattform dieser Art</h3>
-              <p class="rm__desc">LFA ist die erste Plattform auf dem deutschen Markt, die Ausbilder und Auszubildende in einem geschlossenen Learning-Ecosystem , mit persönlichem Feedback, KI-Unterstützung und IHK-Konformität in einer einzigen Lösung.</p>
+              <p class="rm__desc">LFA ist die erste Plattform auf dem deutschen Markt, die Ausbilder und Auszubildende in einem geschlossenen Learning-Ecosystem direkt zusammenbringt — mit persönlichem Feedback, KI-Unterstützung und IHK-Konformität in einer einzigen Lösung.</p>
               <div class="rm__tags"><span class="rm__tag">Marktneuheit</span><span class="rm__tag">Trainer + Azubi</span><span class="rm__tag">Geschlossenes Ecosystem</span></div>
             </div>
           </div>
@@ -1303,7 +1303,7 @@
             <div class="rm__card rm__card--l">
               <span class="rm__label">Menschlich</span>
               <h3 class="rm__title">Echtes Feedback, keine Automatik</h3>
-              <p class="rm__desc">Dein Ausbilder reviewed persönlich jede eingereichte Aufgabe und gibt dir individuelles , abgestimmt auf deinen Lernstand. Keine automatischen Bewertungen.</p>
+              <p class="rm__desc">Dein Ausbilder reviewed persönlich jede eingereichte Aufgabe und gibt dir individuelles Feedback — abgestimmt auf deinen Lernstand. Keine generischen Auto-Bewertungen.</p>
               <div class="rm__tags"><span class="rm__tag">Trainer-Reviews</span><span class="rm__tag">Individuelles Feedback</span><span class="rm__tag">Lernfortschritt</span></div>
             </div>
           </div>
@@ -1319,7 +1319,7 @@
             <div class="rm__card rm__card--r">
               <span class="rm__label">Didaktik</span>
               <h3 class="rm__title">Szenarien statt Schulbuch</h3>
-              <p class="rm__desc">Aus offiziellen IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze. Lernen wird , nicht abstrakt aus dem Lehrbuch abgelesen.</p>
+              <p class="rm__desc">Aus offiziellen IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze. Lernen wird greifbar — nicht abstrakt aus dem Lehrbuch abgelesen.</p>
               <div class="rm__tags"><span class="rm__tag">Use Cases</span><span class="rm__tag">Szenarien</span><span class="rm__tag">Adaptive Quizze</span></div>
             </div>
           </div>
@@ -1331,8 +1331,8 @@
             <div class="rm__card rm__card--l">
               <span class="rm__label">Individuell</span>
               <h3 class="rm__title">Dein Wissen. Dein Mentor.</h3>
-              <p class="rm__desc">Unternehmen laden eigene Dokumentation, Coding-Standards und Prozesse hoch. Die KI wird , mit Wissen, das kein externes LMS jemals bieten kann.</p>
-              <div class="rm__tags"><span class="rm__tag">Firmendaten</span><span class="rm__tag">Eigene KI</span><span class="rm__tag">Onboarding</span></div>
+              <p class="rm__desc">Unternehmen laden eigene Dokumentation, Coding-Standards und Prozesse hoch. Die KI wird zum firmenspezifischen Mentor — mit Wissen, das kein externes LMS jemals bieten kann.</p>
+              <div class="rm__tags"><span class="rm__tag">Firmen-Repository</span><span class="rm__tag">Custom RAG</span><span class="rm__tag">Onboarding-KI</span></div>
             </div>
           </div>
           <div class="rm__center"><div class="rm__branch rm__branch--l"></div><div class="rm__dot"></div></div>
@@ -1347,7 +1347,7 @@
             <div class="rm__card rm__card--r">
               <span class="rm__label" style="background:linear-gradient(135deg,var(--color-accent-soft),rgba(255,107,107,.15))">Komplett</span>
               <h3 class="rm__title">Alles an einem Ort</h3>
-              <p class="rm__desc">LMS, Berichtsheft, Arbeitszeugnisse, Kalender, KI-Assistent, Leistungsbewertung und Massenoperationen, vereint in einer einzigen Plattform statt zehn verschiedener Tools.</p>
+              <p class="rm__desc">LMS, Berichtsheft, Arbeitszeugnisse, Kalender, KI-Assistent, Leistungsbewertung und Massenoperationen — vereint in einer einzigen Plattform statt zehn verschiedener Tools.</p>
               <div class="rm__tags"><span class="rm__tag">All-in-One</span><span class="rm__tag">Keine Fragmentierung</span><span class="rm__tag">Sofort einsetzbar</span></div>
             </div>
           </div>
@@ -1386,7 +1386,7 @@
             </span>
             <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-4"></span></button>
           <div class="faq-answer">
-            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-muted leading-relaxed" style="padding-left:calc(1.25rem + 34px + 12px)">LFA ist keine reine Lernplattform. Es verbindet Ausbilder und Auszubildende direkt miteinander: mit persönlichem Feedback auf jede Aufgabe, einem KI-Assistenten der ausschließlich aus Kursmaterialien antwortet, automatisierter Arbeitszeugniserstellung und IHK-konformen Berichtsheften. Alles in einer einzigen Plattform.</div>
+            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-muted leading-relaxed" style="padding-left:calc(1.25rem + 34px + 12px)">LFA ist kein reines LMS, sondern ein Learning Experience und Support System (LXS). Es verbindet Ausbilder und Auszubildende direkt miteinander — mit persönlichem Feedback auf jede Aufgabe, einer geschlossenen KI-Pipeline (RAG), automatisierter Arbeitszeugniserstellung und IHK-konformen Berichtsheften in einer einzigen Plattform.</div>
           </div>
         </div>
         <div class="faq-item rounded-2xl bg-surface border border-border overflow-hidden"><button
@@ -1410,7 +1410,7 @@
             </span>
             <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-4"></span></button>
           <div class="faq-answer">
-            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-muted leading-relaxed" style="padding-left:calc(1.25rem + 34px + 12px)">Dein Ausbilder reviewed persönlich deine eingereichten Aufgaben und gibt dir individuelles Feedback, abgestimmt auf deinen Lernstand. Keine automatischen Bewertungen ohne menschliche Prüfung.</div>
+            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-muted leading-relaxed" style="padding-left:calc(1.25rem + 34px + 12px)">Dein Ausbilder reviewed persönlich deine eingereichten Aufgaben und gibt dir individuelles Feedback — abgestimmt auf deinen Lernstand. Keine automatischen Bewertungen ohne menschliche Prüfung.</div>
           </div>
         </div>
         <div class="faq-item rounded-2xl bg-surface border border-border overflow-hidden"><button
@@ -1688,13 +1688,13 @@
   <!-- ── GALAXY OVERLAY ── -->
   <div id="galaxyOverlay">
     <button id="galaxyBack" onclick="closeGalaxy()">← Zurück</button>
-    <div id="galaxyTitle">FIAE: Lernuniversum</div>
+    <div id="galaxyTitle">FIAE — Lernuniversum</div>
     <div id="galaxyLegend">
-      <div class="glgd" title="Berufsschulfach: theoretische Grundlage (12 Stück)">
+      <div class="glgd" title="Berufsschulfach — theoretische Grundlage (12 Stück)">
         <div class="glgd-dot" style="width:14px;height:14px;background:#ff3333;box-shadow:0 0 6px rgba(255,51,51,.5);"></div>
         <div><div style="color:#ccc;font-size:.67rem;font-weight:700;">Lernfeld</div><div style="color:#555;font-size:.6rem;">Berufsschulfach</div></div>
       </div>
-      <div class="glgd" title="IHK-Prüfungseinheit: begleitet alle Lernfelder (26 Stück)">
+      <div class="glgd" title="IHK-Prüfungseinheit — begleitet alle Lernfelder (26 Stück)">
         <div class="glgd-dot" style="width:9px;height:9px;background:#e2e8f0;"></div>
         <div><div style="color:#ccc;font-size:.67rem;font-weight:700;">Komponente</div><div style="color:#555;font-size:.6rem;">Prüfungseinheit</div></div>
       </div>
