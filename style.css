@@ -2,6 +2,7 @@
 
 /* Hide scrollbar completely while keeping scroll functionality */
 html {
+  font-size: 17px;       /* Bump base up from 16px — scales all rem-based text */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
 }
