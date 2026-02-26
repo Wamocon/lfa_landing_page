@@ -9,7 +9,8 @@
       "Bash(copy:*)",
       "Bash(pip install openpyxl -q)",
       "Bash(python -m pip install openpyxl -q)",
-      "Bash(python -c \":*)"
+      "Bash(python -c \":*)",
+      "Bash(python fix_umlauts.py)"
     ]
   }
 }

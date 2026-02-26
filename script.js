@@ -722,62 +722,98 @@
     var raf = null;
     var stars = [];
     var PLANETS = [
-      { abbr: 'FIAE',   orbitR0: 140, r0: 28, speed: 0.00035, angle: Math.PI * 0.25, active: true,  _sx: 0, _sy: 0 },
-      { abbr: 'FISI',   orbitR0: 215, r0: 28, speed: 0.00022, angle: Math.PI * 1.6,  active: false, _sx: 0, _sy: 0 },
-      { abbr: 'IT-Kfm', orbitR0: 290, r0: 28, speed: 0.00016, angle: Math.PI * 0.9,  active: false, _sx: 0, _sy: 0 },
-      { abbr: 'IT-Sys', orbitR0: 360, r0: 28, speed: 0.00011, angle: Math.PI * 2.4,  active: false, _sx: 0, _sy: 0 }
+      { abbr: 'FIAE',   orbitR0: 148, r0: 36, speed: 0.00035, angle: Math.PI * 0.25, active: true,  _sx: 0, _sy: 0 },
+      { abbr: 'FISI',   orbitR0: 230, r0: 36, speed: 0.00022, angle: Math.PI * 1.6,  active: false, _sx: 0, _sy: 0 },
+      { abbr: 'IT-Kfm', orbitR0: 315, r0: 36, speed: 0.00016, angle: Math.PI * 0.9,  active: false, _sx: 0, _sy: 0 },
+      { abbr: 'IT-Sys', orbitR0: 395, r0: 36, speed: 0.00011, angle: Math.PI * 2.4,  active: false, _sx: 0, _sy: 0 }
     ];
 
     function genStars() {
       stars = [];
-      for (var i = 0; i < 240; i++)
-        stars.push({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.3+0.2, ph: Math.random()*6.28, sp: Math.random()*0.6+0.2 });
+      var starColors = ['#ffffff','#ffffff','#ffffff','#ddeeff','#ffeedd','#eeeeff','#ffddee'];
+      for (var i = 0; i < 260; i++) {
+        stars.push({
+          x: Math.random()*W, y: Math.random()*H,
+          r: Math.random()*1.1+0.15,
+          ph: Math.random()*6.28, sp: Math.random()*0.5+0.15,
+          col: starColors[Math.floor(Math.random()*starColors.length)]
+        });
+      }
     }
 
     function resize() {
       W = canvas.width  = canvas.parentElement.offsetWidth;
       H = canvas.height = canvas.parentElement.offsetHeight;
       cx = W/2; cy = H/2;
-      sc = Math.min(1, Math.min(W, H*1.6) / 800);
+      sc = Math.min(1, Math.min(W, H*1.6) / 880);
       genStars();
     }
 
     function frame(ts) {
       ctx.clearRect(0, 0, W, H);
 
-      /* Stars */
+      /* Stars — subtle color variation */
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
-        var a = 0.15 + 0.55*(0.5+0.5*Math.sin(ts*0.001*s.sp+s.ph));
+        var a = 0.10 + 0.50*(0.5+0.5*Math.sin(ts*0.001*s.sp+s.ph));
         ctx.globalAlpha = a;
-        ctx.fillStyle = '#fff';
+        ctx.fillStyle = s.col;
         ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.2832); ctx.fill();
       }
       ctx.globalAlpha = 1;
 
-      /* Sun glow — outer */
-      var sg = ctx.createRadialGradient(cx,cy,0,cx,cy,90*sc);
-      sg.addColorStop(0,'rgba(255,140,40,.70)'); sg.addColorStop(0.35,'rgba(255,50,10,.28)'); sg.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.fillStyle=sg; ctx.beginPath(); ctx.arc(cx,cy,90*sc,0,6.2832); ctx.fill();
-      /* Sun corona — mid ring */
-      var sc1 = ctx.createRadialGradient(cx,cy,0,cx,cy,50*sc);
-      sc1.addColorStop(0,'rgba(255,180,60,.55)'); sc1.addColorStop(0.6,'rgba(255,80,10,.18)'); sc1.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.fillStyle=sc1; ctx.beginPath(); ctx.arc(cx,cy,50*sc,0,6.2832); ctx.fill();
-      /* Sun core — 3D sphere */
-      var sc2 = ctx.createRadialGradient(cx-10*sc,cy-11*sc,0,cx,cy,32*sc);
-      sc2.addColorStop(0,'#fffcf0'); sc2.addColorStop(0.18,'#ffdd88'); sc2.addColorStop(0.55,'#ff9922'); sc2.addColorStop(1,'#aa2200');
-      ctx.fillStyle=sc2; ctx.beginPath(); ctx.arc(cx,cy,32*sc,0,6.2832); ctx.fill();
-      ctx.fillStyle='rgba(255,255,255,.9)';
-      ctx.font='bold '+Math.max(8,Math.round(11*sc))+'px Inter,sans-serif';
+      /* Sun — dramatic, large, dangerous-looking */
+      var sunPulse = 0.5+0.5*Math.sin(ts*0.0012);   /* slow corona breathe */
+
+      /* Far outer haze */
+      var sh = ctx.createRadialGradient(cx,cy,0,cx,cy,160*sc);
+      sh.addColorStop(0,'rgba(255,80,0,.18)'); sh.addColorStop(0.5,'rgba(220,40,0,.07)'); sh.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=sh; ctx.beginPath(); ctx.arc(cx,cy,160*sc,0,6.2832); ctx.fill();
+
+      /* Main corona glow */
+      var sunGlowR = (95+sunPulse*12)*sc;
+      var sg = ctx.createRadialGradient(cx,cy,0,cx,cy,sunGlowR);
+      sg.addColorStop(0,'rgba(255,180,30,.90)');
+      sg.addColorStop(0.25,'rgba(255,100,10,.55)');
+      sg.addColorStop(0.6,'rgba(200,30,0,.18)');
+      sg.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=sg; ctx.beginPath(); ctx.arc(cx,cy,sunGlowR,0,6.2832); ctx.fill();
+
+      /* Hot inner corona — tighter ring */
+      var sc1 = ctx.createRadialGradient(cx,cy,30*sc,cx,cy,62*sc);
+      sc1.addColorStop(0,'rgba(255,220,100,.0)');
+      sc1.addColorStop(0.4,'rgba(255,200,60,.35)');
+      sc1.addColorStop(0.75,'rgba(255,140,20,.18)');
+      sc1.addColorStop(1,'rgba(255,80,0,.0)');
+      ctx.fillStyle=sc1; ctx.beginPath(); ctx.arc(cx,cy,62*sc,0,6.2832); ctx.fill();
+
+      /* Sun core — matte, no gloss */
+      var coreR = 42*sc;
+      var sc2 = ctx.createRadialGradient(cx,cy,0,cx,cy,coreR);
+      sc2.addColorStop(0,'#ffeeaa');      /* bright centre */
+      sc2.addColorStop(0.3,'#ffb830');    /* warm yellow */
+      sc2.addColorStop(0.65,'#e05500');   /* deep orange */
+      sc2.addColorStop(0.88,'#a01800');   /* burnt dark */
+      sc2.addColorStop(1,'#3a0500');      /* rim — near black */
+      ctx.fillStyle=sc2; ctx.beginPath(); ctx.arc(cx,cy,coreR,0,6.2832); ctx.fill();
+
+      /* LFA label — dark text on bright centre for readability */
+      var fnt = Math.max(9,Math.round(12*sc));
+      ctx.font = 'bold '+fnt+'px Inter,sans-serif';
       ctx.textAlign='center'; ctx.textBaseline='middle';
+      /* Shadow for contrast */
+      ctx.shadowColor='rgba(0,0,0,.6)'; ctx.shadowBlur=6;
+      ctx.fillStyle='rgba(255,255,255,.95)';
       ctx.fillText('LFA',cx,cy);
+      ctx.shadowBlur=0;
 
       /* Planets */
       for (var pi = 0; pi < PLANETS.length; pi++) {
         var p = PLANETS[pi];
-        p.angle += p.speed*16;
-        var r  = p.orbitR0*sc;
+        if (!p._hovered) p.angle += p.speed*16;   /* freeze when hovered */
         var pr = p.r0*sc;
+        var maxR = Math.min(cx, cy) - pr - 6;    /* clamp so planet stays inside canvas */
+        var r  = Math.min(p.orbitR0*sc, maxR);
         var px = cx+Math.cos(p.angle)*r;
         var py = cy+Math.sin(p.angle)*r;
         p._sx=px; p._sy=py;
@@ -799,41 +835,62 @@
           ctx.beginPath(); ctx.arc(px,py,pr+(3+pulse*5)*sc,0,6.2832); ctx.stroke();
         }
 
-        /* Planet body — 3D specular sphere */
-        var specX = px - pr*0.32, specY = py - pr*0.36;
-        var pg = ctx.createRadialGradient(specX, specY, 0, px, py, pr);
+        /* Planet body — matte, no specular gloss.
+           Rim-light angle calculated from planet's actual orbit position
+           relative to the sun (cx/cy), so the lit edge always faces the sun. */
+        var pg = ctx.createRadialGradient(px, py, pr*0.05, px, py, pr);
         if (p.active) {
-          pg.addColorStop(0,    '#ffcccc'); /* specular highlight */
-          pg.addColorStop(0.18, '#ff6666'); /* bright face */
-          pg.addColorStop(0.60, '#cc1111'); /* mid shadow */
-          pg.addColorStop(1,    '#4a0000'); /* rim dark */
+          pg.addColorStop(0,   '#c01818'); /* centre: saturated dark red */
+          pg.addColorStop(0.55,'#7a0505'); /* mid: deeper */
+          pg.addColorStop(1,   '#180000'); /* edge: near-black */
         } else {
-          pg.addColorStop(0,    '#888892'); /* specular highlight */
-          pg.addColorStop(0.22, '#58586a'); /* bright face */
-          pg.addColorStop(0.62, '#2e2e38'); /* mid shadow */
-          pg.addColorStop(1,    '#0d0d12'); /* rim dark */
+          pg.addColorStop(0,   '#52526a'); /* centre: lighter slate for text contrast */
+          pg.addColorStop(0.6, '#32323f'); /* mid */
+          pg.addColorStop(1,   '#14141e'); /* edge: near-black */
         }
-        ctx.fillStyle=pg; ctx.beginPath(); ctx.arc(px,py,pr,0,6.2832); ctx.fill();
-        /* Subtle rim edge */
-        ctx.strokeStyle = p.active ? 'rgba(255,130,130,.35)' : 'rgba(100,100,120,.18)';
-        ctx.lineWidth=1; ctx.beginPath(); ctx.arc(px,py,pr,0,6.2832); ctx.stroke();
+        ctx.fillStyle = pg; ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.fill();
 
-        /* Label */
-        ctx.fillStyle = p.active ? '#fff' : '#aaaabc';
-        ctx.font = (p.active?'bold ':'')+Math.max(7,Math.round(9*sc))+'px Inter,sans-serif';
+        /* Rim light from sun (LFA at cx/cy) — clip to planet disc */
+        var rimAngle = Math.atan2(py - cy, px - cx); /* angle planet → sun */
+        var rlx = px - Math.cos(rimAngle) * pr * 0.72;
+        var rly = py - Math.sin(rimAngle) * pr * 0.72;
+        var rl = ctx.createRadialGradient(rlx, rly, pr * 0.05, rlx, rly, pr * 1.35);
+        if (p.active) {
+          rl.addColorStop(0,    'rgba(255,100,60,0)');
+          rl.addColorStop(0.55, 'rgba(255,100,60,0)');
+          rl.addColorStop(0.78, 'rgba(255,120,60,.30)');
+          rl.addColorStop(1,    'rgba(255,100,60,0)');
+        } else {
+          rl.addColorStop(0,    'rgba(0,0,0,0)');
+          rl.addColorStop(0.6,  'rgba(0,0,0,0)');
+          rl.addColorStop(0.82, 'rgba(90,95,130,.20)');
+          rl.addColorStop(1,    'rgba(0,0,0,0)');
+        }
+        ctx.save();
+        ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.clip();
+        ctx.fillStyle = rl; ctx.fillRect(px-pr*2, py-pr*2, pr*4, pr*4);
+        ctx.restore();
+
+        /* Label — bold, large, clear */
+        var fSize = Math.max(10, Math.round(12*sc));
+        ctx.shadowColor = 'rgba(0,0,0,.85)';
+        ctx.shadowBlur = 5;
+        ctx.fillStyle = 'rgba(255,255,255,.95)';
+        ctx.font = 'bold ' + fSize + 'px Inter,sans-serif';
         ctx.textAlign='center'; ctx.textBaseline='middle';
         ctx.fillText(p.abbr, px, py);
+        ctx.shadowBlur = 0;
 
         /* Hint */
         ctx.textBaseline='alphabetic';
         if (p.active) {
-          ctx.fillStyle='rgba(255,160,160,.85)';
-          ctx.font=Math.max(7,Math.round(8*sc))+'px Inter,sans-serif';
+          ctx.fillStyle='rgba(255,130,130,.80)';
+          ctx.font=Math.max(6,Math.round(7.5*sc))+'px Inter,sans-serif';
           ctx.fillText('↗ Erkunden',px,py+pr+14*sc);
         } else {
-          ctx.fillStyle='rgba(120,120,140,.7)';
-          ctx.font=Math.max(6,Math.round(7*sc))+'px Inter,sans-serif';
-          ctx.fillText('bald',px,py+pr+11*sc);
+          ctx.fillStyle='rgba(165,168,210,.88)';
+          ctx.font=Math.max(6,Math.round(7.5*sc))+'px Inter,sans-serif';
+          ctx.fillText('bald verfügbar',px,py+pr+14*sc);
         }
       }
 
@@ -863,9 +920,10 @@
       var hover = false;
       for (var pi = 0; pi < PLANETS.length; pi++) {
         var p = PLANETS[pi];
-        if (!p.active) continue;
         var dx=mx-p._sx, dy=my-p._sy, hit=(p.r0*sc+20);
-        if (dx*dx+dy*dy < hit*hit) { hover=true; break; }
+        var isOver = dx*dx+dy*dy < hit*hit;
+        p._hovered = isOver;          /* track hover per planet */
+        if (p.active && isOver) hover=true;
       }
       canvas.style.cursor = hover?'pointer':'default';
     });
@@ -947,10 +1005,10 @@
       var g = defs.append('radialGradient').attr('id','grd-'+d.id)
         .attr('cx','38%').attr('cy','30%').attr('r','68%')
         .attr('fx','38%').attr('fy','26%');
-      g.append('stop').attr('offset','0%').attr('stop-color','#ffbbbb');   /* specular */
-      g.append('stop').attr('offset','18%').attr('stop-color','#ff5555');  /* bright */
-      g.append('stop').attr('offset','65%').attr('stop-color','#cc1111');  /* mid */
-      g.append('stop').attr('offset','100%').attr('stop-color','#5a0000'); /* rim */
+      g.append('stop').attr('offset','0%').attr('stop-color','#ffaaaa');   /* specular */
+      g.append('stop').attr('offset','18%').attr('stop-color','#FE0404');  /* bright */
+      g.append('stop').attr('offset','65%').attr('stop-color','#b80303');  /* mid */
+      g.append('stop').attr('offset','100%').attr('stop-color','#4a0000'); /* rim */
     });
     /* Comp sphere gradient */
     var cg = defs.append('radialGradient').attr('id','comp-grd')
@@ -1020,9 +1078,9 @@
     var label = grp.append('g').selectAll('text')
       .data(nodes.filter(function(d){return d.group!=='UC';})).join('text')
       .attr('text-anchor','middle').attr('dominant-baseline','middle')
-      .attr('font-size',function(d){return d.group==='LF'?'12px':'7.5px';})
+      .attr('font-size',function(d){return d.group==='LF'?'15px':'7.5px';})
       .attr('font-weight',function(d){return d.group==='LF'?'700':'500';})
-      .attr('fill',function(d){return d.group==='LF'?'#fff':'#ccc';})
+      .attr('fill',function(d){return d.group==='LF'?'#fff':'#ff6060';})
       .attr('pointer-events','none')
       .text(function(d){return d.label;});
 
@@ -1033,23 +1091,72 @@
       .on('end',  function(ev,d){if(!ev.active)sim.alphaTarget(0);d.fx=null;d.fy=null;});
     node.call(dragBeh);
 
+    /* Full-path highlight: 2-level traversal so Comp→UC→LF and LF→UC→Comp are all shown */
     function getConn(d) {
-      var s=new Set([d.id]);
-      links.forEach(function(l){
-        var si=typeof l.source==='object'?l.source.id:l.source;
-        var ti=typeof l.target==='object'?l.target.id:l.target;
-        if(si===d.id){
-          s.add(ti);
-          if(d.group==='LF') links.forEach(function(l2){
-            var s2=typeof l2.source==='object'?l2.source.id:l2.source;
-            var t2=typeof l2.target==='object'?l2.target.id:l2.target;
-            if(s2===ti)s.add(t2); if(t2===ti)s.add(s2);
-          });
-        }
-        if(ti===d.id) s.add(si);
+      var s = new Set([d.id]);
+      /* Level 1: direct neighbors */
+      links.forEach(function(l) {
+        var si = typeof l.source==='object' ? l.source.id : l.source;
+        var ti = typeof l.target==='object' ? l.target.id : l.target;
+        if (si === d.id) s.add(ti);
+        if (ti === d.id) s.add(si);
+      });
+      /* Level 2: neighbors-of-neighbors (completes the path) */
+      var lvl1 = Array.from(s).filter(function(id){ return id !== d.id; });
+      lvl1.forEach(function(nid) {
+        links.forEach(function(l) {
+          var si = typeof l.source==='object' ? l.source.id : l.source;
+          var ti = typeof l.target==='object' ? l.target.id : l.target;
+          if (si === nid) s.add(ti);
+          if (ti === nid) s.add(si);
+        });
       });
       return s;
     }
+
+    /* Name dictionaries for tooltip */
+    var LF_LABELS = {
+      'LF1':'Das Unternehmen und die eigene Rolle im Betrieb',
+      'LF2':'Arbeitsplätze nach Kundenwunsch ausstatten',
+      'LF3':'Clients in Netzwerke einbinden',
+      'LF4':'Schutzbedarfsanalyse im eigenen Arbeitsbereich',
+      'LF5':'Software zur Verwaltung von Daten anpassen',
+      'LF6':'Serviceanfragen bearbeiten',
+      'LF7':'Cyber-physische Systeme ergänzen',
+      'LF8':'Daten systemübergreifend bereitstellen',
+      'LF9':'Netzwerke und Dienste bereitstellen',
+      'LF10':'Benutzerschnittstellen gestalten und entwickeln',
+      'LF11':'Funktionalität in Anwendungen realisieren',
+      'LF12':'Kundenspezifische Anwendungsentwicklung durchführen'
+    };
+    var COMP_LABELS = {
+      '01':'Planen, Vorbereiten und Durchführen von Arbeitsaufgaben',
+      '02':'Informieren und Beraten von Kunden',
+      '03':'Beurteilen marktgängiger IT-Systeme und Lösungen',
+      '04':'Entwickeln, Erstellen und Betreuen von IT-Lösungen',
+      '05':'Qualitätssichernde Maßnahmen durchführen',
+      '06':'IT-Sicherheit und Datenschutz umsetzen',
+      '07':'Leistungen erbringen und Auftrag abschließen',
+      '08':'IT-Systeme betreiben',
+      '09':'Softwarelösungen programmieren',
+      '10':'Softwareanwendungen konzipieren und umsetzen',
+      '11':'Qualität von Softwareanwendungen sichern',
+      '12':'Vernetzt zusammenarbeiten mit digitalen Medien',
+      '13':'Kunden informieren und beraten (J2)',
+      '14':'IT-Systeme beurteilen (J2)',
+      '15':'IT-Lösungen entwickeln und betreuen (J2)',
+      '16':'Qualitätssicherung durchführen (J2)',
+      '17':'IT-Sicherheit und Datenschutz (J2)',
+      '18':'IT-Systeme betreiben (J2)',
+      '19':'Speicherlösungen in Betrieb nehmen',
+      '20':'Softwarelösungen programmieren (J2)',
+      '21':'Softwareanwendungen konzipieren (J2)',
+      '22':'Softwarequalität sichern (J2)',
+      '23':'Berufsausbildung, Arbeits- und Tarifrecht',
+      '24':'Aufbau und Organisation des Ausbildungsbetriebes',
+      '25':'Sicherheit und Gesundheitsschutz bei der Arbeit',
+      '26':'Umweltschutz'
+    };
 
     function doHighlight(d) {
       var conn=getConn(d);
@@ -1065,27 +1172,38 @@
 
     function resetHighlight() {
       node.style('opacity',1); nodeGlow.style('opacity',1); label.style('opacity',1);
-      link.attr('stroke-opacity',function(l){return l.type==='cluster'?.28:.16;});
+      link.attr('stroke-opacity',function(l){return l.type==='cluster'?.35:.22;});
     }
 
-    /* Hover + tooltip */
+    /* Hover + rich tooltip */
     node.on('mouseover',function(ev,d){
       doHighlight(d);
-      var lbl=d.fullLabel||d.label;
-      tooltip.innerHTML='<strong style="color:'+(d.group==='LF'?'#ff7777':d.group==='Comp'?'#e2e8f0':'#38bdf8')+'">'+d.group+'</strong><br>'+lbl;
+      var color   = d.group==='LF' ? '#ff7777' : d.group==='Comp' ? '#e2e8f0' : '#38bdf8';
+      var grpName = d.group==='LF' ? 'Lernfeld' : d.group==='Comp' ? 'Komponente' : 'Use Case';
+      var grpDesc = d.group==='LF' ? 'Berufsschulfach — theoretische Grundlage'
+                  : d.group==='Comp' ? 'Prüfungseinheit — begleitet alle Lernfelder'
+                  : 'Praxisaufgabe — konkrete Anwendungssituation';
+      var name = d.group==='LF'   ? (LF_LABELS[d.label]   || d.label)
+               : d.group==='Comp' ? (COMP_LABELS[d.label]  || d.label)
+               : (d.fullLabel || d.label);
+      tooltip.innerHTML =
+        '<div style="color:'+color+';font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;">'+grpName+'</div>'+
+        '<div style="font-weight:600;font-size:.8rem;line-height:1.35;margin-bottom:4px;">'+name+'</div>'+
+        '<div style="color:#6e6e76;font-size:.7rem;">'+grpDesc+'</div>';
       tooltip.style.display='block';
-      tooltip.style.left=(ev.clientX+16)+'px'; tooltip.style.top=(ev.clientY-10)+'px';
+      tooltip.style.left=(ev.clientX+18)+'px'; tooltip.style.top=(ev.clientY-12)+'px';
     })
     .on('mousemove',function(ev){
-      tooltip.style.left=(ev.clientX+16)+'px'; tooltip.style.top=(ev.clientY-10)+'px';
+      tooltip.style.left=(ev.clientX+18)+'px'; tooltip.style.top=(ev.clientY-12)+'px';
     })
     .on('mouseout',function(){resetHighlight();tooltip.style.display='none';});
 
-    /* Click LF → zoom into cluster */
+    /* Click LF or Comp → zoom into cluster */
     node.on('click',function(ev,d){
-      if(d.group!=='LF') return; ev.stopPropagation();
+      if(d.group==='UC') return; ev.stopPropagation();
       doHighlight(d);
-      var t=d3.zoomIdentity.translate(GW/2,GH/2).scale(3).translate(-d.x,-d.y);
+      var scale = d.group==='LF' ? 2.8 : 4.5;
+      var t = d3.zoomIdentity.translate(GW/2,GH/2).scale(scale).translate(-d.x,-d.y);
       svg.transition().duration(650).call(zb.transform,t);
     });
 
@@ -1111,6 +1229,41 @@
   };
 
   /* ==============================================
+     MOBILE MENU
+     ============================================== */
+  function initMobileMenu() {
+    var btn  = document.getElementById('navHamburger');
+    var menu = document.getElementById('mobileMenu');
+    if (!btn || !menu) return;
+
+    function open() {
+      menu.classList.add('is-open');
+      btn.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      menu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      menu.classList.remove('is-open');
+      btn.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', function() {
+      menu.classList.contains('is-open') ? close() : open();
+    });
+
+    /* Close on ESC */
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') close();
+    });
+
+    window.closeMobileMenu = close;
+  }
+
+  /* ==============================================
      INIT
      ============================================== */
   function init() {
@@ -1127,6 +1280,7 @@
     initTyping();
     initTiltCards();
     initBentoGlow();
+    initMobileMenu();
   }
 
   if (document.readyState === 'loading') {
