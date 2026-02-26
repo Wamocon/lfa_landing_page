@@ -93,11 +93,27 @@
     var prefix = el.dataset.prefix || '';
     var suffix = el.dataset.suffix || '';
     el.textContent = prefix + '0' + suffix;
+    el.style.minHeight = '';
   }
 
   function initCounters() {
     var counters = $$('[data-target]');
     if (!counters.length) return;
+
+    /* Pre-lock heights via invisible clone to prevent layout shift during count-up */
+    counters.forEach(function(el) {
+      var suffix = el.dataset.suffix || '';
+      var prefix = el.dataset.prefix || '';
+      var separator = el.dataset.separator || '';
+      var target = parseInt(el.dataset.target, 10);
+      var clone = el.cloneNode(false);
+      clone.style.position = 'absolute';
+      clone.style.visibility = 'hidden';
+      clone.textContent = prefix + formatNumber(target, separator) + suffix;
+      el.parentNode.insertBefore(clone, el);
+      el.style.minHeight = clone.scrollHeight + 'px';
+      clone.remove();
+    });
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -668,6 +684,30 @@
   }
 
   /* ==============================================
+     12. BENTO CARD MOUSE GLOW
+     ============================================== */
+  function initBentoGlow() {
+    var cards = $$('.bento-featured');
+    if (!cards.length || prefersReduced) return;
+
+    cards.forEach(function(card) {
+      var glow = document.createElement('div');
+      glow.style.cssText = 'position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,26,26,.07),transparent 70%);pointer-events:none;opacity:0;transition:opacity .3s ease;transform:translate(-50%,-50%);z-index:0;';
+      card.appendChild(glow);
+
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        glow.style.left = (e.clientX - rect.left) + 'px';
+        glow.style.top = (e.clientY - rect.top) + 'px';
+        glow.style.opacity = '1';
+      });
+      card.addEventListener('mouseleave', function() {
+        glow.style.opacity = '0';
+      });
+    });
+  }
+
+  /* ==============================================
      INIT
      ============================================== */
   function init() {
@@ -682,6 +722,7 @@
     initMagneticButtons();
     initTyping();
     initTiltCards();
+    initBentoGlow();
   }
 
   if (document.readyState === 'loading') {
