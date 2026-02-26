@@ -939,9 +939,21 @@
   };
 
   window.openGalaxy = function(originX, originY) {
+    var ov = document.getElementById('galaxyOverlay');
+    function reveal() {
+      ov.style.opacity='0'; ov.classList.add('go--open');
+      window.loadD3(function() {
+        requestAnimationFrame(function() {
+          ov.style.transition='opacity .4s ease'; ov.style.opacity='1';
+          if (!_galaxyInited) { window.initGalaxy(); _galaxyInited=true; }
+        });
+      });
+    }
+    /* Mobile: skip circle animation — avoids black-screen pause */
+    if (window.innerWidth < 768) { reveal(); return; }
+    /* Desktop: circle zoom animation */
     var zl = document.getElementById('zoomLayer');
     var circ = document.getElementById('zoomCircle');
-    var ov = document.getElementById('galaxyOverlay');
     var diag = Math.sqrt(window.innerWidth*window.innerWidth+window.innerHeight*window.innerHeight)*2.4;
     circ.style.cssText = 'position:absolute;border-radius:50%;background:#040810;width:'+diag+'px;height:'+diag+'px;left:'+originX+'px;top:'+originY+'px;transform:translate(-50%,-50%) scale(0);transition:none;';
     zl.style.display = 'block';
@@ -949,16 +961,7 @@
       circ.style.transition = 'transform .72s cubic-bezier(.4,0,.2,1)';
       circ.style.transform = 'translate(-50%,-50%) scale(1)';
     }); });
-    setTimeout(function() {
-      ov.style.opacity='0'; ov.classList.add('go--open');
-      zl.style.display='none';
-      window.loadD3(function() {
-        requestAnimationFrame(function() {
-          ov.style.transition='opacity .4s ease'; ov.style.opacity='1';
-          if (!_galaxyInited) { window.initGalaxy(); _galaxyInited=true; }
-        });
-      });
-    }, 700);
+    setTimeout(function() { reveal(); zl.style.display='none'; }, 700);
   };
 
   window.closeGalaxy = function() {
@@ -1172,11 +1175,11 @@
 
     /* Hover + rich tooltip */
     node.on('mouseover',function(ev,d){
-      doHighlight(d);
+      if (!compFocus) doHighlight(d);
       var color   = d.group==='LF' ? '#ff7777' : d.group==='Comp' ? '#e2e8f0' : '#38bdf8';
       var grpName = d.group==='LF' ? 'Lernfeld' : d.group==='Comp' ? 'Komponente' : 'Use Case';
       var grpDesc = d.group==='LF' ? 'Berufsschulfach — theoretische Grundlage'
-                  : d.group==='Comp' ? 'Prüfungseinheit — begleitet alle Lernfelder'
+                  : d.group==='Comp' ? 'Fragenkomplex — bewertet berufliche Eignung als FIAE'
                   : 'Praxisaufgabe — konkrete Anwendungssituation';
       var name = d.group==='LF'   ? (LF_LABELS[d.label]   || d.label)
                : d.group==='Comp' ? (COMP_LABELS[d.label]  || d.label)
@@ -1191,7 +1194,7 @@
     .on('mousemove',function(ev){
       tooltip.style.left=(ev.clientX+18)+'px'; tooltip.style.top=(ev.clientY-12)+'px';
     })
-    .on('mouseout',function(){resetHighlight();tooltip.style.display='none';});
+    .on('mouseout',function(){if(!compFocus)resetHighlight();tooltip.style.display='none';});
 
     /* Comp-focus state — tracks which Comp is currently in focus mode */
     var compFocus = null;
@@ -1241,19 +1244,7 @@
 
     function enterCompFocus(d) {
       compFocus = d;
-      var ucSet = getCompUCs(d);
-
-      /* Dim everything outside this comp's UCs */
-      node.style('opacity', function(n){ return ucSet.has(n.id) ? 1 : 0.04; });
-      nodeGlow.style('opacity', function(n){ return ucSet.has(n.id) ? 1 : 0; });
-      link.attr('stroke-opacity', function(l){
-        var si = typeof l.source==='object' ? l.source.id : l.source;
-        var ti = typeof l.target==='object' ? l.target.id : l.target;
-        return (si===d.id || ti===d.id) ? 0.75 : 0.01;
-      });
-      label.style('opacity', function(n){
-        return n.id===d.id ? 1 : (ucSet.has(n.id) && n.group!=='UC' ? 0.7 : 0.03);
-      });
+      doHighlight(d); /* same visual as hover — full 2-level path highlight */
 
       /* Fix comp at the LF's current position — it "takes over" the centre */
       var lf = getCompLF(d);
@@ -1279,6 +1270,15 @@
       sim.alpha(0.3).restart();
       svg.transition().duration(500).call(zb.transform,d3.zoomIdentity);
     }
+
+    window.resetGalaxy = function() {
+      if (compFocus) { compFocus.fx = null; compFocus.fy = null; compFocus = null; }
+      nodes.forEach(function(n){ n.fx = null; n.fy = null; });
+      resetHighlight();
+      tooltip.style.display = 'none';
+      svg.transition().duration(500).call(zb.transform, d3.zoomIdentity);
+      sim.alpha(0.85).restart();
+    };
 
     /* Click handler */
     node.on('click',function(ev,d){

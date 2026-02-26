@@ -201,6 +201,8 @@
     #galaxyOverlay.go--open { display:flex; }
     #galaxyBack { position:absolute; top:18px; left:18px; z-index:20; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); color:#e2e8f0; font-size:.78rem; font-weight:600; padding:7px 16px; border-radius:10px; cursor:pointer; transition:background .2s; font-family:inherit; }
     #galaxyBack:hover { background:rgba(255,255,255,.15); }
+    #galaxyReset { position:absolute; top:18px; left:120px; z-index:20; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); color:#888; font-size:.75rem; font-weight:600; padding:7px 14px; border-radius:10px; cursor:pointer; transition:background .2s,color .2s; font-family:inherit; }
+    #galaxyReset:hover { background:rgba(255,255,255,.12); color:#e2e8f0; }
     #galaxyTitle { position:absolute; top:21px; left:50%; transform:translateX(-50%); font-size:.78rem; font-weight:700; color:#888; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; pointer-events:none; }
     #galaxyLegend { position:absolute; top:16px; right:18px; z-index:20; display:flex; gap:14px; align-items:center; }
     .glgd { display:flex; align-items:center; gap:7px; cursor:default; }
@@ -217,8 +219,8 @@
     /* ── HAI Section ── */
     .section-hai { background:#09111f; color:#f0f0f2; position:relative; overflow:hidden; }
     .section-hai::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:800px; height:500px; background:radial-gradient(ellipse at 50% 0%, rgba(14,165,233,.07) 0%, transparent 65%); pointer-events:none; z-index:0; }
-    .hai-demo-card { background:rgba(255,255,255,.03); border:1px solid rgba(56,189,248,.15); border-radius:18px; padding:24px; display:flex; flex-direction:column; gap:14px; width:100%; max-width:420px; box-shadow:0 0 40px rgba(14,165,233,.06), 0 8px 24px rgba(0,0,0,.3); }
-    .hai-bubble { border-radius:12px; padding:12px 16px; font-size:.875rem; line-height:1.55; }
+    .hai-demo-card { background:rgba(255,255,255,.03); border:1px solid rgba(56,189,248,.15); border-radius:20px; padding:28px; display:flex; flex-direction:column; gap:18px; width:100%; max-width:460px; box-shadow:0 0 40px rgba(14,165,233,.06), 0 8px 24px rgba(0,0,0,.3); }
+    .hai-bubble { border-radius:14px; padding:14px 18px; font-size:1rem; line-height:1.55; }
     .hai-bubble--bot { background:rgba(56,189,248,.08); border:1px solid rgba(56,189,248,.15); color:#e2e8f0; border-top-left-radius:4px; }
     .hai-bubble--bot strong { color:#38bdf8; }
     .hai-bubble--user { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); color:#b0b0b8; text-align:right; border-top-right-radius:4px; align-self:flex-end; max-width:80%; }
@@ -293,6 +295,7 @@
       /* Galaxy overlay: prevent overlapping header elements ─────────────── */
       /* Row 1 (top:12px): Back button left + Title center (smaller, no wrap) */
       #galaxyBack  { top:12px; left:12px; font-size:.7rem; padding:5px 11px; }
+      #galaxyReset { top:12px; left:auto; right:12px; font-size:.7rem; padding:5px 11px; }
       #galaxyTitle { top:14px; font-size:.62rem; }
 
       /* Row 2 (top:50px): Legend moved below, left-aligned, smaller */
@@ -667,7 +670,7 @@
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">KI-Assistent HAI:</strong> . Antworten basieren auf offiziellen IHK-Quellen, nicht auf Halluzinationen.</span>
+              <span class="text-sm text-muted"><strong class="text-text-main">KI-Assistent HAI:</strong> Antworten basieren auf offiziellen IHK-Quellen, nicht auf Halluzinationen.</span>
             </li>
           </ul>
         </div>
@@ -734,7 +737,7 @@
                 <svg class="icon"><use href="#i-clock" /></svg>
               </div>
               <h3 class="text-xl font-semibold mb-3">Dein Ausbilder, ganz nah</h3>
-              <p class="text-sm text-muted leading-relaxed">. Dein Ausbilder reviewed deine Arbeit selbst und gibt dir sein individuelles Feedback.</p>
+              <p class="text-sm text-muted leading-relaxed">Dein Ausbilder reviewed deine Arbeit selbst und gibt dir sein individuelles Feedback.</p>
             </div>
           </div>
         </div>
@@ -760,7 +763,7 @@
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernmaterial</span><span
               class="text-sm text-muted">Stapelweise Bücher, unübersichtliche PDFs, kein roter Faden</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernen</span><span
-              class="text-sm text-muted">, ohne Praxisbezug</span></div>
+              class="text-sm text-muted">Trockene Theorie, ohne Praxisbezug</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Feedback</span><span
               class="text-sm text-muted">Unpersönlich, verspätet oder gar nicht</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Ausbilder-Rolle</span><span
@@ -979,7 +982,7 @@
               Irgendwas mit Klassen und Vererbung?
             </div>
             <div class="hai-bubble hai-bubble--bot">
-              Genau auf dem richtigen Weg. Schau dir den passenden <span style="display:inline-flex;align-items:center;gap:3px;padding:1px 7px 1px 6px;border-radius:5px;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.3);font-weight:600;color:#7dd3fc;white-space:nowrap;">Enabler <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span> in deinem Kurs an , dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.
+              Genau auf dem richtigen Weg. Schau dir den passenden <span style="display:inline-flex;align-items:center;gap:2px;padding:1px 7px 1px 6px;border-radius:5px;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.3);font-weight:600;color:#7dd3fc;white-space:nowrap;">Enabler <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span> in deinem Kurs an, dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.
             </div>
           </div>
           <p class="text-xs" style="color:#6e6e76;text-align:center;">HAI gibt Hinweise, keine fertigen Lösungen. So lernst du wirklich.</p>
@@ -1780,15 +1783,16 @@
   <!-- ── GALAXY OVERLAY ── -->
   <div id="galaxyOverlay">
     <button id="galaxyBack" onclick="closeGalaxy()">← Zurück</button>
+    <button id="galaxyReset" onclick="resetGalaxy && resetGalaxy()">↺ Neu anordnen</button>
     <div id="galaxyTitle">FIAE: Lernuniversum</div>
     <div id="galaxyLegend">
       <div class="glgd" title="Berufsschulfach: theoretische Grundlage (12 Stück)">
         <div class="glgd-dot" style="width:14px;height:14px;background:#ff3333;box-shadow:0 0 6px rgba(255,51,51,.5);"></div>
         <div><div style="color:#ccc;font-size:.67rem;font-weight:700;">Lernfeld</div><div style="color:#555;font-size:.6rem;">Berufsschulfach</div></div>
       </div>
-      <div class="glgd" title="IHK-Prüfungseinheit: begleitet alle Lernfelder (26 Stück)">
+      <div class="glgd" title="Fragenkomplex: bewertet berufliche Eignung als Fachinformatiker Anwendungsentwicklung (26 Stück)">
         <div class="glgd-dot" style="width:9px;height:9px;background:#e2e8f0;"></div>
-        <div><div style="color:#ccc;font-size:.67rem;font-weight:700;">Komponente</div><div style="color:#555;font-size:.6rem;">Prüfungseinheit</div></div>
+        <div><div style="color:#ccc;font-size:.67rem;font-weight:700;">Komponente</div><div style="color:#555;font-size:.6rem;">Fragenkomplex</div></div>
       </div>
       <div class="glgd" title="Praxisaufgabe aus dem Berufsalltag (86 Stück)">
         <div class="glgd-dot" style="width:6px;height:6px;background:#38bdf8;"></div>
