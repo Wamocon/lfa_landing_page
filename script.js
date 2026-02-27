@@ -1,5 +1,5 @@
 /* ==============================================
-   LFA Landing Page — Immersive Interactions v3
+   LFA Landing Page : Immersive Interactions v3
    Vanilla JS, no dependencies
    ============================================== */
 
@@ -23,7 +23,7 @@
     els.forEach(function (el) {
       var parent = el.parentElement;
       if (!parent) return;
-      /* Only count direct children that are .reveal — prevents deep nesting from inflating delays */
+      /* Only count direct children that are .reveal : prevents deep nesting from inflating delays */
       var siblings = Array.prototype.slice.call(parent.children).filter(function(c) { return c.classList.contains('reveal'); });
       if (siblings.length > 1) {
         var idx = siblings.indexOf(el);
@@ -138,12 +138,33 @@
   function initNavbar() {
     var nav = $('#nav');
     if (!nav) return;
+    var navLinks = $$('.nav-link[data-nav-section]');
     var ticking = false;
+
+    function setActive(sectionId) {
+      navLinks.forEach(function(l) {
+        l.classList.toggle('nav-link--active', l.dataset.navSection === sectionId);
+      });
+    }
+
     function onScroll() {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(function () {
         nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+
+        /* Find topmost visible section */
+        var active = null;
+        navLinks.forEach(function(l) {
+          var sec = document.getElementById(l.dataset.navSection);
+          if (!sec) return;
+          var rect = sec.getBoundingClientRect();
+          if (rect.top <= window.innerHeight * 0.45 && rect.bottom > 0) {
+            active = l.dataset.navSection;
+          }
+        });
+        if (active) setActive(active);
+
         ticking = false;
       });
     }
@@ -199,7 +220,7 @@
      6. SUBTLE PARALLAX ON SCROLL
      ============================================== */
   function initScrollEffects() {
-    /* Removed — section opacity animation caused gray bleed-through
+    /* Removed : section opacity animation caused gray bleed-through
        during scrolling. Sections use reveal animations instead. */
   }
 
@@ -218,31 +239,45 @@
     var ticking = false;
     var totalLen = 0;
 
-    /* Build snake SVG path through the timeline — big smooth curves */
+    /* Build snake SVG path through the timeline : big smooth curves on desktop, straight on mobile */
     function buildSnakePath() {
       var lineEl = document.getElementById('rmLine');
       if (!lineEl) return;
       var h = timeline.offsetHeight;
-      var w = 120; /* wider SVG for bigger curves */
+      var isMobile = window.innerWidth < 768;
+      var d, w, cx;
+
+      if (isMobile) {
+        /* Straight vertical line aligned with the 40px dot column */
+        w = 40; cx = 20;
+        lineEl.style.left = '0';
+        lineEl.style.transform = 'none';
+      } else {
+        /* S-curve snake for desktop */
+        w = 120; cx = w / 2;
+        lineEl.style.left = '';
+        lineEl.style.transform = '';
+      }
+
       lineEl.style.width = w + 'px';
       svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
       svg.setAttribute('width', w);
       svg.setAttribute('height', h);
 
-      /* Big smooth S-curves */
-      var amp = 40; /* much larger horizontal swing */
-      var cx = w / 2;
-      var segH = 260; /* vertical distance per half-wave */
-      var segments = Math.ceil(h / segH);
-      var d = 'M ' + cx + ' 0';
-
-      for (var i = 0; i < segments; i++) {
-        var y0 = i * segH;
-        var yMid = Math.min(y0 + segH * 0.5, h);
-        var yEnd = Math.min(y0 + segH, h);
-        var dir = (i % 2 === 0) ? 1 : -1;
-        /* Smooth cubic bezier: control points push sideways, endpoint returns to center */
-        d += ' C ' + (cx + amp * dir) + ' ' + (y0 + segH * 0.25) + ', ' + (cx + amp * dir) + ' ' + (y0 + segH * 0.75) + ', ' + cx + ' ' + yEnd;
+      if (isMobile) {
+        d = 'M ' + cx + ' 0 L ' + cx + ' ' + h;
+      } else {
+        /* Big smooth S-curves */
+        var amp = 40;
+        var segH = 260;
+        var segments = Math.ceil(h / segH);
+        d = 'M ' + cx + ' 0';
+        for (var i = 0; i < segments; i++) {
+          var y0 = i * segH;
+          var yEnd = Math.min(y0 + segH, h);
+          var dir = (i % 2 === 0) ? 1 : -1;
+          d += ' C ' + (cx + amp * dir) + ' ' + (y0 + segH * 0.25) + ', ' + (cx + amp * dir) + ' ' + (y0 + segH * 0.75) + ', ' + cx + ' ' + yEnd;
+        }
       }
 
       pathBg.setAttribute('d', d);
@@ -329,7 +364,7 @@
   }
 
   /* ==============================================
-     8. HERO PARTICLES — Immersive WOW Effect
+     8. HERO PARTICLES : Immersive WOW Effect
      ============================================== */
   function initParticles() {
     if (prefersReduced) return;
@@ -501,7 +536,7 @@
         ctx.fill();
       }
 
-      /* Draw connections — thicker, gradient-based */
+      /* Draw connections : thicker, gradient-based */
       for (var i = 0; i < particles.length; i++) {
         for (var j = i + 1; j < particles.length; j++) {
           var dx = particles[i].x - particles[j].x;
@@ -535,7 +570,7 @@
         }
       }
 
-      /* Mouse glow — much larger and more dramatic */
+      /* Mouse glow : much larger and more dramatic */
       if (mouse.x > 0 && mouse.y > 0) {
         var glowSize = 250 + mouse.speed * 2;
 
@@ -712,7 +747,7 @@
   }
 
   /* ==============================================
-     13. SOLAR SYSTEM — Lernuniversum
+     13. SOLAR SYSTEM : Lernuniversum
      ============================================== */
   function initSolarSystem() {
     var canvas = document.getElementById('solarCanvas');
@@ -752,7 +787,7 @@
     function frame(ts) {
       ctx.clearRect(0, 0, W, H);
 
-      /* Stars — subtle color variation */
+      /* Stars : subtle color variation */
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
         var a = 0.10 + 0.50*(0.5+0.5*Math.sin(ts*0.001*s.sp+s.ph));
@@ -762,7 +797,7 @@
       }
       ctx.globalAlpha = 1;
 
-      /* Sun — dramatic, large, dangerous-looking */
+      /* Sun : dramatic, large, dangerous-looking */
       var sunPulse = 0.5+0.5*Math.sin(ts*0.0012);   /* slow corona breathe */
 
       /* Far outer haze */
@@ -779,7 +814,7 @@
       sg.addColorStop(1,'rgba(0,0,0,0)');
       ctx.fillStyle=sg; ctx.beginPath(); ctx.arc(cx,cy,sunGlowR,0,6.2832); ctx.fill();
 
-      /* Hot inner corona — tighter ring */
+      /* Hot inner corona : tighter ring */
       var sc1 = ctx.createRadialGradient(cx,cy,38*sc,cx,cy,80*sc);
       sc1.addColorStop(0,'rgba(255,220,100,.0)');
       sc1.addColorStop(0.4,'rgba(255,200,60,.35)');
@@ -787,14 +822,14 @@
       sc1.addColorStop(1,'rgba(255,80,0,.0)');
       ctx.fillStyle=sc1; ctx.beginPath(); ctx.arc(cx,cy,80*sc,0,6.2832); ctx.fill();
 
-      /* Sun core — matte, no gloss */
+      /* Sun core : matte, no gloss */
       var coreR = 54*sc;
       var sc2 = ctx.createRadialGradient(cx,cy,0,cx,cy,coreR);
       sc2.addColorStop(0,'#ffeeaa');      /* bright centre */
       sc2.addColorStop(0.3,'#ffb830');    /* warm yellow */
       sc2.addColorStop(0.65,'#e05500');   /* deep orange */
       sc2.addColorStop(0.88,'#a01800');   /* burnt dark */
-      sc2.addColorStop(1,'#3a0500');      /* rim — near black */
+      sc2.addColorStop(1,'#3a0500');      /* rim : near black */
       ctx.fillStyle=sc2; ctx.beginPath(); ctx.arc(cx,cy,coreR,0,6.2832); ctx.fill();
 
       /* LFA label */
@@ -858,7 +893,7 @@
           ctx.fillStyle = rl; ctx.fillRect(px-pr*2, py-pr*2, pr*4, pr*4);
           ctx.restore();
         } else {
-          /* Inactive: clean flat outlined circle — modern minimal */
+          /* Inactive: clean flat outlined circle : modern minimal */
           ctx.fillStyle = 'rgba(255,255,255,.04)';
           ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.fill();
           ctx.strokeStyle = 'rgba(255,255,255,.22)';
@@ -866,7 +901,7 @@
           ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.stroke();
         }
 
-        /* Label — bold, large, clear */
+        /* Label : bold, large, clear */
         var fSize = Math.max(10, Math.round(12*sc));
         ctx.shadowColor = 'rgba(0,0,0,.85)';
         ctx.shadowBlur = 5;
@@ -949,7 +984,7 @@
         });
       });
     }
-    /* Mobile: skip circle animation — avoids black-screen pause */
+    /* Mobile: skip circle animation : avoids black-screen pause */
     if (window.innerWidth < 768) { reveal(); return; }
     /* Desktop: circle zoom animation */
     var zl = document.getElementById('zoomLayer');
@@ -998,7 +1033,7 @@
 
     /* Defs */
     var defs = svg.append('defs');
-    /* LF sphere gradient — 3D look with specular highlight */
+    /* LF sphere gradient : 3D look with specular highlight */
     nodes.filter(function(d){return d.group==='LF';}).forEach(function(d) {
       var g = defs.append('radialGradient').attr('id','grd-'+d.id)
         .attr('cx','38%').attr('cy','30%').attr('r','68%')
@@ -1030,7 +1065,7 @@
     svg.call(zb);
     var grp = svg.append('g');
 
-    /* Simulation — cluster=LF->UC (official), parent=Comp->UC (organizational) */
+    /* Simulation : cluster=LF->UC (official), parent=Comp->UC (organizational) */
     var sim = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).id(function(d){return d.id;})
         .distance(function(d){return d.type==='cluster'?95:38;})
@@ -1042,13 +1077,13 @@
       .force('collide', d3.forceCollide().radius(function(d){return d.radius+5;}).iterations(2))
       .alphaDecay(0.012);
 
-    /* Links — cluster (LF->UC) in red, parent (Comp->UC) in blue-white */
+    /* Links : cluster (LF->UC) in red, parent (Comp->UC) in blue-white */
     var link = grp.append('g').selectAll('line').data(links).join('line')
       .attr('stroke',function(d){return d.type==='cluster'?'rgba(255,90,70,.32)':'rgba(180,210,255,.28)';})
       .attr('stroke-width',function(d){return d.type==='cluster'?1.6:1.4;})
       .attr('stroke-opacity',function(d){return d.type==='cluster'?.32:.28;});
 
-    /* Nodes — glow layer for LF */
+    /* Nodes : glow layer for LF */
     var nodeGlow = grp.append('g').selectAll('circle')
       .data(nodes.filter(function(d){return d.group==='LF';})).join('circle')
       .attr('r',function(d){return d.radius+8;})
@@ -1178,9 +1213,9 @@
       if (!compFocus) doHighlight(d);
       var color   = d.group==='LF' ? '#ff7777' : d.group==='Comp' ? '#e2e8f0' : '#38bdf8';
       var grpName = d.group==='LF' ? 'Lernfeld' : d.group==='Comp' ? 'Komponente' : 'Use Case';
-      var grpDesc = d.group==='LF' ? 'Berufsschulfach — theoretische Grundlage'
-                  : d.group==='Comp' ? 'Fragenkomplex — bewertet berufliche Eignung als FIAE'
-                  : 'Praxisaufgabe — konkrete Anwendungssituation';
+      var grpDesc = d.group==='LF' ? 'Berufsschulfach: theoretische Grundlage'
+                  : d.group==='Comp' ? 'Fragenkomplex: bewertet berufliche Eignung als FIAE'
+                  : 'Praxisaufgabe: konkrete Anwendungssituation';
       var name = d.group==='LF'   ? (LF_LABELS[d.label]   || d.label)
                : d.group==='Comp' ? (COMP_LABELS[d.label]  || d.label)
                : (d.fullLabel || d.label);
@@ -1196,7 +1231,7 @@
     })
     .on('mouseout',function(){if(!compFocus)resetHighlight();tooltip.style.display='none';});
 
-    /* Comp-focus state — tracks which Comp is currently in focus mode */
+    /* Comp-focus state : tracks which Comp is currently in focus mode */
     var compFocus = null;
 
     /* Build comp→parent-LF map via shared UC connections */
@@ -1244,9 +1279,9 @@
 
     function enterCompFocus(d) {
       compFocus = d;
-      doHighlight(d); /* same visual as hover — full 2-level path highlight */
+      doHighlight(d); /* same visual as hover : full 2-level path highlight */
 
-      /* Fix comp at the LF's current position — it "takes over" the centre */
+      /* Fix comp at the LF's current position : it "takes over" the centre */
       var lf = getCompLF(d);
       if (lf) {
         d.fx = lf.x; d.fy = lf.y;
@@ -1261,6 +1296,16 @@
         var t = d3.zoomIdentity.translate(GW/2,GH/2).scale(3.8).translate(-d.fx,-d.fy);
         svg.transition().duration(700).call(zb.transform,t);
       }, 80);
+
+      /* Show description panel */
+      var panel = document.getElementById('compInfoPanel');
+      if (panel) {
+        var name = COMP_LABELS[d.label] || d.label;
+        panel.innerHTML =
+          '<div style="color:#a0a0b0;font-size:.58rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px;">Komponente '+d.label+'</div>'+
+          '<div style="font-weight:700;font-size:.88rem;color:#f0f0f2;line-height:1.45;">'+name+'</div>';
+        panel.classList.add('visible');
+      }
     }
 
     function exitCompFocus() {
@@ -1269,6 +1314,8 @@
       resetHighlight();
       sim.alpha(0.3).restart();
       svg.transition().duration(500).call(zb.transform,d3.zoomIdentity);
+      var panel = document.getElementById('compInfoPanel');
+      if (panel) panel.classList.remove('visible');
     }
 
     window.resetGalaxy = function() {
@@ -1276,15 +1323,42 @@
       nodes.forEach(function(n){ n.fx = null; n.fy = null; });
       resetHighlight();
       tooltip.style.display = 'none';
-      svg.transition().duration(500).call(zb.transform, d3.zoomIdentity);
+      var panel = document.getElementById('compInfoPanel');
+      if (panel) panel.classList.remove('visible');
+      /* Zoom out to show all groups : fit bounding box of current node positions */
+      var xs = nodes.map(function(n){return n.x;}), ys = nodes.map(function(n){return n.y;});
+      var minX=Math.min.apply(null,xs), maxX=Math.max.apply(null,xs);
+      var minY=Math.min.apply(null,ys), maxY=Math.max.apply(null,ys);
+      var pad=80;
+      var s=Math.min(0.9, GW/(maxX-minX+pad*2), GH/(maxY-minY+pad*2));
+      var tx=GW/2-s*(minX+maxX)/2, ty=GH/2-s*(minY+maxY)/2;
+      svg.transition().duration(600).call(zb.transform, d3.zoomIdentity.translate(tx,ty).scale(s));
       sim.alpha(0.85).restart();
     };
 
     /* Click handler */
+    function showPanel(tag, name) {
+      var panel = document.getElementById('compInfoPanel');
+      if (!panel) return;
+      panel.innerHTML =
+        '<div style="color:#a0a0b0;font-size:.58rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px;">'+tag+'</div>'+
+        '<div style="font-weight:700;font-size:.88rem;color:#f0f0f2;line-height:1.45;">'+name+'</div>';
+      panel.classList.add('visible');
+    }
+    function hidePanel() {
+      var panel = document.getElementById('compInfoPanel');
+      if (panel) panel.classList.remove('visible');
+    }
+
     node.on('click',function(ev,d){
-      if(d.group==='UC') return;
       ev.stopPropagation();
       tooltip.style.display='none';
+
+      if (d.group==='UC') {
+        doHighlight(d);
+        showPanel('Use Case', d.fullLabel || d.label);
+        return;
+      }
 
       if (d.group==='LF') {
         if (compFocus) {
@@ -1295,6 +1369,7 @@
           doHighlight(d);
           var t = d3.zoomIdentity.translate(GW/2,GH/2).scale(2.8).translate(-d.x,-d.y);
           svg.transition().duration(650).call(zb.transform,t);
+          showPanel('Lernfeld '+d.label, LF_LABELS[d.label] || d.label);
         }
       } else {
         /* Comp click */
@@ -1310,7 +1385,7 @@
     /* Click background → reset */
     svg.on('click',function(){
       if (compFocus) exitCompFocus();
-      else { resetHighlight(); tooltip.style.display='none'; }
+      else { resetHighlight(); tooltip.style.display='none'; hidePanel(); }
       svg.transition().duration(500).call(zb.transform,d3.zoomIdentity);
     });
 
@@ -1367,6 +1442,59 @@
   /* ==============================================
      INIT
      ============================================== */
+  function initRagPipeline() {
+    var pipeline = document.querySelector('.rag-pipeline');
+    if (!pipeline) return;
+    var steps = Array.prototype.slice.call(pipeline.querySelectorAll('.rag-step'));
+    var stepTimers = [];
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        stepTimers.forEach(function(t) { clearTimeout(t); });
+        stepTimers = [];
+        if (entry.isIntersecting) {
+          steps.forEach(function(step, i) {
+            stepTimers.push(setTimeout(function() {
+              step.classList.add('rag-step--in');
+            }, i * 130));
+          });
+        } else {
+          steps.forEach(function(step) {
+            step.classList.remove('rag-step--in');
+          });
+        }
+      });
+    }, { threshold: 0.25 });
+    observer.observe(pipeline);
+  }
+
+  function initQuizBars() {
+    var fills = document.querySelectorAll('.quiz-bar__fill[data-quiz-target]');
+    if (!fills.length) return;
+    var timers = [];
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        /* clear any pending timers first */
+        timers.forEach(function(t) { clearTimeout(t); });
+        timers = [];
+        if (entry.isIntersecting) {
+          /* animate in with stagger */
+          fills.forEach(function(fill, i) {
+            timers.push(setTimeout(function() {
+              fill.classList.add('animated');
+            }, i * 300));
+          });
+        } else {
+          /* reset bars so animation replays on next scroll-in */
+          fills.forEach(function(fill) {
+            fill.classList.remove('animated');
+          });
+        }
+      });
+    }, { threshold: 0.35 });
+    var card = fills[0].closest('.hai2-card');
+    if (card) observer.observe(card);
+  }
+
   function init() {
     initReveal();
     initCounters();
@@ -1382,6 +1510,8 @@
     initTiltCards();
     initBentoGlow();
     initMobileMenu();
+    initQuizBars();
+    initRagPipeline();
   }
 
   if (document.readyState === 'loading') {
