@@ -47,6 +47,13 @@
     ::selection { background: var(--color-accent); color:#fff; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
     .nav-scrolled { background:rgba(255,255,255,.82)!important; backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid rgba(255,26,26,.08); }
+    /* Nav pill container */
+    .nav-links-pill { display:flex; align-items:center; gap:1px; background:rgba(0,0,0,.042); border:1px solid rgba(0,0,0,.07); border-radius:100px; padding:3px 5px; }
+    .nav-scrolled .nav-links-pill { background:rgba(0,0,0,.03); border-color:rgba(0,0,0,.06); }
+    /* Individual nav links */
+    .nav-link { position:relative; padding:5px 11px; border-radius:100px; font-size:.72rem; font-weight:500; color:var(--color-text-muted); transition:color .2s ease, background .2s ease; letter-spacing:.01em; white-space:nowrap; }
+    .nav-link:hover { color:var(--color-text-main); background:rgba(0,0,0,.06); }
+    .nav-link--active { color:var(--color-accent) !important; background:rgba(255,26,26,.08) !important; font-weight:600; }
     .gradient-text { background:linear-gradient(135deg,var(--color-accent),#ff6b6b); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     .card-hover { transition: border-color .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1), box-shadow .7s cubic-bezier(.16,1,.3,1); }
     .card-hover:hover { border-color:var(--color-border-hover); transform:translateY(-3px); box-shadow:0 16px 48px rgba(0,0,0,.08),0 0 0 1px rgba(255,26,26,.04); }
@@ -176,12 +183,19 @@
     .rm__tag { font-size:11px; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:#8e8e96; font-weight:500; }
     @media (max-width:767px) {
       .rm__row { grid-template-columns:40px 1fr; }
-      .rm__center { padding-top:4px; }
-      .rm__line { left:20px; }
-      .rm__card--l,.rm__card--r { text-align:left; transform:translateX(20px); grid-column:2; }
-      .rm__card--l .rm__tags { justify-content:flex-start; }
+      /* Force dot always to col1, card always to col2 regardless of HTML order */
+      .rm__center { padding-top:4px; grid-column:1; grid-row:1; }
+      .rm__cell:not(.rm__cell--hide) { grid-column:2; grid-row:1; }
+      /* SVG line stays at left edge of container, aligned with 40px dot column */
+      .rm__line { left:0; transform:none; width:40px !important; }
+      .rm__line svg { left:0; transform:none; width:40px; }
+      .rm__card--l,.rm__card--r { text-align:left; transform:translateX(18px); }
+      .rm__card--l .rm__tags,.rm__card--r .rm__tags { justify-content:flex-start; }
+      .rm__card--l { transform:translateX(18px); }
+      .rm__card--active.rm__card--l,.rm__card--active.rm__card--r { transform:translateX(0) !important; }
       .rm__cell--hide { display:none; }
       .rm__branch { display:none; }
+      .rm__row + .rm__row { margin-top:28px; }
     }
     .rm__end { display:flex; justify-content:center; padding-top:64px; position:relative; z-index:3; }
     .rm__end-marker { display:flex; flex-direction:column; align-items:center; gap:12px; opacity:0; transform:translateY(20px); transition:all .7s cubic-bezier(.16,1,.3,1); }
@@ -213,6 +227,8 @@
     #galaxySearch { position:fixed; bottom:22px; left:50%; transform:translateX(-50%); z-index:9600; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:9px 18px; color:#e2e8f0; font-size:.8rem; width:240px; outline:none; font-family:inherit; }
     #galaxySearch:focus { border-color:rgba(56,189,248,.5); background:rgba(255,255,255,.1); }
     #galaxySearch::placeholder { color:#6e6e76; }
+    #compInfoPanel { position:fixed; top:68px; left:50%; transform:translateX(-50%); z-index:9600; background:rgba(4,8,16,.94); border:1px solid rgba(226,232,240,.18); border-radius:14px; padding:12px 22px; text-align:center; max-width:420px; pointer-events:none; box-shadow:0 8px 40px rgba(0,0,0,.55); opacity:0; transition:opacity .3s ease; }
+    #compInfoPanel.visible { opacity:1; }
     /* ── Zoom layer ── */
     #zoomLayer { position:fixed; inset:0; z-index:9400; pointer-events:none; display:none; overflow:hidden; }
     #zoomCircle { position:absolute; border-radius:50%; background:#040810; }
@@ -234,7 +250,8 @@
     .section-hai-deep { background:#060e1b; background-image:radial-gradient(rgba(56,189,248,.07) 1px, transparent 1px); background-size:36px 36px; color:#f0f0f2; position:relative; overflow:hidden; }
     .section-hai-deep::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 10% 80%, rgba(56,189,248,.07) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 90% 20%, rgba(129,140,248,.06) 0%, transparent 60%); pointer-events:none; }
     .rag-pipeline { display:flex; border:1px solid rgba(56,189,248,.12); border-radius:18px; overflow:hidden; }
-    .rag-step { flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:22px 14px; border-right:1px solid rgba(56,189,248,.1); text-align:center; transition:background .3s; }
+    .rag-step { flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:22px 14px; border-right:1px solid rgba(56,189,248,.1); text-align:center; opacity:0; transform:translateY(32px) scale(0.93); transition:background .3s, opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1); }
+    .rag-step.rag-step--in { opacity:1; transform:translateY(0) scale(1); }
     .rag-step:last-child { border-right:none; }
     .rag-step:hover { background:rgba(56,189,248,.05); }
     .rag-step__num { font-size:.6rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#38bdf8; }
@@ -250,14 +267,16 @@
     .quiz-level--active { background:rgba(56,189,248,.06); border:1px solid rgba(56,189,248,.2); }
     .quiz-level--locked { background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06); }
     .quiz-bar { flex:1; height:4px; border-radius:2px; background:rgba(255,255,255,.06); overflow:hidden; }
-    .quiz-bar__fill { height:100%; border-radius:2px; }
+    .quiz-bar__fill { height:100%; border-radius:2px; width:0% !important; transition:width 2.2s cubic-bezier(0.25,0,0.1,1); }
+    .quiz-bar__fill.animated { width:var(--quiz-target) !important; }
+    .quiz-level > span { width:82px; text-align:right; flex-shrink:0; }
     .trust-row { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.04); }
     .trust-row:last-child { border-bottom:none; }
     .trust-dot { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.65rem; font-weight:800; margin-top:1px; }
     .icon { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
     .logo-img { filter:invert(1); }
     .hero-grid { opacity:.06!important; }
-    /* ── Section Transitions — each unique ── */
+    /* ── Section Transitions : each unique ── */
     section { background:var(--color-bg); position:relative; z-index:1; }
     .section-alt { background:var(--color-bg-alt); }
 
@@ -290,7 +309,7 @@
     .browser-dots span:nth-child(3) { background:#28c840; }
     .browser-url { flex:1; padding:5px 12px; border-radius:6px; background:var(--color-bg); border:1px solid var(--color-border); font-size:11px; color:var(--color-faint); font-family:var(--font-sans); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-    /* ── Mobile-only overrides (≤767px) — desktop completely untouched ── */
+    /* ── Mobile-only overrides (≤767px) : desktop completely untouched ── */
     @media (max-width:767px) {
       /* Galaxy overlay: prevent overlapping header elements ─────────────── */
       /* Row 1 (top:12px): Back button left + Title center (smaller, no wrap) */
@@ -466,18 +485,20 @@
         <img src="wamocon-logo.png" alt="WAMOCON" class="logo-img h-32 w-auto">
       </a>
       <!-- Desktop links -->
-      <div class="hidden md:flex gap-5">
-        <a href="#problem" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Problem</a>
-        <a href="#rollen" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Rollen</a>
-        <a href="#warum" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">LFA</a>
-        <a href="#funktionen" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Module</a>
-        <a href="#solarsystem" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Universum</a>
-        <a href="#demo" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Demo</a>
-        <a href="#hai" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">HAI</a>
-        <a href="#roi" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Kosten</a>
-        <a href="#architektur" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Technik</a>
-        <a href="#roadmap" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">Stärken</a>
-        <a href="#faq" class="magnetic-btn text-xs text-muted hover:text-text-main transition-colors">FAQ</a>
+      <div class="hidden md:flex">
+        <div class="nav-links-pill">
+          <a href="#problem" class="nav-link magnetic-btn" data-nav-section="problem">Problem</a>
+          <a href="#rollen" class="nav-link magnetic-btn" data-nav-section="rollen">Rollen</a>
+          <a href="#warum" class="nav-link magnetic-btn" data-nav-section="warum">LFA</a>
+          <a href="#funktionen" class="nav-link magnetic-btn" data-nav-section="funktionen">Module</a>
+          <a href="#solarsystem" class="nav-link magnetic-btn" data-nav-section="solarsystem">Universum</a>
+          <a href="#demo" class="nav-link magnetic-btn" data-nav-section="demo">Demo</a>
+          <a href="#hai" class="nav-link magnetic-btn" data-nav-section="hai">HAI</a>
+          <a href="#roi" class="nav-link magnetic-btn" data-nav-section="roi">Kosten</a>
+          <a href="#architektur" class="nav-link magnetic-btn" data-nav-section="architektur">Technik</a>
+          <a href="#roadmap" class="nav-link magnetic-btn" data-nav-section="roadmap">Stärken</a>
+          <a href="#faq" class="nav-link magnetic-btn" data-nav-section="faq">FAQ</a>
+        </div>
       </div>
       <!-- Mobile hamburger -->
       <button class="nav-hamburger md:hidden" id="navHamburger" aria-label="Menü öffnen" aria-expanded="false">
@@ -534,79 +555,137 @@
     <div class="absolute bottom-0 left-0 right-0 h-[120px] z-20" style="background:linear-gradient(to bottom, transparent, #0f0f11);"></div>
   </section>
 
-  <!-- PROBLEM — Dark dramatic section for impact -->
-  <section class="py-24 md:py-36 relative section-dark" id="problem" style="margin-top:-2px;">
+  <!-- PROBLEM : Dramatische Darstellung des Systemversagens -->
+  <section class="relative section-dark" id="problem" style="padding:7rem 0 6rem;margin-top:-2px;">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-      <span
-        class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Problemstellung</span>
-      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Die FIAE-Ausbildung<br>steht vor dem Kollaps.</h2>
-      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Während die Nachfrage nach IT-Spezialisten
-        jährlich um 4,4 Prozent wächst, verbleibt die Ausbildungsinfrastruktur in fragmentierten Zuständen.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
-        <div class="reveal text-center p-8 rounded-2xl card-hover accent-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><span
-            class="block text-4xl md:text-5xl font-bold gradient-text leading-none mb-3 tabular-nums"
-            data-target="149000" data-separator=".">0</span><span class="block text-base font-medium mb-1">fehlende
-            IT-Fachkräfte</span><span class="block text-sm text-faint">Quelle: Bitkom, Ende 2025</span></div>
-        <div class="reveal text-center p-8 rounded-2xl card-hover accent-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><span
-            class="block text-4xl md:text-5xl font-bold gradient-text leading-none mb-3 tabular-nums" data-target="76"
-            data-suffix="%">0</span><span class="block text-base font-medium mb-1">überlastete Ausbilder</span><span
-            class="block text-sm text-faint">Quelle: DGB Index Gute Arbeit</span></div>
-        <div class="reveal text-center p-8 rounded-2xl card-hover accent-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><span
-            class="block text-4xl md:text-5xl font-bold gradient-text leading-none mb-3 tabular-nums" data-target="30"
-            data-suffix="%" data-prefix="bis ">0</span><span class="block text-base font-medium mb-1">Abbruchquote
-            FIAE</span><span class="block text-sm text-faint">Quelle: BIBB Datenreport</span></div>
+
+      <!-- Alarmbadge -->
+      <div class="reveal mb-7">
+        <span class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded" style="color:#ff3333;background:rgba(255,30,30,.1);border:1px solid rgba(255,30,30,.3);">&#9888; Systemversagen</span>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
-        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
-          <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">Verwaltungstools</span>
-          <h3 class="text-xl font-semibold tracking-tight mb-3">Digitaler Papierkram</h3>
-          <p class="text-sm text-muted leading-relaxed mb-5">Digitalisieren Formulare und Berichtshefte, ignorieren aber die fachliche Kompetenzentwicklung.</p>
-          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Verwaltet das Dokument. Nicht den Skill.</span>
-          <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
-            <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
-            <span class="block text-sm text-muted">Berichtshefte, Zeugnisse und Berichte automatisch generiert. Ausbilder konzentrieren sich auf echte Betreuung.</span>
+
+      <!-- Dramatische Headline -->
+      <h2 class="reveal text-4xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6" style="color:#f0f0f2;">
+        Die FIAE-Ausbildung<br><span style="color:#ff2222;">steht vor dem Kollaps.</span>
+      </h2>
+      <p class="reveal text-lg max-w-[580px] leading-relaxed mb-16" style="color:#6a6a78;">
+        Während die Nachfrage nach IT-Spezialisten jährlich um 4,4&nbsp;% wächst, versagt die Ausbildungsinfrastruktur auf ganzer Linie.
+      </p>
+
+      <!-- 3 Alarm-Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(255,15,15,.07);border:1px solid rgba(255,15,15,.25);">
+          <span class="block text-5xl md:text-6xl font-black leading-none mb-3 tabular-nums" style="color:#ff2222;" data-target="149000" data-separator=".">0</span>
+          <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">fehlende IT-Fachkräfte</span>
+          <span class="block text-xs" style="color:#4a4a58;">Quelle: Bitkom, Ende 2025</span>
+        </div>
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(255,15,15,.07);border:1px solid rgba(255,15,15,.25);">
+          <span class="block text-5xl md:text-6xl font-black leading-none mb-3 tabular-nums" style="color:#ff2222;" data-target="76" data-suffix="%">0</span>
+          <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">überlastete Ausbilder</span>
+          <span class="block text-xs" style="color:#4a4a58;">Quelle: DGB Index Gute Arbeit</span>
+        </div>
+        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(255,15,15,.07);border:1px solid rgba(255,15,15,.25);">
+          <span class="block text-5xl md:text-6xl font-black leading-none mb-3 tabular-nums" style="color:#ff2222;white-space:nowrap;" data-target="30" data-suffix="%" data-prefix="bis ">0</span>
+          <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">Abbruchquote FIAE</span>
+          <span class="block text-xs" style="color:#4a4a58;">Quelle: BIBB Datenreport</span>
+        </div>
+      </div>
+
+      <!-- 3 Problem-Karten : NUR Probleme, keine Lösungen -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,255,255,.025);border:1px solid rgba(255,30,30,.18);">
+          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff4444;">Verwaltungstools</span>
+          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Digitaler Papierkram</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:#6a6a78;">Digitalisieren Formulare und Berichtshefte, ignorieren aber die fachliche Kompetenzentwicklung vollständig.</p>
+          <div style="border-top:1px solid rgba(255,30,30,.18);padding-top:1rem;">
+            <span class="text-sm font-bold" style="color:#ff3333;">&#10005;&ensp;Verwaltet das Dokument. Nicht den Skill.</span>
           </div>
         </div>
-        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
-          <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">E-Learning-Plattformen</span>
-          <h3 class="text-xl font-semibold tracking-tight mb-3">Kontext-Blindheit</h3>
-          <p class="text-sm text-muted leading-relaxed mb-5">Programmiersprachen werden abstrakt aus Lehrbüchern , ohne Szenarien, Use Cases oder praxisnahe Quizze.</p>
-          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Lehrt die Theorie. Nicht die Praxis.</span>
-          <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
-            <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
-            <span class="block text-sm text-muted">Aus IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze. Lernen wird greifbar, nicht mehr abstrakt.</span>
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,255,255,.025);border:1px solid rgba(255,30,30,.18);">
+          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff4444;">E-Learning-Plattformen</span>
+          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Kontext-Blindheit</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:#6a6a78;">Programmiersprachen werden abstrakt aus Lehrbüchern gelehrt, ohne Szenarien, Use Cases oder praxisnahe Quizze.</p>
+          <div style="border-top:1px solid rgba(255,30,30,.18);padding-top:1rem;">
+            <span class="text-sm font-bold" style="color:#ff3333;">&#10005;&ensp;Lehrt die Theorie. Nicht die Praxis.</span>
           </div>
         </div>
-        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
-          <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">Fehlende Struktur</span>
-          <h3 class="text-xl font-semibold tracking-tight mb-3">Orientierungslos im Alltag</h3>
-          <p class="text-sm text-muted leading-relaxed mb-5">Azubis starten ohne klare Struktur: Kein Überblick über Lernfortschritt, anstehende Prüfungen oder nächste Schritte.</p>
-          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Improvisiert die Ausbildung. Statt sie zu führen.</span>
-          <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
-            <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
-            <span class="block text-sm text-muted">Klare Struktur mit Lernfortschritt, Kalender, Deadlines und . Azubis organisieren ihre Ausbildung selbst.</span>
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,255,255,.025);border:1px solid rgba(255,30,30,.18);">
+          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff4444;">Fehlende Struktur</span>
+          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Orientierungslos im Alltag</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:#6a6a78;">Azubis starten ohne klare Struktur: Kein Überblick über Lernfortschritt, anstehende Prüfungen oder nächste Schritte.</p>
+          <div style="border-top:1px solid rgba(255,30,30,.18);padding-top:1rem;">
+            <span class="text-sm font-bold" style="color:#ff3333;">&#10005;&ensp;Improvisiert die Ausbildung. Statt sie zu führen.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dramatisches Fazit -->
+      <div class="reveal mt-16 text-center">
+        <p class="text-2xl md:text-3xl font-black" style="color:#cc1111;">Das System bricht unter seinem eigenen Gewicht zusammen.</p>
+        <p class="text-base mt-3" style="color:#6a6a78;">Eine Generation IT-Fachkräfte geht verloren.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRIDGE : Dramatischer Übergang -->
+  <div style="background:#050508;padding:5rem 1rem;text-align:center;position:relative;overflow:hidden;">
+    <div style="width:2px;height:90px;background:linear-gradient(to bottom,transparent,#ff2222);margin:0 auto 2.5rem;"></div>
+    <p class="reveal text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff3333;">Die Antwort</p>
+    <h2 class="reveal text-3xl md:text-5xl font-black" style="color:#f0f0f2;">LFA&nbsp;ändert das.</h2>
+    <p class="reveal text-base mt-4 max-w-[460px] mx-auto leading-relaxed" style="color:#5a5a68;">Drei Probleme. Eine Plattform. Gebaut für die Ausbildung von morgen.</p>
+    <div style="width:2px;height:90px;background:linear-gradient(to bottom,#ff2222,transparent);margin:2.5rem auto 0;"></div>
+  </div>
+
+  <!-- LÖSUNG : LFA als Antwort -->
+  <section class="relative section-dark" id="loesung" style="padding:5rem 0 7rem;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+
+      <!-- 3 Lösungskarten -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,26,26,.05);border:1px solid rgba(255,26,26,.22);display:flex;flex-direction:column;">
+          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff6060;">Verwaltung</span>
+          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Automatisierte Dokumentation</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:#7a7a88;">Berichtshefte, Zeugnisse und Nachweise werden automatisch generiert. Ausbilder konzentrieren sich auf echte Betreuung, nicht auf Formulare.</p>
+          <div style="margin-top:auto;border-top:1px solid rgba(255,26,26,.18);padding-top:1rem;">
+            <span class="text-sm font-bold" style="color:#ff7070;">&#10003;&ensp;LFA übernimmt den Papierkram.</span>
+          </div>
+        </div>
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,26,26,.05);border:1px solid rgba(255,26,26,.22);display:flex;flex-direction:column;">
+          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff6060;">Lernen</span>
+          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Praxisnahes KI-Lernen</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:#7a7a88;">Aus IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze. Lernen wird greifbar, nicht mehr abstrakt.</p>
+          <div style="margin-top:auto;border-top:1px solid rgba(255,26,26,.18);padding-top:1rem;">
+            <span class="text-sm font-bold" style="color:#ff7070;">&#10003;&ensp;LFA macht Theorie zur Praxis.</span>
+          </div>
+        </div>
+        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,26,26,.05);border:1px solid rgba(255,26,26,.22);display:flex;flex-direction:column;">
+          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff6060;">Struktur</span>
+          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Klarer Ausbildungsweg</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:#7a7a88;">Klare Struktur mit Lernfortschritt, Kalender, Deadlines und Zielen. Azubis organisieren ihre Ausbildung selbst, vom ersten Tag an.</p>
+          <div style="margin-top:auto;border-top:1px solid rgba(255,26,26,.18);padding-top:1rem;">
+            <span class="text-sm font-bold" style="color:#ff7070;">&#10003;&ensp;LFA gibt klare Orientierung.</span>
           </div>
         </div>
       </div>
 
       <!-- Vorteile für den Ausbildungsbetrieb -->
-      <div class="reveal mt-14 p-8 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.12);">
+      <div class="reveal p-8 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,26,26,.07),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.14);">
         <h3 class="text-xl font-semibold tracking-tight mb-6" style="color:#f0f0f2;">
           <svg class="icon inline-block mr-2 text-accent" style="vertical-align:-4px;"><use href="#i-building" /></svg>
           Vorteile für den Ausbildungsbetrieb
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Geringere Abbruchquote</span>
-            <span class="block text-sm text-muted">Strukturierte Ausbildung reduziert . Jeder vermiedene Abbruch spart bis zu 30.000 EUR.</span>
+            <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">Geringere Abbruchquote</span>
+            <span class="block text-sm" style="color:#7a7a88;">Strukturierte Begleitung und klares Feedback halten Azubis motiviert und reduzieren Abbrüche spürbar.</span>
           </div>
           <div>
-            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Weniger Verwaltungsaufwand</span>
-            <span class="block text-sm text-muted">Berichtshefte, Arbeitszeugnisse und Berichte werden automatisch erstellt. Ausbilder gewinnen Zeit für echte Betreuung.</span>
+            <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">Weniger Verwaltungsaufwand</span>
+            <span class="block text-sm" style="color:#7a7a88;">Berichtshefte, Arbeitszeugnisse und Berichte automatisch erstellt. Ausbilder gewinnen Zeit für echte Betreuung.</span>
           </div>
           <div>
-            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Höhere Ausbildungsqualität</span>
-            <span class="block text-sm text-muted">IHK-konforme Inhalte und personalisiertes Feedback steigern die Bestehensquote bei Abschlusspüfungen.</span>
+            <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">Höhere Ausbildungsqualität</span>
+            <span class="block text-sm" style="color:#7a7a88;">IHK-konforme Inhalte und personalisiertes Feedback steigern die Bestehensquote bei Abschlussprüfungen.</span>
           </div>
         </div>
       </div>
@@ -615,7 +694,7 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
 
-  <!-- ROLLEN — Für wen ist LFA? -->
+  <!-- ROLLEN : Für wen ist LFA? -->
   <section class="py-24 md:py-36 section-organic" id="rollen">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-14">
@@ -678,7 +757,7 @@
     </div>
   </section>
 
-  <!-- WARUM LFA — Organic floating blobs -->
+  <!-- WARUM LFA : Organic floating blobs -->
   <section class="py-24 md:py-36 relative section-organic" id="warum">
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-30 pointer-events-none"
       style="background:radial-gradient(ellipse,var(--color-accent-glow),transparent 70%)"></div>
@@ -790,14 +869,14 @@
   </section>
 
 
-  <!-- FUNKTIONEN — Soft glow section -->
+  <!-- FUNKTIONEN : Soft glow section -->
   <section class="py-24 md:py-36 text-center section-alt section-glow" id="funktionen">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <span
         class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Funktionsbereiche</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Alles, was die
         FIAE-Ausbildung<br>braucht.</h2>
-      <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte , alles in einer Plattform vereint.</p>
+      <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte Module, alles in einer Plattform vereint.</p>
       <!-- Featured modules -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14">
         <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover bento-featured tilt-card">
@@ -879,9 +958,210 @@
     </div>
   </section>
 
-  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #0f0f11);"></div>
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #f8f9fb);"></div>
 
-  <!-- SOLAR SYSTEM — Lernuniversum -->
+  <!-- TÄTIGKEITSNACHWEIS & ARBEITSZEUGNIS : Premium Workflow -->
+  <section class="py-24 md:py-36" id="taetigkeitsnachweis" style="position:relative;overflow:hidden;background:#f8f9fb;">
+    <!-- Hintergrund-Glows (hell) -->
+    <div style="position:absolute;top:10%;left:5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,26,26,.06),transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;top:10%;right:5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,180,30,.05),transparent 70%);pointer-events:none;"></div>
+    <!-- Dot-Muster (dunkel auf hell) -->
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.055) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+
+    <div class="max-w-[1200px] mx-auto px-5 md:px-10" style="position:relative;">
+
+      <!-- Header -->
+      <div class="reveal text-center mb-14">
+        <span class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded mb-5" style="color:#ffb820;background:rgba(255,184,32,.08);border:1px solid rgba(255,184,32,.22);">&#10022; Nur bei LFA</span>
+        <h2 class="text-3xl md:text-5xl font-black leading-[1.05] tracking-tight mb-4" style="color:#111118;">Tätigkeitsnachweis<br><span style="color:#ff3333;">&amp; Arbeitszeugnis.</span></h2>
+        <p class="text-base max-w-[520px] mx-auto leading-relaxed" style="color:#6a6a7a;">Von der wöchentlichen Eintragung bis zum fertigen Zeugnis: alles läuft automatisch. Kein Papierkram, kein Aufwand.</p>
+      </div>
+
+      <!-- Split Layout mit Connector -->
+      <div class="reveal" style="position:relative;">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="align-items:stretch;">
+
+        <!-- ── LINKS: Tätigkeitsnachweis ── -->
+        <div class="rounded-2xl overflow-hidden" style="background:#ffffff;border:1px solid rgba(255,26,26,.15);box-shadow:0 4px 32px rgba(0,0,0,.08);display:flex;flex-direction:column;">
+          <!-- Panel-Header -->
+          <div class="px-7 py-5 flex items-center gap-3" style="background:rgba(255,26,26,.05);border-bottom:1px solid rgba(255,26,26,.1);">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.22);">
+              <svg class="icon w-4 h-4 text-accent"><use href="#i-clipboard" /></svg>
+            </div>
+            <div>
+              <span class="block text-xs font-bold tracking-widest uppercase" style="color:#cc2222;">Tätigkeitsnachweis</span>
+              <span class="block text-xs" style="color:#9a9aaa;">Jede Woche, vollautomatisch</span>
+            </div>
+          </div>
+
+          <!-- Timeline : flex:1 füllt die Höhe -->
+          <div class="px-7 py-7" style="position:relative;flex:1;">
+            <!-- Vertikale Verbindungslinie -->
+            <div style="position:absolute;left:calc(1.75rem + 16px);top:2rem;bottom:7.5rem;width:1px;background:linear-gradient(to bottom,rgba(255,26,26,.5),rgba(255,26,26,.08));pointer-events:none;"></div>
+
+            <!-- Schritt 1 -->
+            <div class="flex gap-5 mb-7">
+              <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10" style="background:#ff2222;color:#fff;box-shadow:0 0 16px rgba(255,34,34,.45);">1</div>
+              <div>
+                <h4 class="text-sm font-bold mb-1" style="color:#111118;">Azubi trägt seine Woche ein</h4>
+                <p class="text-xs leading-relaxed" style="color:#7a7a88;">Nicht einfach Stunden zählen, sondern eintragen, <strong style="color:#cc2222;">was genau gemacht wurde</strong>. Direkt dem Ausbildungsplan zugeordnet.</p>
+              </div>
+            </div>
+
+            <!-- Schritt 2 -->
+            <div class="flex gap-5 mb-7">
+              <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10" style="background:rgba(255,26,26,.09);border:1px solid rgba(255,26,26,.28);color:#cc2222;">2</div>
+              <div>
+                <h4 class="text-sm font-bold mb-1" style="color:#111118;">Ausbilder prüft &amp; benotet</h4>
+                <p class="text-xs leading-relaxed" style="color:#7a7a88;">Nach <strong style="color:#cc2222;">festen Bewertungsmaßstäben</strong>. Die Note ist sofort für den Azubi sichtbar, volle Transparenz.</p>
+              </div>
+            </div>
+
+            <!-- Schritt 3 -->
+            <div class="flex gap-5 mb-7">
+              <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10" style="background:rgba(255,26,26,.09);border:1px solid rgba(255,26,26,.28);color:#cc2222;">3</div>
+              <div>
+                <h4 class="text-sm font-bold mb-1" style="color:#111118;">Probleme früh erkennen</h4>
+                <p class="text-xs leading-relaxed" style="color:#7a7a88;">Schlechte Note? Das System schlägt direkt Alarm: ein <strong style="color:#cc2222;">klärendes Gespräch</strong> kann sofort eingeleitet werden, bevor etwas eskaliert.</p>
+              </div>
+            </div>
+
+            <!-- Schritt 4 -->
+            <div class="flex gap-5 mb-7">
+              <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10" style="background:rgba(255,26,26,.09);border:1px solid rgba(255,26,26,.28);color:#cc2222;">4</div>
+              <div>
+                <h4 class="text-sm font-bold mb-1" style="color:#111118;">Nachweis wird automatisch erstellt</h4>
+                <p class="text-xs leading-relaxed" style="color:#7a7a88;">Nach Freigabe: fertige <strong style="color:#cc2222;">PDF mit echter Unterschrift</strong> und WAMOCON-Siegel, kein Ausfüllen, kein Drucken, kein Ablegen.</p>
+              </div>
+            </div>
+
+            <!-- Schritt 5 : Übergang zum Arbeitszeugnis -->
+            <div class="flex gap-5">
+              <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center z-10" style="background:linear-gradient(135deg,rgba(255,26,26,.2),rgba(255,180,30,.2));border:1px solid rgba(255,180,30,.35);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px;color:#ffb820;"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <div class="flex-1 rounded-xl px-4 py-3" style="background:linear-gradient(135deg,rgba(255,26,26,.05),rgba(255,180,30,.06));border:1px solid rgba(255,180,30,.18);">
+                <h4 class="text-sm font-bold mb-0.5" style="color:#8a6000;">Alle Noten fließen ins Arbeitszeugnis</h4>
+                <p class="text-xs" style="color:#7a7a88;">Jede Woche zählt. Am Ende der Ausbildung ist das Zeugnis bereits fertig.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="px-7 pb-6 flex flex-wrap gap-2">
+            <span class="text-xs px-2.5 py-1 rounded-full font-semibold" style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);color:#ff7070;">Aufgaben-basiert</span>
+            <span class="text-xs px-2.5 py-1 rounded-full font-semibold" style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);color:#ff7070;">Prüfungskonform</span>
+            <span class="text-xs px-2.5 py-1 rounded-full font-semibold" style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);color:#ff7070;">0 Aufwand</span>
+          </div>
+        </div>
+
+        <!-- ── RECHTS: Arbeitszeugnis ── -->
+        <div class="rounded-2xl overflow-hidden" style="background:#ffffff;border:1px solid rgba(255,180,30,.28);box-shadow:0 4px 32px rgba(0,0,0,.08),0 0 60px rgba(255,180,30,.07);display:flex;flex-direction:column;">
+          <!-- Panel-Header -->
+          <div class="px-7 py-5 flex items-center gap-3" style="background:rgba(255,180,30,.07);border-bottom:1px solid rgba(255,180,30,.14);">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,180,30,.15);border:1px solid rgba(255,180,30,.3);">
+              <svg class="icon w-4 h-4" style="color:#ffb820;"><use href="#i-shield" /></svg>
+            </div>
+            <div>
+              <span class="block text-xs font-bold tracking-widest uppercase" style="color:#b8860b;">Arbeitszeugnis</span>
+              <span class="block text-xs" style="color:#9a9aaa;">Gesetzlich vorgeschrieben · automatisch erstellt</span>
+            </div>
+          </div>
+
+          <div class="p-7" style="flex:1;display:flex;flex-direction:column;">
+            <p class="text-xs leading-relaxed mb-6" style="color:#7a7a88;">Alle wöchentlichen Bewertungen werden automatisch gesammelt. Am Ende der Ausbildung erstellt LFA das <strong style="color:#8a6000;">vollständige Arbeitszeugnis</strong>, fertig, rechtsgültig, ohne einen einzigen Handgriff.</p>
+
+            <!-- Dokument-Mockup -->
+            <div class="rounded-xl overflow-hidden" style="background:#fefbf3;border:1px solid rgba(255,180,30,.25);box-shadow:0 4px 20px rgba(0,0,0,.1),0 0 0 1px rgba(255,180,30,.1);">
+              <!-- Dokument-Header -->
+              <div class="px-5 py-4 flex items-center justify-between" style="background:rgba(255,180,30,.06);border-bottom:1px solid rgba(255,180,30,.12);">
+                <div>
+                  <div class="text-xs font-black tracking-wider" style="color:#ffb820;">WAMOCON GmbH</div>
+                  <div class="text-xs" style="color:#4a4a58;">Ausbildungszeugnis · FIAE</div>
+                </div>
+                <!-- Siegel -->
+                <div style="width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,180,30,.5);display:flex;align-items:center;justify-content:center;background:rgba(255,180,30,.08);box-shadow:0 0 12px rgba(255,180,30,.2);">
+                  <svg class="w-4 h-4" style="color:#ffb820;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+                </div>
+              </div>
+
+              <!-- Dokument-Body -->
+              <div class="px-5 py-5">
+                <!-- Platzhalter-Zeilen -->
+                <div class="mb-4">
+                  <div class="text-xs mb-2" style="color:#4a4a58;">Auszubildende/r</div>
+                  <div style="height:10px;background:rgba(0,0,0,.08);border-radius:4px;width:65%;"></div>
+                </div>
+                <div class="flex gap-4 mb-4">
+                  <div class="flex-1">
+                    <div class="text-xs mb-2" style="color:#9a9aaa;">Ausbildungszeitraum</div>
+                    <div style="height:10px;background:rgba(0,0,0,.08);border-radius:4px;"></div>
+                  </div>
+                  <div class="flex-1">
+                    <div class="text-xs mb-2" style="color:#9a9aaa;">Beruf</div>
+                    <div style="height:10px;background:rgba(0,0,0,.08);border-radius:4px;width:60%;"></div>
+                  </div>
+                </div>
+
+                <!-- Bewertung -->
+                <div class="rounded-lg px-4 py-3 mb-4" style="background:rgba(255,180,30,.07);border:1px solid rgba(255,180,30,.15);">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold" style="color:#ffc84a;">Gesamtbewertung</span>
+                    <div class="flex gap-1">
+                      <span style="color:#ffb820;font-size:13px;">★★★★</span><span style="color:#3a3020;font-size:13px;">★</span>
+                    </div>
+                  </div>
+                  <div class="text-xs mt-1" style="color:#5a5060;">Aus 48 wöchentlichen Nachweisen berechnet</div>
+                </div>
+
+                <!-- Textzeilen -->
+                <div class="space-y-1.5 mb-5">
+                  <div style="height:8px;background:rgba(0,0,0,.07);border-radius:3px;width:100%;"></div>
+                  <div style="height:8px;background:rgba(0,0,0,.07);border-radius:3px;width:92%;"></div>
+                  <div style="height:8px;background:rgba(0,0,0,.07);border-radius:3px;width:85%;"></div>
+                </div>
+
+                <!-- Unterschrift & Siegel -->
+                <div class="flex items-end justify-between pt-4" style="border-top:1px solid rgba(255,255,255,.06);">
+                  <div>
+                    <div style="height:1px;width:100px;background:rgba(255,255,255,.15);margin-bottom:4px;"></div>
+                    <div class="text-xs" style="color:#9a9aaa;">Unterschrift Ausbilder</div>
+                  </div>
+                  <div style="width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,180,30,.5);display:flex;align-items:center;justify-content:center;background:rgba(255,180,30,.1);box-shadow:0 0 16px rgba(255,180,30,.2);">
+                    <span style="font-size:8px;font-weight:900;color:#b8860b;letter-spacing:-.5px;text-align:center;line-height:1.1;">WMC<br>SIEGEL</span>
+                  </div>
+                  <div>
+                    <div style="height:1px;width:100px;background:rgba(0,0,0,.15);margin-bottom:4px;"></div>
+                    <div class="text-xs" style="color:#9a9aaa;">Digitale Signatur</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rechtliche Note -->
+            <div class="mt-4 flex items-center gap-2">
+              <svg class="icon w-3.5 h-3.5 shrink-0" style="color:#ffb820;"><use href="#i-lock" /></svg>
+              <span class="text-xs" style="color:#9a9aaa;">Gesetzlich vorgeschrieben (§16 BBiG) · Digital rechtsverbindlich seit 01.08.2024 · Automatisch gespeichert</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Connector-Pfeil : nur Desktop -->
+      <div class="hidden md:flex items-center justify-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;pointer-events:none;">
+        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#e84a1a,#e87c10);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(232,100,20,.35),0 0 0 4px rgba(232,100,20,.1);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px;color:#fff;"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, #f8f9fb, #0f0f11);"></div>
+
+  <!-- SOLAR SYSTEM : Lernuniversum -->
   <section class="section-dark" id="solarsystem" style="position:relative;overflow:hidden;">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10 text-center pt-24 md:pt-36 pb-8">
       <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Inhaltsarchitektur</span>
@@ -955,7 +1235,7 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg), #09111f);"></div>
 
-  <!-- HAI — KI-Assistent -->
+  <!-- HAI : KI-Assistent -->
   <section class="py-24 md:py-36 section-hai" id="hai">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-16 md:mb-20">
@@ -1056,7 +1336,7 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom,#09111f,#060e1b);"></div>
 
-  <!-- HAI Deep — Technologie & Prinzipien -->
+  <!-- HAI Deep : Technologie & Prinzipien -->
   <section class="py-24 md:py-36 section-hai-deep" id="hai-deep">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
 
@@ -1068,7 +1348,7 @@
       </div>
 
       <!-- RAG Pipeline -->
-      <div class="reveal mb-14">
+      <div class="mb-14" id="ragPipelineWrap">
         <p class="text-xs font-semibold tracking-widest uppercase mb-5 text-center" style="color:#6e6e76;">So entsteht jede HAI-Antwort</p>
         <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
           <div class="rag-pipeline" style="min-width:680px;">
@@ -1147,14 +1427,14 @@
           <div class="quiz-level quiz-level--done">
             <div style="flex:1;">
               <div class="text-xs font-bold mb-1.5" style="color:#34d399;">LEICHT</div>
-              <div class="quiz-bar"><div class="quiz-bar__fill" style="width:100%;background:linear-gradient(90deg,#34d399,#6ee7b7);"></div></div>
+              <div class="quiz-bar"><div class="quiz-bar__fill" data-quiz-target="100%" style="background:linear-gradient(90deg,#34d399,#6ee7b7);--quiz-target:100%;"></div></div>
             </div>
             <span class="text-xs font-semibold" style="color:#34d399;flex-shrink:0;">✓ Bestanden</span>
           </div>
           <div class="quiz-level quiz-level--active">
             <div style="flex:1;">
               <div class="text-xs font-bold mb-1.5" style="color:#38bdf8;">MITTEL</div>
-              <div class="quiz-bar"><div class="quiz-bar__fill" style="width:60%;background:linear-gradient(90deg,#38bdf8,#7dd3fc);"></div></div>
+              <div class="quiz-bar"><div class="quiz-bar__fill" data-quiz-target="60%" style="background:linear-gradient(90deg,#38bdf8,#7dd3fc);--quiz-target:60%;"></div></div>
             </div>
             <span class="text-xs font-semibold" style="color:#38bdf8;flex-shrink:0;">60 %</span>
           </div>
@@ -1212,14 +1492,14 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom,#060e1b,var(--color-bg));"></div>
 
-  <!-- ROI — Organic blobs, light -->
+  <!-- ROI : Organic blobs, light -->
   <section class="py-24 md:py-36 section-organic" id="roi">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Der Effekt</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">So entlastet LFA<br>Betrieb und Azubi.</h2>
       <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed mb-12">Konkrete Zahlen, die zeigen, was LFA für Ausbildungsbetriebe und Auszubildende verändert.</p>
       <div class="grid grid-cols-1 md:grid-cols-5 gap-5 items-stretch">
-        <!-- Big featured stat — warning: this is a COST -->
+        <!-- Big featured stat : warning: this is a COST -->
         <div class="reveal md:col-span-2 relative p-10 rounded-2xl border border-border-hover overflow-hidden flex flex-col items-center justify-center text-center" style="background:linear-gradient(160deg,var(--color-surface-bright),var(--color-surface))">
           <div class="absolute top-0 left-0 right-0 h-[2px]" style="background:linear-gradient(90deg,transparent,var(--color-accent),transparent)"></div>
           <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background:rgba(255,180,0,.12);border:1px solid rgba(255,180,0,.2);">
@@ -1230,7 +1510,7 @@
           <span class="block text-sm text-faint mb-4">Direkte und indirekte Kosten für den Betrieb</span>
           <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background:rgba(255,26,26,.08);color:var(--color-accent);">LFA reduziert Abbrüche durch Struktur und Betreuung</span>
         </div>
-        <!-- Two stacked stats — POSITIVE reductions -->
+        <!-- Two stacked stats : POSITIVE reductions -->
         <div class="md:col-span-3 grid grid-rows-2 gap-5">
           <div class="reveal relative p-8 rounded-2xl border border-border-hover overflow-hidden flex items-center gap-6" style="background:linear-gradient(160deg,var(--color-surface-bright),var(--color-surface))">
             <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background:rgba(40,200,64,.1);border:1px solid rgba(40,200,64,.2);">
@@ -1262,7 +1542,7 @@
   </section>
 
 
-  <!-- ARCHITEKTUR — Subtle alt bg with glow -->
+  <!-- ARCHITEKTUR : Subtle alt bg with glow -->
   <section class="py-24 md:py-36 section-alt section-glow" id="architektur">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <span
@@ -1330,7 +1610,7 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #0f0f11);"></div>
 
-  <!-- ROADMAP — Dark premium -->
+  <!-- ROADMAP : Dark premium -->
   <section class="py-24 md:py-36 section-dark" id="roadmap">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-20">
@@ -1354,7 +1634,7 @@
           <div class="rm__line-glow" id="rmGlow"></div>
         </div>
 
-        <!-- 1 — Closed-Context KI — left -->
+        <!-- 1 : Closed-Context KI : left -->
         <div class="rm__row" data-rm-progress="0.06">
           <div class="rm__cell">
             <div class="rm__card rm__card--l">
@@ -1368,7 +1648,7 @@
           <div class="rm__cell rm__cell--hide"></div>
         </div>
 
-        <!-- 2 — Erste am Markt — right -->
+        <!-- 2 : Erste am Markt : right -->
         <div class="rm__row" data-rm-progress="0.22">
           <div class="rm__cell rm__cell--hide"></div>
           <div class="rm__center"><div class="rm__branch rm__branch--r"></div><div class="rm__dot"></div></div>
@@ -1382,7 +1662,7 @@
           </div>
         </div>
 
-        <!-- 3 — Persönliches Feedback — left -->
+        <!-- 3 : Persönliches Feedback : left -->
         <div class="rm__row" data-rm-progress="0.38">
           <div class="rm__cell">
             <div class="rm__card rm__card--l">
@@ -1396,7 +1676,7 @@
           <div class="rm__cell rm__cell--hide"></div>
         </div>
 
-        <!-- 4 — Praxis statt Theorie — right -->
+        <!-- 4 : Praxis statt Theorie : right -->
         <div class="rm__row" data-rm-progress="0.54">
           <div class="rm__cell rm__cell--hide"></div>
           <div class="rm__center"><div class="rm__branch rm__branch--r"></div><div class="rm__dot"></div></div>
@@ -1410,7 +1690,7 @@
           </div>
         </div>
 
-        <!-- 5 — Dein Wissen, dein Mentor — left -->
+        <!-- 5 : Dein Wissen, dein Mentor : left -->
         <div class="rm__row" data-rm-progress="0.70">
           <div class="rm__cell">
             <div class="rm__card rm__card--l">
@@ -1424,7 +1704,7 @@
           <div class="rm__cell rm__cell--hide"></div>
         </div>
 
-        <!-- 6 — Alles in einem — right -->
+        <!-- 6 : Alles in einem : right -->
         <div class="rm__row" data-rm-progress="0.88">
           <div class="rm__cell rm__cell--hide"></div>
           <div class="rm__center"><div class="rm__branch rm__branch--r"></div><div class="rm__dot"></div></div>
@@ -1649,7 +1929,7 @@
       /* Force reflow then animate to center */
       void lbImg.offsetWidth;
 
-      /* Calculate final centered position — 70% of viewport, not fullscreen */
+      /* Calculate final centered position : 70% of viewport, not fullscreen */
       var maxW = window.innerWidth * 0.7;
       var maxH = window.innerHeight * 0.7;
       var vw = maxW;
@@ -1801,6 +2081,7 @@
     </div>
     <div id="galaxySvgContainer"></div>
     <div id="galaxyTooltip"></div>
+    <div id="compInfoPanel"></div>
     <p id="galaxyHint" style="position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:9590;color:#4a4a58;font-size:.63rem;letter-spacing:.04em;text-align:center;pointer-events:none;white-space:nowrap;">Klicke <span style="color:#ff7777;">Lernfeld</span> zum Einzoomen &nbsp;·&nbsp; Klicke <span style="color:#ff6060;">Komponente</span> um ihre Gruppe zu erkunden &nbsp;·&nbsp; Hover für Details</p>
     <input id="galaxySearch" type="text" placeholder="Suchen…" oninput="galaxySearch(this.value)">
   </div>
