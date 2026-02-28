@@ -893,152 +893,107 @@
   <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
 
   <!-- ROLLEN : Für wen ist LFA? -->
-  <section class="py-24 md:py-36 section-organic" id="rollen">
+  <section class="py-24 md:py-32" id="rollen" style="position:relative;overflow:hidden;">
+    <!-- Ambient background blobs -->
+    <div style="position:absolute;top:-140px;left:-140px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(255,26,26,.07) 0%,transparent 68%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-140px;right:-100px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.07) 0%,transparent 68%);pointer-events:none;"></div>
+
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-      <div class="text-center mb-14">
-        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Zwei Rollen<br>Eine
-          Plattform</h2>
-        <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Jeder Punkt zeigt, was sich mit
-          LFA
-          konkret verändert, für Ausbilder und Auszubildende.</p>
+      <div class="text-center mb-16">
+        <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-5" style="color:var(--color-accent);background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.14);">Für wen ist LFA?</span>
+        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Zwei Rollen<br>Eine Plattform</h2>
+        <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Jeder Punkt zeigt, was sich mit LFA konkret verändert, für Ausbilder und Auszubildende.</p>
       </div>
 
       <div class="grid grid-cols-1 gap-8">
 
         <!-- ═══ Ausbilder Card ═══ -->
-        <div class="reveal rounded-2xl overflow-hidden border border-border"
-          style="background:linear-gradient(135deg,rgba(255,26,26,.02),var(--color-surface));">
-          <div class="p-6 pb-4 flex items-center gap-4 border-b border-border">
-            <div
-              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent">
-              <svg class="icon w-6 h-6">
-                <use href="#i-users" />
-              </svg>
+        <div class="reveal rounded-2xl overflow-hidden" style="border:1.5px solid rgba(255,26,26,.22);box-shadow:0 12px 56px rgba(255,26,26,.09),0 2px 12px rgba(0,0,0,.06);background:linear-gradient(165deg,rgba(255,26,26,.035) 0%,var(--color-surface) 50%);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 64px rgba(255,26,26,.14),0 4px 20px rgba(0,0,0,.07)'" onmouseleave="this.style.transform='';this.style.boxShadow='0 12px 56px rgba(255,26,26,.09),0 2px 12px rgba(0,0,0,.06)'">
+          <!-- Card header -->
+          <div class="px-8 py-6 flex items-center gap-5" style="background:linear-gradient(135deg,rgba(255,26,26,.11) 0%,rgba(255,100,100,.04) 100%);border-bottom:1px solid rgba(255,26,26,.14);">
+            <div style="flex-shrink:0;">
+              <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,rgba(255,26,26,.2),rgba(255,60,60,.08));border:1px solid rgba(255,26,26,.28);display:flex;align-items:center;justify-content:center;">
+                <svg class="icon w-7 h-7" style="color:var(--color-accent);"><use href="#i-users"/></svg>
+              </div>
             </div>
-            <h3 class="text-2xl font-bold">Für Ausbilder</h3>
+            <div>
+              <div style="font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent);margin-bottom:3px;">Betrieb</div>
+              <h3 class="text-2xl font-bold">Für Ausbilder</h3>
+            </div>
+            <div style="margin-left:auto;font-size:.7rem;font-weight:600;letter-spacing:.05em;background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);color:var(--color-accent);border-radius:100px;padding:5px 14px;white-space:nowrap;">4 Vorteile</div>
           </div>
-          <div class="p-6 space-y-4">
-            <!-- Row 1 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
-              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+          <!-- Column labels -->
+          <div class="grid grid-cols-2" style="border-bottom:1px solid rgba(255,26,26,.08);">
+            <div style="padding:10px 28px;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#b04040;background:rgba(255,60,60,.03);">Vorher</div>
+            <div style="padding:10px 28px;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent);background:rgba(255,26,26,.04);border-left:2px solid rgba(255,26,26,.12);">Mit LFA</div>
+          </div>
+          <!-- Comparison rows -->
+          <div>
+            <div class="grid grid-cols-2">
+              <div class="px-8 py-5" style="background:rgba(255,50,50,.022);">
                 <div class="flex items-start gap-3">
-                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
-                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <svg width="15" height="15" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                   </svg>
-                  <span class="text-sm"
-                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Lernfortschritt
-                    in Excel-Listen oder gar nicht dokumentiert</span>
+                  <span class="text-sm leading-relaxed" style="color:#999;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">Lernfortschritt in Excel-Listen oder gar nicht dokumentiert</span>
                 </div>
               </div>
-              <div class="hidden md:flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </div>
-              <div class="rounded-xl p-4"
-                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+              <div class="px-8 py-5" style="background:linear-gradient(135deg,rgba(255,26,26,.055),rgba(255,26,26,.015));border-left:2px solid rgba(255,26,26,.22);">
                 <div class="flex items-start gap-3">
-                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                    <use href="#i-check" />
-                  </svg>
-                  <span class="text-sm"><strong>Alle Azubis auf einen Blick</strong> &ndash; Dashboard
-                    zeigt Lernfortschritt, Aufgaben und Leistungen in Echtzeit</span>
+                  <svg class="icon w-5 h-5 shrink-0 mt-0.5" style="color:var(--color-accent);"><use href="#i-check"/></svg>
+                  <span class="text-sm leading-relaxed"><strong>Alle Azubis auf einen Blick</strong> &ndash; Dashboard zeigt Lernfortschritt, Aufgaben und Leistungen in Echtzeit</span>
                 </div>
               </div>
             </div>
-            <!-- Row 2 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
-              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+            <div class="grid grid-cols-2" style="border-top:1px solid rgba(255,26,26,.08);">
+              <div class="px-8 py-5" style="background:rgba(255,50,50,.022);">
                 <div class="flex items-start gap-3">
-                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
-                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <svg width="15" height="15" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                   </svg>
-                  <span class="text-sm"
-                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Berichtshefte,
-                    Nachweise und Zeugnisse manuell erstellen</span>
+                  <span class="text-sm leading-relaxed" style="color:#999;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">Berichtshefte, Nachweise und Zeugnisse manuell erstellen</span>
                 </div>
               </div>
-              <div class="hidden md:flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </div>
-              <div class="rounded-xl p-4"
-                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+              <div class="px-8 py-5" style="background:linear-gradient(135deg,rgba(255,26,26,.055),rgba(255,26,26,.015));border-left:2px solid rgba(255,26,26,.22);">
                 <div class="flex items-start gap-3">
-                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                    <use href="#i-check" />
-                  </svg>
-                  <span class="text-sm"><strong>Automatisierte Dokumente</strong> &ndash; Berichtshefte,
-                    Nachweise und Zeugnisse auf Knopfdruck</span>
+                  <svg class="icon w-5 h-5 shrink-0 mt-0.5" style="color:var(--color-accent);"><use href="#i-check"/></svg>
+                  <span class="text-sm leading-relaxed"><strong>Automatisierte Dokumente</strong> &ndash; Berichtshefte, Nachweise und Zeugnisse auf Knopfdruck</span>
                 </div>
               </div>
             </div>
-            <!-- Row 3 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
-              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+            <div class="grid grid-cols-2" style="border-top:1px solid rgba(255,26,26,.08);">
+              <div class="px-8 py-5" style="background:rgba(255,50,50,.022);">
                 <div class="flex items-start gap-3">
-                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
-                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <svg width="15" height="15" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                   </svg>
-                  <span class="text-sm"
-                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Sporadisches
-                    Feedback, oft zu spät oder unspezifisch</span>
+                  <span class="text-sm leading-relaxed" style="color:#999;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">Sporadisches Feedback, oft zu spät oder unspezifisch</span>
                 </div>
               </div>
-              <div class="hidden md:flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </div>
-              <div class="rounded-xl p-4"
-                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+              <div class="px-8 py-5" style="background:linear-gradient(135deg,rgba(255,26,26,.055),rgba(255,26,26,.015));border-left:2px solid rgba(255,26,26,.22);">
                 <div class="flex items-start gap-3">
-                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                    <use href="#i-check" />
-                  </svg>
-                  <span class="text-sm"><strong>Gezieltes Feedback</strong> &ndash; Aufgaben direkt in der
-                    Plattform reviewen und individuelles Feedback geben</span>
+                  <svg class="icon w-5 h-5 shrink-0 mt-0.5" style="color:var(--color-accent);"><use href="#i-check"/></svg>
+                  <span class="text-sm leading-relaxed"><strong>Gezieltes Feedback</strong> &ndash; Aufgaben direkt in der Plattform reviewen und individuelles Feedback geben</span>
                 </div>
               </div>
             </div>
-            <!-- Row 4 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
-              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+            <div class="grid grid-cols-2" style="border-top:1px solid rgba(255,26,26,.08);">
+              <div class="px-8 py-5" style="background:rgba(255,50,50,.022);">
                 <div class="flex items-start gap-3">
-                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
-                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <svg width="15" height="15" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                   </svg>
-                  <span class="text-sm"
-                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">IHK-Verordnungen
-                    selbst recherchieren und aktuell halten</span>
+                  <span class="text-sm leading-relaxed" style="color:#999;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">IHK-Verordnungen selbst recherchieren und aktuell halten</span>
                 </div>
               </div>
-              <div class="hidden md:flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </div>
-              <div class="rounded-xl p-4"
-                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+              <div class="px-8 py-5" style="background:linear-gradient(135deg,rgba(255,26,26,.055),rgba(255,26,26,.015));border-left:2px solid rgba(255,26,26,.22);">
                 <div class="flex items-start gap-3">
-                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                    <use href="#i-check" />
-                  </svg>
-                  <span class="text-sm"><strong>IHK-konform ab Tag 1</strong> &ndash; alle Inhalte
-                    basieren auf offiziellen IHK-Verordnungen</span>
+                  <svg class="icon w-5 h-5 shrink-0 mt-0.5" style="color:var(--color-accent);"><use href="#i-check"/></svg>
+                  <span class="text-sm leading-relaxed"><strong>IHK-konform ab Tag 1</strong> &ndash; alle Inhalte basieren auf offiziellen IHK-Verordnungen</span>
                 </div>
               </div>
             </div>
@@ -1046,139 +1001,92 @@
         </div>
 
         <!-- ═══ Auszubildende Card ═══ -->
-        <div class="reveal rounded-2xl overflow-hidden border border-border"
-          style="background:linear-gradient(135deg,rgba(56,189,248,.02),var(--color-surface));">
-          <div class="p-6 pb-4 flex items-center gap-4 border-b border-border">
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center"
-              style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);color:#38bdf8;">
-              <svg class="icon w-6 h-6">
-                <use href="#i-book" />
-              </svg>
+        <div class="reveal rounded-2xl overflow-hidden" style="border:1.5px solid rgba(56,189,248,.22);box-shadow:0 12px 56px rgba(56,189,248,.09),0 2px 12px rgba(0,0,0,.06);background:linear-gradient(165deg,rgba(56,189,248,.035) 0%,var(--color-surface) 50%);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;" onmouseenter="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 64px rgba(56,189,248,.14),0 4px 20px rgba(0,0,0,.07)'" onmouseleave="this.style.transform='';this.style.boxShadow='0 12px 56px rgba(56,189,248,.09),0 2px 12px rgba(0,0,0,.06)'">
+          <!-- Card header -->
+          <div class="px-8 py-6 flex items-center gap-5" style="background:linear-gradient(135deg,rgba(56,189,248,.11) 0%,rgba(99,210,255,.04) 100%);border-bottom:1px solid rgba(56,189,248,.14);">
+            <div style="flex-shrink:0;">
+              <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,rgba(56,189,248,.2),rgba(99,210,255,.08));border:1px solid rgba(56,189,248,.28);display:flex;align-items:center;justify-content:center;">
+                <svg class="icon w-7 h-7" style="color:#38bdf8;"><use href="#i-book"/></svg>
+              </div>
             </div>
-            <h3 class="text-2xl font-bold">Für Auszubildende</h3>
+            <div>
+              <div style="font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:3px;">Azubi</div>
+              <h3 class="text-2xl font-bold">Für Auszubildende</h3>
+            </div>
+            <div style="margin-left:auto;font-size:.7rem;font-weight:600;letter-spacing:.05em;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.22);color:#38bdf8;border-radius:100px;padding:5px 14px;white-space:nowrap;">4 Vorteile</div>
           </div>
-          <div class="p-6 space-y-4">
-            <!-- Row 1 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
-              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+          <!-- Column labels -->
+          <div class="grid grid-cols-2" style="border-bottom:1px solid rgba(56,189,248,.08);">
+            <div style="padding:10px 28px;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4a8a9a;background:rgba(56,189,248,.03);">Vorher</div>
+            <div style="padding:10px 28px;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#38bdf8;background:rgba(56,189,248,.05);border-left:2px solid rgba(56,189,248,.14);">Mit LFA</div>
+          </div>
+          <!-- Comparison rows -->
+          <div>
+            <div class="grid grid-cols-2">
+              <div class="px-8 py-5" style="background:rgba(56,189,248,.018);">
                 <div class="flex items-start gap-3">
-                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
-                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <svg width="15" height="15" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                   </svg>
-                  <span class="text-sm"
-                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Kein
-                    Überblick über Lernfortschritt oder nächste Schritte</span>
+                  <span class="text-sm leading-relaxed" style="color:#999;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">Kein Überblick über Lernfortschritt oder nächste Schritte</span>
                 </div>
               </div>
-              <div class="hidden md:flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </div>
-              <div class="rounded-xl p-4"
-                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+              <div class="px-8 py-5" style="background:linear-gradient(135deg,rgba(56,189,248,.06),rgba(56,189,248,.015));border-left:2px solid rgba(56,189,248,.25);">
                 <div class="flex items-start gap-3">
-                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                    <use href="#i-check" />
-                  </svg>
-                  <span class="text-sm"><strong>Klare Struktur</strong> &ndash; Lernfortschritt, nächste
-                    Aufgaben und Ziele immer im Blick</span>
+                  <svg class="icon w-5 h-5 shrink-0 mt-0.5" style="color:#38bdf8;"><use href="#i-check"/></svg>
+                  <span class="text-sm leading-relaxed"><strong>Klare Struktur</strong> &ndash; Lernfortschritt, nächste Aufgaben und Ziele immer im Blick</span>
                 </div>
               </div>
             </div>
-            <!-- Row 2 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
-              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+            <div class="grid grid-cols-2" style="border-top:1px solid rgba(56,189,248,.09);">
+              <div class="px-8 py-5" style="background:rgba(56,189,248,.018);">
                 <div class="flex items-start gap-3">
-                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
-                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <svg width="15" height="15" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                   </svg>
-                  <span class="text-sm"
-                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Prüfungstermine
-                    und Deadlines selbst verwalten &ndash; oft vergessen</span>
+                  <span class="text-sm leading-relaxed" style="color:#999;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">Prüfungstermine und Deadlines selbst verwalten, oft vergessen</span>
                 </div>
               </div>
-              <div class="hidden md:flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </div>
-              <div class="rounded-xl p-4"
-                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+              <div class="px-8 py-5" style="background:linear-gradient(135deg,rgba(56,189,248,.06),rgba(56,189,248,.015));border-left:2px solid rgba(56,189,248,.25);">
                 <div class="flex items-start gap-3">
-                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                    <use href="#i-check" />
-                  </svg>
-                  <span class="text-sm"><strong>Prüfungstermine im Blick</strong> &ndash; Kalender mit
-                    IHK-Prüfungen, Berufsschulblöcken und Abgabefristen</span>
+                  <svg class="icon w-5 h-5 shrink-0 mt-0.5" style="color:#38bdf8;"><use href="#i-check"/></svg>
+                  <span class="text-sm leading-relaxed"><strong>Prüfungstermine im Blick</strong> &ndash; Kalender mit IHK-Prüfungen, Berufsschulblöcken und Abgabefristen</span>
                 </div>
               </div>
             </div>
-            <!-- Row 3 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
-              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+            <div class="grid grid-cols-2" style="border-top:1px solid rgba(56,189,248,.09);">
+              <div class="px-8 py-5" style="background:rgba(56,189,248,.018);">
                 <div class="flex items-start gap-3">
-                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
-                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <svg width="15" height="15" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                   </svg>
-                  <span class="text-sm"
-                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Trockene
-                    Theorie aus Lehrbüchern, ohne Praxisbezug</span>
+                  <span class="text-sm leading-relaxed" style="color:#999;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">Trockene Theorie aus Lehrbüchern, ohne Praxisbezug</span>
                 </div>
               </div>
-              <div class="hidden md:flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </div>
-              <div class="rounded-xl p-4"
-                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+              <div class="px-8 py-5" style="background:linear-gradient(135deg,rgba(56,189,248,.06),rgba(56,189,248,.015));border-left:2px solid rgba(56,189,248,.25);">
                 <div class="flex items-start gap-3">
-                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                    <use href="#i-check" />
-                  </svg>
-                  <span class="text-sm"><strong>Praxisnahes Lernen</strong> &ndash; Szenarien, Use Cases
-                    und Quizze, die auf die echte Prüfung vorbereiten</span>
+                  <svg class="icon w-5 h-5 shrink-0 mt-0.5" style="color:#38bdf8;"><use href="#i-check"/></svg>
+                  <span class="text-sm leading-relaxed"><strong>Praxisnahes Lernen</strong> &ndash; Szenarien, Use Cases und Quizze, die auf die echte Prüfung vorbereiten</span>
                 </div>
               </div>
             </div>
-            <!-- Row 4 -->
-            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
-              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+            <div class="grid grid-cols-2" style="border-top:1px solid rgba(56,189,248,.09);">
+              <div class="px-8 py-5" style="background:rgba(56,189,248,.018);">
                 <div class="flex items-start gap-3">
-                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
-                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <svg width="15" height="15" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
                   </svg>
-                  <span class="text-sm"
-                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Google-Suche
-                    für Fachfragen &ndash; unsichere, widersprüchliche Antworten</span>
+                  <span class="text-sm leading-relaxed" style="color:#999;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">Google-Suche für Fachfragen, unsichere, widersprüchliche Antworten</span>
                 </div>
               </div>
-              <div class="hidden md:flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </div>
-              <div class="rounded-xl p-4"
-                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+              <div class="px-8 py-5" style="background:linear-gradient(135deg,rgba(56,189,248,.06),rgba(56,189,248,.015));border-left:2px solid rgba(56,189,248,.25);">
                 <div class="flex items-start gap-3">
-                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                    <use href="#i-check" />
-                  </svg>
-                  <span class="text-sm"><strong>KI-Assistent HAI</strong> &ndash; verifizierte Antworten
-                    auf Basis offizieller IHK-Quellen</span>
+                  <svg class="icon w-5 h-5 shrink-0 mt-0.5" style="color:#38bdf8;"><use href="#i-check"/></svg>
+                  <span class="text-sm leading-relaxed"><strong>KI-Assistent HAI</strong> &ndash; verifizierte Antworten auf Basis offizieller IHK-Quellen</span>
                 </div>
               </div>
             </div>

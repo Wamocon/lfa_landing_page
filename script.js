@@ -406,6 +406,8 @@
     function resize() {
       canvas.width = hero.offsetWidth;
       canvas.height = hero.offsetHeight;
+      /* Re-centre LFA text targets whenever canvas dimensions change */
+      if (particles.length > 0) assignTargets();
     }
 
     /* Sample pixel positions from rendered text "LFA" – outline only */
@@ -423,8 +425,8 @@
       offCtx.textAlign = 'center';
       offCtx.textBaseline = 'middle';
 
-      /* Position: vertically centered */
-      textCenterX = oW / 2;
+      /* Position: use visible viewport centre so LFA is always centred on screen */
+      textCenterX = window.innerWidth / 2;
       textCenterY = oH * 0.42;
 
       /* Draw each letter individually with increased spacing */
@@ -836,8 +838,8 @@
 
     window.addEventListener('resize', resize);
 
-    seed();
-    animate();
+    /* Defer one frame so layout is fully settled before measuring hero.offsetWidth */
+    requestAnimationFrame(function () { seed(); animate(); });
   }
 
   /* ==============================================

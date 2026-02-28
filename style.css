@@ -337,6 +337,10 @@ html::-webkit-scrollbar {
 }
 
 /* ── Animations ── */
+@keyframes roleRingPulse {
+  0%, 100% { transform: scale(1);   opacity: .6; }
+  50%       { transform: scale(1.22); opacity: 0; }
+}
 @keyframes loopPulse {
   0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(180,40,40,.0); }
   50%       { opacity: .75; box-shadow: 0 0 0 8px rgba(180,40,40,.0); }
