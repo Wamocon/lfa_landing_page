@@ -24,7 +24,7 @@
       var parent = el.parentElement;
       if (!parent) return;
       /* Only count direct children that are .reveal : prevents deep nesting from inflating delays */
-      var siblings = Array.prototype.slice.call(parent.children).filter(function(c) { return c.classList.contains('reveal'); });
+      var siblings = Array.prototype.slice.call(parent.children).filter(function (c) { return c.classList.contains('reveal'); });
       if (siblings.length > 1) {
         var idx = siblings.indexOf(el);
         if (idx > 0) {
@@ -101,7 +101,7 @@
     if (!counters.length) return;
 
     /* Pre-lock dimensions via invisible clone to prevent layout shift during count-up */
-    counters.forEach(function(el) {
+    counters.forEach(function (el) {
       var suffix = el.dataset.suffix || '';
       var prefix = el.dataset.prefix || '';
       var separator = el.dataset.separator || '';
@@ -142,7 +142,7 @@
     var ticking = false;
 
     function setActive(sectionId) {
-      navLinks.forEach(function(l) {
+      navLinks.forEach(function (l) {
         l.classList.toggle('nav-link--active', l.dataset.navSection === sectionId);
       });
     }
@@ -155,7 +155,7 @@
 
         /* Find topmost visible section */
         var active = null;
-        navLinks.forEach(function(l) {
+        navLinks.forEach(function (l) {
           var sec = document.getElementById(l.dataset.navSection);
           if (!sec) return;
           var rect = sec.getBoundingClientRect();
@@ -365,6 +365,7 @@
 
   /* ==============================================
      8. HERO PARTICLES : Immersive WOW Effect
+     with LFA text formation on load (looping)
      ============================================== */
   function initParticles() {
     if (prefersReduced) return;
@@ -376,11 +377,28 @@
     var ctx = canvas.getContext('2d');
     var particles = [];
     var mouse = { x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0 };
-    var count = 140;
-    var connectDist = 180;
-    var mouseRadius = 320;
+    var isMobile = window.innerWidth < 768;
+    var count = isMobile ? 200 : 350;
+    var connectDist = isMobile ? 10 : 180;
+    var maxLineWidth = isMobile ? 0.2 : 2.5;
+    var mouseRadius = isMobile ? 200 : 320;
     var running = true;
     var time = 0;
+
+    /* LFA text formation state – full cycle:
+       chaos (3s) → forming (1.8s) → holding (2.5s) → pause (5s) → scattering (2s) → free (5s) → forming (loop) */
+    var lfaPhase = 'chaos';
+    var lfaTimer = 0;
+    var lfaChaosDuration = 3.0;
+    var lfaFormDuration = 1.8;
+    var lfaHoldDuration = 2.5;
+    var lfaPauseDuration = 5.0;
+    var lfaScatterDuration = 2.0;
+    var lfaFreeDuration = 5.0;
+    var textPositions = [];
+    var textCenterX = 0;
+    var textCenterY = 0;
+    var scatterApplied = false;
 
     /* Particle pools for burst effect */
     var burstParticles = [];
@@ -390,21 +408,90 @@
       canvas.height = hero.offsetHeight;
     }
 
+    /* Sample pixel positions from rendered text "LFA" – outline only */
+    function sampleTextPositions() {
+      var offCanvas = document.createElement('canvas');
+      var oW = canvas.width;
+      var oH = canvas.height;
+      offCanvas.width = oW;
+      offCanvas.height = oH;
+      var offCtx = offCanvas.getContext('2d');
+
+      /* Font size: ~40% of viewport width */
+      var fontSize = Math.min(oW * 0.40, oH * 0.55);
+      offCtx.font = '900 ' + fontSize + 'px Inter, system-ui, sans-serif';
+      offCtx.textAlign = 'center';
+      offCtx.textBaseline = 'middle';
+
+      /* Position: vertically centered */
+      textCenterX = oW / 2;
+      textCenterY = oH * 0.42;
+
+      /* Draw each letter individually with increased spacing */
+      var letters = ['L', 'F', 'A'];
+      var letterSpacing = isMobile ? fontSize * 0.30 : fontSize * 0.20;
+      /* Measure total width including spacing */
+      var letterWidths = letters.map(function (l) { return offCtx.measureText(l).width; });
+      var totalWidth = 0;
+      for (var li = 0; li < letterWidths.length; li++) {
+        totalWidth += letterWidths[li];
+        if (li < letterWidths.length - 1) totalWidth += letterSpacing;
+      }
+
+      /* Thin stroke for clean edge outlines */
+      var strokeW = isMobile ? Math.max(2, fontSize * 0.04) : Math.max(3, fontSize * 0.04);
+      offCtx.strokeStyle = '#fff';
+      offCtx.lineWidth = strokeW;
+      offCtx.lineJoin = 'round';
+
+      /* Draw each letter at its position */
+      var curX = textCenterX - totalWidth / 2;
+      for (var li = 0; li < letters.length; li++) {
+        offCtx.strokeText(letters[li], curX + letterWidths[li] / 2, textCenterY);
+        curX += letterWidths[li] + letterSpacing;
+      }
+
+      /* Sample pixels on the stroked outline */
+      var imageData = offCtx.getImageData(0, 0, oW, oH);
+      var pixels = imageData.data;
+      var positions = [];
+      var step = isMobile
+        ? Math.max(4, Math.floor(Math.min(oW, oH) / 140))
+        : Math.max(3, Math.floor(Math.min(oW, oH) / 220));
+
+      for (var y = 0; y < oH; y += step) {
+        for (var x = 0; x < oW; x += step) {
+          var idx = (y * oW + x) * 4;
+          if (pixels[idx + 3] > 80) {
+            positions.push({
+              x: x + (Math.random() - 0.5) * step * 0.3,
+              y: y + (Math.random() - 0.5) * step * 0.3
+            });
+          }
+        }
+      }
+
+      /* Shuffle and limit to particle count */
+      for (var i = positions.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = positions[i]; positions[i] = positions[j]; positions[j] = tmp;
+      }
+
+      return positions.slice(0, count);
+    }
+
     function create(x, y, isBurst) {
       var angle = Math.random() * Math.PI * 2;
       var speed = isBurst ? (Math.random() * 4 + 2) : (Math.random() * 0.6 + 0.1);
       var tier = Math.random();
       var size, opacity;
       if (tier < 0.15) {
-        /* Large glowing orbs */
         size = Math.random() * 5 + 3;
         opacity = Math.random() * 0.3 + 0.15;
       } else if (tier < 0.45) {
-        /* Medium particles */
         size = Math.random() * 3 + 1.5;
         opacity = Math.random() * 0.5 + 0.15;
       } else {
-        /* Small dust */
         size = Math.random() * 1.5 + 0.5;
         opacity = Math.random() * 0.6 + 0.1;
       }
@@ -417,18 +504,53 @@
         baseSize: size,
         opacity: opacity,
         baseOpacity: opacity,
-        hue: Math.random() < 0.7 ? 0 : (Math.random() * 30 - 10), /* red-orange spectrum */
+        hue: Math.random() < 0.7 ? 0 : (Math.random() * 30 - 10),
         pulse: Math.random() * Math.PI * 2,
         pulseSpeed: Math.random() * 0.02 + 0.005,
         life: isBurst ? 1 : -1,
-        isBurst: !!isBurst
+        isBurst: !!isBurst,
+        targetX: 0,
+        targetY: 0,
+        originX: 0,
+        originY: 0,
+        hasTarget: false
       };
+    }
+
+    function assignTargets() {
+      textPositions = sampleTextPositions();
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        if (i < textPositions.length) {
+          p.targetX = textPositions[i].x;
+          p.targetY = textPositions[i].y;
+          p.hasTarget = true;
+        } else {
+          p.hasTarget = false;
+        }
+      }
     }
 
     function seed() {
       resize();
       particles = [];
-      for (var i = 0; i < count; i++) particles.push(create());
+      textPositions = sampleTextPositions();
+
+      for (var i = 0; i < count; i++) {
+        var p = create();
+        if (i < textPositions.length) {
+          p.targetX = textPositions[i].x;
+          p.targetY = textPositions[i].y;
+          p.originX = p.x;
+          p.originY = p.y;
+          p.hasTarget = true;
+        }
+        particles.push(p);
+      }
+
+      lfaPhase = 'chaos';
+      lfaTimer = 0;
+      scatterApplied = false;
     }
 
     function spawnBurst(x, y, amount) {
@@ -437,10 +559,82 @@
       }
     }
 
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function easeOutQuart(t) {
+      return 1 - Math.pow(1 - t, 4);
+    }
+
     function animate() {
       if (!running) return;
       time += 0.016;
+      lfaTimer += 0.016;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      /* ── Phase state machine ── */
+      var lfaInfluence = 0;
+      var isScattering = false;
+      var scatterProgress = 0;
+
+      if (lfaPhase === 'chaos') {
+        /* 3s free chaotic floating at start */
+        lfaInfluence = 0;
+        if (lfaTimer >= lfaChaosDuration) { lfaPhase = 'forming'; lfaTimer = 0; }
+
+      } else if (lfaPhase === 'forming') {
+        var t = Math.min(lfaTimer / lfaFormDuration, 1);
+        lfaInfluence = easeInOutCubic(t);
+        if (t >= 1) { lfaPhase = 'holding'; lfaTimer = 0; }
+
+      } else if (lfaPhase === 'holding') {
+        lfaInfluence = 1;
+        if (lfaTimer >= lfaHoldDuration) { lfaPhase = 'pause'; lfaTimer = 0; }
+
+      } else if (lfaPhase === 'pause') {
+        /* 5s stillness – text stays fully formed */
+        lfaInfluence = 1;
+        if (lfaTimer >= lfaPauseDuration) {
+          lfaPhase = 'scattering';
+          lfaTimer = 0;
+          scatterApplied = false;
+        }
+
+      } else if (lfaPhase === 'scattering') {
+        /* 2s explosive outward scatter */
+        isScattering = true;
+        scatterProgress = Math.min(lfaTimer / lfaScatterDuration, 1);
+        lfaInfluence = Math.max(0, 1 - easeOutQuart(scatterProgress));
+
+        /* Apply one-time outward impulse at scatter start */
+        if (!scatterApplied) {
+          scatterApplied = true;
+          for (var si = 0; si < particles.length; si++) {
+            var sp = particles[si];
+            if (!sp.hasTarget) continue;
+            var sdx = sp.x - textCenterX;
+            var sdy = sp.y - textCenterY;
+            var sDist = Math.sqrt(sdx * sdx + sdy * sdy) || 1;
+            var scatterForce = 6 + Math.random() * 4;
+            sp.vx = (sdx / sDist) * scatterForce;
+            sp.vy = (sdy / sDist) * scatterForce;
+          }
+        }
+
+        if (scatterProgress >= 1) { lfaPhase = 'free'; lfaTimer = 0; }
+
+      } else if (lfaPhase === 'free') {
+        /* 5s free floating, then restart cycle */
+        lfaInfluence = 0;
+        if (lfaTimer >= lfaFreeDuration) {
+          /* Re-sample targets (in case of resize) and restart */
+          assignTargets();
+          lfaPhase = 'forming';
+          lfaTimer = 0;
+          scatterApplied = false;
+        }
+      }
 
       /* Calculate mouse speed */
       if (mouse.x > 0 && mouse.prevX > 0) {
@@ -451,49 +645,74 @@
       mouse.prevX = mouse.x;
       mouse.prevY = mouse.y;
 
-      /* Dynamic mouse radius based on speed */
       var dynRadius = mouseRadius + Math.min(mouse.speed * 3, 200);
 
-      /* Update & draw main particles */
+      /* ── Update & draw main particles ── */
       for (var i = 0; i < particles.length; i++) {
         var p = particles[i];
+
+        /* LFA text formation force */
+        if (p.hasTarget && lfaInfluence > 0 && !isScattering) {
+          var tdx = p.targetX - p.x;
+          var tdy = p.targetY - p.y;
+          var pullStrength = lfaPhase === 'forming' ? 0.10 : 0.15;
+          p.vx += tdx * pullStrength * lfaInfluence;
+          p.vy += tdy * pullStrength * lfaInfluence;
+          var dampFactor = 0.78 + (1 - lfaInfluence) * 0.205;
+          p.vx *= dampFactor;
+          p.vy *= dampFactor;
+          p.opacity = p.baseOpacity + lfaInfluence * 0.4;
+        }
+
+        /* Scattering: decelerate outgoing particles */
+        if (isScattering) {
+          p.vx *= 0.975;
+          p.vy *= 0.975;
+          /* Fade opacity during scatter */
+          p.opacity += (p.baseOpacity - p.opacity) * 0.03;
+        }
+
         var dx = mouse.x - p.x;
         var dy = mouse.y - p.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
 
-        /* Pulsing size */
         p.pulse += p.pulseSpeed;
         p.size = p.baseSize * (1 + Math.sin(p.pulse) * 0.3);
 
+        /* Mouse interaction: suppress during formation/hold/pause */
+        var mouseInfluence = (lfaPhase === 'free' || lfaPhase === 'scattering' || lfaPhase === 'chaos') ? 1 : (1 - lfaInfluence * 0.95);
+
         if (dist < dynRadius && dist > 0) {
-          /* Magnetic attraction + orbital swirl */
           var force = (dynRadius - dist) / dynRadius;
-          var attract = force * 0.06;
-          var swirl = force * 0.03;
+          var attract = force * 0.06 * mouseInfluence;
+          var swirl = force * 0.03 * mouseInfluence;
           p.vx += dx / dist * attract - dy / dist * swirl;
           p.vy += dy / dist * attract + dx / dist * swirl;
-
-          /* Particles grow near mouse */
-          p.size *= (1 + force * 0.8);
-          p.opacity = p.baseOpacity + force * 0.4;
-        } else {
+          p.size *= (1 + force * 0.8 * mouseInfluence);
+          p.opacity = Math.max(p.opacity, p.baseOpacity + force * 0.4 * mouseInfluence);
+        } else if (lfaInfluence <= 0 && !isScattering) {
           p.opacity += (p.baseOpacity - p.opacity) * 0.05;
         }
 
-        /* Gentle drift with noise-like motion */
-        p.vx += Math.sin(time + p.pulse * 3) * 0.003;
-        p.vy += Math.cos(time + p.pulse * 2) * 0.003;
+        /* Drift: suppress during formation */
+        var driftScale = 1 - lfaInfluence * 0.95;
+        p.vx += Math.sin(time + p.pulse * 3) * 0.003 * driftScale;
+        p.vy += Math.cos(time + p.pulse * 2) * 0.003 * driftScale;
 
-        p.vx *= 0.985;
-        p.vy *= 0.985;
+        if ((!p.hasTarget || lfaInfluence <= 0) && !isScattering) {
+          p.vx *= 0.985;
+          p.vy *= 0.985;
+        }
         p.x += p.vx;
         p.y += p.vy;
 
-        /* Wrap around */
-        if (p.x < -20) p.x = canvas.width + 20;
-        if (p.x > canvas.width + 20) p.x = -20;
-        if (p.y < -20) p.y = canvas.height + 20;
-        if (p.y > canvas.height + 20) p.y = -20;
+        /* Wrap around (only during free/scattering) */
+        if (lfaPhase === 'free' || lfaPhase === 'scattering' || !p.hasTarget) {
+          if (p.x < -40) p.x = canvas.width + 40;
+          if (p.x > canvas.width + 40) p.x = -40;
+          if (p.y < -40) p.y = canvas.height + 40;
+          if (p.y > canvas.height + 40) p.y = -40;
+        }
 
         /* Draw particle with glow */
         var r = p.hue >= 0 ? Math.min(224 + p.hue, 255) : 224;
@@ -501,7 +720,6 @@
         var b = 21;
 
         if (p.size > 3) {
-          /* Large particles get a glow aura */
           var glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
           glow.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',' + (p.opacity * 0.3) + ')');
           glow.addColorStop(1, 'rgba(' + r + ',' + g + ',' + b + ',0)');
@@ -536,7 +754,8 @@
         ctx.fill();
       }
 
-      /* Draw connections : thicker, gradient-based */
+      /* ── Draw connections ── */
+      var lfaConnectBoost = lfaInfluence * 40;
       for (var i = 0; i < particles.length; i++) {
         for (var j = i + 1; j < particles.length; j++) {
           var dx = particles[i].x - particles[j].x;
@@ -544,7 +763,9 @@
           var dist = Math.sqrt(dx * dx + dy * dy);
 
           var effectiveDist = connectDist;
-          /* Extend connection range near mouse */
+          if (lfaInfluence > 0 && particles[i].hasTarget && particles[j].hasTarget) {
+            effectiveDist += lfaConnectBoost;
+          }
           var midX = (particles[i].x + particles[j].x) / 2;
           var midY = (particles[i].y + particles[j].y) / 2;
           var dmx = mouse.x - midX;
@@ -556,7 +777,6 @@
 
           if (dist < effectiveDist) {
             var opacity = (1 - dist / effectiveDist) * 0.25;
-            /* Boost opacity for connections near mouse */
             if (dMouse < dynRadius) {
               opacity *= (1 + (1 - dMouse / dynRadius) * 2);
             }
@@ -564,17 +784,15 @@
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.strokeStyle = 'rgba(224,21,21,' + Math.min(opacity, 0.5) + ')';
-            ctx.lineWidth = Math.max(0.5, (1 - dist / effectiveDist) * 2.5);
+            ctx.lineWidth = Math.max(0.3, (1 - dist / effectiveDist) * maxLineWidth);
             ctx.stroke();
           }
         }
       }
 
-      /* Mouse glow : much larger and more dramatic */
+      /* Mouse glow */
       if (mouse.x > 0 && mouse.y > 0) {
         var glowSize = 250 + mouse.speed * 2;
-
-        /* Outer ambient glow */
         var grad1 = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, glowSize);
         grad1.addColorStop(0, 'rgba(224,21,21,.12)');
         grad1.addColorStop(0.4, 'rgba(224,21,21,.05)');
@@ -582,7 +800,6 @@
         ctx.fillStyle = grad1;
         ctx.fillRect(mouse.x - glowSize, mouse.y - glowSize, glowSize * 2, glowSize * 2);
 
-        /* Inner bright core */
         var grad2 = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 40);
         grad2.addColorStop(0, 'rgba(255,100,100,.15)');
         grad2.addColorStop(1, 'rgba(224,21,21,0)');
@@ -599,7 +816,6 @@
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
 
-      /* Spawn micro-bursts while moving fast */
       var now = performance.now();
       if (mouse.speed > 8 && now - lastBurstTime > 80) {
         spawnBurst(mouse.x, mouse.y, Math.min(Math.floor(mouse.speed / 4), 6));
@@ -613,7 +829,6 @@
       mouse.speed = 0;
     });
 
-    /* Click burst */
     hero.addEventListener('click', function (e) {
       var rect = hero.getBoundingClientRect();
       spawnBurst(e.clientX - rect.left, e.clientY - rect.top, 20);
@@ -632,14 +847,14 @@
     var btns = $$('.magnetic-btn');
     if (!btns.length || prefersReduced) return;
 
-    btns.forEach(function(btn) {
-      btn.addEventListener('mousemove', function(e) {
+    btns.forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
         var rect = btn.getBoundingClientRect();
         var x = e.clientX - rect.left - rect.width / 2;
         var y = e.clientY - rect.top - rect.height / 2;
         btn.style.transform = 'translate(' + (x * 0.2) + 'px, ' + (y * 0.2) + 'px)';
       });
-      btn.addEventListener('mouseleave', function() {
+      btn.addEventListener('mouseleave', function () {
         btn.style.transform = 'translate(0, 0)';
       });
     });
@@ -652,7 +867,7 @@
     var el = document.getElementById('heroTyping');
     if (!el || prefersReduced) return;
 
-    var words = ['FIAE Ausbildung.', 'IT-Karriere.'];
+    var words = ['Auszubildende', 'FIAE-Ausbildung', 'IT-Karriere'];
     var wordIdx = 0;
     var charIdx = 0;
     var isDeleting = false;
@@ -729,18 +944,18 @@
     var cards = $$('.bento-featured');
     if (!cards.length || prefersReduced) return;
 
-    cards.forEach(function(card) {
+    cards.forEach(function (card) {
       var glow = document.createElement('div');
       glow.style.cssText = 'position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,26,26,.07),transparent 70%);pointer-events:none;opacity:0;transition:opacity .3s ease;transform:translate(-50%,-50%);z-index:0;';
       card.appendChild(glow);
 
-      card.addEventListener('mousemove', function(e) {
+      card.addEventListener('mousemove', function (e) {
         var rect = card.getBoundingClientRect();
         glow.style.left = (e.clientX - rect.left) + 'px';
         glow.style.top = (e.clientY - rect.top) + 'px';
         glow.style.opacity = '1';
       });
-      card.addEventListener('mouseleave', function() {
+      card.addEventListener('mouseleave', function () {
         glow.style.opacity = '0';
       });
     });
@@ -757,30 +972,30 @@
     var raf = null;
     var stars = [];
     var PLANETS = [
-      { abbr: 'FIAE',   orbitR0: 100, r0: 30, speed: 0.00035, angle: Math.PI * 0.25, active: true,  _sx: 0, _sy: 0 },
-      { abbr: 'FISI',   orbitR0: 175, r0: 30, speed: 0.00022, angle: Math.PI * 1.6,  active: false, _sx: 0, _sy: 0 },
-      { abbr: 'IT-Kfm', orbitR0: 250, r0: 30, speed: 0.00016, angle: Math.PI * 0.9,  active: false, _sx: 0, _sy: 0 },
-      { abbr: 'IT-Sys', orbitR0: 318, r0: 30, speed: 0.00011, angle: Math.PI * 2.4,  active: false, _sx: 0, _sy: 0 }
+      { abbr: 'FIAE', orbitR0: 100, r0: 30, speed: 0.00035, angle: Math.PI * 0.25, active: true, _sx: 0, _sy: 0 },
+      { abbr: 'FISI', orbitR0: 175, r0: 30, speed: 0.00022, angle: Math.PI * 1.6, active: false, _sx: 0, _sy: 0 },
+      { abbr: 'IT-Kfm', orbitR0: 250, r0: 30, speed: 0.00016, angle: Math.PI * 0.9, active: false, _sx: 0, _sy: 0 },
+      { abbr: 'IT-Sys', orbitR0: 318, r0: 30, speed: 0.00011, angle: Math.PI * 2.4, active: false, _sx: 0, _sy: 0 }
     ];
 
     function genStars() {
       stars = [];
-      var starColors = ['#ffffff','#ffffff','#ffffff','#ddeeff','#ffeedd','#eeeeff','#ffddee'];
+      var starColors = ['#ffffff', '#ffffff', '#ffffff', '#ddeeff', '#ffeedd', '#eeeeff', '#ffddee'];
       for (var i = 0; i < 260; i++) {
         stars.push({
-          x: Math.random()*W, y: Math.random()*H,
-          r: Math.random()*1.1+0.15,
-          ph: Math.random()*6.28, sp: Math.random()*0.5+0.15,
-          col: starColors[Math.floor(Math.random()*starColors.length)]
+          x: Math.random() * W, y: Math.random() * H,
+          r: Math.random() * 1.1 + 0.15,
+          ph: Math.random() * 6.28, sp: Math.random() * 0.5 + 0.15,
+          col: starColors[Math.floor(Math.random() * starColors.length)]
         });
       }
     }
 
     function resize() {
-      W = canvas.width  = canvas.parentElement.offsetWidth;
+      W = canvas.width = canvas.parentElement.offsetWidth;
       H = canvas.height = canvas.parentElement.offsetHeight;
-      cx = W/2; cy = H/2;
-      sc = Math.min(1, Math.min(W, H*1.5) / 1000);
+      cx = W / 2; cy = H / 2;
+      sc = Math.min(1, Math.min(W, H * 1.5) / 1000);
       genStars();
     }
 
@@ -790,7 +1005,7 @@
       /* Stars : subtle color variation */
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
-        var a = 0.10 + 0.50*(0.5+0.5*Math.sin(ts*0.001*s.sp+s.ph));
+        var a = 0.10 + 0.50 * (0.5 + 0.5 * Math.sin(ts * 0.001 * s.sp + s.ph));
         ctx.globalAlpha = a;
         ctx.fillStyle = s.col;
         ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.2832); ctx.fill();
@@ -798,85 +1013,85 @@
       ctx.globalAlpha = 1;
 
       /* Sun : dramatic, large, dangerous-looking */
-      var sunPulse = 0.5+0.5*Math.sin(ts*0.0012);   /* slow corona breathe */
+      var sunPulse = 0.5 + 0.5 * Math.sin(ts * 0.0012);   /* slow corona breathe */
 
       /* Far outer haze */
-      var sh = ctx.createRadialGradient(cx,cy,0,cx,cy,210*sc);
-      sh.addColorStop(0,'rgba(255,80,0,.18)'); sh.addColorStop(0.5,'rgba(220,40,0,.07)'); sh.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.fillStyle=sh; ctx.beginPath(); ctx.arc(cx,cy,210*sc,0,6.2832); ctx.fill();
+      var sh = ctx.createRadialGradient(cx, cy, 0, cx, cy, 210 * sc);
+      sh.addColorStop(0, 'rgba(255,80,0,.18)'); sh.addColorStop(0.5, 'rgba(220,40,0,.07)'); sh.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = sh; ctx.beginPath(); ctx.arc(cx, cy, 210 * sc, 0, 6.2832); ctx.fill();
 
       /* Main corona glow */
-      var sunGlowR = (120+sunPulse*16)*sc;
-      var sg = ctx.createRadialGradient(cx,cy,0,cx,cy,sunGlowR);
-      sg.addColorStop(0,'rgba(255,180,30,.90)');
-      sg.addColorStop(0.25,'rgba(255,100,10,.55)');
-      sg.addColorStop(0.6,'rgba(200,30,0,.18)');
-      sg.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.fillStyle=sg; ctx.beginPath(); ctx.arc(cx,cy,sunGlowR,0,6.2832); ctx.fill();
+      var sunGlowR = (120 + sunPulse * 16) * sc;
+      var sg = ctx.createRadialGradient(cx, cy, 0, cx, cy, sunGlowR);
+      sg.addColorStop(0, 'rgba(255,180,30,.90)');
+      sg.addColorStop(0.25, 'rgba(255,100,10,.55)');
+      sg.addColorStop(0.6, 'rgba(200,30,0,.18)');
+      sg.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(cx, cy, sunGlowR, 0, 6.2832); ctx.fill();
 
       /* Hot inner corona : tighter ring */
-      var sc1 = ctx.createRadialGradient(cx,cy,38*sc,cx,cy,80*sc);
-      sc1.addColorStop(0,'rgba(255,220,100,.0)');
-      sc1.addColorStop(0.4,'rgba(255,200,60,.35)');
-      sc1.addColorStop(0.75,'rgba(255,140,20,.18)');
-      sc1.addColorStop(1,'rgba(255,80,0,.0)');
-      ctx.fillStyle=sc1; ctx.beginPath(); ctx.arc(cx,cy,80*sc,0,6.2832); ctx.fill();
+      var sc1 = ctx.createRadialGradient(cx, cy, 38 * sc, cx, cy, 80 * sc);
+      sc1.addColorStop(0, 'rgba(255,220,100,.0)');
+      sc1.addColorStop(0.4, 'rgba(255,200,60,.35)');
+      sc1.addColorStop(0.75, 'rgba(255,140,20,.18)');
+      sc1.addColorStop(1, 'rgba(255,80,0,.0)');
+      ctx.fillStyle = sc1; ctx.beginPath(); ctx.arc(cx, cy, 80 * sc, 0, 6.2832); ctx.fill();
 
       /* Sun core : matte, no gloss */
-      var coreR = 54*sc;
-      var sc2 = ctx.createRadialGradient(cx,cy,0,cx,cy,coreR);
-      sc2.addColorStop(0,'#ffeeaa');      /* bright centre */
-      sc2.addColorStop(0.3,'#ffb830');    /* warm yellow */
-      sc2.addColorStop(0.65,'#e05500');   /* deep orange */
-      sc2.addColorStop(0.88,'#a01800');   /* burnt dark */
-      sc2.addColorStop(1,'#3a0500');      /* rim : near black */
-      ctx.fillStyle=sc2; ctx.beginPath(); ctx.arc(cx,cy,coreR,0,6.2832); ctx.fill();
+      var coreR = 54 * sc;
+      var sc2 = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
+      sc2.addColorStop(0, '#ffeeaa');      /* bright centre */
+      sc2.addColorStop(0.3, '#ffb830');    /* warm yellow */
+      sc2.addColorStop(0.65, '#e05500');   /* deep orange */
+      sc2.addColorStop(0.88, '#a01800');   /* burnt dark */
+      sc2.addColorStop(1, '#3a0500');      /* rim : near black */
+      ctx.fillStyle = sc2; ctx.beginPath(); ctx.arc(cx, cy, coreR, 0, 6.2832); ctx.fill();
 
       /* LFA label */
-      var fnt = Math.max(11,Math.round(15*sc));
-      ctx.font = 'bold '+fnt+'px Inter,sans-serif';
-      ctx.textAlign='center'; ctx.textBaseline='middle';
+      var fnt = Math.max(11, Math.round(15 * sc));
+      ctx.font = 'bold ' + fnt + 'px Inter,sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       /* Shadow for contrast */
-      ctx.shadowColor='rgba(0,0,0,.6)'; ctx.shadowBlur=6;
-      ctx.fillStyle='rgba(255,255,255,.95)';
-      ctx.fillText('LFA',cx,cy);
-      ctx.shadowBlur=0;
+      ctx.shadowColor = 'rgba(0,0,0,.6)'; ctx.shadowBlur = 6;
+      ctx.fillStyle = 'rgba(255,255,255,.95)';
+      ctx.fillText('LFA', cx, cy);
+      ctx.shadowBlur = 0;
 
       /* Planets */
       for (var pi = 0; pi < PLANETS.length; pi++) {
         var p = PLANETS[pi];
-        if (!p._hovered) p.angle += p.speed*16;   /* freeze when hovered */
-        var pr = p.r0*sc;
+        if (!p._hovered) p.angle += p.speed * 16;   /* freeze when hovered */
+        var pr = p.r0 * sc;
         var maxR = Math.min(cx, cy) - pr - 6;    /* clamp so planet stays inside canvas */
-        var r  = Math.min(p.orbitR0*sc, maxR);
-        var px = cx+Math.cos(p.angle)*r;
-        var py = cy+Math.sin(p.angle)*r;
-        p._sx=px; p._sy=py;
+        var r = Math.min(p.orbitR0 * sc, maxR);
+        var px = cx + Math.cos(p.angle) * r;
+        var py = cy + Math.sin(p.angle) * r;
+        p._sx = px; p._sy = py;
 
         /* Orbit ring */
         ctx.strokeStyle = p.active ? 'rgba(255,80,80,.2)' : 'rgba(255,255,255,.07)';
-        ctx.lineWidth=1; ctx.setLineDash([3,7]);
-        ctx.beginPath(); ctx.arc(cx,cy,r,0,6.2832); ctx.stroke();
+        ctx.lineWidth = 1; ctx.setLineDash([3, 7]);
+        ctx.beginPath(); ctx.arc(cx, cy, r, 0, 6.2832); ctx.stroke();
         ctx.setLineDash([]);
 
         if (p.active) {
-          var pulse = 0.5+0.5*Math.sin(ts*0.0028);
-          var gh = ctx.createRadialGradient(px,py,0,px,py,pr*3.2);
-          gh.addColorStop(0,'rgba(255,60,60,'+(0.4+pulse*0.3)+')');
-          gh.addColorStop(1,'rgba(255,0,0,0)');
-          ctx.fillStyle=gh; ctx.beginPath(); ctx.arc(px,py,pr*3.2,0,6.2832); ctx.fill();
-          ctx.strokeStyle='rgba(255,80,80,'+(0.25+pulse*0.55)+')';
-          ctx.lineWidth=1.5;
-          ctx.beginPath(); ctx.arc(px,py,pr+(3+pulse*5)*sc,0,6.2832); ctx.stroke();
+          var pulse = 0.5 + 0.5 * Math.sin(ts * 0.0028);
+          var gh = ctx.createRadialGradient(px, py, 0, px, py, pr * 3.2);
+          gh.addColorStop(0, 'rgba(255,60,60,' + (0.4 + pulse * 0.3) + ')');
+          gh.addColorStop(1, 'rgba(255,0,0,0)');
+          ctx.fillStyle = gh; ctx.beginPath(); ctx.arc(px, py, pr * 3.2, 0, 6.2832); ctx.fill();
+          ctx.strokeStyle = 'rgba(255,80,80,' + (0.25 + pulse * 0.55) + ')';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.arc(px, py, pr + (3 + pulse * 5) * sc, 0, 6.2832); ctx.stroke();
         }
 
         /* Planet body */
         if (p.active) {
           /* Active: atmospheric red gradient + sun-direction rim-light */
-          var pg = ctx.createRadialGradient(px, py, pr*0.05, px, py, pr);
-          pg.addColorStop(0,   '#c01818');
-          pg.addColorStop(0.55,'#7a0505');
-          pg.addColorStop(1,   '#180000');
+          var pg = ctx.createRadialGradient(px, py, pr * 0.05, px, py, pr);
+          pg.addColorStop(0, '#c01818');
+          pg.addColorStop(0.55, '#7a0505');
+          pg.addColorStop(1, '#180000');
           ctx.fillStyle = pg;
           ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.fill();
 
@@ -884,13 +1099,13 @@
           var rlx = px - Math.cos(rimAngle) * pr * 0.72;
           var rly = py - Math.sin(rimAngle) * pr * 0.72;
           var rl = ctx.createRadialGradient(rlx, rly, pr * 0.05, rlx, rly, pr * 1.35);
-          rl.addColorStop(0,    'rgba(255,100,60,0)');
+          rl.addColorStop(0, 'rgba(255,100,60,0)');
           rl.addColorStop(0.55, 'rgba(255,100,60,0)');
           rl.addColorStop(0.78, 'rgba(255,120,60,.30)');
-          rl.addColorStop(1,    'rgba(255,100,60,0)');
+          rl.addColorStop(1, 'rgba(255,100,60,0)');
           ctx.save();
           ctx.beginPath(); ctx.arc(px, py, pr, 0, 6.2832); ctx.clip();
-          ctx.fillStyle = rl; ctx.fillRect(px-pr*2, py-pr*2, pr*4, pr*4);
+          ctx.fillStyle = rl; ctx.fillRect(px - pr * 2, py - pr * 2, pr * 4, pr * 4);
           ctx.restore();
         } else {
           /* Inactive: clean flat outlined circle : modern minimal */
@@ -902,85 +1117,85 @@
         }
 
         /* Label : bold, large, clear */
-        var fSize = Math.max(10, Math.round(12*sc));
+        var fSize = Math.max(10, Math.round(12 * sc));
         ctx.shadowColor = 'rgba(0,0,0,.85)';
         ctx.shadowBlur = 5;
         ctx.fillStyle = 'rgba(255,255,255,.95)';
         ctx.font = 'bold ' + fSize + 'px Inter,sans-serif';
-        ctx.textAlign='center'; ctx.textBaseline='middle';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.fillText(p.abbr, px, py);
         ctx.shadowBlur = 0;
 
         /* Hint */
-        ctx.textBaseline='alphabetic';
+        ctx.textBaseline = 'alphabetic';
         if (p.active) {
-          ctx.fillStyle='rgba(255,130,130,.80)';
-          ctx.font=Math.max(8,Math.round(9.5*sc))+'px Inter,sans-serif';
-          ctx.fillText('↗ Erkunden',px,py+pr+16*sc);
+          ctx.fillStyle = 'rgba(255,130,130,.80)';
+          ctx.font = Math.max(8, Math.round(9.5 * sc)) + 'px Inter,sans-serif';
+          ctx.fillText('↗ Erkunden', px, py + pr + 16 * sc);
         } else {
-          ctx.fillStyle='rgba(165,168,210,.88)';
-          ctx.font=Math.max(8,Math.round(9.5*sc))+'px Inter,sans-serif';
-          ctx.fillText('bald verfügbar',px,py+pr+16*sc);
+          ctx.fillStyle = 'rgba(165,168,210,.88)';
+          ctx.font = Math.max(8, Math.round(9.5 * sc)) + 'px Inter,sans-serif';
+          ctx.fillText('bald verfügbar', px, py + pr + 16 * sc);
         }
       }
 
       raf = requestAnimationFrame(frame);
     }
 
-    canvas.addEventListener('click', function(e) {
+    canvas.addEventListener('click', function (e) {
       var rect = canvas.getBoundingClientRect();
-      var mx = (e.clientX-rect.left)*(W/rect.width);
-      var my = (e.clientY-rect.top)*(H/rect.height);
+      var mx = (e.clientX - rect.left) * (W / rect.width);
+      var my = (e.clientY - rect.top) * (H / rect.height);
       for (var pi = 0; pi < PLANETS.length; pi++) {
         var p = PLANETS[pi];
         if (!p.active) continue;
-        var dx=mx-p._sx, dy=my-p._sy, hit=(p.r0*sc+18);
-        if (dx*dx+dy*dy < hit*hit) {
-          var sx = p._sx*(rect.width/W)+rect.left;
-          var sy = p._sy*(rect.height/H)+rect.top;
-          openGalaxy(sx,sy); break;
+        var dx = mx - p._sx, dy = my - p._sy, hit = (p.r0 * sc + 18);
+        if (dx * dx + dy * dy < hit * hit) {
+          var sx = p._sx * (rect.width / W) + rect.left;
+          var sy = p._sy * (rect.height / H) + rect.top;
+          openGalaxy(sx, sy); break;
         }
       }
     });
 
-    canvas.addEventListener('mousemove', function(e) {
+    canvas.addEventListener('mousemove', function (e) {
       var rect = canvas.getBoundingClientRect();
-      var mx = (e.clientX-rect.left)*(W/rect.width);
-      var my = (e.clientY-rect.top)*(H/rect.height);
+      var mx = (e.clientX - rect.left) * (W / rect.width);
+      var my = (e.clientY - rect.top) * (H / rect.height);
       var hover = false;
       for (var pi = 0; pi < PLANETS.length; pi++) {
         var p = PLANETS[pi];
-        var dx=mx-p._sx, dy=my-p._sy, hit=(p.r0*sc+20);
-        var isOver = dx*dx+dy*dy < hit*hit;
+        var dx = mx - p._sx, dy = my - p._sy, hit = (p.r0 * sc + 20);
+        var isOver = dx * dx + dy * dy < hit * hit;
         p._hovered = isOver;          /* track hover per planet */
-        if (p.active && isOver) hover=true;
+        if (p.active && isOver) hover = true;
       }
-      canvas.style.cursor = hover?'pointer':'default';
+      canvas.style.cursor = hover ? 'pointer' : 'default';
     });
 
     resize();
-    window.addEventListener('resize', function() { cancelAnimationFrame(raf); resize(); raf=requestAnimationFrame(frame); });
+    window.addEventListener('resize', function () { cancelAnimationFrame(raf); resize(); raf = requestAnimationFrame(frame); });
     raf = requestAnimationFrame(frame);
   }
 
   /* ── Galaxy helpers (global scope via window) ── */
   var _galaxyInited = false;
 
-  window.loadD3 = function(cb) {
+  window.loadD3 = function (cb) {
     if (window.d3) { cb(); return; }
     var s = document.createElement('script');
     s.src = 'https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js';
     s.onload = cb; document.head.appendChild(s);
   };
 
-  window.openGalaxy = function(originX, originY) {
+  window.openGalaxy = function (originX, originY) {
     var ov = document.getElementById('galaxyOverlay');
     function reveal() {
-      ov.style.opacity='0'; ov.classList.add('go--open');
-      window.loadD3(function() {
-        requestAnimationFrame(function() {
-          ov.style.transition='opacity .4s ease'; ov.style.opacity='1';
-          if (!_galaxyInited) { window.initGalaxy(); _galaxyInited=true; }
+      ov.style.opacity = '0'; ov.classList.add('go--open');
+      window.loadD3(function () {
+        requestAnimationFrame(function () {
+          ov.style.transition = 'opacity .4s ease'; ov.style.opacity = '1';
+          if (!_galaxyInited) { window.initGalaxy(); _galaxyInited = true; }
         });
       });
     }
@@ -989,157 +1204,159 @@
     /* Desktop: circle zoom animation */
     var zl = document.getElementById('zoomLayer');
     var circ = document.getElementById('zoomCircle');
-    var diag = Math.sqrt(window.innerWidth*window.innerWidth+window.innerHeight*window.innerHeight)*2.4;
-    circ.style.cssText = 'position:absolute;border-radius:50%;background:#040810;width:'+diag+'px;height:'+diag+'px;left:'+originX+'px;top:'+originY+'px;transform:translate(-50%,-50%) scale(0);transition:none;';
+    var diag = Math.sqrt(window.innerWidth * window.innerWidth + window.innerHeight * window.innerHeight) * 2.4;
+    circ.style.cssText = 'position:absolute;border-radius:50%;background:#040810;width:' + diag + 'px;height:' + diag + 'px;left:' + originX + 'px;top:' + originY + 'px;transform:translate(-50%,-50%) scale(0);transition:none;';
     zl.style.display = 'block';
-    requestAnimationFrame(function() { requestAnimationFrame(function() {
-      circ.style.transition = 'transform .72s cubic-bezier(.4,0,.2,1)';
-      circ.style.transform = 'translate(-50%,-50%) scale(1)';
-    }); });
-    setTimeout(function() { reveal(); zl.style.display='none'; }, 700);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        circ.style.transition = 'transform .72s cubic-bezier(.4,0,.2,1)';
+        circ.style.transform = 'translate(-50%,-50%) scale(1)';
+      });
+    });
+    setTimeout(function () { reveal(); zl.style.display = 'none'; }, 700);
   };
 
-  window.closeGalaxy = function() {
+  window.closeGalaxy = function () {
     var ov = document.getElementById('galaxyOverlay');
-    ov.style.opacity='0';
-    setTimeout(function() { ov.classList.remove('go--open'); ov.style.opacity=''; }, 420);
+    ov.style.opacity = '0';
+    setTimeout(function () { ov.classList.remove('go--open'); ov.style.opacity = ''; }, 420);
   };
 
-  window.galaxySearch = function(val) {
+  window.galaxySearch = function (val) {
     if (!window._galaxyNode) return;
     var v = val.toLowerCase().trim();
-    window._galaxyNode.style('opacity', function(d) {
+    window._galaxyNode.style('opacity', function (d) {
       if (!v) return 1;
-      return (d.label.toLowerCase().includes(v)||(d.fullLabel&&d.fullLabel.toLowerCase().includes(v)))?1:0.06;
+      return (d.label.toLowerCase().includes(v) || (d.fullLabel && d.fullLabel.toLowerCase().includes(v))) ? 1 : 0.06;
     });
   };
 
-  window.initGalaxy = function() {
+  window.initGalaxy = function () {
     var container = document.getElementById('galaxySvgContainer');
-    var tooltip   = document.getElementById('galaxyTooltip');
+    var tooltip = document.getElementById('galaxyTooltip');
     if (!container || !window.GALAXY_DATA) return;
     container.innerHTML = '';
     var GW = window.innerWidth, GH = window.innerHeight;
-    var data  = JSON.parse(JSON.stringify(window.GALAXY_DATA));
+    var data = JSON.parse(JSON.stringify(window.GALAXY_DATA));
     var nodes = data.nodes, links = data.links;
 
-    var svg = d3.select(container).append('svg').attr('width',GW).attr('height',GH);
+    var svg = d3.select(container).append('svg').attr('width', GW).attr('height', GH);
 
     /* Stars background */
     var sg = svg.append('g');
-    for (var i=0;i<300;i++)
-      sg.append('circle').attr('cx',Math.random()*GW).attr('cy',Math.random()*GH)
-        .attr('r',Math.random()*1.2+0.2).attr('fill','#fff').attr('opacity',Math.random()*0.45+0.08);
+    for (var i = 0; i < 300; i++)
+      sg.append('circle').attr('cx', Math.random() * GW).attr('cy', Math.random() * GH)
+        .attr('r', Math.random() * 1.2 + 0.2).attr('fill', '#fff').attr('opacity', Math.random() * 0.45 + 0.08);
 
     /* Defs */
     var defs = svg.append('defs');
     /* LF sphere gradient : 3D look with specular highlight */
-    nodes.filter(function(d){return d.group==='LF';}).forEach(function(d) {
-      var g = defs.append('radialGradient').attr('id','grd-'+d.id)
-        .attr('cx','38%').attr('cy','30%').attr('r','68%')
-        .attr('fx','38%').attr('fy','26%');
-      g.append('stop').attr('offset','0%').attr('stop-color','#ffaaaa');   /* specular */
-      g.append('stop').attr('offset','18%').attr('stop-color','#FE0404');  /* bright */
-      g.append('stop').attr('offset','65%').attr('stop-color','#b80303');  /* mid */
-      g.append('stop').attr('offset','100%').attr('stop-color','#4a0000'); /* rim */
+    nodes.filter(function (d) { return d.group === 'LF'; }).forEach(function (d) {
+      var g = defs.append('radialGradient').attr('id', 'grd-' + d.id)
+        .attr('cx', '38%').attr('cy', '30%').attr('r', '68%')
+        .attr('fx', '38%').attr('fy', '26%');
+      g.append('stop').attr('offset', '0%').attr('stop-color', '#ffaaaa');   /* specular */
+      g.append('stop').attr('offset', '18%').attr('stop-color', '#FE0404');  /* bright */
+      g.append('stop').attr('offset', '65%').attr('stop-color', '#b80303');  /* mid */
+      g.append('stop').attr('offset', '100%').attr('stop-color', '#4a0000'); /* rim */
     });
     /* Comp sphere gradient */
-    var cg = defs.append('radialGradient').attr('id','comp-grd')
-      .attr('cx','38%').attr('cy','30%').attr('r','65%');
-    cg.append('stop').attr('offset','0%').attr('stop-color','#f0f0f8');
-    cg.append('stop').attr('offset','100%').attr('stop-color','#7a7a90');
+    var cg = defs.append('radialGradient').attr('id', 'comp-grd')
+      .attr('cx', '38%').attr('cy', '30%').attr('r', '65%');
+    cg.append('stop').attr('offset', '0%').attr('stop-color', '#f0f0f8');
+    cg.append('stop').attr('offset', '100%').attr('stop-color', '#7a7a90');
     /* UC sphere gradient */
-    var ug = defs.append('radialGradient').attr('id','uc-grd')
-      .attr('cx','38%').attr('cy','30%').attr('r','65%');
-    ug.append('stop').attr('offset','0%').attr('stop-color','#93e8ff');
-    ug.append('stop').attr('offset','100%').attr('stop-color','#0369a1');
+    var ug = defs.append('radialGradient').attr('id', 'uc-grd')
+      .attr('cx', '38%').attr('cy', '30%').attr('r', '65%');
+    ug.append('stop').attr('offset', '0%').attr('stop-color', '#93e8ff');
+    ug.append('stop').attr('offset', '100%').attr('stop-color', '#0369a1');
     /* LF glow filter */
-    var filt = defs.append('filter').attr('id','lfglow').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
-    filt.append('feGaussianBlur').attr('stdDeviation','6').attr('result','blur');
+    var filt = defs.append('filter').attr('id', 'lfglow').attr('x', '-60%').attr('y', '-60%').attr('width', '220%').attr('height', '220%');
+    filt.append('feGaussianBlur').attr('stdDeviation', '6').attr('result', 'blur');
     var feMerge = filt.append('feMerge');
-    feMerge.append('feMergeNode').attr('in','blur');
-    feMerge.append('feMergeNode').attr('in','SourceGraphic');
+    feMerge.append('feMergeNode').attr('in', 'blur');
+    feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
 
     /* Zoom */
-    var zb = d3.zoom().scaleExtent([0.08,10]).on('zoom',function(ev){grp.attr('transform',ev.transform);});
+    var zb = d3.zoom().scaleExtent([0.08, 10]).on('zoom', function (ev) { grp.attr('transform', ev.transform); });
     svg.call(zb);
     var grp = svg.append('g');
 
     /* Simulation : cluster=LF->UC (official), parent=Comp->UC (organizational) */
     var sim = d3.forceSimulation(nodes)
-      .force('link', d3.forceLink(links).id(function(d){return d.id;})
-        .distance(function(d){return d.type==='cluster'?95:38;})
-        .strength(function(d){return d.type==='cluster'?0.5:0.65;}))
-      .force('charge', d3.forceManyBody().strength(function(d){
-        return d.group==='LF'?-560:d.group==='Comp'?-80:-18;
+      .force('link', d3.forceLink(links).id(function (d) { return d.id; })
+        .distance(function (d) { return d.type === 'cluster' ? 95 : 38; })
+        .strength(function (d) { return d.type === 'cluster' ? 0.5 : 0.65; }))
+      .force('charge', d3.forceManyBody().strength(function (d) {
+        return d.group === 'LF' ? -560 : d.group === 'Comp' ? -80 : -18;
       }))
-      .force('center', d3.forceCenter(GW/2,GH/2))
-      .force('collide', d3.forceCollide().radius(function(d){return d.radius+5;}).iterations(2))
+      .force('center', d3.forceCenter(GW / 2, GH / 2))
+      .force('collide', d3.forceCollide().radius(function (d) { return d.radius + 5; }).iterations(2))
       .alphaDecay(0.012);
 
     /* Links : cluster (LF->UC) in red, parent (Comp->UC) in blue-white */
     var link = grp.append('g').selectAll('line').data(links).join('line')
-      .attr('stroke',function(d){return d.type==='cluster'?'rgba(255,90,70,.32)':'rgba(180,210,255,.28)';})
-      .attr('stroke-width',function(d){return d.type==='cluster'?1.6:1.4;})
-      .attr('stroke-opacity',function(d){return d.type==='cluster'?.32:.28;});
+      .attr('stroke', function (d) { return d.type === 'cluster' ? 'rgba(255,90,70,.32)' : 'rgba(180,210,255,.28)'; })
+      .attr('stroke-width', function (d) { return d.type === 'cluster' ? 1.6 : 1.4; })
+      .attr('stroke-opacity', function (d) { return d.type === 'cluster' ? .32 : .28; });
 
     /* Nodes : glow layer for LF */
     var nodeGlow = grp.append('g').selectAll('circle')
-      .data(nodes.filter(function(d){return d.group==='LF';})).join('circle')
-      .attr('r',function(d){return d.radius+8;})
-      .attr('fill','rgba(255,40,40,.12)')
-      .attr('filter','url(#lfglow)')
-      .attr('pointer-events','none');
+      .data(nodes.filter(function (d) { return d.group === 'LF'; })).join('circle')
+      .attr('r', function (d) { return d.radius + 8; })
+      .attr('fill', 'rgba(255,40,40,.12)')
+      .attr('filter', 'url(#lfglow)')
+      .attr('pointer-events', 'none');
 
     /* Nodes */
     var node = grp.append('g').selectAll('circle').data(nodes).join('circle')
-      .attr('r',function(d){return d.radius;})
-      .attr('fill',function(d){
-        if(d.group==='LF')   return 'url(#grd-'+d.id+')';
-        if(d.group==='Comp') return 'url(#comp-grd)';
+      .attr('r', function (d) { return d.radius; })
+      .attr('fill', function (d) {
+        if (d.group === 'LF') return 'url(#grd-' + d.id + ')';
+        if (d.group === 'Comp') return 'url(#comp-grd)';
         return 'url(#uc-grd)';
       })
-      .attr('stroke',function(d){
-        if(d.group==='LF')   return 'rgba(255,100,80,.45)';
-        if(d.group==='Comp') return 'rgba(255,255,255,.18)';
+      .attr('stroke', function (d) {
+        if (d.group === 'LF') return 'rgba(255,100,80,.45)';
+        if (d.group === 'Comp') return 'rgba(255,255,255,.18)';
         return 'rgba(56,189,248,.35)';
       })
-      .attr('stroke-width',function(d){return d.group==='LF'?2:1;})
-      .style('cursor','pointer');
+      .attr('stroke-width', function (d) { return d.group === 'LF' ? 2 : 1; })
+      .style('cursor', 'pointer');
 
     /* Labels */
     var label = grp.append('g').selectAll('text')
-      .data(nodes.filter(function(d){return d.group!=='UC';})).join('text')
-      .attr('text-anchor','middle').attr('dominant-baseline','middle')
-      .attr('font-size',function(d){return d.group==='LF'?'15px':'7.5px';})
-      .attr('font-weight',function(d){return d.group==='LF'?'700':'500';})
-      .attr('fill',function(d){return d.group==='LF'?'#fff':'#ff6060';})
-      .attr('pointer-events','none')
-      .text(function(d){return d.label;});
+      .data(nodes.filter(function (d) { return d.group !== 'UC'; })).join('text')
+      .attr('text-anchor', 'middle').attr('dominant-baseline', 'middle')
+      .attr('font-size', function (d) { return d.group === 'LF' ? '15px' : '7.5px'; })
+      .attr('font-weight', function (d) { return d.group === 'LF' ? '700' : '500'; })
+      .attr('fill', function (d) { return d.group === 'LF' ? '#fff' : '#ff6060'; })
+      .attr('pointer-events', 'none')
+      .text(function (d) { return d.label; });
 
     /* Drag */
     var dragBeh = d3.drag()
-      .on('start',function(ev,d){if(!ev.active)sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y;})
-      .on('drag', function(ev,d){d.fx=ev.x;d.fy=ev.y;})
-      .on('end',  function(ev,d){if(!ev.active)sim.alphaTarget(0);d.fx=null;d.fy=null;});
+      .on('start', function (ev, d) { if (!ev.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+      .on('drag', function (ev, d) { d.fx = ev.x; d.fy = ev.y; })
+      .on('end', function (ev, d) { if (!ev.active) sim.alphaTarget(0); d.fx = null; d.fy = null; });
     node.call(dragBeh);
 
     /* Full-path highlight: 2-level traversal so Comp→UC→LF and LF→UC→Comp are all shown */
     function getConn(d) {
       var s = new Set([d.id]);
       /* Level 1: direct neighbors */
-      links.forEach(function(l) {
-        var si = typeof l.source==='object' ? l.source.id : l.source;
-        var ti = typeof l.target==='object' ? l.target.id : l.target;
+      links.forEach(function (l) {
+        var si = typeof l.source === 'object' ? l.source.id : l.source;
+        var ti = typeof l.target === 'object' ? l.target.id : l.target;
         if (si === d.id) s.add(ti);
         if (ti === d.id) s.add(si);
       });
       /* Level 2: neighbors-of-neighbors (completes the path) */
-      var lvl1 = Array.from(s).filter(function(id){ return id !== d.id; });
-      lvl1.forEach(function(nid) {
-        links.forEach(function(l) {
-          var si = typeof l.source==='object' ? l.source.id : l.source;
-          var ti = typeof l.target==='object' ? l.target.id : l.target;
+      var lvl1 = Array.from(s).filter(function (id) { return id !== d.id; });
+      lvl1.forEach(function (nid) {
+        links.forEach(function (l) {
+          var si = typeof l.source === 'object' ? l.source.id : l.source;
+          var ti = typeof l.target === 'object' ? l.target.id : l.target;
           if (si === nid) s.add(ti);
           if (ti === nid) s.add(si);
         });
@@ -1149,87 +1366,87 @@
 
     /* Name dictionaries for tooltip */
     var LF_LABELS = {
-      'LF1':'Das Unternehmen und die eigene Rolle im Betrieb',
-      'LF2':'Arbeitsplätze nach Kundenwunsch ausstatten',
-      'LF3':'Clients in Netzwerke einbinden',
-      'LF4':'Schutzbedarfsanalyse im eigenen Arbeitsbereich',
-      'LF5':'Software zur Verwaltung von Daten anpassen',
-      'LF6':'Serviceanfragen bearbeiten',
-      'LF7':'Cyber-physische Systeme ergänzen',
-      'LF8':'Daten systemübergreifend bereitstellen',
-      'LF9':'Netzwerke und Dienste bereitstellen',
-      'LF10':'Benutzerschnittstellen gestalten und entwickeln',
-      'LF11':'Funktionalität in Anwendungen realisieren',
-      'LF12':'Kundenspezifische Anwendungsentwicklung durchführen'
+      'LF1': 'Das Unternehmen und die eigene Rolle im Betrieb',
+      'LF2': 'Arbeitsplätze nach Kundenwunsch ausstatten',
+      'LF3': 'Clients in Netzwerke einbinden',
+      'LF4': 'Schutzbedarfsanalyse im eigenen Arbeitsbereich',
+      'LF5': 'Software zur Verwaltung von Daten anpassen',
+      'LF6': 'Serviceanfragen bearbeiten',
+      'LF7': 'Cyber-physische Systeme ergänzen',
+      'LF8': 'Daten systemübergreifend bereitstellen',
+      'LF9': 'Netzwerke und Dienste bereitstellen',
+      'LF10': 'Benutzerschnittstellen gestalten und entwickeln',
+      'LF11': 'Funktionalität in Anwendungen realisieren',
+      'LF12': 'Kundenspezifische Anwendungsentwicklung durchführen'
     };
     var COMP_LABELS = {
-      '01':'Planen, Vorbereiten und Durchführen von Arbeitsaufgaben',
-      '02':'Informieren und Beraten von Kunden',
-      '03':'Beurteilen marktgängiger IT-Systeme und Lösungen',
-      '04':'Entwickeln, Erstellen und Betreuen von IT-Lösungen',
-      '05':'Qualitätssichernde Maßnahmen durchführen',
-      '06':'IT-Sicherheit und Datenschutz umsetzen',
-      '07':'Leistungen erbringen und Auftrag abschließen',
-      '08':'IT-Systeme betreiben',
-      '09':'Softwarelösungen programmieren',
-      '10':'Softwareanwendungen konzipieren und umsetzen',
-      '11':'Qualität von Softwareanwendungen sichern',
-      '12':'Vernetzt zusammenarbeiten mit digitalen Medien',
-      '13':'Kunden informieren und beraten (J2)',
-      '14':'IT-Systeme beurteilen (J2)',
-      '15':'IT-Lösungen entwickeln und betreuen (J2)',
-      '16':'Qualitätssicherung durchführen (J2)',
-      '17':'IT-Sicherheit und Datenschutz (J2)',
-      '18':'IT-Systeme betreiben (J2)',
-      '19':'Speicherlösungen in Betrieb nehmen',
-      '20':'Softwarelösungen programmieren (J2)',
-      '21':'Softwareanwendungen konzipieren (J2)',
-      '22':'Softwarequalität sichern (J2)',
-      '23':'Berufsausbildung, Arbeits- und Tarifrecht',
-      '24':'Aufbau und Organisation des Ausbildungsbetriebes',
-      '25':'Sicherheit und Gesundheitsschutz bei der Arbeit',
-      '26':'Umweltschutz'
+      '01': 'Planen, Vorbereiten und Durchführen von Arbeitsaufgaben',
+      '02': 'Informieren und Beraten von Kunden',
+      '03': 'Beurteilen marktgängiger IT-Systeme und Lösungen',
+      '04': 'Entwickeln, Erstellen und Betreuen von IT-Lösungen',
+      '05': 'Qualitätssichernde Maßnahmen durchführen',
+      '06': 'IT-Sicherheit und Datenschutz umsetzen',
+      '07': 'Leistungen erbringen und Auftrag abschließen',
+      '08': 'IT-Systeme betreiben',
+      '09': 'Softwarelösungen programmieren',
+      '10': 'Softwareanwendungen konzipieren und umsetzen',
+      '11': 'Qualität von Softwareanwendungen sichern',
+      '12': 'Vernetzt zusammenarbeiten mit digitalen Medien',
+      '13': 'Kunden informieren und beraten (J2)',
+      '14': 'IT-Systeme beurteilen (J2)',
+      '15': 'IT-Lösungen entwickeln und betreuen (J2)',
+      '16': 'Qualitätssicherung durchführen (J2)',
+      '17': 'IT-Sicherheit und Datenschutz (J2)',
+      '18': 'IT-Systeme betreiben (J2)',
+      '19': 'Speicherlösungen in Betrieb nehmen',
+      '20': 'Softwarelösungen programmieren (J2)',
+      '21': 'Softwareanwendungen konzipieren (J2)',
+      '22': 'Softwarequalität sichern (J2)',
+      '23': 'Berufsausbildung, Arbeits- und Tarifrecht',
+      '24': 'Aufbau und Organisation des Ausbildungsbetriebes',
+      '25': 'Sicherheit und Gesundheitsschutz bei der Arbeit',
+      '26': 'Umweltschutz'
     };
 
     function doHighlight(d) {
-      var conn=getConn(d);
-      node.style('opacity',function(n){return conn.has(n.id)?1:0.05;});
-      nodeGlow.style('opacity',function(n){return conn.has(n.id)?1:0.05;});
-      link.attr('stroke-opacity',function(l){
-        var si=typeof l.source==='object'?l.source.id:l.source;
-        var ti=typeof l.target==='object'?l.target.id:l.target;
-        return(conn.has(si)&&conn.has(ti))?0.85:0.02;
+      var conn = getConn(d);
+      node.style('opacity', function (n) { return conn.has(n.id) ? 1 : 0.05; });
+      nodeGlow.style('opacity', function (n) { return conn.has(n.id) ? 1 : 0.05; });
+      link.attr('stroke-opacity', function (l) {
+        var si = typeof l.source === 'object' ? l.source.id : l.source;
+        var ti = typeof l.target === 'object' ? l.target.id : l.target;
+        return (conn.has(si) && conn.has(ti)) ? 0.85 : 0.02;
       });
-      label.style('opacity',function(n){return conn.has(n.id)?1:0.08;});
+      label.style('opacity', function (n) { return conn.has(n.id) ? 1 : 0.08; });
     }
 
     function resetHighlight() {
-      node.style('opacity',1); nodeGlow.style('opacity',1); label.style('opacity',1);
-      link.attr('stroke-opacity',function(l){return l.type==='cluster'?.35:.22;});
+      node.style('opacity', 1); nodeGlow.style('opacity', 1); label.style('opacity', 1);
+      link.attr('stroke-opacity', function (l) { return l.type === 'cluster' ? .35 : .22; });
     }
 
     /* Hover + rich tooltip */
-    node.on('mouseover',function(ev,d){
+    node.on('mouseover', function (ev, d) {
       if (!compFocus) doHighlight(d);
-      var color   = d.group==='LF' ? '#ff7777' : d.group==='Comp' ? '#e2e8f0' : '#38bdf8';
-      var grpName = d.group==='LF' ? 'Lernfeld' : d.group==='Comp' ? 'Komponente' : 'Use Case';
-      var grpDesc = d.group==='LF' ? 'Berufsschulfach: theoretische Grundlage'
-                  : d.group==='Comp' ? 'Fragenkomplex: bewertet berufliche Eignung als FIAE'
-                  : 'Praxisaufgabe: konkrete Anwendungssituation';
-      var name = d.group==='LF'   ? (LF_LABELS[d.label]   || d.label)
-               : d.group==='Comp' ? (COMP_LABELS[d.label]  || d.label)
-               : (d.fullLabel || d.label);
+      var color = d.group === 'LF' ? '#ff7777' : d.group === 'Comp' ? '#e2e8f0' : '#38bdf8';
+      var grpName = d.group === 'LF' ? 'Lernfeld' : d.group === 'Comp' ? 'Komponente' : 'Use Case';
+      var grpDesc = d.group === 'LF' ? 'Berufsschulfach: theoretische Grundlage'
+        : d.group === 'Comp' ? 'Fragenkomplex: bewertet berufliche Eignung als FIAE'
+          : 'Praxisaufgabe: konkrete Anwendungssituation';
+      var name = d.group === 'LF' ? (LF_LABELS[d.label] || d.label)
+        : d.group === 'Comp' ? (COMP_LABELS[d.label] || d.label)
+          : (d.fullLabel || d.label);
       tooltip.innerHTML =
-        '<div style="color:'+color+';font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;">'+grpName+'</div>'+
-        '<div style="font-weight:600;font-size:.8rem;line-height:1.35;margin-bottom:4px;">'+name+'</div>'+
-        '<div style="color:#6e6e76;font-size:.7rem;">'+grpDesc+'</div>';
-      tooltip.style.display='block';
-      tooltip.style.left=(ev.clientX+18)+'px'; tooltip.style.top=(ev.clientY-12)+'px';
+        '<div style="color:' + color + ';font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;">' + grpName + '</div>' +
+        '<div style="font-weight:600;font-size:.8rem;line-height:1.35;margin-bottom:4px;">' + name + '</div>' +
+        '<div style="color:#6e6e76;font-size:.7rem;">' + grpDesc + '</div>';
+      tooltip.style.display = 'block';
+      tooltip.style.left = (ev.clientX + 18) + 'px'; tooltip.style.top = (ev.clientY - 12) + 'px';
     })
-    .on('mousemove',function(ev){
-      tooltip.style.left=(ev.clientX+18)+'px'; tooltip.style.top=(ev.clientY-12)+'px';
-    })
-    .on('mouseout',function(){if(!compFocus)resetHighlight();tooltip.style.display='none';});
+      .on('mousemove', function (ev) {
+        tooltip.style.left = (ev.clientX + 18) + 'px'; tooltip.style.top = (ev.clientY - 12) + 'px';
+      })
+      .on('mouseout', function () { if (!compFocus) resetHighlight(); tooltip.style.display = 'none'; });
 
     /* Comp-focus state : tracks which Comp is currently in focus mode */
     var compFocus = null;
@@ -1238,39 +1455,39 @@
     function getCompLF(compNode) {
       /* Find UCs connected to this Comp via parent links */
       var compUCs = new Set();
-      links.forEach(function(l) {
-        var si = typeof l.source==='object' ? l.source.id : l.source;
-        var ti = typeof l.target==='object' ? l.target.id : l.target;
-        if ((si===compNode.id || ti===compNode.id) && l.type==='parent') {
-          if (si===compNode.id) compUCs.add(ti); else compUCs.add(si);
+      links.forEach(function (l) {
+        var si = typeof l.source === 'object' ? l.source.id : l.source;
+        var ti = typeof l.target === 'object' ? l.target.id : l.target;
+        if ((si === compNode.id || ti === compNode.id) && l.type === 'parent') {
+          if (si === compNode.id) compUCs.add(ti); else compUCs.add(si);
         }
       });
       /* Find which LF those UCs connect to via cluster links */
       var lfCounts = {};
-      links.forEach(function(l) {
-        var si = typeof l.source==='object' ? l.source.id : l.source;
-        var ti = typeof l.target==='object' ? l.target.id : l.target;
-        if (l.type==='cluster') {
+      links.forEach(function (l) {
+        var si = typeof l.source === 'object' ? l.source.id : l.source;
+        var ti = typeof l.target === 'object' ? l.target.id : l.target;
+        if (l.type === 'cluster') {
           if (compUCs.has(si) || compUCs.has(ti)) {
             var lfId = compUCs.has(si) ? ti : si;
-            lfCounts[lfId] = (lfCounts[lfId]||0) + 1;
+            lfCounts[lfId] = (lfCounts[lfId] || 0) + 1;
           }
         }
       });
       /* Return the LF node with most shared UCs */
       var bestId = null, best = 0;
-      Object.keys(lfCounts).forEach(function(id) { if (lfCounts[id]>best){best=lfCounts[id];bestId=id;} });
+      Object.keys(lfCounts).forEach(function (id) { if (lfCounts[id] > best) { best = lfCounts[id]; bestId = id; } });
       if (!bestId) return null;
-      return nodes.find(function(n){return n.id===bestId;});
+      return nodes.find(function (n) { return n.id === bestId; });
     }
 
     /* Get UC nodes connected to a Comp via parent links */
     function getCompUCs(compNode) {
       var ids = new Set([compNode.id]);
-      links.forEach(function(l) {
-        var si = typeof l.source==='object' ? l.source.id : l.source;
-        var ti = typeof l.target==='object' ? l.target.id : l.target;
-        if ((si===compNode.id || ti===compNode.id) && l.type==='parent') {
+      links.forEach(function (l) {
+        var si = typeof l.source === 'object' ? l.source.id : l.source;
+        var ti = typeof l.target === 'object' ? l.target.id : l.target;
+        if ((si === compNode.id || ti === compNode.id) && l.type === 'parent') {
           ids.add(si); ids.add(ti);
         }
       });
@@ -1287,14 +1504,14 @@
         d.fx = lf.x; d.fy = lf.y;
         lf.fx = null; lf.fy = null; /* release LF so it drifts away */
       } else {
-        d.fx = GW/2; d.fy = GH/2;
+        d.fx = GW / 2; d.fy = GH / 2;
       }
       sim.alpha(0.45).restart();
 
       /* Zoom to where the comp now sits */
-      setTimeout(function(){
-        var t = d3.zoomIdentity.translate(GW/2,GH/2).scale(3.8).translate(-d.fx,-d.fy);
-        svg.transition().duration(700).call(zb.transform,t);
+      setTimeout(function () {
+        var t = d3.zoomIdentity.translate(GW / 2, GH / 2).scale(3.8).translate(-d.fx, -d.fy);
+        svg.transition().duration(700).call(zb.transform, t);
       }, 80);
 
       /* Show description panel */
@@ -1302,8 +1519,8 @@
       if (panel) {
         var name = COMP_LABELS[d.label] || d.label;
         panel.innerHTML =
-          '<div style="color:#a0a0b0;font-size:.58rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px;">Komponente '+d.label+'</div>'+
-          '<div style="font-weight:700;font-size:.88rem;color:#f0f0f2;line-height:1.45;">'+name+'</div>';
+          '<div style="color:#a0a0b0;font-size:.58rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px;">Komponente ' + d.label + '</div>' +
+          '<div style="font-weight:700;font-size:.88rem;color:#f0f0f2;line-height:1.45;">' + name + '</div>';
         panel.classList.add('visible');
       }
     }
@@ -1313,26 +1530,26 @@
       compFocus = null;
       resetHighlight();
       sim.alpha(0.3).restart();
-      svg.transition().duration(500).call(zb.transform,d3.zoomIdentity);
+      svg.transition().duration(500).call(zb.transform, d3.zoomIdentity);
       var panel = document.getElementById('compInfoPanel');
       if (panel) panel.classList.remove('visible');
     }
 
-    window.resetGalaxy = function() {
+    window.resetGalaxy = function () {
       if (compFocus) { compFocus.fx = null; compFocus.fy = null; compFocus = null; }
-      nodes.forEach(function(n){ n.fx = null; n.fy = null; });
+      nodes.forEach(function (n) { n.fx = null; n.fy = null; });
       resetHighlight();
       tooltip.style.display = 'none';
       var panel = document.getElementById('compInfoPanel');
       if (panel) panel.classList.remove('visible');
       /* Zoom out to show all groups : fit bounding box of current node positions */
-      var xs = nodes.map(function(n){return n.x;}), ys = nodes.map(function(n){return n.y;});
-      var minX=Math.min.apply(null,xs), maxX=Math.max.apply(null,xs);
-      var minY=Math.min.apply(null,ys), maxY=Math.max.apply(null,ys);
-      var pad=80;
-      var s=Math.min(0.9, GW/(maxX-minX+pad*2), GH/(maxY-minY+pad*2));
-      var tx=GW/2-s*(minX+maxX)/2, ty=GH/2-s*(minY+maxY)/2;
-      svg.transition().duration(600).call(zb.transform, d3.zoomIdentity.translate(tx,ty).scale(s));
+      var xs = nodes.map(function (n) { return n.x; }), ys = nodes.map(function (n) { return n.y; });
+      var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+      var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+      var pad = 80;
+      var s = Math.min(0.9, GW / (maxX - minX + pad * 2), GH / (maxY - minY + pad * 2));
+      var tx = GW / 2 - s * (minX + maxX) / 2, ty = GH / 2 - s * (minY + maxY) / 2;
+      svg.transition().duration(600).call(zb.transform, d3.zoomIdentity.translate(tx, ty).scale(s));
       sim.alpha(0.85).restart();
     };
 
@@ -1341,8 +1558,8 @@
       var panel = document.getElementById('compInfoPanel');
       if (!panel) return;
       panel.innerHTML =
-        '<div style="color:#a0a0b0;font-size:.58rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px;">'+tag+'</div>'+
-        '<div style="font-weight:700;font-size:.88rem;color:#f0f0f2;line-height:1.45;">'+name+'</div>';
+        '<div style="color:#a0a0b0;font-size:.58rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px;">' + tag + '</div>' +
+        '<div style="font-weight:700;font-size:.88rem;color:#f0f0f2;line-height:1.45;">' + name + '</div>';
       panel.classList.add('visible');
     }
     function hidePanel() {
@@ -1350,30 +1567,30 @@
       if (panel) panel.classList.remove('visible');
     }
 
-    node.on('click',function(ev,d){
+    node.on('click', function (ev, d) {
       ev.stopPropagation();
-      tooltip.style.display='none';
+      tooltip.style.display = 'none';
 
-      if (d.group==='UC') {
+      if (d.group === 'UC') {
         doHighlight(d);
         showPanel('Use Case', d.fullLabel || d.label);
         return;
       }
 
-      if (d.group==='LF') {
+      if (d.group === 'LF') {
         if (compFocus) {
           /* LF click while Comp is focused → exit focus mode */
           exitCompFocus();
         } else {
           /* Normal LF zoom */
           doHighlight(d);
-          var t = d3.zoomIdentity.translate(GW/2,GH/2).scale(2.8).translate(-d.x,-d.y);
-          svg.transition().duration(650).call(zb.transform,t);
-          showPanel('Lernfeld '+d.label, LF_LABELS[d.label] || d.label);
+          var t = d3.zoomIdentity.translate(GW / 2, GH / 2).scale(2.8).translate(-d.x, -d.y);
+          svg.transition().duration(650).call(zb.transform, t);
+          showPanel('Lernfeld ' + d.label, LF_LABELS[d.label] || d.label);
         }
       } else {
         /* Comp click */
-        if (compFocus && compFocus.id===d.id) {
+        if (compFocus && compFocus.id === d.id) {
           exitCompFocus(); /* second click on same comp → reset */
         } else {
           if (compFocus) exitCompFocus(); /* switch from another comp */
@@ -1383,32 +1600,32 @@
     });
 
     /* Click background → reset */
-    svg.on('click',function(){
+    svg.on('click', function () {
       if (compFocus) exitCompFocus();
-      else { resetHighlight(); tooltip.style.display='none'; hidePanel(); }
-      svg.transition().duration(500).call(zb.transform,d3.zoomIdentity);
+      else { resetHighlight(); tooltip.style.display = 'none'; hidePanel(); }
+      svg.transition().duration(500).call(zb.transform, d3.zoomIdentity);
     });
 
     window._galaxyNode = node;
 
     /* Tick */
-    sim.on('tick',function(){
-      link.attr('x1',function(d){return d.source.x;}).attr('y1',function(d){return d.source.y;})
-          .attr('x2',function(d){return d.target.x;}).attr('y2',function(d){return d.target.y;});
-      node.attr('cx',function(d){return d.x;}).attr('cy',function(d){return d.y;});
-      nodeGlow.attr('cx',function(d){return d.x;}).attr('cy',function(d){return d.y;});
-      label.attr('x',function(d){return d.x;}).attr('y',function(d){return d.y;});
+    sim.on('tick', function () {
+      link.attr('x1', function (d) { return d.source.x; }).attr('y1', function (d) { return d.source.y; })
+        .attr('x2', function (d) { return d.target.x; }).attr('y2', function (d) { return d.target.y; });
+      node.attr('cx', function (d) { return d.x; }).attr('cy', function (d) { return d.y; });
+      nodeGlow.attr('cx', function (d) { return d.x; }).attr('cy', function (d) { return d.y; });
+      label.attr('x', function (d) { return d.x; }).attr('y', function (d) { return d.y; });
     });
 
     /* Gentle drift */
-    setInterval(function(){sim.alpha(0.006).restart();},4000);
+    setInterval(function () { sim.alpha(0.006).restart(); }, 4000);
   };
 
   /* ==============================================
      MOBILE MENU
      ============================================== */
   function initMobileMenu() {
-    var btn  = document.getElementById('navHamburger');
+    var btn = document.getElementById('navHamburger');
     var menu = document.getElementById('mobileMenu');
     if (!btn || !menu) return;
 
@@ -1427,12 +1644,12 @@
       document.body.style.overflow = '';
     }
 
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
       menu.classList.contains('is-open') ? close() : open();
     });
 
     /* Close on ESC */
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') close();
     });
 
@@ -1447,18 +1664,18 @@
     if (!pipeline) return;
     var steps = Array.prototype.slice.call(pipeline.querySelectorAll('.rag-step'));
     var stepTimers = [];
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        stepTimers.forEach(function(t) { clearTimeout(t); });
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        stepTimers.forEach(function (t) { clearTimeout(t); });
         stepTimers = [];
         if (entry.isIntersecting) {
-          steps.forEach(function(step, i) {
-            stepTimers.push(setTimeout(function() {
+          steps.forEach(function (step, i) {
+            stepTimers.push(setTimeout(function () {
               step.classList.add('rag-step--in');
             }, i * 130));
           });
         } else {
-          steps.forEach(function(step) {
+          steps.forEach(function (step) {
             step.classList.remove('rag-step--in');
           });
         }
@@ -1471,21 +1688,21 @@
     var fills = document.querySelectorAll('.quiz-bar__fill[data-quiz-target]');
     if (!fills.length) return;
     var timers = [];
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         /* clear any pending timers first */
-        timers.forEach(function(t) { clearTimeout(t); });
+        timers.forEach(function (t) { clearTimeout(t); });
         timers = [];
         if (entry.isIntersecting) {
           /* animate in with stagger */
-          fills.forEach(function(fill, i) {
-            timers.push(setTimeout(function() {
+          fills.forEach(function (fill, i) {
+            timers.push(setTimeout(function () {
               fill.classList.add('animated');
             }, i * 300));
           });
         } else {
           /* reset bars so animation replays on next scroll-in */
-          fills.forEach(function(fill) {
+          fills.forEach(function (fill) {
             fill.classList.remove('animated');
           });
         }

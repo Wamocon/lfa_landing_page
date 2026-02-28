@@ -72,11 +72,11 @@
 
 ---
 
-## 5. FUNKTIONEN — Module
+## 5. FUNKTIONEN — Funktionsbereiche
 
 **Ziel:** Übersicht geben, nicht ins Detail verlieren.
 
-- Acht Module schnell benennen — **nicht jedes erklären**
+- Acht Funktionsbereiche schnell benennen — **nicht jede erklären**
 - Zwei wichtige herausheben, die für IHK besonders relevant sind:
   1. **Berichtsheft** — IHK-konform, mit ARP-Referenzen, PDF-Export
   2. **Arbeitszeugnisse** — juristisch geprüft, auf Knopfdruck generiert (§16 BBiG)
