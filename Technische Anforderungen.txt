@@ -1,0 +1,400 @@
+
+LFA – Lerncentrum für Azubis
+FIAE-Plattform
+Vollständige Technische Dokumentation
+
+Fachinformatiker Anwendungsentwicklung (FIAE)
+IHK-zertifiziertes 3-jähriges Ausbildungsprogramm für Anwendungsentwickler
+
+Version 1.0  —  Februar 2026
+VERTRAULICH — Nur für internen Gebrauch
+ 
+Inhaltsverzeichnis
+
+1   Produktübersicht	
+1.1   Plattformzweck	
+1.2   Datenbankarchitektur	
+2   Benutzerrollen und Dashboards	
+2.1   Azubi-Rolle (Trainee)	
+2.2   Ausbilder-Rolle (Trainer)	
+3   Lernmanagementsystem (LMS)	
+3.1   Kurs- und Modularchitektur	
+3.2   Enabler (Lerneinheiten)	
+3.3   Use Cases (Praktische Aufgaben)	
+4   Quiz- und Bewertungssystem	
+4.1   Schwierigkeitsgrade	
+4.2   Fragetypen	
+4.3   Quiz-Durchführung	
+4.4   Quiz-Erstellung	
+5   Tätigkeitsnachweise (Berichtsheft)	
+5.1   Datenbanktabellen	
+5.2   Erstellungsablauf	
+5.3   Status-Lebenszyklus	
+5.4   Trainer-Bewertung	
+5.5   PDF-Export	
+6   Leistungsbewertungssystem	
+6.1   Wöchentliche Bewertungen	
+6.2   MES-Softskill-Kriterien	
+6.3   Jahresübersicht und Warnungen	
+6.4   Ausbildungsverkürzung	
+7   Zeugniserstellung (Arbeitszeugnis)	
+7.1   Zeugnisarten	
+7.2   PDF-Inhaltsbereiche	
+7.3   Juristische Textvorlagen	
+7.4   Status-Workflow	
+8   Schul- und Kalenderverwaltung	
+8.1   Blockkalender	
+8.2   CSV-Import	
+8.3   Prüfungssystem	
+8.4   Lernfelder (IHK-Curriculum)	
+9   HAI.ai — KI-Lernassistent	
+9.1   Chat-Oberfläche	
+9.2   RAG-Pipeline	
+9.3   KI-Anbieter	
+9.4   Intent-Klassifikation	
+9.5   Live-Datenkontext	
+9.6   KI-Aktionen	
+9.7   Proaktive Einblicke	
+9.8   Prompt-Engineering	
+9.9   Inhaltsaufnahme	
+9.10   Admin-Panel	
+10   Massenoperationen	
+11   Echtzeit-Funktionen	
+12   Technologie-Stack	
+13   Fünf-Schichten-Caching-Architektur	
+14   Design-System	
+ 
+1. Produktübersicht
+LFA – Lernzentrum für Azubis ist eine vollständige digitale Ausbildungsmanagement-Plattform, die speziell für das Berufsbild Fachinformatiker Anwendungsentwicklung (FIAE) entwickelt wurde — ein IHK-zertifiziertes, dreijähriges Ausbildungsprogramm für Anwendungsentwickler. Die Plattform bietet eine umfassende, maßgeschneiderte Lösung, die fragmentierte Altsysteme ersetzt: Papier-Berichtshefte, Excel-Tabellen, manuelle Zeugniserstellung, getrennte Schulkalender und generische LMS-Plattformen, die das deutsche Berufsbildungssystem (BBiG) nicht abbilden.
+1.1 Plattformzweck
+Die Plattform dient als zentraler digitaler Hub, der Auszubildende (Azubis) und Ausbilder innerhalb des strukturierten Rahmens der IHK-regulierten FIAE-Ausbildung verbindet. Jede Funktion ist auf die spezifischen regulatorischen, pädagogischen und administrativen Anforderungen des dualen Ausbildungssystems zugeschnitten.
+1.2 Datenbankarchitektur
+Die Plattform basiert auf einer robusten PostgreSQL-Datenbankinfrastruktur, die Typsicherheit, Performance und Datenintegrität über alle Operationen hinweg gewährleistet.
+
+Metrik	Wert
+Aktive Tabellen	50 (+ 4 Legacy-Stubs)
+PostgreSQL-Enums	19 (Typsicherheit)
+Benutzerdefinierte Indizes	40+ (inkl. IVFFlat-Vektorsuche)
+JSONB-Spalten	14+ (flexible Metadaten)
+Vektor-Spalte	1 (3072 Dimensionen, Gemini-Embeddings)
+Primärschlüssel-Strategie	UUID durchgehend
+Referentielle Integrität	Kaskadierendes Löschen
+ 
+2. Benutzerrollen und Dashboards
+Die Plattform basiert auf einer Zwei-Rollen-Architektur: TRAINEE (Azubi) und TRAINER (Ausbilder). Jede Rolle verfügt über ein speziell entwickeltes Dashboard, das für ihre jeweiligen Arbeitsabläufe und Verantwortlichkeiten optimiert ist.
+2.1 Azubi-Rolle (Trainee)
+2.1.1 Registrierung und Onboarding
+Azubis registrieren sich selbständig mit E-Mail und Passwort (mindestens 6 Zeichen). Das Konto startet im inaktiven Status und muss vom Ausbilder manuell aktiviert werden. Ein Geburtsdatum ist erforderlich, bevor der Azubi auf das Dashboard zugreifen kann. Das System weist jeden neuen Azubi automatisch einem Standard-Ausbilder zu (konfigurierbar über Umgebungsvariable). Alle aktiven Ausbilder werden benachrichtigt, wenn sich ein neuer Azubi registriert.
+2.1.2 Azubi-Dashboard — 7 Bereiche
+Lernfortschritt-Karte (oben, 2/3 Breite): Zeigt den nächsten empfohlenen Enabler mit Titel, Modulname und geschätzter Bearbeitungszeit. Play-Button mit Gradient-Akzentbox (16px, rounded-2xl), der direkt zur Enabler-Seite navigiert. Glasmorphismus-Effekt mit 16px Blur, Hover hebt -3px mit Skalierung 1.01.
+Lernpfad-Raster (darunter, 2-spaltig auf Desktop): Alle eingeschriebenen Module mit Fortschrittsbalken. Filter-Tabs: Alle / In Bearbeitung / Abgeschlossen. Fortschrittsbalken farbcodiert: grüner Gradient bei 100%, roter Gradient bei laufender Bearbeitung. Show More/Less Paginierung (6 sichtbar standardmäßig). AnimatePresence mit popLayout-Modus. Abgeschlossene Module zeigen grünes Pill-Badge.
+Letzte Erfolge (unten links): Drei Typen: Quiz-Abschluss (Award-Icon, rot), Modul-Abschluss (BookOpen-Icon, grün), Lernserie (TrendingUp-Icon, blau). Glaseffekt-Container mit Akzent/20-Rahmen.
+Anstehende Fristen (unten links): Bezeichnung + lokalisiertes Fälligkeitsdatum. Kalender-Icon in lila Kreis. Glaseffekt-Container.
+Wöchentlicher Fortschrittschart (rechte Seitenleiste, oben): Recharts LineChart, 200px Höhe. Linie: #ff1a1a, 4px Strichstärke, 6px Punkte mit weißem Rand. Aktiver Punkt: 8px Radius. Gestricheltes Raster bei 0.2 Opazität. Dunkler Tooltip (#1e1423 Hintergrund, roter Rand). Darunter: 3-Spalten-Raster mit Wochenbeschriftungen und Prozentangaben.
+Skill-Radarchart (rechte Seitenleiste, Mitte): Recharts RadarChart, 200px Höhe. Radarstrich: #ff1a1a, 3px, Füllung bei 0.3 Opazität. Achsenbeschriftungen bei 11px Schriftgröße. Darunter: 2-Spalten-Raster mit Skill-Namen (green-400) und Werten. Grüne Gradient-Akzente (from-green-500/20 to-emerald-500/20).
+Modul-Fortschrittsbalkenchart (rechte Seitenleiste, unten): Recharts BarChart, 200px Höhe. Balkenfarbe: #ff1a1a, Radius [4,4,0,0]. X-Achse: -45 Grad Rotation, 60px Höhe. Animierte Liste darunter mit den ersten 5 Modulen und Expand-Toggle. Jedes Element: abgeschnittener Name, h-2 Fortschrittsbalken, Prozentangabe in Akzentfarbe.
+2.1.3 Azubi-Dashboard-Caching
+Das Azubi-Dashboard implementiert einen 10-Minuten-localStorage-Cache (Schlüssel: wmc_trainee_dashboard_cache) in Kombination mit React Query (5 Minuten Stale-Time). Dashboard-Daten werden während der Authentifizierungsüberprüfung vorgeladen, um sofortiges Rendering beim Login zu gewährleisten.
+2.2 Ausbilder-Rolle (Trainer)
+2.2.1 Ausbilder-Dashboard — 4 Bereiche
+Handlungsbedarf (oben, 2/3 Breite): Zwei nebeneinander angeordnete Karten: Ausstehende Nachweise (Tätigkeitsnachweise) mit Anzahl und „Jetzt prüfen“-Button → /trainer/activity-reports?filter=pending, sowie Ausstehende Bewertungen (Abgaben) mit Anzahl und „Jetzt prüfen“-Button → /trainer/reviews?onlyPending=true. Zahlen werden als große rote Ziffern dargestellt (text-primary, text-2xl, bold).
+Azubi-Übersicht (darunter): Pro-Azubi-Karten mit Name, Fortschrittsbalken und Prozentangabe. Balkenfarben: Grün ≥70%, Gelb 30–69%, Rot <30%. Klick navigiert zu /trainer/trainees/{id}. „Alle anzeigen“-Link zu /trainer/trainees. Hover: ring-1 ring-accent Effekt.
+Gesamtfortschrittstrend (rechte Seitenleiste, oben): Recharts AreaChart, 200px Höhe. Bereich: #ef4444 Strich, Füllung bei 0.4 Opazität, 3px Strichstärke. 6-Wochen-rollierender Trend der Abschlüsse.
+Modulfortschritt (gestapelter Balken, rechte Seitenleiste, unten): Recharts gestapelter BarChart. Drei Stapelfarben: #ef4444 (abgeschlossen), #dc2626 (in Bearbeitung), #3c2846 (nicht begonnen). Modulnamen auf 15 Zeichen abgekürzt.
+2.2.2 Ausbilder-Dashboard-Caching
+Das Ausbilder-Dashboard nutzt einen 10-Minuten-localStorage-Cache mit dem Schlüssel wmc_trainer_dashboard_cache_v4.
+ 
+3. Lernmanagementsystem (LMS)
+3.1 Kurs- und Modularchitektur
+3.1.1 Datenbankschema: courses-Tabelle
+Jeder Kursdatensatz enthält: id (UUID), title, description, year (1–3 für das Ausbildungsjahr), chapter, examPart (1 oder 2 entsprechend AP1/AP2), createdById (Referenz zum erstellenden Ausbilder), isActive und isPublished. Beziehungen bestehen zu: courseMembers (M:N), courseSkills (M:N über skills-Tabelle), enablers (1:N), useCases (1:N) und contentDocuments (1:N).
+3.1.2 Kurserstellung (Ausbilder)
+Ausbilder erstellen Kurse mit Titel (Pflichtfeld), Ausbildungsjahr (1–3), Kapitel, Prüfungsteil (AP1 oder AP2) und Kompetenzen als kommagetrennte Werte. Das System erstellt automatisch courseSkills-Einträge. Die Plattform nutzt ein geteiltes Curriculum-Modell — alle Ausbilder können alle Kurse einsehen und verwalten.
+3.1.3 Kursmitglieder-Verwaltung
+Ausbilder suchen Azubis und andere Ausbilder per Name oder E-Mail (200ms Debounce). Mitglieder können über ein Echtzeit-Dropdown hinzugefügt oder entfernt werden. Massenzuweisung wird unterstützt: Mehrere Kurse × mehrere Azubis → Batch-Einschreibung. Benachrichtigungen werden bei Hinzufügen und Entfernen gesendet.
+3.2 Enabler (Lerneinheiten)
+3.2.1 Datenbankschema: enablers-Tabelle
+Jeder Enabler-Datensatz enthält: id, courseId, title, orderIndex, descriptionText (Markdown), pptUrl, videoUrl, scenarioPdfUrl, durationValue, durationUnit (DAYS oder WEEKS), isActive und activatedAt. Beziehungen: enablerQuizLinks (1:N nach Schwierigkeit), contentDocuments (1:N), enablerCompletions (1:N), enablerSubmissions (1:N), traineeEnablerOverrides (1:N).
+3.2.2 Enabler-Seite — Azubi-Ansicht (7 Bereiche)
+1. Kopfbereich: Enabler-Titel, Countdown der verbleibenden Zeit (berechnet in Tagen ab Aktivierung), gerenderte Markdown-Beschreibung.
+2. Theorie-Materialien: Anklickbare Dokument-Pills mit BookOpen-Icons, die den PDF-Flipbook-Viewer öffnen.
+3. Szenario-Bereich: Raster von Szenario-PDFs mit Teilnummerierung (Teil 1, Teil 2 usw.). Intelligentes Titel-Parsing entfernt Suffixe wie „KORRIGIERT“ und „REVIEW1“.
+4. Status-Banner: Farbcodiert: Grün (genehmigt), Gelb (ausstehend), Rot (abgelehnt) mit Pro-Szenario-Feedback.
+5. PDF-Flipbook-Viewer: Vollbild-Modal, Zoom 50–200%, Tastaturkürzel (Esc, +, -, Pfeiltasten), Download-Button, iFrame mit Toolbar.
+6. Abgabe-Formular: Textarea (10 Zeilen), Solutions-Array für Multi-Szenario-Unterstützung. Deaktiviert bei Genehmigung, „Neu einreichen“-Button bei Ablehnung.
+7. Quiz-Kacheln (gestuft): 3-Spalten-Raster für LOW/MEDIUM/HIGH, Zustände: gesperrt/verfügbar/abgeschlossen.
+3.2.3 Dokumenttypen und Sichtbarkeit
+
+Dokumenttypen	Sichtbarkeitsoptionen
+THEORY	ALL
+EXERCISE	TRAINEE_ONLY
+REFERENCE	TRAINER_ONLY
+OTHER	—
+TRAINEE_QUESTION	—
+TRAINER_SOLUTION	—
+3.3 Use Cases (Praktische Aufgaben)
+3.3.1 Datenbankschema: useCases-Tabelle
+Jeder Use Case enthält: id, courseId, title, descriptionText, orderIndex, durationValue, durationUnit, isActive, activatedAt, year, trainingStage und lernfelder (Text-Array). Beziehungen: contentDocuments (1:N), useCaseSubmissions (1:N über useCaseSubmissionLinks), traineeUseCaseOverrides (1:N), lernfeldMappings (M:N).
+3.3.2 Abgabeformat
+Azubis reichen ein über: Textabgabe (freie Lösungsbeschreibung) und mehrere URL-Links mit Beschreibungen (GitHub-Repos, OneDrive-Dateien). Status-Lebenszyklus: PENDING → APPROVED oder REJECTED, mit Versuchsverfolgung und Neueinreichungsmöglichkeit. Rollenbasierte Dokumentsichtbarkeit: Azubis sehen nur TRAINEE_QUESTION, Ausbilder sehen TRAINER_SOLUTION zur Bewertung.
+3.3.3 HAI-Integration für Use Cases
+Wenn ein TRAINER_SOLUTION-Dokument mit triggerHaiIngestion: true hochgeladen wird, extrahiert das System automatisch PDF-Text, teilt ihn in Segmente von 2000 Zeichen mit 200 Zeichen Überlappung, generiert Embeddings über Gemini und speichert diese in der hai_embeddings-Tabelle für RAG-Suche (Retrieval-Augmented Generation).
+ 
+4. Quiz- und Bewertungssystem
+Das Bewertungssystem basiert auf einer relationalen Kette: quizzes → questions → options, verknüpft mit Enablers über die enablerQuizLinks-Tabelle nach Schwierigkeitsgrad.
+4.1 Schwierigkeitsgrade (3 Stufen)
+
+Stufe	Bezeichnung	Freischaltbedingung
+LOW	Einfach	Immer verfügbar
+MEDIUM	Mittel	LOW bestanden mit ≥50%
+HIGH	Schwer	MEDIUM bestanden mit ≥50%
+4.1.1 Visuelle Zustände
+Verfügbar: Blaues Badge „Verfügbar“, volle Hover-Effekte (Skalierung 102%, Schatten), anklickbar.
+Gesperrt: Graues Badge „Gesperrt“, Opazität 60%, cursor-not-allowed, deaktiviert.
+Abgeschlossen: Grünes Badge „Abgeschlossen“, anklickbar für Review-Modus.
+4.2 Fragetypen
+
+Typ	Eingabe	Bewertung
+MCQ (Multiple Choice)	Radio-Buttons, 4 Optionen	Automatisch bewertet, Erklärungstext pro Option
+TEXT (Freitext)	Textarea (3 Zeilen), erwartete Antwort hinterlegt	Manuelle Trainer-Bewertung erforderlich
+4.3 Quiz-Durchführung
+Die Quiz-Oberfläche präsentiert eine einzelne Frage pro Seite mit Zurück/Weiter-Navigation. Ein Fortschrittsbalken mit Gradient-Füllung (Akzent zu Primär) animiert mit 500ms Transition. Der Fragenzähler zeigt „Frage X von Y“ mit Prozentangabe. Bei der letzten Frage ändert sich der Submit-Button zu „Abgeben“. Ergebnisse zeigen Pro-Frage-Feedback in einem scrollbaren Container (max-height 50vh): grüne Ränder/Hintergründe für korrekte Antworten (mit Häkchen) und rote Ränder/Hintergründe für falsche Antworten mit korrekter Antwort und Erklärung. Einmalversuch-Sperre: Nach Abgabe können Antworten nicht geändert werden. Abgeschlossene Quizze zeigen einen Nur-Lese-Review-Modus.
+4.4 Quiz-Erstellung (Ausbilder) — 3-Schritte-Assistent
+Schritt 0: Titel-Eingabe und Aktiv-Toggle.
+Schritt 1: Fragen-Editor mit Pro-Frage-Texteingabe, 4 Optionsfelder im 2-Spalten-Raster, Radio-Selektor für korrekte Antwort, Fragen hinzufügen/entfernen.
+Schritt 2: Zuweisung über Multi-Select-Azubi-Combobox und Auswahl kollaborierender Ausbilder.
+ 
+5. Tätigkeitsnachweise (Berichtsheft / Tätigkeitsnachweis)
+IHK-konformes wöchentliches Ausbildungsdokumentationssystem zur Erfassung und Bewertung aller Ausbildungstätigkeiten.
+5.1 Datenbanktabellen
+
+Tabelle	Zweck	Wichtige Felder
+activityReports	Berichtskopf	traineeId, week, year, ausbildungsjahr, status, signatures, PDF-URL
+activityReportEntries	Legacy-Abschnitte	betriebliche Tätigkeiten, Unterweisungen, Berufsschule
+activityReportUseCaseEntries	Strukturierte Einträge (neu)	useCaseId, plannedHours, actualHours, isOverbooked, trainerGrade 1–6, gradeComment
+trainingComponents	Stammdaten für ARP-Abschnitte	§4.2.1-Referenzen, Komponentenstruktur
+trainingUseCases	Einzelne Fähigkeiten/Aufgaben	Buchstabe (a/b/c), Beschreibung, plannedHours
+5.2 Erstellungsablauf (Azubi)
+Der Azubi klickt „Neuer Bericht“ → Modal öffnet sich mit aktueller Kalenderwoche. Zeitraumauswahl: Woche (1–52), Jahr (2020–2030), Ausbildungsjahr (1–3). Ein Komponenten-/Use-Case-Selektor zeigt einen hierarchischen Baum, gruppiert nach Ausbildungsjahr-Abschnitten (1.–18. Monat, 19.–36. Monat, Integrativ). Jeder Use Case zeigt: Buchstabe, Beschreibung, geplante Stunden, verbleibende Stunden aus dem Kontingent. Erschöpfte Use Cases zeigen ein rotes „Erschöpft“-Badge. Stundeneingabe: Geplant (schreibgeschützt aus Stammdaten), Ist (Dezimaleingabe 0–999), Anmerkungen (Textarea). Überbuchungserkennung: Gelbe Warnung bei Ist > Soll, ruft Gesamtstunden pro Use Case über /api/trainee/use-case-hours ab. Zusammenfassung: 3 Boxen mit Soll-Gesamt, Ist-Gesamt und Differenz (±). Aktionen: Als Entwurf speichern oder Einreichen (setzt traineeSignedAt und Status auf SUBMITTED).
+5.3 Status-Lebenszyklus
+
+Status	Farbe	Beschreibung
+DRAFT	Grau	Erstellt, vom Azubi bearbeitbar
+SUBMITTED	Blau	Azubi hat unterschrieben und zur Prüfung eingereicht
+APPROVED	Grün	Ausbilder hat bewertet und genehmigt
+REJECTED	Rot	Ausbilder hat abgelehnt mit Feedback; Azubi kann bearbeiten und neu einreichen
+5.4 Trainer-Bewertung — 3-Tab-Modal
+Tab 1 — Details: Einträge pro Use Case mit Komponententitel, Beschreibung, Soll-/Ist-/Differenz-Stunden. Azubi-Anmerkungen in gelber Zitat-Box. Überbuchte Einträge gelb hervorgehoben.
+Tab 2 — Noten: Pro-Use-Case-Notenauswahl mit Buttons 1–6, farbcodiert: grün für 1–2, gelb für 3–4, rot für 5–6. Optionales Kommentarfeld pro Eintrag. Validierung: Alle Einträge müssen benotet sein.
+Tab 3 — Softskills: 19 MES-Kriterien in 4 Kompetenzbereichen mit Pro-Kriterium-Notenauswahl (1–6). Validierung: Alle Kriterien müssen bewertet werden. Genehmigung erfordert: Alle Einträge benotet + alle Softskills bewertet + Softskills gespeichert. Ablehnung öffnet Feedback-Formular.
+5.5 PDF-Export
+Einzelexport: Tätigkeitsnachweis_KW{Woche}_{Jahr}_{Name}.pdf. Massenexport: ZIP-Datei (via JSZip) aller gefilterten Berichte in datiertem Ordner. Jedes PDF enthält: LFA-Logo, Azubi-Informationen, Einträgetabelle, Noten, Softskills und Unterschriftsbereiche.
+ 
+6. Leistungsbewertungssystem
+6.1 Wöchentliche Bewertungen
+6.1.1 Azubi-Selbstbewertung
+Der Azubi wählt ein ARP-Thema aus einem Dropdown der trainingUseCases oder gibt manuellen Text ein, vergibt eine Selbstbewertung auf einer Skala von 1–6 (Pflicht), einen optionalen Selbstkommentar (max. 500 Zeichen) und optionale Selbstbewertungen für alle 19 Softskill-Kriterien.
+6.1.2 Ausbilder-Bewertung
+Der Ausbilder vergibt eine Trainer-Bewertung (1–6, Pflicht), einen optionalen Kommentar (max. 500 Zeichen) und optionale Bewertungen für alle 19 Softskill-Kriterien. Ein Abweichungsindikator wird automatisch berechnet als |Selbst − Trainer|: 0 = grün, 1 = gelb, 2+ = rot.
+6.2 MES-Softskill-Kriterien (19 insgesamt)
+
+Kompetenzbereich	Kriterien
+FACHKOMPETENZ (Technisch)	K3.1 Technische Grundkenntnisse, K3.2 Systementwicklung, K4.1 Anforderungsanalyse, K4.2 Problemlösefähigkeit, K5.1 Architekturverständnis
+METHODENKOMPETENZ	K3.3 Vorgehensweisen, K4.3 Projektmanagement, K4.4 Qualitätssicherung, K5.2 Prozessoptimierung
+SOZIALKOMPETENZ	K3.4 Teamfähigkeit, K4.5 Kommunikation, K4.6 Konfliktlösung, K5.3 Führungsfähigkeit
+PERSONALKOMPETENZ	K3.5 Eigenverantwortung, K4.7 Selbstorganisation, K4.8 Motivation, K5.4 Reflexionsfähigkeit, K5.5 Resilienz, K5.6 Lernbereitschaft
+Die Kriterien folgen den ISTQB-Kognitionsstufen: K3 (Anwenden), K4 (Analysieren), K5 (Bewerten).
+6.3 Jahresübersicht und Warnungen
+6.3.1 Aggregierte Metriken (nur genehmigte Bewertungen)
+Das System berechnet: Durchschnitte pro Kompetenzbereich (Fach-/Methoden-/Sozial-/Personalkompetenz), Gesamtnotendurchschnitt auf 2 Dezimalstellen, Bewertungsabschlussrate (Prozent der bewerteten Wochen) und einen 8-Wochen-Performance-Trend als Mini-Balkendiagramm.
+6.3.2 Warnhinweise
+
+Flag	Bedingung	Schwere
+PERFORMANCE_LOW	Durchschnitt > 3,5	Gelb
+PERFORMANCE_CRITICAL	Durchschnitt > 4,0	Rot
+RATING_DISCREPANCY	|Selbst − Trainer| > 1,0	Gelb
+MISSING_EVALUATIONS	< 80% der erwarteten Wochen	Gelb
+6.4 Ausbildungsverkürzung
+Liegt der Gesamtdurchschnitt des Azubis unter 2,45, erkennt das System automatisch die Berechtigung zur Ausbildungsverkürzung und setzt ein belowCutoffWarning-Flag. Dieser Berechtigungsstatus wird im Zeugnistext aufgenommen, sofern zutreffend.
+ 
+7. Zeugniserstellung (Arbeitszeugnis)
+7.1 Zeugnisarten
+
+Aspekt	ZWISCHENZEUGNIS	AUSBILDUNGSZEUGNIS
+Zeitpunkt	Ende Jahr 1 oder 2	Nach allen 3 Jahren
+Titel	ZWISCHENZEUGNIS	AUSBILDUNGSZEUGNIS
+Aussage	Die Ausbildung wird fortgesetzt.	Die Ausbildung wurde erfolgreich abgeschlossen.
+Sperrverhalten	Nach Ausstellung bearbeitbar	Dauerhaft gesperrt
+7.2 PDF-Inhaltsbereiche
+Kopfbereich: Firmenlogo, Zeugnistyp-Titel, Zeitraum und Name des Azubis.
+Einleitungstext: Automatisch generiert mit konfigurierbaren geschlechtsneutralen Pronomen (männlich/weiblich/neutral).
+Komponentenleistungstabelle: Code, Titel, Note (1–6), deutsche juristische Beschreibung pro Komponente.
+Gesamtbewertung: „Gesamtbewertung: Note X“ mit Narrativtext. Durchschnitt auf 2 Dezimalstellen.
+Verkürzungsberechtigung: Bei Durchschnitt < 2,45: IHK-vorgeschriebene Aussage zur Ausbildungsverkürzung.
+Individueller Kommentar: Pflicht-Freitext des Ausbilders (max. 2000 Zeichen).
+IHK-Notenlegende: Tabelle mit Erklärung aller 6 Notenstufen in juristischer Formulierung.
+QR-Verifizierungscode: UUID-basiert, verlinkt zu /certificates/verify?code={uuid}, als 512×512px PNG gerendert.
+Unterschriftsbereich: Ausbilder-Name und digitale Signatur-Zeitstempel.
+Radarchart (Seite 2): Canvas-gerendert, farbcodiert nach Note (grün→rot), Mitte zeigt „Ø {Durchschnitt}“.
+Kompetenzbereich-Aufschlüsselung: 4-Zeilen-Tabelle mit Bereichsdurchschnitten.
+Softskill-Kriterien-Details: Optionale erweiterte Tabelle mit allen 19 Kriterienbewertungen.
+7.3 Juristische Textvorlagen
+Gespeichert in der certificateTextTemplates-Tabelle mit einem Eintrag pro Kompetenzbereich × Notenstufe. Ausbilder können eigene Vorlagen als Überschreibung der Systemstandards (isSystemDefault = true) erstellen.
+
+Note	Deutsche juristische Formulierung
+1	den Anforderungen in besonderem Maße entsprochen
+2	den Anforderungen voll entsprochen
+3	den Anforderungen im Allgemeinen entsprochen
+4	den Anforderungen entsprochen, wenngleich mit Mängeln
+5	den Anforderungen nicht entsprochen, obwohl Grundkenntnisse vorhanden sind
+6	den Anforderungen nicht entsprochen
+7.4 Status-Workflow
+Zeugnisse durchlaufen: DRAFT → PENDING_REVIEW → APPROVED → ISSUED (gesperrt). Im Status ISSUED wird isLocked auf true gesetzt mit lockedAt-Zeitstempel. Das snapshotData-JSONB-Feld friert alle Noten zum Ausstellungszeitpunkt ein. Keine weiteren Änderungen möglich — dies verhindert nachträgliche Manipulation.
+ 
+8. Schul- und Kalenderverwaltung
+8.1 Blockkalender — 7 Blocktypen
+
+Typ	Farbe	Icon	Zweck
+SCHOOL	Akzent (Blau)	School building	Berufsschulblöcke
+COMPANY	Grün (#22c55e)	Building2	Betriebsphase
+HOLIDAY	Amber (#f59e0b)	Palmtree	Ferien/Urlaub
+EXAM	Rose (#f43f5e)	FileText	Prüfungszeitraum
+PERSONAL	Violett (#8b5cf6)	User	Persönliche Termine
+SONSTIGES	Slate (#64748b)	AlertCircle	Benutzerdefiniert
+TRAINER_BLOCKER	Indigo (#6366f1)	User	Vom Ausbilder erstellt
+8.1.1 Kalenderansichten
+Der Kalender unterstützt zwei Ansichten: Monat (42-Tage-Raster) und Woche (7-Spalten-Zeitachse). Navigation: Vor/Zurück für Monat/Woche, Heute-Button, ISO-Wochennummer im KW-Format.
+8.1.2 Block-Erstellungsmodal
+Das Modal akzeptiert: Start-/Enddatum, Blocktyp-Selektor (6 Buttons), bedingte Felder (Blocknummer für SCHOOL, Prüfungsuntertyp für EXAM, Beschreibung für SONSTIGES), Anmerkungen und Einladungs-E-Mail-Adressen.
+8.2 CSV-Import (BWS-Hofheim-Format)
+Der CSV-Import unterstützt die Spalten: KW, Datum (deutsches Datumsformat „TT.MM. - TT.MM.“), 10IT/11IT/12IT (Blocknummern pro Jahrgang) und Anmerkungen. Automatische Blocktyp-Erkennung: „ferien“ → HOLIDAY, „prüfung“ → EXAM, Blocknummer > 0 → SCHOOL, Standard → COMPANY. Deutsche Datumsanalyse mit mehreren Formatvarianten.
+8.3 Prüfungssystem
+8.3.1 Prüfungstypen
+
+Prüfungstypen (5)	Kalender-Untertypen (8)
+KLAUSUR	IHK_ABSCHLUSSPRUEFUNG_T1
+TEST	IHK_ABSCHLUSSPRUEFUNG_T2
+ABGABE	KLAUSUR_WMC
+PRAESENTATION	KLAUSUR_ALLGEMEIN
+MUENDLICH	PRAKTISCHE_PRUEFUNG, MUENDLICHE_PRUEFUNG, PROJEKTARBEIT, ANDERE
+8.3.2 Unterstützte Bewertungssysteme
+Die Plattform unterstützt vier Bewertungssysteme: Noten 1–6 mit +/- Varianten (z.B. 2+, 3-), Punkte 0–15 (IHK-/Oberstufen-Skala), Prozent (automatisch berechnet: Punkte/maxPunkte × 100) und Bestanden/Nicht bestanden (Schwelle: ≥50%).
+8.3.3 Prüfungsdatensatz-Felder
+Jeder Prüfungsdatensatz enthält: Datum, Wochentag, Unterrichtsperiode (z.B. „3./4.“), Lehrercode, Fach, Prüfungstyp, Lernfeld-Code und Anmerkungen.
+8.4 Lernfelder (LF1–LF12a) — IHK-Curriculum
+
+Ausbildungsjahr	Lernfelder	Schwerpunkt
+Jahr 1	LF1–LF5	Grundlagen, Programmierung, Datenbanken, Netzwerke, Betriebssysteme
+Jahr 2	LF6–LF9	Webentwicklung, App-Entwicklung, IT-Sicherheit, Projektmanagement
+Jahr 3	LF10–LF12 + LF10a/11a/12a	FIAE-spezifische Spezialisierungen
+Jeder Lernfeld-Datensatz enthält: code, title, description, training year, hoursBudget (Zeitrichtwert) und isCommon-Flag. Lernfelder werden über die lernfeldMappings-Tabelle und das useCases.lernfelder-Text-Array mit Enablers und Use Cases verknüpft.
+ 
+9. HAI.ai — KI-Lernassistent
+9.1 Chat-Oberfläche
+9.1.1 Schwebender Button
+Ein 80×80px Kreis unten rechts im Viewport mit animiertem Hai-GIF. Pulsierender Cyan-Glow-Effekt (radialer Gradient, 2s unendliche Animation). Hover-Tooltip: „Fragen Sie HAI...“. Klick wechselt zwischen Widget- und verstecktem Modus.
+9.1.2 Widget-Modus (400×600px Popover)
+Dunkelblau-grauer Hintergrund (#0f1117) mit Cyan-Akzentfarbschema (border-cyan-500/30). Kopfzeile: Hai-Logo + „HAI“ + cyan „BETA“-Badge. Nachrichten: 4px Abstand, Framer Motion Ein-/Ausblendung + Hinaufschieben pro Nachricht. Eingabe: rounded-xl Textarea, Cyan-Fokusring, Enter zum Senden.
+9.1.3 Vollbildmodus
+Deckt den gesamten Viewport ab. Linke Seitenleiste (280px): Sitzungsverlauf gruppiert nach Heute/Gestern/Letzte 7 Tage/Älter. Hauptbereich: max-w-3xl zentrierter Chat. Im Leerzustand: 4 Vorschlagskarten (Quiz, Zusammenfassen, Code erklären, Prüfungstipps). Eingabe: 60px Min-Höhe, 200px Max, rounded-2xl.
+9.1.4 Nachrichtenrendering
+Benutzer-Nachrichten: Dunkelgraue Blasen (#1f2937), rechtsbündig, scharfe Ecke auf Antwortseite. Assistenten-Nachrichten: Transparenter Hintergrund, linksbündig, vollständiges Markdown mit Code-Highlighting via highlight.js (GitHub Dark Theme). Zitate: Cyan-Badges mit Buch-Emoji-Icon, anklickbar bei vorhandener URL. Bearbeitungsunterstützung: Stift-Icon, Inline-Textarea, Versionsnavigation mit Chevron-Icons.
+9.1.5 Denkanimation
+Rotierender Rahmenkreis mit umlaufenden Cyan-Punkten, hüpfendes Hai-Emoji und rotierende deutsche Phrasen („Denkt nach“, „Sortiert Wissen“, „Formuliert Antwort“) im 1200ms-Zyklus. Streaming-Cursor: Inline-Cyan-Block (0.5px breit), blinkende Opazität im 0.8s-Zyklus.
+9.2 RAG-Pipeline
+Pipeline: Benutzeranfrage → Intent-Klassifikation (10 Typen) → Vektorsuche (pgvector, Kosinus-Ähnlichkeit ≥0,45) → PageIndex (PDF-Seitenebene) → Live-Datenkontext → System-Prompt → LLM → Antwort mit Quellenangaben.
+9.3 KI-Anbieter
+
+Anbieter	Modell	Einsatzzweck	Geschwindigkeit
+Gemini 2.5 Flash	Chat (Standard)	Produktion	Sehr schnell
+Claude Haiku 4.5	Chat (Premium)	Höhere Qualität	Schnell
+OpenRouter Llama 3.3 70B	Chat (kostenlos)	QA/Tests	Moderat
+Gemini embedding-001	Embeddings (3072 Dim.)	Immer Produktion	—
+9.4 Intent-Klassifikation (10+ Typen)
+Das System klassifiziert Intents in: greeting, question, quiz_request, quiz_answer, explanation, scenario_help, code_help, web_search, off_topic und action. Off-Topic-Erkennung nutzt 70+ deutsche Schlüsselwörter aus den Bereichen Unterhaltung, Essen, Gesundheit, Reisen, Religion und Prominente, mit einer IT-Kontext-Ausnahme.
+9.5 Live-Datenkontext
+9.5.1 Daten-Intent-Typen
+Unterstützte Daten-Intents: progress_query, calendar_query, exam_query, exam_results_query, submission_query, use_case_query, report_query, notification_query, review_query (Trainer), trainee_overview (Trainer), trainee_detail_query (Trainer).
+9.5.2 Kontextbudget
+Ein stets aktiver Snapshot (ca. 150 Token): Benutzername, Rolle, Gesamtfortschritt in Prozent, ungelesene Benachrichtigungen, aktueller Blocktyp. Pro-Intent-Datenabruf: 150–400 Token je Abfrage, maximal ca. 600 Token Gesamtsystemkontext.
+9.6 KI-Aktionen (Schreiboperationen)
+Azubi-Aktionen: create_activity_report, submit_activity_report, complete_enabler, submit_quiz, mark_notification_read.
+Ausbilder-Aktionen: approve_submission, approve_report, grade_quiz.
+Alle Aktionen erfordern: Konfidenzschwelle ≥0,7, Rollenverifizierung und Bestätigung bei destruktiven Operationen.
+9.7 Proaktive Einblicke
+Azubi-Prüfungen: Fehlende Tätigkeitsnachweise (aktuelle/vorherige Woche), anstehende Prüfungen (14-Tage-Fenster), niedriger Fortschritt (<30% in einem Kurs), nächster Lernschritt.
+Ausbilder-Prüfungen: Ausstehende Bewertungen (Enabler und Berichte), Azubi-Fortschrittsüberwachung (unter 30%).
+9.8 Prompt-Engineering — HAI-Persönlichkeit
+HAI kommuniziert primär auf Deutsch, präzise, motivierend und pädagogisch. 15 erlaubte Themen für Azubis, 14 zusätzliche für Ausbilder. Off-Topic-Anfragen werden freundlich aber konsequent abgelehnt. Anti-Halluzinations-Regeln: HAI erfindet niemals Plattformdaten und verweist bei Unsicherheit auf die Plattform. Injiziertes Plattform-Glossar: Kurs, Enabler, Component, Use Case, Szenario, Lernfeld, Quiz, Berichtsheft, Wochenbewertung, Ausbildungsblock, Schulklausur.
+9.9 Inhaltsaufnahme
+PDF-Textextraktion mit seitenbasierter Indexierung. Chunking: maximal 2000 Zeichen, 200 Zeichen Überlappung, Satzgrenzen-Splitting. SHA256-Content-Hash zur Deduplizierung. Quelltypen: enabler, course, document, quiz, use_case. Benutzerspezifische Embeddings gefiltert nach userId. Alle Embeddings in der Produktions-haiDb gespeichert (nie QA).
+9.10 Admin-Panel (PIN-geschützt)
+Standard-PIN: wamocon2026 (überschreibbar via HAI_ADMIN_PIN-Umgebungsvariable). Wissensbasis-Reindexierungssteuerung: Jetzt indexieren, Neuindexierung erzwingen, Abbrechen. Fortschrittsanzeige: Quellname mit Spinner, Chunk-Fortschritt (X/Y Chunks bei Z%), Erfolgs-/Fehlerzähler.
+ 
+10. Massenoperationen
+
+Operation	Details
+Massenimport	Excel-Upload mit 5 Blättern: Kurse, Kompetenzen, Enabler, Use Cases, Szenarien
+Massen-Azubi-Import	CSV mit Validierung, Vorschau und Fehlerbericht
+Massen-Block-Erstellung	Einzelne/ausgewählte/alle Azubis gleichzeitig mit Einladungs-E-Mails
+Massen-PDF-Export	ZIP-Datei aller gefilterten Tätigkeitsnachweise
+Massen-Kurszuweisung	Mehrere Kurse × mehrere Azubis → Batch-Einschreibung
+Massen-Benotung	Alle Einträge benoten + alle Softskills bewerten in einem Modal-Workflow
+ 
+11. Echtzeit-Funktionen
+11.1 Profiländerungen
+Profiländerungen werden über Supabase-Realtime-Subscriptions ausgeliefert und ermöglichen sofortigen Logout bei Kontodeaktivierung.
+11.2 Benachrichtigungen
+Ein Live-Glocken-Icon zeigt die Anzahl ungelesener Benachrichtigungen. Das Dropdown zeigt die letzten 30 Benachrichtigungen, jede anklickbar zur Navigation auf die relevante Seite.
+11.3 Sitzungsverwaltung
+Sitzungen werden nach 4 Stunden automatisch beendet. Ein 5-Minuten-Poll-Fallback stellt die Sitzungsgültigkeit für Azubis sicher, mit Tab-Sichtbarkeitsprüfung zur Optimierung. Auto-Reconnect versucht nach 5 Sekunden bei Kanalunterbrechung erneut zu verbinden.
+ 
+12. Technologie-Stack
+
+Schicht	Technologie	Version
+Framework	Next.js (App Router)	15.4.10
+Sprache	TypeScript (Strict Mode)	5.x
+UI-Bibliothek	React	18.x
+Styling	Tailwind CSS	4.1.12
+Animation	Framer Motion	10.16.4
+Datenbank	PostgreSQL via Supabase	—
+ORM	Drizzle ORM	0.44.5
+Vektor-DB	pgvector (IVFFlat, 100 Listen, Kosinus)	—
+Authentifizierung	Supabase Auth (JWT, 4h Sitzungen)	0.10.0
+State-Management	React Query + Context API	5.90.21
+Diagramme	Recharts (Line, Bar, Radar, Area)	2.15.4
+PDF-Generierung	jspdf + jspdf-autotable + html2canvas	4.0 / 5.0.7 / 1.4.1
+PDF-Anzeige	react-pdf + react-pageflip (Flipbook)	10.2.0 / 2.0.3
+PDF-Parsing	pdf-parse + pdf-lib	1.1.1 / 1.17.1
+Icons	Lucide React (230+)	0.294.0
+Internationalisierung	Deutsch + Englisch (statisches JSON)	Manuell
+Formulare	React Hook Form + Zod	7.47.0 / 3.22.4
+Export	JSZip + XLSX	3.10.1 / 0.18.5
+QR-Codes	qrcode (512px, hohe Fehlerkorrektur)	1.5.4
+E-Mail	Resend	6.7.0
+Markdown	react-markdown + rehype-highlight + remark-gfm	10.1.0
+KI-Chat	Gemini / Claude / OpenRouter SDK	Verschiedene
+KI-Embeddings	Google Generative AI (gemini-embedding-001)	0.24.1
+Deployment	Vercel mit Analytics	—
+ 
+13. Fünf-Schichten-Caching-Architektur
+
+Schicht	Technologie	Konfiguration
+Schicht 1: Browser	localStorage	Auth, Theme, Sprache, Dashboard-Daten (10 Min. TTL)
+Schicht 2: Client	React Query	5 Min. Stale-Time, 10 Min. GC-Time, Auto-Refetch bei Fokus
+Schicht 3: Server	Next.js Data Cache (unstable_cache)	Serverseitig, Tag-basierte Invalidierung
+Schicht 4: HTTP	Cache-Control (Middleware)	SHORT 2 Min., MEDIUM 5 Min., LONG 15 Min., EXTRA_LONG 30 Min. + stale-while-revalidate
+Schicht 5: CDN	Vercel Edge	Automatisch basierend auf Cache-Control-Headern
+ 
+14. Design-System
+14.1 Theme und Farbpalette
+Die Plattform folgt einem Dark-Mode-First-Designansatz mit vollständiger Light-Mode-Unterstützung. Primärfarbe: Crimson Rot (#ff1a1a im Dark Mode, #e61919 im Light Mode).
+14.2 Visuelle Designprinzipien
+Glasmorphismus: 12–16px Blur, 95% Opazität-Hintergründe, mehrschichtige Schatten in der gesamten Oberfläche.
+Typografie: Inter als Primärschrift mit system-ui als Fallback.
+Responsives Design: Mobile-First-Ansatz. Seitenleiste wird auf Mobilgeräten ausgeblendet, erscheint ab dem lg-Breakpoint.
+Animationen: Hover-Lift-Effekte (-2px/-3px), Skalierung bei Tap (0.95), vollständige Unterstützung für reduzierte Bewegungen (Barrierefreiheit).
+Benutzerdefinierte Scrollbalken: Roter Thumb auf Anthrazit-Track.
+
+
+— Ende des Dokuments —
