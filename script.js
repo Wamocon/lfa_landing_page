@@ -406,6 +406,8 @@
     function resize() {
       canvas.width = hero.offsetWidth;
       canvas.height = hero.offsetHeight;
+      /* Re-centre LFA text targets whenever canvas dimensions change */
+      if (particles.length > 0) assignTargets();
     }
 
     /* Sample pixel positions from rendered text "LFA" – outline only */
@@ -423,8 +425,8 @@
       offCtx.textAlign = 'center';
       offCtx.textBaseline = 'middle';
 
-      /* Position: vertically centered */
-      textCenterX = oW / 2;
+      /* Position: use visible viewport centre so LFA is always centred on screen */
+      textCenterX = window.innerWidth / 2;
       textCenterY = oH * 0.42;
 
       /* Draw each letter individually with increased spacing */
@@ -836,8 +838,8 @@
 
     window.addEventListener('resize', resize);
 
-    seed();
-    animate();
+    /* Defer one frame so layout is fully settled before measuring hero.offsetWidth */
+    requestAnimationFrame(function () { seed(); animate(); });
   }
 
   /* ==============================================
@@ -1889,26 +1891,3 @@ function animateChain(chainId) {
   }
 })();
 
-function toggleAZ() {
-  var panel = document.getElementById('az-details');
-  var chev  = document.getElementById('az-chev');
-  if (!panel) return;
-
-  if (panel.style.display === 'none' || panel.style.display === '') {
-    panel.style.display   = 'block';
-    panel.style.opacity   = '0';
-    panel.style.transform = 'translateY(10px)';
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        panel.style.opacity   = '1';
-        panel.style.transform = 'translateY(0)';
-      });
-    });
-    if (chev) chev.style.transform = 'rotate(180deg)';
-  } else {
-    panel.style.opacity   = '0';
-    panel.style.transform = 'translateY(10px)';
-    setTimeout(function() { panel.style.display = 'none'; }, 300);
-    if (chev) chev.style.transform = '';
-  }
-}
