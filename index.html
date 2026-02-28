@@ -489,8 +489,7 @@
         <div class="nav-links-pill">
           <a href="#problem" class="nav-link magnetic-btn" data-nav-section="problem">Problem</a>
           <a href="#rollen" class="nav-link magnetic-btn" data-nav-section="rollen">Rollen</a>
-          <a href="#warum" class="nav-link magnetic-btn" data-nav-section="warum">LFA</a>
-          <a href="#funktionen" class="nav-link magnetic-btn" data-nav-section="funktionen">Module</a>
+          <a href="#funktionen" class="nav-link magnetic-btn" data-nav-section="funktionen">Funktionen</a>
           <a href="#solarsystem" class="nav-link magnetic-btn" data-nav-section="solarsystem">Universum</a>
           <a href="#demo" class="nav-link magnetic-btn" data-nav-section="demo">Demo</a>
           <a href="#hai" class="nav-link magnetic-btn" data-nav-section="hai">HAI</a>
@@ -523,8 +522,7 @@
     <div class="mm-grid">
       <a href="#problem" class="mm-link" onclick="closeMobileMenu()">Problem</a>
       <a href="#rollen" class="mm-link" onclick="closeMobileMenu()">Rollen</a>
-      <a href="#warum" class="mm-link" onclick="closeMobileMenu()">LFA</a>
-      <a href="#funktionen" class="mm-link" onclick="closeMobileMenu()">Module</a>
+      <a href="#funktionen" class="mm-link" onclick="closeMobileMenu()">Funktionen</a>
       <a href="#solarsystem" class="mm-link" onclick="closeMobileMenu()">Universum</a>
       <a href="#demo" class="mm-link" onclick="closeMobileMenu()">Demo</a>
       <a href="#hai" class="mm-link" onclick="closeMobileMenu()">HAI</a>
@@ -545,13 +543,8 @@
       style="background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 60% 55% at 50% 50%,black 0%,transparent 70%)">
     </div>
     <div class="relative z-10 text-center max-w-[920px] px-5">
-      <div
-        class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-soft border border-border-accent text-xs font-medium tracking-widest uppercase text-accent mb-8">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent" style="animation:pulse 2s ease infinite"></span>Gerade
-        gelauncht · Version 1.0
-      </div>
       <h1 class="reveal text-3xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight mb-6">
-        Vom Chaos zur<br><span class="gradient-text" id="heroTyping">effizienten Ausbildung</span>
+        Lernzentrum für<br><span class="gradient-text" id="heroTyping">Auszubildende</span>
       </h1>
       <p class="reveal text-lg md:text-xl text-muted max-w-[640px] mx-auto leading-relaxed">Schluss mit unstrukturierter
         FIAE-Ausbildung. LFA bringt KI-gestützte Lernpfade, persönliches Feedback und IHK-konforme Inhalte &ndash; damit
@@ -567,12 +560,7 @@
   <section class="relative section-dark" id="problem" style="padding:7rem 0 6rem;margin-top:-2px;">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
 
-      <!-- Alarmbadge -->
-      <div class="reveal mb-7">
-        <span class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded"
-          style="color:#ff3333;background:rgba(255,30,30,.1);border:1px solid rgba(255,30,30,.3);">&#9888;
-          Systemversagen</span>
-      </div>
+
 
       <!-- Dramatische Headline -->
       <h2 class="reveal text-4xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6" style="color:#f0f0f2;">
@@ -664,7 +652,7 @@
   <div style="background:#050508;padding:5rem 1rem;text-align:center;position:relative;overflow:hidden;">
     <div style="width:2px;height:90px;background:linear-gradient(to bottom,transparent,#ff2222);margin:0 auto 2.5rem;">
     </div>
-    <p class="reveal text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff3333;">Die Antwort</p>
+
     <h2 class="reveal text-3xl md:text-5xl font-black" style="color:#f0f0f2;">LFA&nbsp;ändert das</h2>
     <p class="reveal text-base mt-4 max-w-[460px] mx-auto leading-relaxed" style="color:#5a5a68;">Drei Probleme. Eine
       Plattform. Gebaut für die Ausbildung von morgen.</p>
@@ -746,259 +734,165 @@
   <section class="py-24 md:py-36 section-organic" id="rollen">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-14">
-        <span
-          class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Für
-          wen ist LFA?</span>
+
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Zwei Rollen<br>Eine
           Plattform</h2>
         <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Ohne LFA: Chaos, Papierkram und
           planlose Ausbildung. Mit LFA: Struktur, Klarheit und echte Ergebnisse.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 gap-8">
         <!-- Ausbilder -->
-        <div
-          class="reveal p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border tilt-card">
-          <div
-            class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
-            <svg class="icon w-6 h-6">
-              <use href="#i-users" />
-            </svg>
+        <div class="reveal rounded-2xl bg-surface border border-border overflow-hidden">
+          <div class="p-6 pb-4 flex items-center gap-4 border-b border-border">
+            <div
+              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent">
+              <svg class="icon w-6 h-6">
+                <use href="#i-users" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold">Für Ausbilder</h3>
           </div>
-          <h3 class="text-2xl font-bold mb-2">Für Ausbilder</h3>
-          <p class="text-xs text-muted mb-5" style="opacity:.65;">Ohne LFA: stundenlanges Suchen, Excel-Listen, kein
-            Überblick</p>
-          <ul class="space-y-3">
-            <li class="flex items-start gap-3">
-              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                <use href="#i-check" />
-              </svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Alle Azubis auf einen Blick</strong> statt
-                Excel-Chaos &ndash; Dashboard zeigt Lernfortschritt, offene Aufgaben und Leistungen in Echtzeit.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                <use href="#i-check" />
-              </svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Automatisierte Dokumente</strong> statt
-                manuellem Papierkram &ndash; Berichtshefte, Nachweise und Zeugnisse werden automatisch generiert.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                <use href="#i-check" />
-              </svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Gezieltes Feedback</strong> statt
-                sporadischer Rückmeldung &ndash; Aufgaben direkt in der Plattform reviewen und individuelles Feedback
-                geben.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                <use href="#i-check" />
-              </svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">IHK-konform ab Tag 1</strong> statt
-                eigener Recherche &ndash; alle Inhalte basieren auf offiziellen IHK-Verordnungen.</span>
-            </li>
-          </ul>
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <!-- Ohne LFA -->
+            <div class="p-6" style="background:rgba(120,120,140,.04);">
+              <div class="text-xs font-bold tracking-widest uppercase mb-5" style="color:#888;">&#10005; Ohne LFA</div>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-2">
+                  <span class="text-faint mt-0.5">–</span>
+                  <span class="text-sm" style="color:#777;">Lernfortschritt in Excel-Listen oder gar nicht
+                    dokumentiert</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-faint mt-0.5">–</span>
+                  <span class="text-sm" style="color:#777;">Berichtshefte, Nachweise und Zeugnisse manuell
+                    erstellen</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-faint mt-0.5">–</span>
+                  <span class="text-sm" style="color:#777;">Sporadisches Feedback, oft zu spät oder unspezifisch</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-faint mt-0.5">–</span>
+                  <span class="text-sm" style="color:#777;">IHK-Verordnungen selbst recherchieren und aktuell
+                    halten</span>
+                </li>
+              </ul>
+            </div>
+            <!-- Mit LFA -->
+            <div class="p-6 border-t md:border-t-0 md:border-l border-border"
+              style="background:linear-gradient(135deg,rgba(255,26,26,.03),transparent);">
+              <div class="text-xs font-bold tracking-widest uppercase text-accent mb-5">&#10003; Mit LFA</div>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-2">
+                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                    <use href="#i-check" />
+                  </svg>
+                  <span class="text-sm"><strong>Alle Azubis auf einen Blick</strong> &ndash; Dashboard zeigt
+                    Lernfortschritt, Aufgaben und Leistungen in Echtzeit</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                    <use href="#i-check" />
+                  </svg>
+                  <span class="text-sm"><strong>Automatisierte Dokumente</strong> &ndash; Berichtshefte, Nachweise und
+                    Zeugnisse auf Knopfdruck</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                    <use href="#i-check" />
+                  </svg>
+                  <span class="text-sm"><strong>Gezieltes Feedback</strong> &ndash; Aufgaben direkt in der Plattform
+                    reviewen und individuelles Feedback geben</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                    <use href="#i-check" />
+                  </svg>
+                  <span class="text-sm"><strong>IHK-konform ab Tag 1</strong> &ndash; alle Inhalte basieren auf
+                    offiziellen IHK-Verordnungen</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+
         <!-- Auszubildende -->
-        <div
-          class="reveal p-8 rounded-2xl bg-surface border border-border card-hover accent-hover gradient-border tilt-card">
-          <div
-            class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
-            <svg class="icon w-6 h-6">
-              <use href="#i-book" />
-            </svg>
+        <div class="reveal rounded-2xl bg-surface border border-border overflow-hidden">
+          <div class="p-6 pb-4 flex items-center gap-4 border-b border-border">
+            <div
+              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent">
+              <svg class="icon w-6 h-6">
+                <use href="#i-book" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold">Für Auszubildende</h3>
           </div>
-          <h3 class="text-2xl font-bold mb-2">Für Auszubildende</h3>
-          <p class="text-xs text-muted mb-5" style="opacity:.65;">Ohne LFA: planlos lernen, Deadlines verpassen, allein
-            gelassen</p>
-          <ul class="space-y-3">
-            <li class="flex items-start gap-3">
-              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                <use href="#i-check" />
-              </svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Klare Struktur</strong> statt planlosem
-                Lernen &ndash; Lernfortschritt, nächste Aufgaben und Ziele immer im Blick.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                <use href="#i-check" />
-              </svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Prüfungstermine im Blick</strong> statt
-                böser Überraschungen &ndash; Kalender mit IHK-Prüfungen, Berufsschulblöcken und Abgabefristen.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                <use href="#i-check" />
-              </svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Praxisnahes Lernen</strong> statt
-                trockener Theorie &ndash; Szenarien, Use Cases und Quizze, die auf die echte Prüfung vorbereiten.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
-                <use href="#i-check" />
-              </svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">KI-Assistent HAI</strong> statt
-                Google-Roulette &ndash; verifizierte Antworten auf Basis offizieller IHK-Quellen.</span>
-            </li>
-          </ul>
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <!-- Ohne LFA -->
+            <div class="p-6" style="background:rgba(120,120,140,.04);">
+              <div class="text-xs font-bold tracking-widest uppercase mb-5" style="color:#888;">&#10005; Ohne LFA</div>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-2">
+                  <span class="text-faint mt-0.5">–</span>
+                  <span class="text-sm" style="color:#777;">Kein Überblick über Lernfortschritt oder nächste
+                    Schritte</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-faint mt-0.5">–</span>
+                  <span class="text-sm" style="color:#777;">Prüfungstermine und Deadlines selbst verwalten &ndash; oft
+                    vergessen</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-faint mt-0.5">–</span>
+                  <span class="text-sm" style="color:#777;">Trockene Theorie aus Lehrbüchern, ohne Praxisbezug</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-faint mt-0.5">–</span>
+                  <span class="text-sm" style="color:#777;">Google-Suche für Fachfragen &ndash; unsichere,
+                    widersprüchliche Antworten</span>
+                </li>
+              </ul>
+            </div>
+            <!-- Mit LFA -->
+            <div class="p-6 border-t md:border-t-0 md:border-l border-border"
+              style="background:linear-gradient(135deg,rgba(255,26,26,.03),transparent);">
+              <div class="text-xs font-bold tracking-widest uppercase text-accent mb-5">&#10003; Mit LFA</div>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-2">
+                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                    <use href="#i-check" />
+                  </svg>
+                  <span class="text-sm"><strong>Klare Struktur</strong> &ndash; Lernfortschritt, nächste Aufgaben und
+                    Ziele immer im Blick</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                    <use href="#i-check" />
+                  </svg>
+                  <span class="text-sm"><strong>Prüfungstermine im Blick</strong> &ndash; Kalender mit IHK-Prüfungen,
+                    Berufsschulblöcken und Abgabefristen</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                    <use href="#i-check" />
+                  </svg>
+                  <span class="text-sm"><strong>Praxisnahes Lernen</strong> &ndash; Szenarien, Use Cases und Quizze, die
+                    auf die echte Prüfung vorbereiten</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                    <use href="#i-check" />
+                  </svg>
+                  <span class="text-sm"><strong>KI-Assistent HAI</strong> &ndash; verifizierte Antworten auf Basis
+                    offizieller IHK-Quellen</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- WARUM LFA : Organic floating blobs -->
-  <section class="py-24 md:py-36 relative section-organic" id="warum">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-30 pointer-events-none"
-      style="background:radial-gradient(ellipse,var(--color-accent-glow),transparent 70%)"></div>
-    <div class="max-w-[1100px] mx-auto px-5 md:px-10 relative">
-      <span
-        class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">LFA</span>
-      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Vom LMS zum LXS<br>Eine neue
-        Kategorie</h2>
-      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Der Markt ist voll von Learning Management
-        Systems. LFA ist das erste Learning Experience &amp; Support System.</p>
-      <!-- Bento Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
-        <!-- Featured: large card with image -->
-        <div class="reveal md:col-span-2 p-8 rounded-2xl bg-surface border border-border card-hover bento-featured">
-          <div class="flex flex-col md:flex-row gap-6">
-            <div class="flex-1">
-              <div
-                class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
-                <svg class="icon">
-                  <use href="#i-shield" />
-                </svg>
-              </div>
-              <h3 class="text-xl font-semibold mb-3">Closed-Context KI</h3>
-              <p class="text-sm text-muted leading-relaxed">Unsere KI greift ausschließlich auf IHK-Verordnungen und
-                Firmendaten zu. Anti-Halluzinations-Regeln verhindern erfundene Daten. Jede Antwort enthält
-                Quellenangaben.</p>
-            </div>
-            <div class="md:w-[240px] shrink-0 self-center">
-              <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden"
-                onclick="openLightbox(this.querySelector('img'))">
-                <img src="screen-hai-quellen.png" alt="HAI KI-Chat mit Quellenangaben aus IHK-Büchern" class="w-full"
-                  loading="lazy" decoding="async">
-                <span class="lightbox-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 3 21 3 21 9" />
-                    <polyline points="9 21 3 21 3 15" />
-                    <line x1="21" y1="3" x2="14" y2="10" />
-                    <line x1="3" y1="21" x2="10" y2="14" />
-                  </svg></span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
-          <div
-            class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
-            <svg class="icon">
-              <use href="#i-zap" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2">Personalisiertes Feedback</h3>
-          <p class="text-sm text-muted leading-relaxed">Dein Ausbilder reviewed persönlich deine Aufgaben und gibt dir
-            individuelles , abgestimmt auf dich und deinen Lernstand.</p>
-        </div>
-        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
-          <div
-            class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
-            <svg class="icon">
-              <use href="#i-clipboard" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2">IHK-konform ab Tag 1</h3>
-          <p class="text-sm text-muted leading-relaxed">Juristische Arbeitszeugnisvorlagen, ARP-Referenzen,
-            Lernfeld-Zuordnung LF1 bis LF12a.</p>
-        </div>
-        <!-- Featured: large card with image -->
-        <div class="reveal md:col-span-2 p-8 rounded-2xl bg-surface border border-border card-hover bento-featured">
-          <div class="flex flex-col md:flex-row gap-6">
-            <div class="md:w-[240px] shrink-0 order-2 md:order-1 self-center">
-              <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden"
-                onclick="openLightbox(this.querySelector('img'))">
-                <img src="screen-ausbilder-dashboard.png" alt="Ausbilder-Dashboard mit Azubi-Übersicht" class="w-full"
-                  loading="lazy" decoding="async">
-                <span class="lightbox-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 3 21 3 21 9" />
-                    <polyline points="9 21 3 21 3 15" />
-                    <line x1="21" y1="3" x2="14" y2="10" />
-                    <line x1="3" y1="21" x2="10" y2="14" />
-                  </svg></span>
-              </div>
-            </div>
-            <div class="flex-1 order-1 md:order-2">
-              <div
-                class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
-                <svg class="icon">
-                  <use href="#i-clock" />
-                </svg>
-              </div>
-              <h3 class="text-xl font-semibold mb-3">Dein Ausbilder, ganz nah</h3>
-              <p class="text-sm text-muted leading-relaxed">Dein Ausbilder reviewed deine Arbeit selbst und gibt dir
-                sein individuelles Feedback.</p>
-            </div>
-          </div>
-        </div>
-        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
-          <div
-            class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
-            <svg class="icon">
-              <use href="#i-link" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2">Integriert statt fragmentiert</h3>
-          <p class="text-sm text-muted leading-relaxed">LMS, Berichtsheft, Arbeitszeugnisse, Kalender, KI-Assistent und
-            personalisierte Bewertungen in einer Plattform.</p>
-        </div>
-        <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
-          <div
-            class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
-            <svg class="icon">
-              <use href="#i-building" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2">Firmeneigenes Wissen</h3>
-          <p class="text-sm text-muted leading-relaxed">Unternehmen laden eigene Dokumentation hoch. Die KI wird zum
-            spezifischen Mentor.</p>
-        </div>
-      </div>
-      <!-- Comparison -->
-      <div class="reveal grid grid-cols-1 md:grid-cols-2 rounded-2xl overflow-hidden border border-border mt-12">
-        <div class="p-8 bg-surface">
-          <div class="text-xs font-semibold tracking-widest uppercase text-faint mb-6">Der alte Weg</div>
-          <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernmaterial</span><span
-              class="text-sm text-muted">Stapelweise Bücher, unübersichtliche PDFs, kein roter Faden</span></div>
-          <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernen</span><span
-              class="text-sm text-muted">Trockene Theorie, ohne Praxisbezug</span></div>
-          <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Feedback</span><span
-              class="text-sm text-muted">Unpersönlich, verspätet oder gar nicht</span></div>
-          <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Ausbilder-Rolle</span><span
-              class="text-sm text-muted">Korrektor und Administrator</span></div>
-          <div class="py-3"><span class="block text-xs text-faint">Wissensquelle</span><span
-              class="text-sm text-muted">Generische Videos, veraltete Unterlagen</span></div>
-        </div>
-        <div class="p-8 border-t md:border-t-0 md:border-l border-border"
-          style="background:linear-gradient(135deg,var(--color-accent-soft),transparent)">
-          <div class="text-xs font-semibold tracking-widest uppercase text-accent mb-6">Der LFA-Weg</div>
-          <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernmaterial</span><span
-              class="text-sm font-medium">Offizielle IHK-Bücher : Daraus entstehen Szenarien, Quizze und Use
-              Cases</span></div>
-          <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernen</span><span
-              class="text-sm font-medium">Praxisnahe Szenarien und Use Cases statt abstrakter Theorie</span></div>
-          <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Feedback</span><span
-              class="text-sm font-medium">Persönliches Feedback von deinem Ausbilder auf jede Aufgabe</span></div>
-          <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Ausbilder-Rolle</span><span
-              class="text-sm font-medium">Persönlicher Mentor und Reviewer</span></div>
-          <div class="py-3"><span class="block text-xs text-faint">Wissensquelle</span><span
-              class="text-sm font-medium">IHK-Bücher, Firmendaten und eine KI, die nur daraus antwortet</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
 
   <!-- FUNKTIONEN : Soft glow section -->
   <section class="py-24 md:py-36 text-center section-alt section-glow" id="funktionen">
@@ -1006,8 +900,9 @@
       <span
         class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Funktionsbereiche</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Alles, was die
-        FIAE-Ausbildung<br>braucht.</h2>
-      <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte Module, alles in einer
+        FIAE-Ausbildung<br>braucht</h2>
+      <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte Funktionsbereiche,
+        alles in einer
         Plattform vereint.</p>
       <!-- Featured modules -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14">
@@ -1386,17 +1281,7 @@
 
         </div>
 
-        <!-- Connector-Pfeil : nur Desktop -->
-        <div class="hidden md:flex items-center justify-center"
-          style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;pointer-events:none;">
-          <div
-            style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#e84a1a,#e87c10);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(232,100,20,.35),0 0 0 4px rgba(232,100,20,.1);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-              style="width:16px;height:16px;color:#fff;">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </div>
-        </div>
+        <!-- Connector-Pfeil entfernt: Beide Module sind eigenständig -->
 
       </div>
     </div>
@@ -1407,10 +1292,9 @@
   <!-- SOLAR SYSTEM : Lernuniversum -->
   <section class="section-dark" id="solarsystem" style="position:relative;overflow:hidden;">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10 text-center pt-24 md:pt-36 pb-8">
-      <span
-        class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Inhaltsarchitektur</span>
+
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Vom
-        Chaos &#x2192; zur Klarheit.</h2>
+        Chaos &#x2192; zur Ordnung</h2>
       <p class="reveal text-lg max-w-[560px] mx-auto leading-relaxed mb-10" style="color:#9999a1;">Klicke auf <strong
           style="color:#ff6060;">FIAE</strong> und fliege durch das gesamte Lernuniversum: Lernfelder, Komponenten und
         Use Cases.</p>
@@ -1452,7 +1336,7 @@
         </div>
       </div>
     </div>
-    <div class="solar-wrap">
+    <div class="solar-wrap reveal">
       <canvas id="solarCanvas"></canvas>
     </div>
     <p class="text-center pb-10" style="font-size:.72rem;color:#5a5a68;margin-top:8px;letter-spacing:.04em;">FIAE bereit
@@ -1846,9 +1730,7 @@
   <!-- ROI : Organic blobs, light -->
   <section class="py-24 md:py-36 section-organic" id="roi">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-      <span
-        class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Der
-        Effekt</span>
+
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">So entlastet LFA<br>Betrieb
         und Azubi.</h2>
       <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed mb-12">Konkrete Zahlen, die zeigen, was LFA für
@@ -1932,13 +1814,10 @@
   <!-- ARCHITEKTUR : Subtle alt bg with glow -->
   <section class="py-24 md:py-36 section-alt section-glow" id="architektur">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-      <span
-        class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Technologie
-        und Vertrauen</span>
-      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Sicher, schnell
-        und<br>durchdacht gebaut.
+
+      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Integrierter<br>Datenschutz
       </h2>
-      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Moderne Technologie, die , und deine Daten
+      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Moderne Technologie, die deine Daten
         schützt.</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
         <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover tilt-card">
@@ -2036,9 +1915,7 @@
   <section class="py-24 md:py-36 section-dark" id="roadmap">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-20">
-        <span
-          class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Was
-          LFA einzigartig macht</span>
+
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Sechs
           Gründe.<br>Eine Plattform.</h2>
         <p class="reveal text-lg max-w-[620px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Feature-Bingo,
@@ -2204,8 +2081,7 @@
         <!-- Left: sticky heading -->
         <div class="md:w-[38%] shrink-0 mb-12 md:mb-0">
           <div class="md:sticky md:top-28">
-            <span
-              class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-5">FAQ</span>
+
             <h2 class="reveal text-3xl md:text-4xl font-bold leading-[1.1] tracking-tight mb-5">Noch Fragen?</h2>
             <p class="reveal text-sm text-muted leading-relaxed mb-8">Hier findest du Antworten auf die häufigsten
               Fragen rund um LFA, KI-Sicherheit und Plattformkonformität.</p>
@@ -2323,10 +2199,15 @@
       <div>
         <div class="font-semibold text-sm mb-4 text-faint uppercase tracking-widest">Plattform</div>
         <ul class="space-y-2 text-sm text-muted">
-          <li><a href="#problem" class="hover:text-text-main transition-colors">Problemstellung</a></li>
-          <li><a href="#warum" class="hover:text-text-main transition-colors">LFA</a></li>
+          <li><a href="#problem" class="hover:text-text-main transition-colors">Problem</a></li>
+          <li><a href="#rollen" class="hover:text-text-main transition-colors">Rollen</a></li>
           <li><a href="#funktionen" class="hover:text-text-main transition-colors">Funktionen</a></li>
+          <li><a href="#solarsystem" class="hover:text-text-main transition-colors">Universum</a></li>
           <li><a href="#demo" class="hover:text-text-main transition-colors">Demo</a></li>
+          <li><a href="#hai" class="hover:text-text-main transition-colors">HAI</a></li>
+          <li><a href="#roi" class="hover:text-text-main transition-colors">Kosten</a></li>
+          <li><a href="#architektur" class="hover:text-text-main transition-colors">Technik</a></li>
+          <li><a href="#roadmap" class="hover:text-text-main transition-colors">Stärken</a></li>
           <li><a href="#faq" class="hover:text-text-main transition-colors">FAQ</a></li>
         </ul>
       </div>

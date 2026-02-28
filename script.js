@@ -867,7 +867,7 @@
     var el = document.getElementById('heroTyping');
     if (!el || prefersReduced) return;
 
-    var words = ['effizienten Ausbildung', 'strukturierten Ausbildung', 'erfolgreichen IT-Karriere'];
+    var words = ['Auszubildende', 'FIAE-Ausbildung', 'IT-Karriere'];
     var wordIdx = 0;
     var charIdx = 0;
     var isDeleting = false;
