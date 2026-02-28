@@ -1889,26 +1889,3 @@ function animateChain(chainId) {
   }
 })();
 
-function toggleAZ() {
-  var panel = document.getElementById('az-details');
-  var chev  = document.getElementById('az-chev');
-  if (!panel) return;
-
-  if (panel.style.display === 'none' || panel.style.display === '') {
-    panel.style.display   = 'block';
-    panel.style.opacity   = '0';
-    panel.style.transform = 'translateY(10px)';
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        panel.style.opacity   = '1';
-        panel.style.transform = 'translateY(0)';
-      });
-    });
-    if (chev) chev.style.transform = 'rotate(180deg)';
-  } else {
-    panel.style.opacity   = '0';
-    panel.style.transform = 'translateY(10px)';
-    setTimeout(function() { panel.style.display = 'none'; }, 300);
-    if (chev) chev.style.transform = '';
-  }
-}
