@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)",
+      "Bash(ls:*)",
+      "Bash(start chrome:*)",
+      "Bash(start \"\" \"c:\\\\Users\\\\Leon Moretz\\\\FIAE-Landing-Page\\\\index.html\")",
+      "WebFetch(domain:www.cypress.io)",
+      "Bash(copy:*)",
+      "Bash(pip install openpyxl -q)",
+      "Bash(python -m pip install openpyxl -q)",
+      "Bash(python -c \":*)",
+      "Bash(python fix_umlauts.py)",
+      "Bash(perl -ne 'if \\(/>[\\\\s]*\\\\. |>,[\\\\s]/\\) { print \"\"$.: $_\"\" }' \"c:/Users/Leon Moretz/FIAE-Landing-Page/index.html\")",
+      "Read(//c/Users/Leon Moretz/.claude/projects/c--Users-Leon-Moretz-FIAE-Landing-Page/memory/**)"
+    ]
+  }
+}

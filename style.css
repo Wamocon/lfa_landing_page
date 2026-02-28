@@ -1,19 +1,12 @@
 /* LFA — Minimal custom CSS (Tailwind v4 handles everything else) */
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Hide scrollbar completely while keeping scroll functionality */
+html {
+  font-size: 17px;       /* Bump base up from 16px — scales all rem-based text */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LFA: Lernplattform für Azubis | KI-gestützte duale IT-Ausbildung</title>
+  <title>LFA — Lernplattform für Azubis | KI-gestützte duale IT-Ausbildung</title>
   <meta name="description"
     content="Die KI-gesteuerte Plattform für die duale IT-Ausbildung. Closed-Context KI, IHK-konform, sofortiges Feedback für Fachinformatiker.">
   <meta name="theme-color" content="#f5f5f7">
@@ -47,13 +47,6 @@
     ::selection { background: var(--color-accent); color:#fff; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
     .nav-scrolled { background:rgba(255,255,255,.82)!important; backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid rgba(255,26,26,.08); }
-    /* Nav pill container */
-    .nav-links-pill { display:flex; align-items:center; gap:1px; background:rgba(0,0,0,.042); border:1px solid rgba(0,0,0,.07); border-radius:100px; padding:3px 5px; }
-    .nav-scrolled .nav-links-pill { background:rgba(0,0,0,.03); border-color:rgba(0,0,0,.06); }
-    /* Individual nav links */
-    .nav-link { position:relative; padding:5px 11px; border-radius:100px; font-size:.72rem; font-weight:500; color:var(--color-text-muted); transition:color .2s ease, background .2s ease; letter-spacing:.01em; white-space:nowrap; }
-    .nav-link:hover { color:var(--color-text-main); background:rgba(0,0,0,.06); }
-    .nav-link--active { color:var(--color-accent) !important; background:rgba(255,26,26,.08) !important; font-weight:600; }
     .gradient-text { background:linear-gradient(135deg,var(--color-accent),#ff6b6b); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
     .card-hover { transition: border-color .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1), box-shadow .7s cubic-bezier(.16,1,.3,1); }
     .card-hover:hover { border-color:var(--color-border-hover); transform:translateY(-3px); box-shadow:0 16px 48px rgba(0,0,0,.08),0 0 0 1px rgba(255,26,26,.04); }
@@ -64,17 +57,13 @@
     .accent-hover:hover::before { opacity:1; }
     .reveal { opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1); }
     .reveal--visible { opacity:1; transform:translateY(0); }
-    .faq-answer { max-height:0; overflow:hidden; transition:max-height .28s cubic-bezier(.4,0,.2,1); }
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height .55s cubic-bezier(.25,0,.3,1); }
     .faq-item--open .faq-answer { max-height:400px; transition:max-height .5s cubic-bezier(.16,1,.3,1); }
     .faq-item--open { border-color:rgba(255,26,26,.15)!important; box-shadow:0 4px 24px rgba(255,26,26,.04); }
     .faq-question__icon::before,.faq-question__icon::after { content:''; position:absolute; background:var(--color-muted); border-radius:2px; transition:transform .4s cubic-bezier(.16,1,.3,1); }
     .faq-question__icon::before { width:14px; height:2px; top:50%; left:50%; transform:translate(-50%,-50%); }
     .faq-question__icon::after { width:2px; height:14px; top:50%; left:50%; transform:translate(-50%,-50%); }
     .faq-item--open .faq-question__icon::after { transform:translate(-50%,-50%) rotate(90deg); opacity:0; }
-    .faq-num { font-size:.7rem; font-weight:700; letter-spacing:.09em; color:var(--color-accent); opacity:.8; min-width:26px; padding-top:3px; flex-shrink:0; }
-    .faq-item { border-bottom:1px solid var(--color-border); }
-    .faq-item:first-child { border-top:1px solid var(--color-border); }
-    .faq-item--open { background:rgba(255,26,26,.02); }
     /* ── Tech Stack Marquee ── */
     .marquee { overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
     .marquee__track { display:flex; gap:12px; width:max-content; animation:marquee-scroll 30s linear infinite; }
@@ -87,15 +76,11 @@
     .nav-hamburger.is-open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
     .nav-hamburger.is-open span:nth-child(2) { opacity:0; transform:translateX(-6px); }
     .nav-hamburger.is-open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-    #mobileMenu { display:flex; flex-direction:column; align-items:center; justify-content:center; position:fixed; inset:0; z-index:50; background:rgba(4,8,18,.97); backdrop-filter:saturate(160%) blur(24px); -webkit-backdrop-filter:saturate(160%) blur(24px); visibility:hidden; opacity:0; pointer-events:none; transition:opacity .28s ease, visibility .28s; }
-    #mobileMenu.is-open { visibility:visible; opacity:1; pointer-events:auto; }
-    .mm-close { position:absolute; top:18px; right:18px; width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.08); color:rgba(255,255,255,.9); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .2s, border-color .2s; }
-    .mm-close:hover { background:rgba(255,255,255,.18); border-color:rgba(255,255,255,.35); }
-    .mm-brand { font-size:1.35rem; font-weight:800; letter-spacing:-.04em; background:linear-gradient(135deg,#ff1a1a,#ff7070); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:28px; }
-    .mm-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; width:calc(100% - 48px); max-width:340px; }
-    .mm-link { font-size:.95rem; font-weight:600; color:rgba(255,255,255,.75); text-decoration:none; padding:14px 12px; letter-spacing:-.01em; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:12px; text-align:center; transition:color .2s, background .2s, border-color .2s, transform .15s; }
-    .mm-link:hover { color:#fff; background:rgba(255,26,26,.14); border-color:rgba(255,26,26,.3); transform:scale(1.03); }
-    .mm-link--full { grid-column:span 2; }
+    #mobileMenu { display:none; position:fixed; inset:0; z-index:50; flex-direction:column; align-items:center; justify-content:center; gap:0; background:rgba(245,245,247,.97); backdrop-filter:saturate(180%) blur(24px); -webkit-backdrop-filter:saturate(180%) blur(24px); }
+    #mobileMenu.is-open { display:flex; }
+    .mm-link { font-size:1.65rem; font-weight:700; color:var(--color-text-main); text-decoration:none; padding:14px 32px; letter-spacing:-.02em; transition:color .2s ease, transform .2s ease; }
+    .mm-link:hover { color:var(--color-accent); transform:translateX(4px); }
+    .mm-divider { width:40px; height:1px; background:var(--color-border); margin:4px 0; }
 
     /* ── Magnetic Button ── */
     .magnetic-btn { position:relative; display:inline-block; transition:transform .3s cubic-bezier(.16,1,.3,1); }
@@ -183,19 +168,12 @@
     .rm__tag { font-size:11px; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:#8e8e96; font-weight:500; }
     @media (max-width:767px) {
       .rm__row { grid-template-columns:40px 1fr; }
-      /* Force dot always to col1, card always to col2 regardless of HTML order */
-      .rm__center { padding-top:4px; grid-column:1; grid-row:1; }
-      .rm__cell:not(.rm__cell--hide) { grid-column:2; grid-row:1; }
-      /* SVG line stays at left edge of container, aligned with 40px dot column */
-      .rm__line { left:0; transform:none; width:40px !important; }
-      .rm__line svg { left:0; transform:none; width:40px; }
-      .rm__card--l,.rm__card--r { text-align:left; transform:translateX(18px); }
-      .rm__card--l .rm__tags,.rm__card--r .rm__tags { justify-content:flex-start; }
-      .rm__card--l { transform:translateX(18px); }
-      .rm__card--active.rm__card--l,.rm__card--active.rm__card--r { transform:translateX(0) !important; }
+      .rm__center { padding-top:4px; }
+      .rm__line { left:20px; }
+      .rm__card--l,.rm__card--r { text-align:left; transform:translateX(20px); grid-column:2; }
+      .rm__card--l .rm__tags { justify-content:flex-start; }
       .rm__cell--hide { display:none; }
       .rm__branch { display:none; }
-      .rm__row + .rm__row { margin-top:28px; }
     }
     .rm__end { display:flex; justify-content:center; padding-top:64px; position:relative; z-index:3; }
     .rm__end-marker { display:flex; flex-direction:column; align-items:center; gap:12px; opacity:0; transform:translateY(20px); transition:all .7s cubic-bezier(.16,1,.3,1); }
@@ -207,16 +185,14 @@
     .rm__end-label { font-size:.875rem; font-weight:600; color:rgba(255,255,255,.15); transition:color .7s ease; letter-spacing:.02em; }
     .rm__end-marker--active .rm__end-label { color:#f0f0f2; }
     /* ── Solar System ── */
-    .solar-wrap { position:relative; width:100%; height:720px; }
-    @media (max-width:767px) { .solar-wrap { height:520px; } }
+    .solar-wrap { position:relative; width:100%; height:520px; }
+    @media (max-width:767px) { .solar-wrap { height:380px; } }
     #solarCanvas { position:absolute; inset:0; width:100%; height:100%; display:block; }
     /* ── Galaxy Overlay ── */
     #galaxyOverlay { position:fixed; inset:0; z-index:9500; background:#040810; display:none; flex-direction:column; }
     #galaxyOverlay.go--open { display:flex; }
     #galaxyBack { position:absolute; top:18px; left:18px; z-index:20; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14); color:#e2e8f0; font-size:.78rem; font-weight:600; padding:7px 16px; border-radius:10px; cursor:pointer; transition:background .2s; font-family:inherit; }
     #galaxyBack:hover { background:rgba(255,255,255,.15); }
-    #galaxyReset { position:absolute; top:18px; left:120px; z-index:20; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); color:#888; font-size:.75rem; font-weight:600; padding:7px 14px; border-radius:10px; cursor:pointer; transition:background .2s,color .2s; font-family:inherit; }
-    #galaxyReset:hover { background:rgba(255,255,255,.12); color:#e2e8f0; }
     #galaxyTitle { position:absolute; top:21px; left:50%; transform:translateX(-50%); font-size:.78rem; font-weight:700; color:#888; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; pointer-events:none; }
     #galaxyLegend { position:absolute; top:16px; right:18px; z-index:20; display:flex; gap:14px; align-items:center; }
     .glgd { display:flex; align-items:center; gap:7px; cursor:default; }
@@ -227,16 +203,14 @@
     #galaxySearch { position:fixed; bottom:22px; left:50%; transform:translateX(-50%); z-index:9600; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:9px 18px; color:#e2e8f0; font-size:.8rem; width:240px; outline:none; font-family:inherit; }
     #galaxySearch:focus { border-color:rgba(56,189,248,.5); background:rgba(255,255,255,.1); }
     #galaxySearch::placeholder { color:#6e6e76; }
-    #compInfoPanel { position:fixed; top:68px; left:50%; transform:translateX(-50%); z-index:9600; background:rgba(4,8,16,.94); border:1px solid rgba(226,232,240,.18); border-radius:14px; padding:12px 22px; text-align:center; max-width:420px; pointer-events:none; box-shadow:0 8px 40px rgba(0,0,0,.55); opacity:0; transition:opacity .3s ease; }
-    #compInfoPanel.visible { opacity:1; }
     /* ── Zoom layer ── */
     #zoomLayer { position:fixed; inset:0; z-index:9400; pointer-events:none; display:none; overflow:hidden; }
     #zoomCircle { position:absolute; border-radius:50%; background:#040810; }
     /* ── HAI Section ── */
     .section-hai { background:#09111f; color:#f0f0f2; position:relative; overflow:hidden; }
     .section-hai::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:800px; height:500px; background:radial-gradient(ellipse at 50% 0%, rgba(14,165,233,.07) 0%, transparent 65%); pointer-events:none; z-index:0; }
-    .hai-demo-card { background:rgba(255,255,255,.03); border:1px solid rgba(56,189,248,.15); border-radius:20px; padding:28px; display:flex; flex-direction:column; gap:18px; width:100%; max-width:460px; box-shadow:0 0 40px rgba(14,165,233,.06), 0 8px 24px rgba(0,0,0,.3); }
-    .hai-bubble { border-radius:14px; padding:14px 18px; font-size:1rem; line-height:1.55; }
+    .hai-demo-card { background:rgba(255,255,255,.03); border:1px solid rgba(56,189,248,.15); border-radius:18px; padding:24px; display:flex; flex-direction:column; gap:14px; width:100%; max-width:420px; box-shadow:0 0 40px rgba(14,165,233,.06), 0 8px 24px rgba(0,0,0,.3); }
+    .hai-bubble { border-radius:12px; padding:12px 16px; font-size:.875rem; line-height:1.55; }
     .hai-bubble--bot { background:rgba(56,189,248,.08); border:1px solid rgba(56,189,248,.15); color:#e2e8f0; border-top-left-radius:4px; }
     .hai-bubble--bot strong { color:#38bdf8; }
     .hai-bubble--user { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); color:#b0b0b8; text-align:right; border-top-right-radius:4px; align-self:flex-end; max-width:80%; }
@@ -250,8 +224,7 @@
     .section-hai-deep { background:#060e1b; background-image:radial-gradient(rgba(56,189,248,.07) 1px, transparent 1px); background-size:36px 36px; color:#f0f0f2; position:relative; overflow:hidden; }
     .section-hai-deep::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 10% 80%, rgba(56,189,248,.07) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 90% 20%, rgba(129,140,248,.06) 0%, transparent 60%); pointer-events:none; }
     .rag-pipeline { display:flex; border:1px solid rgba(56,189,248,.12); border-radius:18px; overflow:hidden; }
-    .rag-step { flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:22px 14px; border-right:1px solid rgba(56,189,248,.1); text-align:center; opacity:0; transform:translateY(32px) scale(0.93); transition:background .3s, opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1); }
-    .rag-step.rag-step--in { opacity:1; transform:translateY(0) scale(1); }
+    .rag-step { flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:22px 14px; border-right:1px solid rgba(56,189,248,.1); text-align:center; transition:background .3s; }
     .rag-step:last-child { border-right:none; }
     .rag-step:hover { background:rgba(56,189,248,.05); }
     .rag-step__num { font-size:.6rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#38bdf8; }
@@ -267,16 +240,14 @@
     .quiz-level--active { background:rgba(56,189,248,.06); border:1px solid rgba(56,189,248,.2); }
     .quiz-level--locked { background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06); }
     .quiz-bar { flex:1; height:4px; border-radius:2px; background:rgba(255,255,255,.06); overflow:hidden; }
-    .quiz-bar__fill { height:100%; border-radius:2px; width:0% !important; transition:width 2.2s cubic-bezier(0.25,0,0.1,1); }
-    .quiz-bar__fill.animated { width:var(--quiz-target) !important; }
-    .quiz-level > span { width:82px; text-align:right; flex-shrink:0; }
+    .quiz-bar__fill { height:100%; border-radius:2px; }
     .trust-row { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.04); }
     .trust-row:last-child { border-bottom:none; }
     .trust-dot { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.65rem; font-weight:800; margin-top:1px; }
     .icon { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
     .logo-img { filter:invert(1); }
     .hero-grid { opacity:.06!important; }
-    /* ── Section Transitions : each unique ── */
+    /* ── Section Transitions — each unique ── */
     section { background:var(--color-bg); position:relative; z-index:1; }
     .section-alt { background:var(--color-bg-alt); }
 
@@ -308,64 +279,6 @@
     .browser-dots span:nth-child(2) { background:#febc2e; }
     .browser-dots span:nth-child(3) { background:#28c840; }
     .browser-url { flex:1; padding:5px 12px; border-radius:6px; background:var(--color-bg); border:1px solid var(--color-border); font-size:11px; color:var(--color-faint); font-family:var(--font-sans); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-
-    /* ── Mobile-only overrides (≤767px) : desktop completely untouched ── */
-    @media (max-width:767px) {
-      /* Galaxy overlay: prevent overlapping header elements ─────────────── */
-      /* Row 1 (top:12px): Back button left + Title center (smaller, no wrap) */
-      #galaxyBack  { top:12px; left:12px; font-size:.7rem; padding:5px 11px; }
-      #galaxyReset { top:12px; left:auto; right:12px; font-size:.7rem; padding:5px 11px; }
-      #galaxyTitle { top:14px; font-size:.62rem; }
-
-      /* Row 2 (top:50px): Legend moved below, left-aligned, smaller */
-      #galaxyLegend {
-        top:50px; right:auto; left:12px;
-        gap:10px;
-        background:rgba(4,8,16,.72);
-        padding:6px 10px;
-        border-radius:8px;
-        border:1px solid rgba(255,255,255,.07);
-      }
-      .glgd > div:last-child { font-size:.6rem; }
-      .glgd-dot { flex-shrink:0; }
-
-      /* Hint bar: hide on mobile (too long, overlaps canvas) */
-      #galaxyHint { display:none; }
-
-      /* Search box: full usable width on mobile */
-      #galaxySearch { width:calc(100% - 40px); max-width:320px; bottom:14px; font-size:.76rem; padding:8px 14px; }
-      /* ─────────────────────────────────────────────────────────────────── */
-      /* 1. iFrame: 820px → 480px */
-      .demo-iframe { height:480px !important; }
-
-      /* 2. RAG pipeline: horizontal flow → vertical stack */
-      .rag-pipeline { flex-direction:column !important; min-width:0 !important; }
-      .rag-step { border-right:none !important; border-bottom:1px solid rgba(56,189,248,.08); padding:14px 18px; }
-      .rag-step:last-child { border-bottom:none; }
-
-      /* 3. Solar legend items: stretch full width so 3 items stack cleanly */
-      #solarsystem .flex.flex-wrap > div[style] { max-width:100% !important; width:100%; }
-
-      /* 4. Roadmap cards: less padding on mobile */
-      .rm__card { padding:18px 16px !important; }
-
-      /* 5. HAI demo card: full width */
-      .hai-demo-card { max-width:100%; }
-
-      /* 6. HAI stat sub text: slightly smaller */
-      .hai-stat-sub { font-size:.67rem; }
-
-      /* 7. Hero paragraph: slightly tighter */
-      #hero p.text-lg { font-size:.95rem; line-height:1.6; }
-
-      /* 8. Bento featured card: prevent horizontal overflow */
-      .bento-featured { overflow:hidden; }
-    }
-
-    /* 9. Very small phones (≤479px): reduce solar canvas */
-    @media (max-width:479px) {
-      .solar-wrap { height:360px !important; }
-    }
   </style>
 </head>
 
@@ -485,20 +398,12 @@
         <img src="wamocon-logo.png" alt="WAMOCON" class="logo-img h-32 w-auto">
       </a>
       <!-- Desktop links -->
-      <div class="hidden md:flex">
-        <div class="nav-links-pill">
-          <a href="#problem" class="nav-link magnetic-btn" data-nav-section="problem">Problem</a>
-          <a href="#rollen" class="nav-link magnetic-btn" data-nav-section="rollen">Rollen</a>
-          <a href="#warum" class="nav-link magnetic-btn" data-nav-section="warum">LFA</a>
-          <a href="#funktionen" class="nav-link magnetic-btn" data-nav-section="funktionen">Module</a>
-          <a href="#solarsystem" class="nav-link magnetic-btn" data-nav-section="solarsystem">Universum</a>
-          <a href="#demo" class="nav-link magnetic-btn" data-nav-section="demo">Demo</a>
-          <a href="#hai" class="nav-link magnetic-btn" data-nav-section="hai">HAI</a>
-          <a href="#roi" class="nav-link magnetic-btn" data-nav-section="roi">Kosten</a>
-          <a href="#architektur" class="nav-link magnetic-btn" data-nav-section="architektur">Technik</a>
-          <a href="#roadmap" class="nav-link magnetic-btn" data-nav-section="roadmap">Stärken</a>
-          <a href="#faq" class="nav-link magnetic-btn" data-nav-section="faq">FAQ</a>
-        </div>
+      <div class="hidden md:flex gap-8">
+        <a href="#problem" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">Problemstellung</a>
+        <a href="#warum" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">LFA</a>
+        <a href="#funktionen" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">Funktionen</a>
+        <a href="#demo" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">Demo</a>
+        <a href="#faq" class="magnetic-btn text-sm text-muted hover:text-text-main transition-colors">FAQ</a>
       </div>
       <!-- Mobile hamburger -->
       <button class="nav-hamburger md:hidden" id="navHamburger" aria-label="Menü öffnen" aria-expanded="false">
@@ -509,26 +414,15 @@
 
   <!-- Mobile fullscreen menu -->
   <div id="mobileMenu" aria-hidden="true" role="dialog" aria-label="Navigation">
-    <!-- Close button -->
-    <button class="mm-close" onclick="closeMobileMenu()" aria-label="Menü schließen">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <!-- Brand -->
-    <div class="mm-brand">LFA</div>
-    <!-- Nav grid -->
-    <div class="mm-grid">
-      <a href="#problem" class="mm-link" onclick="closeMobileMenu()">Problem</a>
-      <a href="#rollen" class="mm-link" onclick="closeMobileMenu()">Rollen</a>
-      <a href="#warum" class="mm-link" onclick="closeMobileMenu()">LFA</a>
-      <a href="#funktionen" class="mm-link" onclick="closeMobileMenu()">Module</a>
-      <a href="#solarsystem" class="mm-link" onclick="closeMobileMenu()">Universum</a>
-      <a href="#demo" class="mm-link" onclick="closeMobileMenu()">Demo</a>
-      <a href="#hai" class="mm-link" onclick="closeMobileMenu()">HAI</a>
-      <a href="#roi" class="mm-link" onclick="closeMobileMenu()">Kosten</a>
-      <a href="#architektur" class="mm-link" onclick="closeMobileMenu()">Technik</a>
-      <a href="#roadmap" class="mm-link" onclick="closeMobileMenu()">Stärken</a>
-      <a href="#faq" class="mm-link mm-link--full" onclick="closeMobileMenu()">FAQ</a>
-    </div>
+    <a href="#problem" class="mm-link" onclick="closeMobileMenu()">Problemstellung</a>
+    <div class="mm-divider"></div>
+    <a href="#warum" class="mm-link" onclick="closeMobileMenu()">LFA</a>
+    <div class="mm-divider"></div>
+    <a href="#funktionen" class="mm-link" onclick="closeMobileMenu()">Funktionen</a>
+    <div class="mm-divider"></div>
+    <a href="#demo" class="mm-link" onclick="closeMobileMenu()">Demo</a>
+    <div class="mm-divider"></div>
+    <a href="#faq" class="mm-link" onclick="closeMobileMenu()">FAQ</a>
   </div>
 
   <!-- HERO -->
@@ -543,148 +437,91 @@
     <div class="relative z-10 text-center max-w-[920px] px-5">
       <div
         class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-soft border border-border-accent text-xs font-medium tracking-widest uppercase text-accent mb-8">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent" style="animation:pulse 2s ease infinite"></span>Gerade gelauncht · Version 1.0
+        <span class="w-1.5 h-1.5 rounded-full bg-accent" style="animation:pulse 2s ease infinite"></span>Jetzt in der
+        Pilotphase
       </div>
-      <h1 class="reveal text-3xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight mb-6">Die Zukunft
+      <h1 class="reveal text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight mb-6">Die Zukunft
         der<br><span class="gradient-text" id="heroTyping">FIAE Ausbildung.</span></h1>
-      <p class="reveal text-lg md:text-xl text-muted max-w-[600px] mx-auto leading-relaxed">Die Plattform, auf der Ausbilder und Auszubildende direkt miteinander kommunizieren. Persönliches Feedback auf jede Aufgabe, verankert in IHK-Verordnungen und firmeneigenen Daten.</p>
+      <p class="reveal text-lg md:text-xl text-muted max-w-[600px] mx-auto leading-relaxed">Die Plattform, auf der Ausbilder und Auszubildende direkt miteinander kommunizieren. Persönliches Feedback auf jede Aufgabe — verankert in IHK-Verordnungen und firmeneigenen Daten.</p>
       <p class="reveal text-xs text-faint mt-4 tracking-wide">Ein Produkt der WAMOCON GmbH</p>
     </div>
     <!-- Gradient fade into dark section -->
     <div class="absolute bottom-0 left-0 right-0 h-[120px] z-20" style="background:linear-gradient(to bottom, transparent, #0f0f11);"></div>
   </section>
 
-  <!-- PROBLEM : Dramatische Darstellung des Systemversagens -->
-  <section class="relative section-dark" id="problem" style="padding:7rem 0 6rem;margin-top:-2px;">
+  <!-- PROBLEM — Dark dramatic section for impact -->
+  <section class="py-24 md:py-36 relative section-dark" id="problem" style="margin-top:-2px;">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-
-      <!-- Alarmbadge -->
-      <div class="reveal mb-7">
-        <span class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded" style="color:#ff3333;background:rgba(255,30,30,.1);border:1px solid rgba(255,30,30,.3);">&#9888; Systemversagen</span>
+      <span
+        class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Problemstellung</span>
+      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Die FIAE-Ausbildung<br>steht vor dem Kollaps.</h2>
+      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Während die Nachfrage nach IT-Spezialisten
+        jährlich um 4,4 Prozent wächst, verbleibt die Ausbildungsinfrastruktur in fragmentierten Zuständen.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
+        <div class="reveal text-center p-8 rounded-2xl card-hover accent-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><span
+            class="block text-4xl md:text-5xl font-bold gradient-text leading-none mb-3 tabular-nums"
+            data-target="149000" data-separator=".">0</span><span class="block text-base font-medium mb-1">fehlende
+            IT-Fachkräfte</span><span class="block text-sm text-faint">Quelle: Bitkom, Ende 2025</span></div>
+        <div class="reveal text-center p-8 rounded-2xl card-hover accent-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><span
+            class="block text-4xl md:text-5xl font-bold gradient-text leading-none mb-3 tabular-nums" data-target="76"
+            data-suffix="%">0</span><span class="block text-base font-medium mb-1">überlastete Ausbilder</span><span
+            class="block text-sm text-faint">Quelle: DGB Index Gute Arbeit</span></div>
+        <div class="reveal text-center p-8 rounded-2xl card-hover accent-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);"><span
+            class="block text-4xl md:text-5xl font-bold gradient-text leading-none mb-3 tabular-nums" data-target="30"
+            data-suffix="%" data-prefix="bis ">0</span><span class="block text-base font-medium mb-1">Abbruchquote
+            FIAE</span><span class="block text-sm text-faint">Quelle: BIBB Datenreport</span></div>
       </div>
-
-      <!-- Dramatische Headline -->
-      <h2 class="reveal text-4xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6" style="color:#f0f0f2;">
-        Die FIAE-Ausbildung<br><span style="color:#ff2222;">steht vor dem Kollaps.</span>
-      </h2>
-      <p class="reveal text-lg max-w-[580px] leading-relaxed mb-16" style="color:#6a6a78;">
-        Während die Nachfrage nach IT-Spezialisten jährlich um 4,4&nbsp;% wächst, versagt die Ausbildungsinfrastruktur auf ganzer Linie.
-      </p>
-
-      <!-- 3 Alarm-Stats -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
-        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(255,15,15,.07);border:1px solid rgba(255,15,15,.25);">
-          <span class="block text-5xl md:text-6xl font-black leading-none mb-3 tabular-nums" style="color:#ff2222;" data-target="149000" data-separator=".">0</span>
-          <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">fehlende IT-Fachkräfte</span>
-          <span class="block text-xs" style="color:#4a4a58;">Quelle: Bitkom, Ende 2025</span>
-        </div>
-        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(255,15,15,.07);border:1px solid rgba(255,15,15,.25);">
-          <span class="block text-5xl md:text-6xl font-black leading-none mb-3 tabular-nums" style="color:#ff2222;" data-target="76" data-suffix="%">0</span>
-          <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">überlastete Ausbilder</span>
-          <span class="block text-xs" style="color:#4a4a58;">Quelle: DGB Index Gute Arbeit</span>
-        </div>
-        <div class="reveal text-center p-8 rounded-2xl" style="background:rgba(255,15,15,.07);border:1px solid rgba(255,15,15,.25);">
-          <span class="block text-5xl md:text-6xl font-black leading-none mb-3 tabular-nums" style="color:#ff2222;white-space:nowrap;" data-target="30" data-suffix="%" data-prefix="bis ">0</span>
-          <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">Abbruchquote FIAE</span>
-          <span class="block text-xs" style="color:#4a4a58;">Quelle: BIBB Datenreport</span>
-        </div>
-      </div>
-
-      <!-- 3 Problem-Karten : NUR Probleme, keine Lösungen -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,255,255,.025);border:1px solid rgba(255,30,30,.18);">
-          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff4444;">Verwaltungstools</span>
-          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Digitaler Papierkram</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#6a6a78;">Digitalisieren Formulare und Berichtshefte, ignorieren aber die fachliche Kompetenzentwicklung vollständig.</p>
-          <div style="border-top:1px solid rgba(255,30,30,.18);padding-top:1rem;">
-            <span class="text-sm font-bold" style="color:#ff3333;">&#10005;&ensp;Verwaltet das Dokument. Nicht den Skill.</span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
+        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
+          <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">Verwaltungstools</span>
+          <h3 class="text-xl font-semibold tracking-tight mb-3">Digitaler Papierkram</h3>
+          <p class="text-sm text-muted leading-relaxed mb-5">Digitalisieren Formulare und Berichtshefte, ignorieren aber die fachliche Kompetenzentwicklung.</p>
+          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Verwaltet das Dokument. Nicht den Skill.</span>
+          <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
+            <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
+            <span class="block text-sm text-muted">Berichtshefte, Zeugnisse und Berichte automatisch generiert — Ausbilder konzentrieren sich auf echte Betreuung.</span>
           </div>
         </div>
-        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,255,255,.025);border:1px solid rgba(255,30,30,.18);">
-          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff4444;">E-Learning-Plattformen</span>
-          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Kontext-Blindheit</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#6a6a78;">Programmiersprachen werden abstrakt aus Lehrbüchern gelehrt, ohne Szenarien, Use Cases oder praxisnahe Quizze.</p>
-          <div style="border-top:1px solid rgba(255,30,30,.18);padding-top:1rem;">
-            <span class="text-sm font-bold" style="color:#ff3333;">&#10005;&ensp;Lehrt die Theorie. Nicht die Praxis.</span>
+        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
+          <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">E-Learning-Plattformen</span>
+          <h3 class="text-xl font-semibold tracking-tight mb-3">Kontext-Blindheit</h3>
+          <p class="text-sm text-muted leading-relaxed mb-5">Programmiersprachen werden abstrakt aus Lehrbüchern vermittelt — ohne Szenarien, Use Cases oder praxisnahe Quizze.</p>
+          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Lehrt die Theorie. Nicht die Praxis.</span>
+          <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
+            <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
+            <span class="block text-sm text-muted">Aus IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze — Lernen wird greifbar statt abstrakt.</span>
           </div>
         </div>
-        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,255,255,.025);border:1px solid rgba(255,30,30,.18);">
-          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff4444;">Fehlende Struktur</span>
-          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Orientierungslos im Alltag</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#6a6a78;">Azubis starten ohne klare Struktur: Kein Überblick über Lernfortschritt, anstehende Prüfungen oder nächste Schritte.</p>
-          <div style="border-top:1px solid rgba(255,30,30,.18);padding-top:1rem;">
-            <span class="text-sm font-bold" style="color:#ff3333;">&#10005;&ensp;Improvisiert die Ausbildung. Statt sie zu führen.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dramatisches Fazit -->
-      <div class="reveal mt-16 text-center">
-        <p class="text-2xl md:text-3xl font-black" style="color:#cc1111;">Das System bricht unter seinem eigenen Gewicht zusammen.</p>
-        <p class="text-base mt-3" style="color:#6a6a78;">Eine Generation IT-Fachkräfte geht verloren.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- BRIDGE : Dramatischer Übergang -->
-  <div style="background:#050508;padding:5rem 1rem;text-align:center;position:relative;overflow:hidden;">
-    <div style="width:2px;height:90px;background:linear-gradient(to bottom,transparent,#ff2222);margin:0 auto 2.5rem;"></div>
-    <p class="reveal text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff3333;">Die Antwort</p>
-    <h2 class="reveal text-3xl md:text-5xl font-black" style="color:#f0f0f2;">LFA&nbsp;ändert das.</h2>
-    <p class="reveal text-base mt-4 max-w-[460px] mx-auto leading-relaxed" style="color:#5a5a68;">Drei Probleme. Eine Plattform. Gebaut für die Ausbildung von morgen.</p>
-    <div style="width:2px;height:90px;background:linear-gradient(to bottom,#ff2222,transparent);margin:2.5rem auto 0;"></div>
-  </div>
-
-  <!-- LÖSUNG : LFA als Antwort -->
-  <section class="relative section-dark" id="loesung" style="padding:5rem 0 7rem;">
-    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-
-      <!-- 3 Lösungskarten -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
-        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,26,26,.05);border:1px solid rgba(255,26,26,.22);display:flex;flex-direction:column;">
-          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff6060;">Verwaltung</span>
-          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Automatisierte Dokumentation</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#7a7a88;">Berichtshefte, Zeugnisse und Nachweise werden automatisch generiert. Ausbilder konzentrieren sich auf echte Betreuung, nicht auf Formulare.</p>
-          <div style="margin-top:auto;border-top:1px solid rgba(255,26,26,.18);padding-top:1rem;">
-            <span class="text-sm font-bold" style="color:#ff7070;">&#10003;&ensp;LFA übernimmt den Papierkram.</span>
-          </div>
-        </div>
-        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,26,26,.05);border:1px solid rgba(255,26,26,.22);display:flex;flex-direction:column;">
-          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff6060;">Lernen</span>
-          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Praxisnahes KI-Lernen</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#7a7a88;">Aus IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze. Lernen wird greifbar, nicht mehr abstrakt.</p>
-          <div style="margin-top:auto;border-top:1px solid rgba(255,26,26,.18);padding-top:1rem;">
-            <span class="text-sm font-bold" style="color:#ff7070;">&#10003;&ensp;LFA macht Theorie zur Praxis.</span>
-          </div>
-        </div>
-        <div class="reveal p-7 rounded-2xl" style="background:rgba(255,26,26,.05);border:1px solid rgba(255,26,26,.22);display:flex;flex-direction:column;">
-          <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff6060;">Struktur</span>
-          <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Klarer Ausbildungsweg</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#7a7a88;">Klare Struktur mit Lernfortschritt, Kalender, Deadlines und Zielen. Azubis organisieren ihre Ausbildung selbst, vom ersten Tag an.</p>
-          <div style="margin-top:auto;border-top:1px solid rgba(255,26,26,.18);padding-top:1rem;">
-            <span class="text-sm font-bold" style="color:#ff7070;">&#10003;&ensp;LFA gibt klare Orientierung.</span>
+        <div class="reveal p-8 rounded-2xl card-hover" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);">
+          <span class="block text-xs font-medium tracking-widest uppercase text-faint mb-4">Fehlende Struktur</span>
+          <h3 class="text-xl font-semibold tracking-tight mb-3">Orientierungslos im Alltag</h3>
+          <p class="text-sm text-muted leading-relaxed mb-5">Azubis starten ohne klare Struktur: Kein Überblick über Lernfortschritt, anstehende Prüfungen oder nächste Schritte.</p>
+          <span class="block text-sm font-semibold text-accent pt-4" style="border-top:1px solid rgba(255,255,255,.08);">Improvisiert die Ausbildung. Statt sie zu führen.</span>
+          <div class="mt-4 p-3 rounded-lg" style="background:rgba(255,26,26,.06);border:1px solid rgba(255,26,26,.1);">
+            <span class="block text-xs font-semibold text-accent mb-1">LFA löst das:</span>
+            <span class="block text-sm text-muted">Klare Struktur mit Lernfortschritt, Kalender, Deadlines und nächsten Aufgaben — Azubis organisieren ihre Ausbildung selbst.</span>
           </div>
         </div>
       </div>
 
       <!-- Vorteile für den Ausbildungsbetrieb -->
-      <div class="reveal p-8 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,26,26,.07),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.14);">
+      <div class="reveal mt-14 p-8 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.12);">
         <h3 class="text-xl font-semibold tracking-tight mb-6" style="color:#f0f0f2;">
           <svg class="icon inline-block mr-2 text-accent" style="vertical-align:-4px;"><use href="#i-building" /></svg>
           Vorteile für den Ausbildungsbetrieb
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">Geringere Abbruchquote</span>
-            <span class="block text-sm" style="color:#7a7a88;">Strukturierte Begleitung und klares Feedback halten Azubis motiviert und reduzieren Abbrüche spürbar.</span>
+            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Geringere Abbruchquote</span>
+            <span class="block text-sm text-muted">Strukturierte Ausbildung reduziert Frustrationsabbrüche — jeder vermiedene Abbruch spart bis zu 30.000 EUR.</span>
           </div>
           <div>
-            <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">Weniger Verwaltungsaufwand</span>
-            <span class="block text-sm" style="color:#7a7a88;">Berichtshefte, Arbeitszeugnisse und Berichte automatisch erstellt. Ausbilder gewinnen Zeit für echte Betreuung.</span>
+            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Weniger Verwaltungsaufwand</span>
+            <span class="block text-sm text-muted">Berichtshefte, Arbeitszeugnisse und Berichte automatisiert — Ausbilder gewinnen Zeit für echte Betreuung.</span>
           </div>
           <div>
-            <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">Höhere Ausbildungsqualität</span>
-            <span class="block text-sm" style="color:#7a7a88;">IHK-konforme Inhalte und personalisiertes Feedback steigern die Bestehensquote bei Abschlussprüfungen.</span>
+            <span class="block text-sm font-medium mb-1" style="color:#f0f0f2;">Höhere Ausbildungsqualität</span>
+            <span class="block text-sm text-muted">IHK-konforme Inhalte und personalisiertes Feedback steigern die Bestehensquote bei Abschlusspüfungen.</span>
           </div>
         </div>
       </div>
@@ -693,13 +530,13 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
 
-  <!-- ROLLEN : Für wen ist LFA? -->
+  <!-- ROLLEN — Für wen ist LFA? -->
   <section class="py-24 md:py-36 section-organic" id="rollen">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-14">
         <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Für wen ist LFA?</span>
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Zwei Rollen.<br>Eine Plattform.</h2>
-        <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">LFA bringt Ausbilder und Auszubildende , mit klarem Nutzen für beide Seiten.</p>
+        <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">LFA bringt Ausbilder und Auszubildende zusammen — mit klarem Nutzen für beide Seiten.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Ausbilder -->
@@ -736,7 +573,7 @@
           <ul class="space-y-3">
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Ausbildung organisieren:</strong> Klare Struktur mit Lernfortschritt, nächsten Aufgaben und . Kein planloses Lernen mehr.</span>
+              <span class="text-sm text-muted"><strong class="text-text-main">Ausbildung organisieren:</strong> Klare Struktur mit Lernfortschritt, nächsten Aufgaben und Deadlines — kein planloses Lernen mehr.</span>
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
@@ -744,11 +581,11 @@
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">Praxisnahes Lernen:</strong> Szenarien, Use Cases und Quizze statt trockener Theorie, vorbereitet auf die echte Prüfung.</span>
+              <span class="text-sm text-muted"><strong class="text-text-main">Praxisnahes Lernen:</strong> Szenarien, Use Cases und Quizze statt trockener Theorie — vorbereitet auf die echte Prüfung.</span>
             </li>
             <li class="flex items-start gap-3">
               <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5"><use href="#i-check" /></svg>
-              <span class="text-sm text-muted"><strong class="text-text-main">KI-Assistent HAI:</strong> Antworten basieren auf offiziellen IHK-Quellen, nicht auf Halluzinationen.</span>
+              <span class="text-sm text-muted"><strong class="text-text-main">KI-Assistent HAI:</strong> Fragen jederzeit stellen — Antworten basieren auf offiziellen IHK-Quellen, nicht auf Halluzinationen.</span>
             </li>
           </ul>
         </div>
@@ -756,7 +593,7 @@
     </div>
   </section>
 
-  <!-- WARUM LFA : Organic floating blobs -->
+  <!-- WARUM LFA — Organic floating blobs -->
   <section class="py-24 md:py-36 relative section-organic" id="warum">
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-30 pointer-events-none"
       style="background:radial-gradient(ellipse,var(--color-accent-glow),transparent 70%)"></div>
@@ -792,7 +629,7 @@
             <svg class="icon"><use href="#i-zap" /></svg>
           </div>
           <h3 class="text-lg font-semibold mb-2">Personalisiertes Feedback</h3>
-          <p class="text-sm text-muted leading-relaxed">Dein Ausbilder reviewed persönlich deine Aufgaben und gibt dir individuelles , abgestimmt auf dich und deinen Lernstand.</p>
+          <p class="text-sm text-muted leading-relaxed">Dein Ausbilder reviewed persönlich deine Aufgaben und gibt dir individuelles Feedback — abgestimmt auf dich und deinen Lernstand.</p>
         </div>
         <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover">
           <div class="w-11 h-11 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center mb-5 text-accent">
@@ -815,7 +652,7 @@
                 <svg class="icon"><use href="#i-clock" /></svg>
               </div>
               <h3 class="text-xl font-semibold mb-3">Dein Ausbilder, ganz nah</h3>
-              <p class="text-sm text-muted leading-relaxed">Dein Ausbilder reviewed deine Arbeit selbst und gibt dir sein individuelles Feedback.</p>
+              <p class="text-sm text-muted leading-relaxed">Weniger Verwaltung, mehr persönliche Betreuung — dein Ausbilder reviewed deine Arbeit selbst und gibt dir sein individuelles Feedback.</p>
             </div>
           </div>
         </div>
@@ -841,7 +678,7 @@
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernmaterial</span><span
               class="text-sm text-muted">Stapelweise Bücher, unübersichtliche PDFs, kein roter Faden</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernen</span><span
-              class="text-sm text-muted">Trockene Theorie, ohne Praxisbezug</span></div>
+              class="text-sm text-muted">Trockene Theorie auf Papier — ohne Praxisbezug</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Feedback</span><span
               class="text-sm text-muted">Unpersönlich, verspätet oder gar nicht</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Ausbilder-Rolle</span><span
@@ -853,7 +690,7 @@
           style="background:linear-gradient(135deg,var(--color-accent-soft),transparent)">
           <div class="text-xs font-semibold tracking-widest uppercase text-accent mb-6">Der LFA-Weg</div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernmaterial</span><span
-              class="text-sm font-medium">Offizielle IHK-Bücher : Daraus entstehen Szenarien, Quizze und Use Cases</span></div>
+              class="text-sm font-medium">Offizielle IHK-Bücher als Enabler — daraus entstehen Szenarien, Quizze und Use Cases</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Lernen</span><span
               class="text-sm font-medium">Praxisnahe Szenarien und Use Cases statt abstrakter Theorie</span></div>
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Feedback</span><span
@@ -861,21 +698,21 @@
           <div class="py-3 border-b border-border"><span class="block text-xs text-faint">Ausbilder-Rolle</span><span
               class="text-sm font-medium">Persönlicher Mentor und Reviewer</span></div>
           <div class="py-3"><span class="block text-xs text-faint">Wissensquelle</span><span
-              class="text-sm font-medium">IHK-Bücher, Firmendaten und eine KI, die nur daraus antwortet</span></div>
+              class="text-sm font-medium">IHK-Verordnungen, Firmen-Repository und geschlossene RAG-KI</span></div>
         </div>
       </div>
     </div>
   </section>
 
 
-  <!-- FUNKTIONEN : Soft glow section -->
+  <!-- FUNKTIONEN — Soft glow section -->
   <section class="py-24 md:py-36 text-center section-alt section-glow" id="funktionen">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <span
         class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Funktionsbereiche</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Alles, was die
         FIAE-Ausbildung<br>braucht.</h2>
-      <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte Module, alles in einer Plattform vereint.</p>
+      <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte Module und mehr — alles in einer Plattform vereint.</p>
       <!-- Featured modules -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14">
         <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover bento-featured tilt-card">
@@ -885,7 +722,7 @@
             </div>
             <div>
               <h3 class="text-lg font-semibold mb-1">Lernmanagement</h3>
-              <p class="text-sm text-muted leading-relaxed">Kurse, Szenarien, Enabler und Use Cases , strukturiert nach IHK-Lernfeldern.</p>
+              <p class="text-sm text-muted leading-relaxed">Kurse, Szenarien, Enabler und Use Cases mit Fortschrittsverfolgung — strukturiert nach IHK-Lernfeldern.</p>
             </div>
           </div>
           <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden" onclick="openLightbox(this.querySelector('img'))">
@@ -900,7 +737,7 @@
             </div>
             <div>
               <h3 class="text-lg font-semibold mb-1">KI-Assistent HAI</h3>
-              <p class="text-sm text-muted leading-relaxed">Antwortet nur aus deinen Kursmaterialien. Kein freies Internet, basierend auf offiziellen IHK-Büchern.</p>
+              <p class="text-sm text-muted leading-relaxed">RAG-Pipeline mit Closed-Context und Lernempfehlungen — basierend auf offiziellen IHK-Büchern.</p>
             </div>
           </div>
           <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden" onclick="openLightbox(this.querySelector('img'))">
@@ -910,7 +747,7 @@
         </div>
       </div>
       <!-- Remaining modules -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-5 mt-5">
         <div class="reveal p-6 rounded-2xl bg-surface border border-border text-center card-hover accent-hover">
           <div class="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center bg-accent-soft border border-border-accent text-accent">
             <svg class="icon w-6 h-6"><use href="#i-help" /></svg>
@@ -957,215 +794,14 @@
     </div>
   </section>
 
-  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #f8f9fb);"></div>
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #0f0f11);"></div>
 
-  <!-- TÄTIGKEITSNACHWEIS & ARBEITSZEUGNIS : Premium Workflow -->
-  <section class="py-24 md:py-36" id="taetigkeitsnachweis" style="position:relative;overflow:hidden;background:#f8f9fb;">
-    <!-- Hintergrund-Glows (hell) -->
-    <div style="position:absolute;top:10%;left:5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,26,26,.06),transparent 70%);pointer-events:none;"></div>
-    <div style="position:absolute;top:10%;right:5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,180,30,.05),transparent 70%);pointer-events:none;"></div>
-    <!-- Dot-Muster (dunkel auf hell) -->
-    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.055) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
-
-    <div class="max-w-[1200px] mx-auto px-5 md:px-10" style="position:relative;">
-
-      <!-- Header -->
-      <div class="reveal text-center mb-14">
-        <span class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded mb-5" style="color:#ffb820;background:rgba(255,184,32,.08);border:1px solid rgba(255,184,32,.22);">&#10022; Nur bei LFA</span>
-        <h2 class="text-3xl md:text-5xl font-black leading-[1.05] tracking-tight mb-4" style="color:#111118;">Tätigkeitsnachweis<br><span style="color:#ff3333;">&amp; Arbeitszeugnis.</span></h2>
-        <p class="text-base max-w-[520px] mx-auto leading-relaxed" style="color:#6a6a7a;">Von der wöchentlichen Eintragung bis zum fertigen Zeugnis: alles läuft automatisch. Kein Papierkram, kein Aufwand.</p>
-      </div>
-
-      <!-- Split Layout mit Connector -->
-      <div class="reveal" style="position:relative;">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="align-items:stretch;">
-
-        <!-- ── LINKS: Tätigkeitsnachweis ── -->
-        <div class="rounded-2xl overflow-hidden" style="background:#ffffff;border:1px solid rgba(255,26,26,.15);box-shadow:0 4px 32px rgba(0,0,0,.08);display:flex;flex-direction:column;">
-          <!-- Panel-Header -->
-          <div class="px-7 py-5 flex items-center gap-3" style="background:rgba(255,26,26,.05);border-bottom:1px solid rgba(255,26,26,.1);">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.22);">
-              <svg class="icon w-4 h-4 text-accent"><use href="#i-clipboard" /></svg>
-            </div>
-            <div>
-              <span class="block text-xs font-bold tracking-widest uppercase" style="color:#cc2222;">Tätigkeitsnachweis</span>
-              <span class="block text-xs" style="color:#9a9aaa;">Jede Woche, vollautomatisch</span>
-            </div>
-          </div>
-
-          <!-- Timeline : flex:1 füllt die Höhe -->
-          <div class="px-7 py-7" style="position:relative;flex:1;">
-            <!-- Vertikale Verbindungslinie -->
-            <div style="position:absolute;left:calc(1.75rem + 16px);top:2rem;bottom:7.5rem;width:1px;background:linear-gradient(to bottom,rgba(255,26,26,.5),rgba(255,26,26,.08));pointer-events:none;"></div>
-
-            <!-- Schritt 1 -->
-            <div class="flex gap-5 mb-7">
-              <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10" style="background:#ff2222;color:#fff;box-shadow:0 0 16px rgba(255,34,34,.45);">1</div>
-              <div>
-                <h4 class="text-sm font-bold mb-1" style="color:#111118;">Azubi trägt seine Woche ein</h4>
-                <p class="text-xs leading-relaxed" style="color:#7a7a88;">Nicht einfach Stunden zählen, sondern eintragen, <strong style="color:#cc2222;">was genau gemacht wurde</strong>. Direkt dem Ausbildungsplan zugeordnet.</p>
-              </div>
-            </div>
-
-            <!-- Schritt 2 -->
-            <div class="flex gap-5 mb-7">
-              <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10" style="background:rgba(255,26,26,.09);border:1px solid rgba(255,26,26,.28);color:#cc2222;">2</div>
-              <div>
-                <h4 class="text-sm font-bold mb-1" style="color:#111118;">Ausbilder prüft &amp; benotet</h4>
-                <p class="text-xs leading-relaxed" style="color:#7a7a88;">Nach <strong style="color:#cc2222;">festen Bewertungsmaßstäben</strong>. Die Note ist sofort für den Azubi sichtbar, volle Transparenz.</p>
-              </div>
-            </div>
-
-            <!-- Schritt 3 -->
-            <div class="flex gap-5 mb-7">
-              <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10" style="background:rgba(255,26,26,.09);border:1px solid rgba(255,26,26,.28);color:#cc2222;">3</div>
-              <div>
-                <h4 class="text-sm font-bold mb-1" style="color:#111118;">Probleme früh erkennen</h4>
-                <p class="text-xs leading-relaxed" style="color:#7a7a88;">Schlechte Note? Das System schlägt direkt Alarm: ein <strong style="color:#cc2222;">klärendes Gespräch</strong> kann sofort eingeleitet werden, bevor etwas eskaliert.</p>
-              </div>
-            </div>
-
-            <!-- Schritt 4 -->
-            <div class="flex gap-5 mb-7">
-              <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10" style="background:rgba(255,26,26,.09);border:1px solid rgba(255,26,26,.28);color:#cc2222;">4</div>
-              <div>
-                <h4 class="text-sm font-bold mb-1" style="color:#111118;">Nachweis wird automatisch erstellt</h4>
-                <p class="text-xs leading-relaxed" style="color:#7a7a88;">Nach Freigabe: fertige <strong style="color:#cc2222;">PDF mit echter Unterschrift</strong> und WAMOCON-Siegel, kein Ausfüllen, kein Drucken, kein Ablegen.</p>
-              </div>
-            </div>
-
-            <!-- Schritt 5 : Übergang zum Arbeitszeugnis -->
-            <div class="flex gap-5">
-              <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center z-10" style="background:linear-gradient(135deg,rgba(255,26,26,.2),rgba(255,180,30,.2));border:1px solid rgba(255,180,30,.35);">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px;color:#ffb820;"><polyline points="9 18 15 12 9 6"/></svg>
-              </div>
-              <div class="flex-1 rounded-xl px-4 py-3" style="background:linear-gradient(135deg,rgba(255,26,26,.05),rgba(255,180,30,.06));border:1px solid rgba(255,180,30,.18);">
-                <h4 class="text-sm font-bold mb-0.5" style="color:#8a6000;">Alle Noten fließen ins Arbeitszeugnis</h4>
-                <p class="text-xs" style="color:#7a7a88;">Jede Woche zählt. Am Ende der Ausbildung ist das Zeugnis bereits fertig.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tags -->
-          <div class="px-7 pb-6 flex flex-wrap gap-2">
-            <span class="text-xs px-2.5 py-1 rounded-full font-semibold" style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);color:#ff7070;">Aufgaben-basiert</span>
-            <span class="text-xs px-2.5 py-1 rounded-full font-semibold" style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);color:#ff7070;">Prüfungskonform</span>
-            <span class="text-xs px-2.5 py-1 rounded-full font-semibold" style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);color:#ff7070;">0 Aufwand</span>
-          </div>
-        </div>
-
-        <!-- ── RECHTS: Arbeitszeugnis ── -->
-        <div class="rounded-2xl overflow-hidden" style="background:#ffffff;border:1px solid rgba(255,180,30,.28);box-shadow:0 4px 32px rgba(0,0,0,.08),0 0 60px rgba(255,180,30,.07);display:flex;flex-direction:column;">
-          <!-- Panel-Header -->
-          <div class="px-7 py-5 flex items-center gap-3" style="background:rgba(255,180,30,.07);border-bottom:1px solid rgba(255,180,30,.14);">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,180,30,.15);border:1px solid rgba(255,180,30,.3);">
-              <svg class="icon w-4 h-4" style="color:#ffb820;"><use href="#i-shield" /></svg>
-            </div>
-            <div>
-              <span class="block text-xs font-bold tracking-widest uppercase" style="color:#b8860b;">Arbeitszeugnis</span>
-              <span class="block text-xs" style="color:#9a9aaa;">Gesetzlich vorgeschrieben · automatisch erstellt</span>
-            </div>
-          </div>
-
-          <div class="p-7" style="flex:1;display:flex;flex-direction:column;">
-            <p class="text-xs leading-relaxed mb-6" style="color:#7a7a88;">Alle wöchentlichen Bewertungen werden automatisch gesammelt. Am Ende der Ausbildung erstellt LFA das <strong style="color:#8a6000;">vollständige Arbeitszeugnis</strong>, fertig, rechtsgültig, ohne einen einzigen Handgriff.</p>
-
-            <!-- Dokument-Mockup -->
-            <div class="rounded-xl overflow-hidden" style="background:#fefbf3;border:1px solid rgba(255,180,30,.25);box-shadow:0 4px 20px rgba(0,0,0,.1),0 0 0 1px rgba(255,180,30,.1);">
-              <!-- Dokument-Header -->
-              <div class="px-5 py-4 flex items-center justify-between" style="background:rgba(255,180,30,.06);border-bottom:1px solid rgba(255,180,30,.12);">
-                <div>
-                  <div class="text-xs font-black tracking-wider" style="color:#ffb820;">WAMOCON GmbH</div>
-                  <div class="text-xs" style="color:#4a4a58;">Ausbildungszeugnis · FIAE</div>
-                </div>
-                <!-- Siegel -->
-                <div style="width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,180,30,.5);display:flex;align-items:center;justify-content:center;background:rgba(255,180,30,.08);box-shadow:0 0 12px rgba(255,180,30,.2);">
-                  <svg class="w-4 h-4" style="color:#ffb820;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-                </div>
-              </div>
-
-              <!-- Dokument-Body -->
-              <div class="px-5 py-5">
-                <!-- Platzhalter-Zeilen -->
-                <div class="mb-4">
-                  <div class="text-xs mb-2" style="color:#4a4a58;">Auszubildende/r</div>
-                  <div style="height:10px;background:rgba(0,0,0,.08);border-radius:4px;width:65%;"></div>
-                </div>
-                <div class="flex gap-4 mb-4">
-                  <div class="flex-1">
-                    <div class="text-xs mb-2" style="color:#9a9aaa;">Ausbildungszeitraum</div>
-                    <div style="height:10px;background:rgba(0,0,0,.08);border-radius:4px;"></div>
-                  </div>
-                  <div class="flex-1">
-                    <div class="text-xs mb-2" style="color:#9a9aaa;">Beruf</div>
-                    <div style="height:10px;background:rgba(0,0,0,.08);border-radius:4px;width:60%;"></div>
-                  </div>
-                </div>
-
-                <!-- Bewertung -->
-                <div class="rounded-lg px-4 py-3 mb-4" style="background:rgba(255,180,30,.07);border:1px solid rgba(255,180,30,.15);">
-                  <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold" style="color:#ffc84a;">Gesamtbewertung</span>
-                    <div class="flex gap-1">
-                      <span style="color:#ffb820;font-size:13px;">★★★★</span><span style="color:#3a3020;font-size:13px;">★</span>
-                    </div>
-                  </div>
-                  <div class="text-xs mt-1" style="color:#5a5060;">Aus 48 wöchentlichen Nachweisen berechnet</div>
-                </div>
-
-                <!-- Textzeilen -->
-                <div class="space-y-1.5 mb-5">
-                  <div style="height:8px;background:rgba(0,0,0,.07);border-radius:3px;width:100%;"></div>
-                  <div style="height:8px;background:rgba(0,0,0,.07);border-radius:3px;width:92%;"></div>
-                  <div style="height:8px;background:rgba(0,0,0,.07);border-radius:3px;width:85%;"></div>
-                </div>
-
-                <!-- Unterschrift & Siegel -->
-                <div class="flex items-end justify-between pt-4" style="border-top:1px solid rgba(255,255,255,.06);">
-                  <div>
-                    <div style="height:1px;width:100px;background:rgba(255,255,255,.15);margin-bottom:4px;"></div>
-                    <div class="text-xs" style="color:#9a9aaa;">Unterschrift Ausbilder</div>
-                  </div>
-                  <div style="width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,180,30,.5);display:flex;align-items:center;justify-content:center;background:rgba(255,180,30,.1);box-shadow:0 0 16px rgba(255,180,30,.2);">
-                    <span style="font-size:8px;font-weight:900;color:#b8860b;letter-spacing:-.5px;text-align:center;line-height:1.1;">WMC<br>SIEGEL</span>
-                  </div>
-                  <div>
-                    <div style="height:1px;width:100px;background:rgba(0,0,0,.15);margin-bottom:4px;"></div>
-                    <div class="text-xs" style="color:#9a9aaa;">Digitale Signatur</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Rechtliche Note -->
-            <div class="mt-4 flex items-center gap-2">
-              <svg class="icon w-3.5 h-3.5 shrink-0" style="color:#ffb820;"><use href="#i-lock" /></svg>
-              <span class="text-xs" style="color:#9a9aaa;">Gesetzlich vorgeschrieben (§16 BBiG) · Digital rechtsverbindlich seit 01.08.2024 · Automatisch gespeichert</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Connector-Pfeil : nur Desktop -->
-      <div class="hidden md:flex items-center justify-center" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;pointer-events:none;">
-        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#e84a1a,#e87c10);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(232,100,20,.35),0 0 0 4px rgba(232,100,20,.1);">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px;color:#fff;"><polyline points="9 18 15 12 9 6"/></svg>
-        </div>
-      </div>
-
-    </div>
-    </div>
-  </section>
-
-  <div class="divider-gradient" style="background:linear-gradient(to bottom, #f8f9fb, #0f0f11);"></div>
-
-  <!-- SOLAR SYSTEM : Lernuniversum -->
+  <!-- SOLAR SYSTEM — Lernuniversum -->
   <section class="section-dark" id="solarsystem" style="position:relative;overflow:hidden;">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10 text-center pt-24 md:pt-36 pb-8">
       <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Inhaltsarchitektur</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Vom Chaos &#x2192; zur Klarheit.</h2>
-      <p class="reveal text-lg max-w-[560px] mx-auto leading-relaxed mb-10" style="color:#9999a1;">Klicke auf <strong style="color:#ff6060;">FIAE</strong> und fliege durch das gesamte Lernuniversum: Lernfelder, Komponenten und Use Cases.</p>
+      <p class="reveal text-lg max-w-[560px] mx-auto leading-relaxed mb-10" style="color:#9999a1;">Klicke auf <strong style="color:#ff6060;">FIAE</strong> und fliege durch das gesamte Lernuniversum &mdash; Lernfelder, Komponenten und Use Cases.</p>
 
       <!-- Begriffserklärung -->
       <div class="reveal flex flex-wrap justify-center gap-3 md:gap-5 mb-2">
@@ -1173,21 +809,21 @@
           <div style="width:12px;height:12px;border-radius:50%;background:#ff3333;flex-shrink:0;margin-top:3px;box-shadow:0 0 8px rgba(255,51,51,.5);"></div>
           <div>
             <div style="font-size:.75rem;font-weight:700;color:#f0f0f2;margin-bottom:2px;">Lernfeld</div>
-            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Berufsschulfach: theoretische Grundlage der IHK-Ausbildung (12 Stück)</div>
+            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Berufsschulfach — theoretische Grundlage der IHK-Ausbildung (12 Stück)</div>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 14px;max-width:200px;text-align:left;">
           <div style="width:10px;height:10px;border-radius:50%;background:#e2e8f0;flex-shrink:0;margin-top:3px;box-shadow:0 0 6px rgba(226,232,240,.3);"></div>
           <div>
             <div style="font-size:.75rem;font-weight:700;color:#f0f0f2;margin-bottom:2px;">Komponente</div>
-            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Prüfungseinheit: IHK-Bewertungskategorie, begleitet alle Lernfelder (26 Stück)</div>
+            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Prüfungseinheit — IHK-Bewertungskategorie, die alle Lernfelder begleitet (26 Stück)</div>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 14px;max-width:200px;text-align:left;">
           <div style="width:8px;height:8px;border-radius:50%;background:#38bdf8;flex-shrink:0;margin-top:3px;box-shadow:0 0 6px rgba(56,189,248,.4);"></div>
           <div>
             <div style="font-size:.75rem;font-weight:700;color:#f0f0f2;margin-bottom:2px;">Use Case</div>
-            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Praxisaufgabe: konkrete Situation aus dem Berufsalltag (86 Stück)</div>
+            <div style="font-size:.68rem;color:#6e6e76;line-height:1.4;">Praxisaufgabe — konkrete Situation aus dem Berufsalltag (86 Stück)</div>
           </div>
         </div>
       </div>
@@ -1208,7 +844,7 @@
           class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Live-Demo</span>
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Plattform erleben.</h2>
         <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Klicke dich frei durch die
-          interaktive Demo. Wechsle zwischen Azubi- und Ausbilder-Ansicht über den Button unten links.</p>
+          interaktive Demo — wechsle zwischen Azubi- und Ausbilder-Ansicht über den Button unten links.</p>
       </div>
       <div class="reveal" style="border:2px solid var(--color-border-accent);border-radius:16px;padding:4px;background:var(--color-surface);">
         <div class="browser-chrome" style="box-shadow:0 25px 80px rgba(0,0,0,.45),0 0 60px rgba(255,26,26,.10);opacity:1;">
@@ -1223,7 +859,7 @@
             </div>
           </div>
           <div class="w-full" style="position:relative;overflow:hidden;background:#ffffff;overscroll-behavior:contain;">
-            <iframe src="https://fiae-learn.com/demo" title="LFA Plattform Demo" class="demo-iframe"
+            <iframe src="https://fiae-learn.com/demo" title="LFA Plattform Demo"
               style="width:100%;height:820px;border:none;display:block;opacity:1;background:#ffffff;overscroll-behavior:contain;" loading="lazy"
               allow="clipboard-read; clipboard-write" scrolling="auto"></iframe>
           </div>
@@ -1234,8 +870,8 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg), #09111f);"></div>
 
-  <!-- HAI : KI-Assistent -->
-  <section class="py-24 md:py-28 section-hai" id="hai">
+  <!-- HAI — KI-Assistent -->
+  <section class="py-24 md:py-36 section-hai" id="hai">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-16 md:mb-20">
         <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded mb-4" style="color:#38bdf8;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2);">KI-Assistent</span>
@@ -1245,7 +881,7 @@
           </div>
           <h2 class="text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight" style="color:#f0f0f2;">Lern&shy;assistent <span style="background:linear-gradient(135deg,#38bdf8,#0ea5e9,#7dd3fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">HAI</span></h2>
         </div>
-        <p class="reveal text-lg max-w-[640px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Google. Kein Raten. Nur Antworten aus deinen Kursinhalten: präzise, ehrlich und lernfördernd.</p>
+        <p class="reveal text-lg max-w-[640px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Google. Kein Raten. Nur Antworten aus deinen Kursinhalten &mdash; präzise, ehrlich und lernfördernd.</p>
       </div>
 
       <!-- 2-col: GIF links, Features rechts -->
@@ -1255,16 +891,16 @@
           <div class="hai-demo-card">
             <div class="hai-bubble hai-bubble--bot">
               <strong>HAI</strong><br>
-              Du fragst nach Polymorphismus. Guter Einstieg. Aber bevor ich antworte: Was vermutest du selbst, was der Begriff bedeutet?
+              Du fragst nach Polymorphismus &mdash; guter Einstieg. Aber bevor ich antworte: Was vermutest du selbst, was der Begriff bedeutet?
             </div>
             <div class="hai-bubble hai-bubble--user">
               Irgendwas mit Klassen und Vererbung?
             </div>
             <div class="hai-bubble hai-bubble--bot">
-              Genau auf dem richtigen Weg. Schau dir den passenden <span style="display:inline-flex;align-items:center;gap:2px;padding:1px 7px 1px 6px;border-radius:5px;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.3);font-weight:600;color:#7dd3fc;white-space:nowrap;">Enabler <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span> in deinem Kurs an, dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.
+              Genau auf dem richtigen Weg. Schau dir den passenden <span style="display:inline-flex;align-items:center;gap:3px;padding:1px 7px 1px 6px;border-radius:5px;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.3);font-weight:600;color:#7dd3fc;white-space:nowrap;">Enabler <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span> in deinem Kurs an &mdash; dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.
             </div>
           </div>
-          <p class="text-xs" style="color:#6e6e76;text-align:center;">HAI gibt Hinweise, keine fertigen Lösungen. So lernst du wirklich.</p>
+          <p class="text-xs" style="color:#6e6e76;text-align:center;">HAI gibt Hinweise &mdash; keine fertigen Lösungen. So lernst du wirklich.</p>
         </div>
         <!-- Right: Feature list -->
         <div class="flex flex-col gap-5">
@@ -1274,7 +910,7 @@
             </div>
             <div>
               <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Nur aus deinen Kursinhalten</h4>
-              <p class="text-sm" style="color:#9999a1;">HAI antwortet ausschließlich aus den eingebetteten Kursmaterialien. Keine Internetsuche im Standardmodus.</p>
+              <p class="text-sm" style="color:#9999a1;">HAI antwortet ausschließlich aus den eingebetteten Kursmaterialien &mdash; keine Internetsuche im Standardmodus.</p>
             </div>
           </div>
           <div class="hai-feature">
@@ -1283,7 +919,7 @@
             </div>
             <div>
               <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Keine Halluzinationen bei Plattformdaten</h4>
-              <p class="text-sm" style="color:#9999a1;">Noten, Abgaben, Termine: HAI erfindet niemals Plattformdaten. Bei unbekannten Themen verweist er klar an den Trainer.</p>
+              <p class="text-sm" style="color:#9999a1;">Noten, Abgaben, Termine &mdash; HAI erfindet niemals Plattformdaten. Bei unbekannten Themen verweist er klar an den Trainer.</p>
             </div>
           </div>
           <div class="hai-feature">
@@ -1292,7 +928,7 @@
             </div>
             <div>
               <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Leitfragen statt Lösungen</h4>
-              <p class="text-sm" style="color:#9999a1;">Bei Szenarien gibt HAI Hinweise in kleinen Schritten und stellt Gegenfragen. Das Denken bleibt bei dir.</p>
+              <p class="text-sm" style="color:#9999a1;">Bei Szenarien gibt HAI Hinweise in kleinen Schritten &mdash; und stellt Gegenfragen. Das Denken bleibt bei dir.</p>
             </div>
           </div>
           <div class="hai-feature">
@@ -1301,18 +937,18 @@
             </div>
             <div>
               <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Code erklären &amp; debuggen</h4>
-              <p class="text-sm" style="color:#9999a1;">Füge Code ein, HAI erklärt, was passiert und wo der Fehler liegt, ohne die Lösung direkt zu liefern.</p>
+              <p class="text-sm" style="color:#9999a1;">Füge Code ein, HAI erklärt was passiert und wo der Fehler liegt &mdash; ohne die Lösung direkt zu liefern.</p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Bottom stats row -->
-      <div class="reveal grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="hai-stat">
-          <span class="hai-stat-num">100%</span>
-          <span class="hai-stat-label">Kurs-Fokus</span>
-          <span class="hai-stat-sub">Jede Antwort stammt ausschließlich aus deinen Kursmaterialien</span>
+          <span class="hai-stat-num">0,45</span>
+          <span class="hai-stat-label">Kosinus-Schwellenwert</span>
+          <span class="hai-stat-sub">Nur relevante Inhalte fließen in Antworten ein</span>
         </div>
         <div class="hai-stat">
           <span class="hai-stat-num">3 Stufen</span>
@@ -1322,31 +958,33 @@
         <div class="hai-stat">
           <span class="hai-stat-num">Quiz</span>
           <span class="hai-stat-label">Mit HAI lernen</span>
-          <span class="hai-stat-sub">Lass dir Fragen dynamisch generieren und lerne im Dialog: kein Raten, echtes Verstehen.</span>
+          <span class="hai-stat-sub">Lass dir Fragen dynamisch generieren und lerne im Dialog &mdash; kein Raten, echtes Verstehen.</span>
         </div>
         <div class="hai-stat">
-          <span class="hai-stat-num">Immer</span>
-          <span class="hai-stat-label">Mit Quelle</span>
-          <span class="hai-stat-sub">HAI zeigt dir, aus welchem Kursinhalt die Antwort kommt</span>
+          <span class="hai-stat-num">SHA256</span>
+          <span class="hai-stat-label">Content-Deduplizierung</span>
+          <span class="hai-stat-sub">Identische Inhalte werden nicht doppelt eingebettet</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HAI Deep : Technologie & Prinzipien -->
-  <section class="py-12 md:py-20 section-hai-deep" id="hai-deep">
+  <div class="divider-gradient" style="background:linear-gradient(to bottom,#09111f,#060e1b);"></div>
+
+  <!-- HAI Deep — Technologie & Prinzipien -->
+  <section class="py-24 md:py-36 section-hai-deep" id="hai-deep">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
 
       <!-- Heading -->
       <div class="text-center mb-16 md:mb-20">
         <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded mb-4" style="color:#818cf8;background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.2);">Technologie</span>
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Wie HAI <span style="background:linear-gradient(135deg,#38bdf8,#818cf8,#c084fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">denkt.</span></h2>
-        <p class="reveal text-lg max-w-[580px] mx-auto leading-relaxed" style="color:#9999a1;">HAI sucht gezielt in deinen Kursmaterialien und antwortet mit Gegenfragen statt fertigen Lösungen. Gebaut für echtes Verstehen, nicht für Durchklicken.</p>
+        <p class="reveal text-lg max-w-[580px] mx-auto leading-relaxed" style="color:#9999a1;">RAG-Architektur, semantische Vektoren und das Sokrates-Prinzip &mdash; gebaut für echtes Verstehen statt Durchklicken.</p>
       </div>
 
       <!-- RAG Pipeline -->
-      <div class="mb-14" id="ragPipelineWrap">
-        <p class="text-xs font-semibold tracking-widest uppercase mb-5 text-center" style="color:#6e6e76;">So entsteht jede HAI-Antwort</p>
+      <div class="reveal mb-14">
+        <p class="text-xs font-semibold tracking-widest uppercase mb-5 text-center" style="color:#6e6e76;">Retrieval-Augmented Generation — so entsteht jede Antwort</p>
         <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
           <div class="rag-pipeline" style="min-width:680px;">
             <div class="rag-step">
@@ -1362,16 +1000,16 @@
               <div class="rag-step__icon" style="background:rgba(129,140,248,.1);">
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="8" height="8" rx="1.5"/><rect x="14" y="3" width="8" height="8" rx="1.5"/><rect x="2" y="14" width="8" height="8" rx="1.5"/><path d="M18 14v6M15 17h6"/></svg>
               </div>
-              <span class="rag-step__label">Inhalt vergleichen</span>
-              <span class="rag-step__sub">Die Frage wird mit allen Kursmaterialien verglichen</span>
+              <span class="rag-step__label">Embedding</span>
+              <span class="rag-step__sub">3072-dim. Vektor via text-embedding-3-large</span>
             </div>
             <div class="rag-step">
               <span class="rag-step__num">03</span>
               <div class="rag-step__icon" style="background:rgba(14,165,233,.1);">
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#0ea5e9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/><path d="M8 11h6M11 8v6"/></svg>
               </div>
-              <span class="rag-step__label">Passende Stellen finden</span>
-              <span class="rag-step__sub">Nur die wirklich relevanten Abschnitte werden geladen</span>
+              <span class="rag-step__label">pgvector-Suche</span>
+              <span class="rag-step__sub">Kosinus ≥ 0,45 &mdash; nur passende Chunks</span>
             </div>
             <div class="rag-step">
               <span class="rag-step__num">04</span>
@@ -1379,7 +1017,7 @@
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               </div>
               <span class="rag-step__label">Kursinhalt</span>
-              <span class="rag-step__sub">Passende Abschnitte aus deinen Kursen als Grundlage</span>
+              <span class="rag-step__sub">Relevante Enabler &amp; Materialien als Kontext</span>
             </div>
             <div class="rag-step" style="background:rgba(56,189,248,.025);">
               <span class="rag-step__num" style="background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">05</span>
@@ -1387,7 +1025,7 @@
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#7dd3fc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </div>
               <span class="rag-step__label" style="background:linear-gradient(135deg,#38bdf8,#818cf8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">HAI antwortet</span>
-              <span class="rag-step__sub">Leitfragen, keine fertigen Lösungen</span>
+              <span class="rag-step__sub">Leitfragen &mdash; keine fertigen Lösungen</span>
             </div>
           </div>
         </div>
@@ -1402,15 +1040,15 @@
             <div class="hai2-card-icon" style="background:rgba(56,189,248,.12);">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             </div>
-            <h3 class="font-bold text-base" style="color:#f0f0f2;">Lernen durch Fragen</h3>
+            <h3 class="font-bold text-base" style="color:#f0f0f2;">Sokrates-Methode</h3>
           </div>
           <div class="flex flex-col gap-2 mb-4">
-            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">Was ist Polymorphismus?</div>
-            <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">Gute Frage. Was vermutest du selbst, was der Begriff bedeuten könnte?</div>
-            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">Vielleicht dass ein Objekt mehrere Formen hat?</div>
-            <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">Genau richtig. Schau dir Kapitel 4 an und erkläre mir dann ein konkretes Beispiel dafür.</div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">Wie funktioniert ein LEFT JOIN?</div>
+            <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">Was weißt du bereits über JOIN-Typen? Fang mit dem an, was dir bekannt ist.</div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">Nur INNER JOIN kenn ich...</div>
+            <div style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">Gut. Schau Enabler&nbsp;38 &mdash; beschreib dann den Unterschied zum LEFT JOIN.</div>
           </div>
-          <p class="text-xs" style="color:#6e6e76;">HAI führt dich hin, gibt keine Lösungen direkt.</p>
+          <p class="text-xs" style="color:#6e6e76;">HAI führt dich hin &mdash; gibt keine Lösungen direkt.</p>
         </div>
 
         <!-- Card 2: Quiz-Progression -->
@@ -1424,14 +1062,14 @@
           <div class="quiz-level quiz-level--done">
             <div style="flex:1;">
               <div class="text-xs font-bold mb-1.5" style="color:#34d399;">LEICHT</div>
-              <div class="quiz-bar"><div class="quiz-bar__fill" data-quiz-target="100%" style="background:linear-gradient(90deg,#34d399,#6ee7b7);--quiz-target:100%;"></div></div>
+              <div class="quiz-bar"><div class="quiz-bar__fill" style="width:100%;background:linear-gradient(90deg,#34d399,#6ee7b7);"></div></div>
             </div>
             <span class="text-xs font-semibold" style="color:#34d399;flex-shrink:0;">✓ Bestanden</span>
           </div>
           <div class="quiz-level quiz-level--active">
             <div style="flex:1;">
               <div class="text-xs font-bold mb-1.5" style="color:#38bdf8;">MITTEL</div>
-              <div class="quiz-bar"><div class="quiz-bar__fill" data-quiz-target="60%" style="background:linear-gradient(90deg,#38bdf8,#7dd3fc);--quiz-target:60%;"></div></div>
+              <div class="quiz-bar"><div class="quiz-bar__fill" style="width:60%;background:linear-gradient(90deg,#38bdf8,#7dd3fc);"></div></div>
             </div>
             <span class="text-xs font-semibold" style="color:#38bdf8;flex-shrink:0;">60 %</span>
           </div>
@@ -1442,7 +1080,7 @@
             </div>
             <span class="text-xs" style="color:#6e6e76;flex-shrink:0;">🔒 Gesperrt</span>
           </div>
-          <p class="text-xs mt-4" style="color:#6e6e76;">Jede Stufe schaltet nach Bestehen frei. Je Quiz 1 Versuch.</p>
+          <p class="text-xs mt-4" style="color:#6e6e76;">Jede Stufe schaltet nach Bestehen frei &mdash; je Enabler-Quiz 1 Versuch.</p>
         </div>
 
         <!-- Card 3: Vertrauensregeln -->
@@ -1464,7 +1102,7 @@
             <div class="trust-dot" style="background:rgba(52,211,153,.12);color:#34d399;">✓</div>
             <div>
               <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Keine erfundenen Daten</div>
-              <div class="text-xs" style="color:#6e6e76;">Noten, Termine: HAI erfindet niemals Plattformdaten</div>
+              <div class="text-xs" style="color:#6e6e76;">Noten, Termine &mdash; HAI erfindet niemals Plattformdaten</div>
             </div>
           </div>
           <div class="trust-row">
@@ -1478,7 +1116,7 @@
             <div class="trust-dot" style="background:rgba(248,113,113,.1);color:#f87171;">✗</div>
             <div>
               <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Kein unkontrolliertes Internet</div>
-              <div class="text-xs" style="color:#6e6e76;">Websuche ist optional. Standard: nur deine Kursinhalte</div>
+              <div class="text-xs" style="color:#6e6e76;">Websuche ist optional &mdash; Standard ist Closed Context</div>
             </div>
           </div>
         </div>
@@ -1489,14 +1127,14 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom,#060e1b,var(--color-bg));"></div>
 
-  <!-- ROI : Organic blobs, light -->
+  <!-- ROI — Organic blobs, light -->
   <section class="py-24 md:py-36 section-organic" id="roi">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Der Effekt</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">So entlastet LFA<br>Betrieb und Azubi.</h2>
       <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed mb-12">Konkrete Zahlen, die zeigen, was LFA für Ausbildungsbetriebe und Auszubildende verändert.</p>
       <div class="grid grid-cols-1 md:grid-cols-5 gap-5 items-stretch">
-        <!-- Big featured stat : warning: this is a COST -->
+        <!-- Big featured stat — warning: this is a COST -->
         <div class="reveal md:col-span-2 relative p-10 rounded-2xl border border-border-hover overflow-hidden flex flex-col items-center justify-center text-center" style="background:linear-gradient(160deg,var(--color-surface-bright),var(--color-surface))">
           <div class="absolute top-0 left-0 right-0 h-[2px]" style="background:linear-gradient(90deg,transparent,var(--color-accent),transparent)"></div>
           <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background:rgba(255,180,0,.12);border:1px solid rgba(255,180,0,.2);">
@@ -1507,7 +1145,7 @@
           <span class="block text-sm text-faint mb-4">Direkte und indirekte Kosten für den Betrieb</span>
           <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background:rgba(255,26,26,.08);color:var(--color-accent);">LFA reduziert Abbrüche durch Struktur und Betreuung</span>
         </div>
-        <!-- Two stacked stats : POSITIVE reductions -->
+        <!-- Two stacked stats — POSITIVE reductions -->
         <div class="md:col-span-3 grid grid-rows-2 gap-5">
           <div class="reveal relative p-8 rounded-2xl border border-border-hover overflow-hidden flex items-center gap-6" style="background:linear-gradient(160deg,var(--color-surface-bright),var(--color-surface))">
             <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background:rgba(40,200,64,.1);border:1px solid rgba(40,200,64,.2);">
@@ -1539,7 +1177,7 @@
   </section>
 
 
-  <!-- ARCHITEKTUR : Subtle alt bg with glow -->
+  <!-- ARCHITEKTUR — Subtle alt bg with glow -->
   <section class="py-24 md:py-36 section-alt section-glow" id="architektur">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <span
@@ -1547,7 +1185,7 @@
         und Vertrauen</span>
       <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Sicher, schnell und<br>durchdacht gebaut.
       </h2>
-      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Moderne Technologie, die , und deine Daten schützt.</p>
+      <p class="reveal text-lg text-muted max-w-[620px] leading-relaxed">Moderne Technologie, die zuverlässig funktioniert — und deine Daten schützt.</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
         <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover tilt-card">
           <div
@@ -1577,7 +1215,7 @@
             </svg>
           </div>
           <h3 class="text-lg font-semibold mb-2">Blitzschnelle Ladezeiten</h3>
-          <p class="text-sm text-muted leading-relaxed">Fünf Ebenen intelligentes Caching sorgen dafür, dass Seiten , egal ob im Büro oder unterwegs.</p>
+          <p class="text-sm text-muted leading-relaxed">Fünf Ebenen intelligentes Caching sorgen dafür, dass Seiten sofort laden — egal ob im Büro oder unterwegs.</p>
         </div>
       </div>
       <div class="marquee reveal mt-10">
@@ -1607,13 +1245,13 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #0f0f11);"></div>
 
-  <!-- ROADMAP : Dark premium -->
+  <!-- ROADMAP — Dark premium -->
   <section class="py-24 md:py-36 section-dark" id="roadmap">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-20">
         <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Was LFA einzigartig macht</span>
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Sechs Gründe.<br>Eine Plattform.</h2>
-        <p class="reveal text-lg max-w-[620px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Feature-Bingo, sondern echte Alleinstellungsmerkmale, die es so kein zweites Mal gibt.</p>
+        <p class="reveal text-lg max-w-[620px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Feature-Bingo — sondern echte Alleinstellungsmerkmale, die es so kein zweites Mal gibt.</p>
       </div>
 
       <div class="rm" id="roadmapTimeline">
@@ -1631,21 +1269,21 @@
           <div class="rm__line-glow" id="rmGlow"></div>
         </div>
 
-        <!-- 1 : Closed-Context KI : left -->
+        <!-- 1 — Closed-Context KI — left -->
         <div class="rm__row" data-rm-progress="0.06">
           <div class="rm__cell">
             <div class="rm__card rm__card--l">
               <span class="rm__label">Fundament</span>
               <h3 class="rm__title">Closed-Context KI</h3>
-              <p class="rm__desc">Keine offene KI, die halluziniert. HAI antwortet ausschließlich auf Basis offizieller IHK-Bücher und eurer Firmendaten, mit Quellenangabe in jeder Antwort.</p>
-              <div class="rm__tags"><span class="rm__tag">Closed-Context</span><span class="rm__tag">Anti-Halluzination</span><span class="rm__tag">Quellenangaben</span></div>
+              <p class="rm__desc">Keine offene KI, die halluziniert. Unsere RAG-Pipeline antwortet ausschließlich auf Basis offizieller IHK-Bücher und Firmendaten — mit Quellenangabe in jeder Antwort.</p>
+              <div class="rm__tags"><span class="rm__tag">RAG-Pipeline</span><span class="rm__tag">Anti-Halluzination</span><span class="rm__tag">Quellenangaben</span></div>
             </div>
           </div>
           <div class="rm__center"><div class="rm__branch rm__branch--l"></div><div class="rm__dot"></div></div>
           <div class="rm__cell rm__cell--hide"></div>
         </div>
 
-        <!-- 2 : Erste am Markt : right -->
+        <!-- 2 — Erste am Markt — right -->
         <div class="rm__row" data-rm-progress="0.22">
           <div class="rm__cell rm__cell--hide"></div>
           <div class="rm__center"><div class="rm__branch rm__branch--r"></div><div class="rm__dot"></div></div>
@@ -1653,19 +1291,19 @@
             <div class="rm__card rm__card--r">
               <span class="rm__label">Pionierstatus</span>
               <h3 class="rm__title">Erste Plattform dieser Art</h3>
-              <p class="rm__desc">LFA ist die erste Plattform auf dem deutschen Markt, die Ausbilder und Auszubildende in einem geschlossenen Learning-Ecosystem , mit persönlichem Feedback, KI-Unterstützung und IHK-Konformität in einer einzigen Lösung.</p>
+              <p class="rm__desc">LFA ist die erste Plattform auf dem deutschen Markt, die Ausbilder und Auszubildende in einem geschlossenen Learning-Ecosystem direkt zusammenbringt — mit persönlichem Feedback, KI-Unterstützung und IHK-Konformität in einer einzigen Lösung.</p>
               <div class="rm__tags"><span class="rm__tag">Marktneuheit</span><span class="rm__tag">Trainer + Azubi</span><span class="rm__tag">Geschlossenes Ecosystem</span></div>
             </div>
           </div>
         </div>
 
-        <!-- 3 : Persönliches Feedback : left -->
+        <!-- 3 — Persönliches Feedback — left -->
         <div class="rm__row" data-rm-progress="0.38">
           <div class="rm__cell">
             <div class="rm__card rm__card--l">
               <span class="rm__label">Menschlich</span>
               <h3 class="rm__title">Echtes Feedback, keine Automatik</h3>
-              <p class="rm__desc">Dein Ausbilder reviewed persönlich jede eingereichte Aufgabe und gibt dir individuelles , abgestimmt auf deinen Lernstand. Keine automatischen Bewertungen.</p>
+              <p class="rm__desc">Dein Ausbilder reviewed persönlich jede eingereichte Aufgabe und gibt dir individuelles Feedback — abgestimmt auf deinen Lernstand. Keine generischen Auto-Bewertungen.</p>
               <div class="rm__tags"><span class="rm__tag">Trainer-Reviews</span><span class="rm__tag">Individuelles Feedback</span><span class="rm__tag">Lernfortschritt</span></div>
             </div>
           </div>
@@ -1673,7 +1311,7 @@
           <div class="rm__cell rm__cell--hide"></div>
         </div>
 
-        <!-- 4 : Praxis statt Theorie : right -->
+        <!-- 4 — Praxis statt Theorie — right -->
         <div class="rm__row" data-rm-progress="0.54">
           <div class="rm__cell rm__cell--hide"></div>
           <div class="rm__center"><div class="rm__branch rm__branch--r"></div><div class="rm__dot"></div></div>
@@ -1681,27 +1319,27 @@
             <div class="rm__card rm__card--r">
               <span class="rm__label">Didaktik</span>
               <h3 class="rm__title">Szenarien statt Schulbuch</h3>
-              <p class="rm__desc">Aus offiziellen IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze. Lernen wird , nicht abstrakt aus dem Lehrbuch abgelesen.</p>
+              <p class="rm__desc">Aus offiziellen IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze. Lernen wird greifbar — nicht abstrakt aus dem Lehrbuch abgelesen.</p>
               <div class="rm__tags"><span class="rm__tag">Use Cases</span><span class="rm__tag">Szenarien</span><span class="rm__tag">Adaptive Quizze</span></div>
             </div>
           </div>
         </div>
 
-        <!-- 5 : Dein Wissen, dein Mentor : left -->
+        <!-- 5 — Dein Wissen, dein Mentor — left -->
         <div class="rm__row" data-rm-progress="0.70">
           <div class="rm__cell">
             <div class="rm__card rm__card--l">
               <span class="rm__label">Individuell</span>
               <h3 class="rm__title">Dein Wissen. Dein Mentor.</h3>
-              <p class="rm__desc">Unternehmen laden eigene Dokumentation, Coding-Standards und Prozesse hoch. Die KI wird , mit Wissen, das kein externes LMS jemals bieten kann.</p>
-              <div class="rm__tags"><span class="rm__tag">Firmendaten</span><span class="rm__tag">Eigene KI</span><span class="rm__tag">Onboarding</span></div>
+              <p class="rm__desc">Unternehmen laden eigene Dokumentation, Coding-Standards und Prozesse hoch. Die KI wird zum firmenspezifischen Mentor — mit Wissen, das kein externes LMS jemals bieten kann.</p>
+              <div class="rm__tags"><span class="rm__tag">Firmen-Repository</span><span class="rm__tag">Custom RAG</span><span class="rm__tag">Onboarding-KI</span></div>
             </div>
           </div>
           <div class="rm__center"><div class="rm__branch rm__branch--l"></div><div class="rm__dot"></div></div>
           <div class="rm__cell rm__cell--hide"></div>
         </div>
 
-        <!-- 6 : Alles in einem : right -->
+        <!-- 6 — Alles in einem — right -->
         <div class="rm__row" data-rm-progress="0.88">
           <div class="rm__cell rm__cell--hide"></div>
           <div class="rm__center"><div class="rm__branch rm__branch--r"></div><div class="rm__dot"></div></div>
@@ -1709,7 +1347,7 @@
             <div class="rm__card rm__card--r">
               <span class="rm__label" style="background:linear-gradient(135deg,var(--color-accent-soft),rgba(255,107,107,.15))">Komplett</span>
               <h3 class="rm__title">Alles an einem Ort</h3>
-              <p class="rm__desc">LMS, Berichtsheft, Arbeitszeugnisse, Kalender, KI-Assistent, Leistungsbewertung und Massenoperationen, vereint in einer einzigen Plattform statt zehn verschiedener Tools.</p>
+              <p class="rm__desc">LMS, Berichtsheft, Arbeitszeugnisse, Kalender, KI-Assistent, Leistungsbewertung und Massenoperationen — vereint in einer einzigen Plattform statt zehn verschiedener Tools.</p>
               <div class="rm__tags"><span class="rm__tag">All-in-One</span><span class="rm__tag">Keine Fragmentierung</span><span class="rm__tag">Sofort einsetzbar</span></div>
             </div>
           </div>
@@ -1731,88 +1369,78 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
 
-  <!-- FAQ -->
+  <!-- FAQ — Clean light with organic blobs -->
   <section class="py-24 md:py-36 section-organic" id="faq">
-    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-      <div class="flex flex-col md:flex-row md:gap-20 lg:gap-28">
-
-        <!-- Left: sticky heading -->
-        <div class="md:w-[38%] shrink-0 mb-12 md:mb-0">
-          <div class="md:sticky md:top-28">
-            <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-5">FAQ</span>
-            <h2 class="reveal text-3xl md:text-4xl font-bold leading-[1.1] tracking-tight mb-5">Noch Fragen?</h2>
-            <p class="reveal text-sm text-muted leading-relaxed mb-8">Hier findest du Antworten auf die häufigsten Fragen rund um LFA, KI-Sicherheit und Plattformkonformität.</p>
-            <p class="reveal text-xs text-faint">Weitere Fragen? <a href="mailto:info@wamocon.de" class="text-accent hover:underline">Schreib uns direkt.</a></p>
+    <div class="max-w-[780px] mx-auto px-5 md:px-10">
+      <span
+        class="reveal inline-block text-xs font-semibold tracking-widest uppercase text-accent bg-accent-soft px-3 py-1 rounded mb-4">Häufig
+        gestellte Fragen</span>
+      <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-12">FAQ</h2>
+      <div class="space-y-3" id="faqList">
+        <div class="faq-item rounded-2xl bg-surface border border-border overflow-hidden"><button
+            class="faq-question w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer bg-transparent border-none"
+            style="color:var(--color-text-main)" aria-expanded="false">
+            <span class="flex items-center gap-3">
+              <span style="width:34px;height:34px;border-radius:9px;background:rgba(255,26,26,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" fill="none" stroke="var(--color-accent)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-grid"/></svg></span>
+              <span class="font-medium">Was unterscheidet LFA von herkömmlichen LMS-Plattformen?</span>
+            </span>
+            <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-4"></span></button>
+          <div class="faq-answer">
+            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-muted leading-relaxed" style="padding-left:calc(1.25rem + 34px + 12px)">LFA ist kein reines LMS, sondern ein Learning Experience und Support System (LXS). Es verbindet Ausbilder und Auszubildende direkt miteinander — mit persönlichem Feedback auf jede Aufgabe, einer geschlossenen KI-Pipeline (RAG), automatisierter Arbeitszeugniserstellung und IHK-konformen Berichtsheften in einer einzigen Plattform.</div>
           </div>
         </div>
-
-        <!-- Right: accordion -->
-        <div class="flex-1 min-w-0" id="faqList">
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start">
-                <span class="faq-num">01</span>
-                <span class="font-semibold text-base leading-snug">Was unterscheidet LFA von herkömmlichen LMS-Plattformen?</span>
-              </span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer">
-              <div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">LFA ist keine reine Lernplattform. Es verbindet Ausbilder und Auszubildende direkt miteinander: mit persönlichem Feedback auf jede Aufgabe, einem KI-Assistenten der ausschließlich aus Kursmaterialien antwortet, automatisierter Arbeitszeugniserstellung und IHK-konformen Berichtsheften. Alles in einer einzigen Plattform.</div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start">
-                <span class="faq-num">02</span>
-                <span class="font-semibold text-base leading-snug">Ist die KI sicher? Kann sie falsche Informationen generieren?</span>
-              </span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer">
-              <div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Die KI arbeitet in einem geschlossenen Kontext (Closed-Context) und basiert ausschließlich auf offiziellen IHK-Büchern und Firmenunterlagen. Anti-Halluzinations-Regeln verhindern erfundene Fakten. Jede Antwort enthält Quellenangaben.</div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start">
-                <span class="faq-num">03</span>
-                <span class="font-semibold text-base leading-snug">Wie funktioniert das Feedback auf der Plattform?</span>
-              </span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer">
-              <div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Dein Ausbilder reviewed persönlich deine eingereichten Aufgaben und gibt dir individuelles Feedback, abgestimmt auf deinen Lernstand. Keine automatischen Bewertungen ohne menschliche Prüfung.</div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start">
-                <span class="faq-num">04</span>
-                <span class="font-semibold text-base leading-snug">Wie wird die IHK-Konformität sichergestellt?</span>
-              </span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer">
-              <div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Alle Inhalte basieren auf offiziellen IHK-Büchern. Lernfelder LF1–LF12a, der Ausbildungsrahmenplan als Datenbank, juristische Arbeitszeugnisformulierungen und die IHK-Notenskala sind integriert. Aus den Quellen entstehen praxisnahe Szenarien, Use Cases und Quizze.</div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start">
-                <span class="faq-num">05</span>
-                <span class="font-semibold text-base leading-snug">Ist die Plattform DSGVO-konform?</span>
-              </span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer">
-              <div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja. EU-Hosting, rollenbasierte Zugriffskontrolle, verschlüsselte Datenübertragung und kaskadierendes Löschen.</div>
-            </div>
+        <div class="faq-item rounded-2xl bg-surface border border-border overflow-hidden"><button
+            class="faq-question w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer bg-transparent border-none"
+            style="color:var(--color-text-main)" aria-expanded="false">
+            <span class="flex items-center gap-3">
+              <span style="width:34px;height:34px;border-radius:9px;background:rgba(255,26,26,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" fill="none" stroke="var(--color-accent)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-shield"/></svg></span>
+              <span class="font-medium">Ist die KI sicher? Kann sie falsche Informationen generieren?</span>
+            </span>
+            <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-4"></span></button>
+          <div class="faq-answer">
+            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-muted leading-relaxed" style="padding-left:calc(1.25rem + 34px + 12px)">Die KI arbeitet in einem geschlossenen Kontext (Closed-Context) und basiert ausschließlich auf offiziellen IHK-Büchern und Firmenunterlagen. Anti-Halluzinations-Regeln verhindern erfundene Fakten. Jede Antwort enthält Quellenangaben.</div>
           </div>
         </div>
-
+        <div class="faq-item rounded-2xl bg-surface border border-border overflow-hidden"><button
+            class="faq-question w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer bg-transparent border-none"
+            style="color:var(--color-text-main)" aria-expanded="false">
+            <span class="flex items-center gap-3">
+              <span style="width:34px;height:34px;border-radius:9px;background:rgba(255,26,26,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" fill="none" stroke="var(--color-accent)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-message"/></svg></span>
+              <span class="font-medium">Wie funktioniert das Feedback auf der Plattform?</span>
+            </span>
+            <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-4"></span></button>
+          <div class="faq-answer">
+            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-muted leading-relaxed" style="padding-left:calc(1.25rem + 34px + 12px)">Dein Ausbilder reviewed persönlich deine eingereichten Aufgaben und gibt dir individuelles Feedback — abgestimmt auf deinen Lernstand. Keine automatischen Bewertungen ohne menschliche Prüfung.</div>
+          </div>
+        </div>
+        <div class="faq-item rounded-2xl bg-surface border border-border overflow-hidden"><button
+            class="faq-question w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer bg-transparent border-none"
+            style="color:var(--color-text-main)" aria-expanded="false">
+            <span class="flex items-center gap-3">
+              <span style="width:34px;height:34px;border-radius:9px;background:rgba(255,26,26,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" fill="none" stroke="var(--color-accent)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-book"/></svg></span>
+              <span class="font-medium">Wie wird die IHK-Konformität sichergestellt?</span>
+            </span>
+            <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-4"></span></button>
+          <div class="faq-answer">
+            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-muted leading-relaxed" style="padding-left:calc(1.25rem + 34px + 12px)">Alle Inhalte basieren auf offiziellen IHK-Büchern. Lernfelder LF1–LF12a, der Ausbildungsrahmenplan als Datenbank, juristische Arbeitszeugnisformulierungen und die IHK-Notenskala sind integriert. Aus den Quellen entstehen praxisnahe Szenarien, Use Cases und Quizze.</div>
+          </div>
+        </div>
+        <div class="faq-item rounded-2xl bg-surface border border-border overflow-hidden"><button
+            class="faq-question w-full flex items-center justify-between p-5 md:p-6 text-left cursor-pointer bg-transparent border-none"
+            style="color:var(--color-text-main)" aria-expanded="false">
+            <span class="flex items-center gap-3">
+              <span style="width:34px;height:34px;border-radius:9px;background:rgba(255,26,26,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" fill="none" stroke="var(--color-accent)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-lock"/></svg></span>
+              <span class="font-medium">Ist die Plattform DSGVO-konform?</span>
+            </span>
+            <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-4"></span></button>
+          <div class="faq-answer">
+            <div class="px-5 md:px-6 pb-5 md:pb-6 text-sm text-muted leading-relaxed" style="padding-left:calc(1.25rem + 34px + 12px)">Ja. EU-Hosting, rollenbasierte Zugriffskontrolle, verschlüsselte Datenübertragung und kaskadierendes Löschen.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
 
   <!-- FOOTER -->
   <footer class="border-t border-border" id="footer">
@@ -1926,7 +1554,7 @@
       /* Force reflow then animate to center */
       void lbImg.offsetWidth;
 
-      /* Calculate final centered position : 70% of viewport, not fullscreen */
+      /* Calculate final centered position — 70% of viewport, not fullscreen */
       var maxW = window.innerWidth * 0.7;
       var maxH = window.innerHeight * 0.7;
       var vw = maxW;
@@ -2060,16 +1688,15 @@
   <!-- ── GALAXY OVERLAY ── -->
   <div id="galaxyOverlay">
     <button id="galaxyBack" onclick="closeGalaxy()">← Zurück</button>
-    <button id="galaxyReset" onclick="resetGalaxy && resetGalaxy()">↺ Neu anordnen</button>
-    <div id="galaxyTitle">FIAE: Lernuniversum</div>
+    <div id="galaxyTitle">FIAE — Lernuniversum</div>
     <div id="galaxyLegend">
-      <div class="glgd" title="Berufsschulfach: theoretische Grundlage (12 Stück)">
+      <div class="glgd" title="Berufsschulfach — theoretische Grundlage (12 Stück)">
         <div class="glgd-dot" style="width:14px;height:14px;background:#ff3333;box-shadow:0 0 6px rgba(255,51,51,.5);"></div>
         <div><div style="color:#ccc;font-size:.67rem;font-weight:700;">Lernfeld</div><div style="color:#555;font-size:.6rem;">Berufsschulfach</div></div>
       </div>
-      <div class="glgd" title="Fragenkomplex: bewertet berufliche Eignung als Fachinformatiker Anwendungsentwicklung (26 Stück)">
+      <div class="glgd" title="IHK-Prüfungseinheit — begleitet alle Lernfelder (26 Stück)">
         <div class="glgd-dot" style="width:9px;height:9px;background:#e2e8f0;"></div>
-        <div><div style="color:#ccc;font-size:.67rem;font-weight:700;">Komponente</div><div style="color:#555;font-size:.6rem;">Fragenkomplex</div></div>
+        <div><div style="color:#ccc;font-size:.67rem;font-weight:700;">Komponente</div><div style="color:#555;font-size:.6rem;">Prüfungseinheit</div></div>
       </div>
       <div class="glgd" title="Praxisaufgabe aus dem Berufsalltag (86 Stück)">
         <div class="glgd-dot" style="width:6px;height:6px;background:#38bdf8;"></div>
@@ -2078,8 +1705,7 @@
     </div>
     <div id="galaxySvgContainer"></div>
     <div id="galaxyTooltip"></div>
-    <div id="compInfoPanel"></div>
-    <p id="galaxyHint" style="position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:9590;color:#4a4a58;font-size:.63rem;letter-spacing:.04em;text-align:center;pointer-events:none;white-space:nowrap;">Klicke <span style="color:#ff7777;">Lernfeld</span> zum Einzoomen &nbsp;·&nbsp; Klicke <span style="color:#ff6060;">Komponente</span> um ihre Gruppe zu erkunden &nbsp;·&nbsp; Hover für Details</p>
+    <p id="galaxyHint" style="position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:9590;color:#4a4a58;font-size:.63rem;letter-spacing:.04em;text-align:center;pointer-events:none;white-space:nowrap;">Klicke auf <span style="color:#ff7777;">Lernfeld</span> oder <span style="color:#c8ccd4;">Komponente</span> zum Einzoomen &nbsp;·&nbsp; Hover für Details</p>
     <input id="galaxySearch" type="text" placeholder="Suchen…" oninput="galaxySearch(this.value)">
   </div>
 
