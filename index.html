@@ -274,7 +274,7 @@
     .trust-row:last-child { border-bottom:none; }
     .trust-dot { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.65rem; font-weight:800; margin-top:1px; }
     .icon { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
-    .logo-img { filter:invert(1); }
+    .logo-img { }
     .hero-grid { opacity:.06!important; }
     /* ── Section Transitions : each unique ── */
     section { background:var(--color-bg); position:relative; z-index:1; }
@@ -482,7 +482,7 @@
   <nav class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center transition-all duration-400" id="nav">
     <div class="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
       <a href="#" class="flex items-center hover:opacity-70 transition-opacity">
-        <img src="wamocon-logo.png" alt="WAMOCON" class="logo-img h-32 w-auto">
+        <span style="font-size:2rem;font-weight:900;letter-spacing:-1px;color:#FE0404;">LFA</span>
       </a>
       <!-- Desktop links -->
       <div class="hidden md:flex">
@@ -495,7 +495,7 @@
           <a href="#hai" class="nav-link magnetic-btn" data-nav-section="hai">HAI</a>
           <a href="#roi" class="nav-link magnetic-btn" data-nav-section="roi">Kosten</a>
           <a href="#architektur" class="nav-link magnetic-btn" data-nav-section="architektur">Technik</a>
-          <a href="#roadmap" class="nav-link magnetic-btn" data-nav-section="roadmap">Stärken</a>
+          <a href="#roadmap" class="nav-link magnetic-btn" data-nav-section="roadmap">Roadmap</a>
           <a href="#faq" class="nav-link magnetic-btn" data-nav-section="faq">FAQ</a>
         </div>
       </div>
@@ -528,7 +528,7 @@
       <a href="#hai" class="mm-link" onclick="closeMobileMenu()">HAI</a>
       <a href="#roi" class="mm-link" onclick="closeMobileMenu()">Kosten</a>
       <a href="#architektur" class="mm-link" onclick="closeMobileMenu()">Technik</a>
-      <a href="#roadmap" class="mm-link" onclick="closeMobileMenu()">Stärken</a>
+      <a href="#roadmap" class="mm-link" onclick="closeMobileMenu()">Roadmap</a>
       <a href="#faq" class="mm-link mm-link--full" onclick="closeMobileMenu()">FAQ</a>
     </div>
   </div>
@@ -547,8 +547,8 @@
         Lernzentrum für<br><span class="gradient-text" id="heroTyping">Auszubildende</span>
       </h1>
       <p class="reveal text-lg md:text-xl text-muted max-w-[640px] mx-auto leading-relaxed">Schluss mit unstrukturierter
-        FIAE-Ausbildung. LFA bringt KI-gestützte Lernpfade, persönliches Feedback und IHK-konforme Inhalte &ndash; damit
-        aus planlosen Anfängen echte IT-Karrieren werden.</p>
+        Ausbildung. LFA bringt strukturiertes Lernen, IHK-konforme Inhalte und persönliches Feedback &ndash; damit
+        aus dem Ausbildungschaos echte Fachkräfte hervorgehen.</p>
       <p class="reveal text-xs text-faint mt-4 tracking-wide">Ein Produkt der WAMOCON GmbH</p>
     </div>
     <!-- Gradient fade into dark section -->
@@ -564,7 +564,7 @@
 
       <!-- Dramatische Headline -->
       <h2 class="reveal text-4xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6" style="color:#f0f0f2;">
-        Betriebe scheitern an der<br><span style="color:#ff2222;">FIAE-Ausbildung</span>
+        Betriebe scheitern an der<br><span style="color:#ff2222;">Organisation</span>
       </h2>
       <p class="reveal text-lg max-w-[580px] leading-relaxed mb-16" style="color:#9a9aaa;">
         Während die Nachfrage nach IT-Spezialisten jährlich um 4,4&nbsp;% wächst, fehlt Betrieben die Infrastruktur, um
@@ -577,22 +577,22 @@
           style="background:rgba(255,15,15,.07);border:1px solid rgba(255,15,15,.25);">
           <span class="block text-5xl md:text-6xl font-black leading-none mb-3 tabular-nums" style="color:#ff2222;"
             data-target="149000" data-separator=".">0</span>
-          <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">fehlende IT-Fachkräfte</span>
-          <span class="block text-xs" style="color:#4a4a58;">Quelle: Bitkom, Ende 2025</span>
+          <span class="block text-lg font-semibold mb-1" style="color:#f0f0f2;">fehlende IT-Fachkräfte</span>
+          <span class="block text-xs" style="color:#7a7a88;">Quelle: Bitkom, Ende 2025</span>
         </div>
         <div class="reveal text-center p-8 rounded-2xl"
           style="background:rgba(255,15,15,.07);border:1px solid rgba(255,15,15,.25);">
           <span class="block text-5xl md:text-6xl font-black leading-none mb-3 tabular-nums" style="color:#ff2222;"
             data-target="76" data-suffix="%">0</span>
-          <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">überlastete Ausbilder</span>
-          <span class="block text-xs" style="color:#4a4a58;">Quelle: DGB Index Gute Arbeit</span>
+          <span class="block text-lg font-semibold mb-1" style="color:#f0f0f2;">überlastete Ausbilder</span>
+          <span class="block text-xs" style="color:#7a7a88;">Quelle: DGB Index Gute Arbeit</span>
         </div>
         <div class="reveal text-center p-8 rounded-2xl"
           style="background:rgba(255,15,15,.07);border:1px solid rgba(255,15,15,.25);">
           <span class="block text-5xl md:text-6xl font-black leading-none mb-3 tabular-nums"
             style="color:#ff2222;white-space:nowrap;" data-target="30" data-suffix="%" data-prefix="bis ">0</span>
-          <span class="block text-sm font-semibold mb-1" style="color:#f0f0f2;">Abbruchquote FIAE</span>
-          <span class="block text-xs" style="color:#4a4a58;">Quelle: BIBB Datenreport</span>
+          <span class="block text-lg font-semibold mb-1" style="color:#f0f0f2;">Abbruchquote FIAE</span>
+          <span class="block text-xs" style="color:#7a7a88;">Quelle: BIBB Datenreport</span>
         </div>
       </div>
 
@@ -603,7 +603,7 @@
           <span class="block text-xs font-bold tracking-widest uppercase mb-4"
             style="color:#ff4444;">Verwaltungstools</span>
           <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Digitaler Papierkram</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#6a6a78;">Digitalisieren Formulare und Berichtshefte,
+          <p class="text-sm leading-relaxed mb-6" style="color:#9a9aaa;">Digitalisieren Formulare und Berichtshefte,
             ignorieren aber die fachliche Kompetenzentwicklung vollständig.</p>
           <div style="border-top:1px solid rgba(255,30,30,.18);padding-top:1rem;">
             <span class="text-sm font-bold" style="color:#ff3333;">&#10005;&ensp;Verwaltet das Dokument. Nicht den
@@ -615,7 +615,7 @@
           <span class="block text-xs font-bold tracking-widest uppercase mb-4"
             style="color:#ff4444;">E-Learning-Plattformen</span>
           <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Kontext-Blindheit</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#6a6a78;">Programmiersprachen werden abstrakt aus
+          <p class="text-sm leading-relaxed mb-6" style="color:#9a9aaa;">Programmiersprachen werden abstrakt aus
             Lehrbüchern gelehrt, ohne Szenarien, Use Cases oder praxisnahe Quizze.</p>
           <div style="border-top:1px solid rgba(255,30,30,.18);padding-top:1rem;">
             <span class="text-sm font-bold" style="color:#ff3333;">&#10005;&ensp;Lehrt die Theorie. Nicht die
@@ -627,7 +627,7 @@
           <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff4444;">Fehlende
             Struktur</span>
           <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Orientierungslos im Alltag</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#6a6a78;">Azubis starten ohne klare Struktur: Kein
+          <p class="text-sm leading-relaxed mb-6" style="color:#9a9aaa;">Azubis starten ohne klare Struktur: Kein
             Überblick über Lernfortschritt, anstehende Prüfungen oder nächste Schritte.</p>
           <div style="border-top:1px solid rgba(255,30,30,.18);padding-top:1rem;">
             <span class="text-sm font-bold" style="color:#ff3333;">&#10005;&ensp;Improvisiert die Ausbildung. Statt sie
@@ -648,13 +648,15 @@
     </div>
   </section>
 
+
+
   <!-- BRIDGE : Dramatischer Übergang -->
   <div style="background:#050508;padding:5rem 1rem;text-align:center;position:relative;overflow:hidden;">
     <div style="width:2px;height:90px;background:linear-gradient(to bottom,transparent,#ff2222);margin:0 auto 2.5rem;">
     </div>
 
     <h2 class="reveal text-3xl md:text-5xl font-black" style="color:#f0f0f2;">LFA&nbsp;ändert das</h2>
-    <p class="reveal text-base mt-4 max-w-[460px] mx-auto leading-relaxed" style="color:#5a5a68;">Drei Probleme. Eine
+    <p class="reveal text-base mt-4 max-w-[460px] mx-auto leading-relaxed" style="color:#9a9aaa;">Drei Probleme. Eine
       Plattform. Gebaut für die Ausbildung von morgen.</p>
     <div style="width:2px;height:90px;background:linear-gradient(to bottom,#ff2222,transparent);margin:2.5rem auto 0;">
     </div>
@@ -728,21 +730,185 @@
     </div>
   </section>
 
+  <!-- ROADMAP : Dark premium -->
+  <section class="py-24 md:py-36 section-dark" id="roadmap">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-20">
+
+        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Sechs
+          Gründe.<br>Eine Plattform.</h2>
+        <p class="reveal text-lg max-w-[620px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Feature-Bingo,
+          sondern echte Alleinstellungsmerkmale, die es so kein zweites Mal gibt.</p>
+      </div>
+
+      <div class="rm" id="roadmapTimeline">
+        <div class="rm__line" id="rmLine">
+          <svg preserveAspectRatio="none" id="rmSvg">
+            <defs>
+              <linearGradient id="rmGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#e01515" />
+                <stop offset="100%" stop-color="#ff6b6b" />
+              </linearGradient>
+            </defs>
+            <path class="rm__line-bg" id="rmPathBg" />
+            <path class="rm__line-progress" id="rmPathFill" />
+          </svg>
+          <div class="rm__line-glow" id="rmGlow"></div>
+        </div>
+
+        <!-- 1 : Closed-Context KI : left -->
+        <div class="rm__row" data-rm-progress="0.06">
+          <div class="rm__cell">
+            <div class="rm__card rm__card--l">
+              <span class="rm__label">Fundament</span>
+              <h3 class="rm__title">Closed-Context KI</h3>
+              <p class="rm__desc">Keine offene KI, die halluziniert. HAI antwortet ausschließlich auf Basis offizieller
+                IHK-Bücher und eurer Firmendaten, mit Quellenangabe in jeder Antwort.</p>
+              <div class="rm__tags"><span class="rm__tag">Closed-Context</span><span
+                  class="rm__tag">Anti-Halluzination</span><span class="rm__tag">Quellenangaben</span></div>
+            </div>
+          </div>
+          <div class="rm__center">
+            <div class="rm__branch rm__branch--l"></div>
+            <div class="rm__dot"></div>
+          </div>
+          <div class="rm__cell rm__cell--hide"></div>
+        </div>
+
+        <!-- 2 : Erste am Markt : right -->
+        <div class="rm__row" data-rm-progress="0.22">
+          <div class="rm__cell rm__cell--hide"></div>
+          <div class="rm__center">
+            <div class="rm__branch rm__branch--r"></div>
+            <div class="rm__dot"></div>
+          </div>
+          <div class="rm__cell">
+            <div class="rm__card rm__card--r">
+              <span class="rm__label">Pionierstatus</span>
+              <h3 class="rm__title">Erste Plattform dieser Art</h3>
+              <p class="rm__desc">LFA ist die erste Plattform auf dem deutschen Markt, die Ausbilder und Auszubildende
+                in einem geschlossenen Learning-Ecosystem , mit persönlichem Feedback, KI-Unterstützung und
+                IHK-Konformität in einer einzigen Lösung.</p>
+              <div class="rm__tags"><span class="rm__tag">Marktneuheit</span><span class="rm__tag">Trainer +
+                  Azubi</span><span class="rm__tag">Geschlossenes Ecosystem</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 : Persönliches Feedback : left -->
+        <div class="rm__row" data-rm-progress="0.38">
+          <div class="rm__cell">
+            <div class="rm__card rm__card--l">
+              <span class="rm__label">Menschlich</span>
+              <h3 class="rm__title">Echtes Feedback, keine Automatik</h3>
+              <p class="rm__desc">Dein Ausbilder reviewed persönlich jede eingereichte Aufgabe und gibt dir
+                individuelles , abgestimmt auf deinen Lernstand. Keine automatischen Bewertungen.</p>
+              <div class="rm__tags"><span class="rm__tag">Trainer-Reviews</span><span class="rm__tag">Individuelles
+                  Feedback</span><span class="rm__tag">Lernfortschritt</span></div>
+            </div>
+          </div>
+          <div class="rm__center">
+            <div class="rm__branch rm__branch--l"></div>
+            <div class="rm__dot"></div>
+          </div>
+          <div class="rm__cell rm__cell--hide"></div>
+        </div>
+
+        <!-- 4 : Praxis statt Theorie : right -->
+        <div class="rm__row" data-rm-progress="0.54">
+          <div class="rm__cell rm__cell--hide"></div>
+          <div class="rm__center">
+            <div class="rm__branch rm__branch--r"></div>
+            <div class="rm__dot"></div>
+          </div>
+          <div class="rm__cell">
+            <div class="rm__card rm__card--r">
+              <span class="rm__label">Didaktik</span>
+              <h3 class="rm__title">Szenarien statt Schulbuch</h3>
+              <p class="rm__desc">Aus offiziellen IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze.
+                Lernen wird , nicht abstrakt aus dem Lehrbuch abgelesen.</p>
+              <div class="rm__tags"><span class="rm__tag">Use Cases</span><span class="rm__tag">Szenarien</span><span
+                  class="rm__tag">Adaptive Quizze</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 : Dein Wissen, dein Mentor : left -->
+        <div class="rm__row" data-rm-progress="0.70">
+          <div class="rm__cell">
+            <div class="rm__card rm__card--l">
+              <span class="rm__label">Individuell</span>
+              <h3 class="rm__title">Dein Wissen. Dein Mentor.</h3>
+              <p class="rm__desc">Unternehmen laden eigene Dokumentation, Coding-Standards und Prozesse hoch. Die KI
+                wird , mit Wissen, das kein externes LMS jemals bieten kann.</p>
+              <div class="rm__tags"><span class="rm__tag">Firmendaten</span><span class="rm__tag">Eigene KI</span><span
+                  class="rm__tag">Onboarding</span></div>
+            </div>
+          </div>
+          <div class="rm__center">
+            <div class="rm__branch rm__branch--l"></div>
+            <div class="rm__dot"></div>
+          </div>
+          <div class="rm__cell rm__cell--hide"></div>
+        </div>
+
+        <!-- 6 : Alles in einem : right -->
+        <div class="rm__row" data-rm-progress="0.88">
+          <div class="rm__cell rm__cell--hide"></div>
+          <div class="rm__center">
+            <div class="rm__branch rm__branch--r"></div>
+            <div class="rm__dot"></div>
+          </div>
+          <div class="rm__cell">
+            <div class="rm__card rm__card--r">
+              <span class="rm__label"
+                style="background:linear-gradient(135deg,var(--color-accent-soft),rgba(255,107,107,.15))">Komplett</span>
+              <h3 class="rm__title">Alles an einem Ort</h3>
+              <p class="rm__desc">LMS, Berichtsheft, Arbeitszeugnisse, Kalender, KI-Assistent, Leistungsbewertung und
+                Massenoperationen, vereint in einer einzigen Plattform statt zehn verschiedener Tools.</p>
+              <div class="rm__tags"><span class="rm__tag">All-in-One</span><span class="rm__tag">Keine
+                  Fragmentierung</span><span class="rm__tag">Sofort einsetzbar</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- End node -->
+        <div class="rm__end">
+          <div class="rm__end-marker" id="rmEndDot">
+            <div class="rm__end-ring">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+            <span class="rm__end-label">Und das ist erst der Anfang.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
   <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
 
   <!-- ROLLEN : Für wen ist LFA? -->
   <section class="py-24 md:py-36 section-organic" id="rollen">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-14">
-
         <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">Zwei Rollen<br>Eine
           Plattform</h2>
-        <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Ohne LFA: Chaos, Papierkram und
-          planlose Ausbildung. Mit LFA: Struktur, Klarheit und echte Ergebnisse.</p>
+        <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Jeder Punkt zeigt, was sich mit
+          LFA
+          konkret verändert &ndash; für Ausbilder und Auszubildende.</p>
       </div>
+
       <div class="grid grid-cols-1 gap-8">
-        <!-- Ausbilder -->
-        <div class="reveal rounded-2xl bg-surface border border-border overflow-hidden">
+
+        <!-- ═══ Ausbilder Card ═══ -->
+        <div class="reveal rounded-2xl overflow-hidden border border-border"
+          style="background:linear-gradient(135deg,rgba(255,26,26,.02),var(--color-surface));">
           <div class="p-6 pb-4 flex items-center gap-4 border-b border-border">
             <div
               class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent">
@@ -752,144 +918,274 @@
             </div>
             <h3 class="text-2xl font-bold">Für Ausbilder</h3>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2">
-            <!-- Ohne LFA -->
-            <div class="p-6" style="background:rgba(120,120,140,.04);">
-              <div class="text-xs font-bold tracking-widest uppercase mb-5" style="color:#888;">&#10005; Ohne LFA</div>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-2">
-                  <span class="text-faint mt-0.5">–</span>
-                  <span class="text-sm" style="color:#777;">Lernfortschritt in Excel-Listen oder gar nicht
-                    dokumentiert</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-faint mt-0.5">–</span>
-                  <span class="text-sm" style="color:#777;">Berichtshefte, Nachweise und Zeugnisse manuell
-                    erstellen</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-faint mt-0.5">–</span>
-                  <span class="text-sm" style="color:#777;">Sporadisches Feedback, oft zu spät oder unspezifisch</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-faint mt-0.5">–</span>
-                  <span class="text-sm" style="color:#777;">IHK-Verordnungen selbst recherchieren und aktuell
-                    halten</span>
-                </li>
-              </ul>
+          <div class="p-6 space-y-4">
+            <!-- Row 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
+              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+                <div class="flex items-start gap-3">
+                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Lernfortschritt
+                    in Excel-Listen oder gar nicht dokumentiert</span>
+                </div>
+              </div>
+              <div class="hidden md:flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </div>
+              <div class="rounded-xl p-4"
+                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+                <div class="flex items-start gap-3">
+                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
+                    <use href="#i-check" />
+                  </svg>
+                  <span class="text-sm"><strong>Alle Azubis auf einen Blick</strong> &ndash; Dashboard
+                    zeigt Lernfortschritt, Aufgaben und Leistungen in Echtzeit</span>
+                </div>
+              </div>
             </div>
-            <!-- Mit LFA -->
-            <div class="p-6 border-t md:border-t-0 md:border-l border-border"
-              style="background:linear-gradient(135deg,rgba(255,26,26,.03),transparent);">
-              <div class="text-xs font-bold tracking-widest uppercase text-accent mb-5">&#10003; Mit LFA</div>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-2">
-                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+            <!-- Row 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
+              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+                <div class="flex items-start gap-3">
+                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Berichtshefte,
+                    Nachweise und Zeugnisse manuell erstellen</span>
+                </div>
+              </div>
+              <div class="hidden md:flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </div>
+              <div class="rounded-xl p-4"
+                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+                <div class="flex items-start gap-3">
+                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
                     <use href="#i-check" />
                   </svg>
-                  <span class="text-sm"><strong>Alle Azubis auf einen Blick</strong> &ndash; Dashboard zeigt
-                    Lernfortschritt, Aufgaben und Leistungen in Echtzeit</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                  <span class="text-sm"><strong>Automatisierte Dokumente</strong> &ndash; Berichtshefte,
+                    Nachweise und Zeugnisse auf Knopfdruck</span>
+                </div>
+              </div>
+            </div>
+            <!-- Row 3 -->
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
+              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+                <div class="flex items-start gap-3">
+                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Sporadisches
+                    Feedback, oft zu spät oder unspezifisch</span>
+                </div>
+              </div>
+              <div class="hidden md:flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </div>
+              <div class="rounded-xl p-4"
+                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+                <div class="flex items-start gap-3">
+                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
                     <use href="#i-check" />
                   </svg>
-                  <span class="text-sm"><strong>Automatisierte Dokumente</strong> &ndash; Berichtshefte, Nachweise und
-                    Zeugnisse auf Knopfdruck</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                  <span class="text-sm"><strong>Gezieltes Feedback</strong> &ndash; Aufgaben direkt in der
+                    Plattform reviewen und individuelles Feedback geben</span>
+                </div>
+              </div>
+            </div>
+            <!-- Row 4 -->
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
+              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+                <div class="flex items-start gap-3">
+                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">IHK-Verordnungen
+                    selbst recherchieren und aktuell halten</span>
+                </div>
+              </div>
+              <div class="hidden md:flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </div>
+              <div class="rounded-xl p-4"
+                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+                <div class="flex items-start gap-3">
+                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
                     <use href="#i-check" />
                   </svg>
-                  <span class="text-sm"><strong>Gezieltes Feedback</strong> &ndash; Aufgaben direkt in der Plattform
-                    reviewen und individuelles Feedback geben</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
-                    <use href="#i-check" />
-                  </svg>
-                  <span class="text-sm"><strong>IHK-konform ab Tag 1</strong> &ndash; alle Inhalte basieren auf
-                    offiziellen IHK-Verordnungen</span>
-                </li>
-              </ul>
+                  <span class="text-sm"><strong>IHK-konform ab Tag 1</strong> &ndash; alle Inhalte
+                    basieren auf offiziellen IHK-Verordnungen</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Auszubildende -->
-        <div class="reveal rounded-2xl bg-surface border border-border overflow-hidden">
+        <!-- ═══ Auszubildende Card ═══ -->
+        <div class="reveal rounded-2xl overflow-hidden border border-border"
+          style="background:linear-gradient(135deg,rgba(56,189,248,.02),var(--color-surface));">
           <div class="p-6 pb-4 flex items-center gap-4 border-b border-border">
-            <div
-              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center"
+              style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);color:#38bdf8;">
               <svg class="icon w-6 h-6">
                 <use href="#i-book" />
               </svg>
             </div>
             <h3 class="text-2xl font-bold">Für Auszubildende</h3>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2">
-            <!-- Ohne LFA -->
-            <div class="p-6" style="background:rgba(120,120,140,.04);">
-              <div class="text-xs font-bold tracking-widest uppercase mb-5" style="color:#888;">&#10005; Ohne LFA</div>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-2">
-                  <span class="text-faint mt-0.5">–</span>
-                  <span class="text-sm" style="color:#777;">Kein Überblick über Lernfortschritt oder nächste
-                    Schritte</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-faint mt-0.5">–</span>
-                  <span class="text-sm" style="color:#777;">Prüfungstermine und Deadlines selbst verwalten &ndash; oft
-                    vergessen</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-faint mt-0.5">–</span>
-                  <span class="text-sm" style="color:#777;">Trockene Theorie aus Lehrbüchern, ohne Praxisbezug</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-faint mt-0.5">–</span>
-                  <span class="text-sm" style="color:#777;">Google-Suche für Fachfragen &ndash; unsichere,
-                    widersprüchliche Antworten</span>
-                </li>
-              </ul>
+          <div class="p-6 space-y-4">
+            <!-- Row 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
+              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+                <div class="flex items-start gap-3">
+                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Kein
+                    Überblick über Lernfortschritt oder nächste Schritte</span>
+                </div>
+              </div>
+              <div class="hidden md:flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </div>
+              <div class="rounded-xl p-4"
+                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+                <div class="flex items-start gap-3">
+                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
+                    <use href="#i-check" />
+                  </svg>
+                  <span class="text-sm"><strong>Klare Struktur</strong> &ndash; Lernfortschritt, nächste
+                    Aufgaben und Ziele immer im Blick</span>
+                </div>
+              </div>
             </div>
-            <!-- Mit LFA -->
-            <div class="p-6 border-t md:border-t-0 md:border-l border-border"
-              style="background:linear-gradient(135deg,rgba(255,26,26,.03),transparent);">
-              <div class="text-xs font-bold tracking-widest uppercase text-accent mb-5">&#10003; Mit LFA</div>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-2">
-                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+            <!-- Row 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
+              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+                <div class="flex items-start gap-3">
+                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Prüfungstermine
+                    und Deadlines selbst verwalten &ndash; oft vergessen</span>
+                </div>
+              </div>
+              <div class="hidden md:flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </div>
+              <div class="rounded-xl p-4"
+                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+                <div class="flex items-start gap-3">
+                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
                     <use href="#i-check" />
                   </svg>
-                  <span class="text-sm"><strong>Klare Struktur</strong> &ndash; Lernfortschritt, nächste Aufgaben und
-                    Ziele immer im Blick</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                  <span class="text-sm"><strong>Prüfungstermine im Blick</strong> &ndash; Kalender mit
+                    IHK-Prüfungen, Berufsschulblöcken und Abgabefristen</span>
+                </div>
+              </div>
+            </div>
+            <!-- Row 3 -->
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
+              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+                <div class="flex items-start gap-3">
+                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Trockene
+                    Theorie aus Lehrbüchern, ohne Praxisbezug</span>
+                </div>
+              </div>
+              <div class="hidden md:flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </div>
+              <div class="rounded-xl p-4"
+                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+                <div class="flex items-start gap-3">
+                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
                     <use href="#i-check" />
                   </svg>
-                  <span class="text-sm"><strong>Prüfungstermine im Blick</strong> &ndash; Kalender mit IHK-Prüfungen,
-                    Berufsschulblöcken und Abgabefristen</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
+                  <span class="text-sm"><strong>Praxisnahes Lernen</strong> &ndash; Szenarien, Use Cases
+                    und Quizze, die auf die echte Prüfung vorbereiten</span>
+                </div>
+              </div>
+            </div>
+            <!-- Row 4 -->
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_48px_1fr] gap-3 items-center">
+              <div class="rounded-xl p-4" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.12);">
+                <div class="flex items-start gap-3">
+                  <svg width="16" height="16" viewBox="0 0 16 16" class="shrink-0 mt-0.5" style="color:#cc4444;">
+                    <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.35);">Google-Suche
+                    für Fachfragen &ndash; unsichere, widersprüchliche Antworten</span>
+                </div>
+              </div>
+              <div class="hidden md:flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </div>
+              <div class="rounded-xl p-4"
+                style="background:linear-gradient(135deg,rgba(255,26,26,.06),rgba(255,26,26,.02));border:1px solid rgba(255,26,26,.25);">
+                <div class="flex items-start gap-3">
+                  <svg class="icon w-5 h-5 text-accent shrink-0 mt-0.5">
                     <use href="#i-check" />
                   </svg>
-                  <span class="text-sm"><strong>Praxisnahes Lernen</strong> &ndash; Szenarien, Use Cases und Quizze, die
-                    auf die echte Prüfung vorbereiten</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="icon w-4 h-4 text-accent shrink-0 mt-0.5">
-                    <use href="#i-check" />
-                  </svg>
-                  <span class="text-sm"><strong>KI-Assistent HAI</strong> &ndash; verifizierte Antworten auf Basis
-                    offizieller IHK-Quellen</span>
-                </li>
-              </ul>
+                  <span class="text-sm"><strong>KI-Assistent HAI</strong> &ndash; verifizierte Antworten
+                    auf Basis offizieller IHK-Quellen</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -904,124 +1200,335 @@
       <p class="reveal text-lg text-muted max-w-[620px] mx-auto leading-relaxed">Acht integrierte Funktionsbereiche,
         alles in einer
         Plattform vereint.</p>
-      <!-- Featured modules -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14">
-        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover bento-featured tilt-card">
-          <div class="flex items-start gap-4 mb-5">
+
+      <!-- ── Module 1 : Lernmanagement (Bild rechts) ── -->
+      <div class="reveal mt-14 rounded-2xl bg-surface border border-border overflow-hidden card-hover tilt-card">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+          <div class="p-8 md:p-10 text-left flex flex-col justify-center">
             <div
-              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent shrink-0">
+              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent mb-5">
               <svg class="icon w-6 h-6">
                 <use href="#i-book" />
               </svg>
             </div>
-            <div>
-              <h3 class="text-lg font-semibold mb-1">Lernmanagement</h3>
-              <p class="text-sm text-muted leading-relaxed">Kurse, Szenarien, Enabler und Use Cases , strukturiert nach
-                IHK-Lernfeldern.</p>
+            <h3 class="text-xl font-bold mb-3">Lernmanagement</h3>
+            <p class="text-sm text-muted leading-relaxed">Kurse, Szenarien, Enabler und Use Cases, strukturiert nach
+              IHK-Lernfeldern. Alle Inhalte basieren auf offiziellen IHK-Büchern.</p>
+          </div>
+          <div class="bg-[#111113] flex items-center justify-center p-4">
+            <div class="lightbox-wrap rounded-xl overflow-hidden w-full"
+              onclick="openLightbox(this.querySelector('img'))">
+              <img src="screen-kursansicht.png" alt="Kursansicht mit Lernfortschritt" class="w-full" loading="lazy"
+                decoding="async">
+              <span class="lightbox-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 3 21 3 21 9" />
+                  <polyline points="9 21 3 21 3 15" />
+                  <line x1="21" y1="3" x2="14" y2="10" />
+                  <line x1="3" y1="21" x2="10" y2="14" />
+                </svg></span>
             </div>
           </div>
-          <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden"
-            onclick="openLightbox(this.querySelector('img'))">
-            <img src="screen-kursansicht.png" alt="Kursansicht mit Lernfortschritt" class="w-full" loading="lazy"
-              decoding="async">
-            <span class="lightbox-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 3 21 3 21 9" />
-                <polyline points="9 21 3 21 3 15" />
-                <line x1="21" y1="3" x2="14" y2="10" />
-                <line x1="3" y1="21" x2="10" y2="14" />
-              </svg></span>
-          </div>
         </div>
-        <div class="reveal p-8 rounded-2xl bg-surface border border-border card-hover bento-featured tilt-card">
-          <div class="flex items-start gap-4 mb-5">
+      </div>
+
+      <!-- ── Module 2 : HAI (Animated Chat left) ── -->
+      <div class="reveal mt-5 rounded-2xl bg-surface border border-border overflow-hidden card-hover tilt-card"
+        id="hai-chat-module">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+          <!-- Animated Chat Mockup -->
+          <div class="order-2 md:order-1 p-5 md:p-6"
+            style="background:#0b1120;border-right:1px solid rgba(255,255,255,.06);">
+            <!-- Chat Header -->
+            <div class="flex items-center gap-3 mb-4 pb-3" style="border-bottom:1px solid rgba(255,255,255,.08);">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center"
+                style="background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.3);">
+                <svg class="icon w-4 h-4" style="color:#0ea5e9;">
+                  <use href="#i-bot" />
+                </svg>
+              </div>
+              <div>
+                <span class="text-xs font-bold" style="color:#e0e0e4;">HAI</span>
+                <span class="text-xs ml-2" style="color:#4a5568;">KI-Assistent</span>
+              </div>
+              <div class="ml-auto w-2 h-2 rounded-full"
+                style="background:#22c55e;box-shadow:0 0 6px rgba(34,197,94,.5);"></div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="space-y-4" id="hai-chat-messages" style="min-height:220px;">
+              <!-- HAI existing message (visible from start) -->
+              <div class="hai-msg hai-msg-bot" id="hai-msg-1">
+                <div class="flex items-start gap-2.5">
+                  <div class="w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5"
+                    style="background:rgba(14,165,233,.12);">
+                    <svg class="w-3 h-3" style="color:#0ea5e9;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <use href="#i-bot" />
+                    </svg>
+                  </div>
+                  <div class="rounded-xl px-3.5 py-2.5"
+                    style="background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.15);max-width:85%;">
+                    <p class="text-xs leading-relaxed" style="color:#c8d0dc;"><strong
+                        style="color:#38bdf8;">Polymorphismus</strong> bedeutet, dass Objekte verschiedener Klassen über
+                      eine gemeinsame Schnittstelle angesprochen werden können.</p>
+                    <div class="mt-2 flex items-center gap-1.5">
+                      <svg class="w-3 h-3" style="color:#0ea5e9;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path
+                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                      <span class="text-xs" style="color:#4a6a8a;">Quelle: LF6 – OOP Grundlagen</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- User typing message (animated) -->
+              <div class="hai-msg hai-msg-user" id="hai-msg-2" style="opacity:0;">
+                <div class="flex items-start gap-2.5 justify-end">
+                  <div class="rounded-xl px-3.5 py-2.5"
+                    style="background:rgba(255,26,26,.08);border:1px solid rgba(255,26,26,.15);max-width:85%;">
+                    <p class="text-xs leading-relaxed" style="color:#d0d0d8;" id="hai-typing-text"></p>
+                  </div>
+                  <div class="w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5"
+                    style="background:rgba(255,26,26,.12);">
+                    <svg class="w-3 h-3" style="color:#ff6666;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- HAI response (delayed) -->
+              <div class="hai-msg hai-msg-bot" id="hai-msg-3" style="opacity:0;">
+                <div class="flex items-start gap-2.5">
+                  <div class="w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5"
+                    style="background:rgba(14,165,233,.12);">
+                    <svg class="w-3 h-3" style="color:#0ea5e9;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2">
+                      <use href="#i-bot" />
+                    </svg>
+                  </div>
+                  <div class="rounded-xl px-3.5 py-2.5"
+                    style="background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.15);max-width:85%;">
+                    <p class="text-xs leading-relaxed" style="color:#c8d0dc;" id="hai-response-text"></p>
+                    <span id="hai-cursor" class="inline-block w-1.5 h-3.5 ml-0.5"
+                      style="background:#0ea5e9;animation:haiBlink 1s infinite;vertical-align:middle;display:none;"></span>
+                    <div class="mt-2 flex items-center gap-1.5" id="hai-source" style="display:none;">
+                      <svg class="w-3 h-3" style="color:#0ea5e9;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path
+                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                      <span class="text-xs" style="color:#4a6a8a;">Quelle: LF6 – Vererbung &amp; Interfaces</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Text -->
+          <div class="p-8 md:p-10 text-left flex flex-col justify-center order-1 md:order-2">
             <div
-              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent shrink-0">
+              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent mb-5">
               <svg class="icon w-6 h-6">
                 <use href="#i-bot" />
               </svg>
             </div>
-            <div>
-              <h3 class="text-lg font-semibold mb-1">KI-Assistent HAI</h3>
-              <p class="text-sm text-muted leading-relaxed">Antwortet nur aus deinen Kursmaterialien. Kein freies
-                Internet, basierend auf offiziellen IHK-Büchern.</p>
-            </div>
-          </div>
-          <div class="lightbox-wrap bg-[#111113] rounded-xl overflow-hidden"
-            onclick="openLightbox(this.querySelector('img'))">
-            <img src="screen-hai-chat.png" alt="HAI Chat-Interface mit Quellenangaben" class="w-full" loading="lazy"
-              decoding="async">
-            <span class="lightbox-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 3 21 3 21 9" />
-                <polyline points="9 21 3 21 3 15" />
-                <line x1="21" y1="3" x2="14" y2="10" />
-                <line x1="3" y1="21" x2="10" y2="14" />
-              </svg></span>
+            <h3 class="text-xl font-bold mb-3">KI-Assistent HAI</h3>
+            <p class="text-sm text-muted leading-relaxed">Antwortet nur aus deinen Kursmaterialien. Kein freies
+              Internet, basierend auf offiziellen IHK-Büchern. Jede Antwort enthält Quellenangaben.</p>
           </div>
         </div>
       </div>
-      <!-- Remaining modules -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5">
-        <div class="reveal p-6 rounded-2xl bg-surface border border-border text-center card-hover accent-hover">
+
+      <style>
+        @keyframes haiBlink {
+
+          0%,
+          50% {
+            opacity: 1;
+          }
+
+          51%,
+          100% {
+            opacity: 0;
+          }
+        }
+
+        /* Ensure chat messages animate independently of parent reveal */
+        #hai-msg-2,
+        #hai-msg-3 {
+          transition: opacity 0.4s ease !important;
+          transform: none !important;
+        }
+      </style>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          let haiStarted = false;
+          const el = document.getElementById('hai-chat-module');
+          if (!el) return;
+
+          // Robust: use IntersectionObserver + opacity check via polling
+          const io = new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting && !haiStarted) {
+              // Check if reveal has made it visible (opacity > 0)
+              const poll = setInterval(function () {
+                const op = parseFloat(getComputedStyle(el).opacity);
+                if (op > 0.5 && !haiStarted) {
+                  haiStarted = true;
+                  clearInterval(poll);
+                  startHaiChat();
+                }
+              }, 100);
+              // Safety: stop polling after 10s
+              setTimeout(function () { clearInterval(poll); }, 10000);
+            }
+          }, { threshold: 0.3 });
+          io.observe(el);
+
+          function startHaiChat() {
+            const userMsg = document.getElementById('hai-msg-2');
+            const botMsg = document.getElementById('hai-msg-3');
+            const typingEl = document.getElementById('hai-typing-text');
+            const responseEl = document.getElementById('hai-response-text');
+            const cursorEl = document.getElementById('hai-cursor');
+            const sourceEl = document.getElementById('hai-source');
+
+            const userText = 'Was hat das mit Klassen und Vererbung zu tun?';
+            const botText = 'Genau da kommt Vererbung ins Spiel! Eine Basisklasse definiert die gemeinsame Schnittstelle, und abgeleitete Klassen überschreiben Methoden mit eigener Logik. So reagiert jedes Objekt anders auf denselben Methodenaufruf.';
+
+            setTimeout(function () {
+              userMsg.style.opacity = '1';
+              userMsg.style.transition = 'opacity 0.3s';
+              let i = 0;
+              function typeUser() {
+                if (i <= userText.length) {
+                  typingEl.textContent = userText.substring(0, i) + (i < userText.length ? '|' : '');
+                  i++;
+                  setTimeout(typeUser, 45);
+                } else {
+                  typingEl.textContent = userText;
+                  setTimeout(function () {
+                    botMsg.style.opacity = '1';
+                    botMsg.style.transition = 'opacity 0.3s';
+                    cursorEl.style.display = 'inline-block';
+                    let j = 0;
+                    function typeBot() {
+                      if (j <= botText.length) {
+                        responseEl.textContent = botText.substring(0, j);
+                        j++;
+                        setTimeout(typeBot, 20);
+                      } else {
+                        sourceEl.style.display = 'flex';
+                      }
+                    }
+                    typeBot();
+                  }, 1500);
+                }
+              }
+              typeUser();
+            }, 800);
+          }
+        });
+      </script>
+
+      <!-- ── Module 3-8 : Staggered Rows ── -->
+      <div class="mt-5 space-y-5">
+        <!-- Row: Quiz + Berichtsheft -->
+        <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
           <div
-            class="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center bg-accent-soft border border-border-accent text-accent">
-            <svg class="icon w-6 h-6">
-              <use href="#i-help" />
-            </svg>
+            class="reveal p-7 rounded-2xl bg-surface border border-border text-left card-hover accent-hover tilt-card">
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent shrink-0">
+                <svg class="icon w-6 h-6">
+                  <use href="#i-help" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg mb-1">Quiz-System</h3>
+                <p class="text-sm text-muted leading-relaxed">Drei Schwierigkeitsgrade, MCQ und Freitext. Automatisch
+                  generiert aus den Kursinhalten und IHK-Lernfeldern.</p>
+              </div>
+            </div>
           </div>
-          <h3 class="font-semibold mb-1">Quiz-System</h3>
-          <p class="text-sm text-faint leading-snug">Drei Schwierigkeitsgrade, MCQ und Freitext.</p>
+          <div class="reveal p-7 rounded-2xl border border-border text-left card-hover accent-hover tilt-card"
+            style="background:linear-gradient(135deg,rgba(255,26,26,.04),var(--color-surface));">
+            <div
+              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent mb-4">
+              <svg class="icon w-6 h-6">
+                <use href="#i-file" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-lg mb-1">Berichtsheft</h3>
+            <p class="text-sm text-muted leading-relaxed">IHK-konform mit ARP-Referenzen und PDF-Export.</p>
+          </div>
         </div>
-        <div class="reveal p-6 rounded-2xl bg-surface border border-border text-center card-hover accent-hover">
-          <div
-            class="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center bg-accent-soft border border-border-accent text-accent">
-            <svg class="icon w-6 h-6">
-              <use href="#i-file" />
-            </svg>
+
+        <!-- Row: Leistungsbewertung + Arbeitszeugnisse -->
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-5">
+          <div class="reveal p-7 rounded-2xl border border-border text-left card-hover accent-hover tilt-card"
+            style="background:linear-gradient(135deg,rgba(255,180,30,.04),var(--color-surface));">
+            <div
+              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent mb-4">
+              <svg class="icon w-6 h-6">
+                <use href="#i-chart" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-lg mb-1">Leistungsbewertung</h3>
+            <p class="text-sm text-muted leading-relaxed">Personalisierte Bewertungen durch deinen Ausbilder.</p>
           </div>
-          <h3 class="font-semibold mb-1">Berichtsheft</h3>
-          <p class="text-sm text-faint leading-snug">IHK-konform mit ARP-Referenzen und PDF-Export.</p>
+          <div
+            class="reveal p-7 rounded-2xl bg-surface border border-border text-left card-hover accent-hover tilt-card">
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent shrink-0">
+                <svg class="icon w-6 h-6">
+                  <use href="#i-check" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg mb-1">Arbeitszeugnisse</h3>
+                <p class="text-sm text-muted leading-relaxed">Juristisch geprüfte Vorlagen, auf Knopfdruck generiert.
+                  Basierend auf echten Bewertungsdaten aus der Plattform.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="reveal p-6 rounded-2xl bg-surface border border-border text-center card-hover accent-hover">
+
+        <!-- Row: Kalender + Massenoperationen -->
+        <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-5">
           <div
-            class="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center bg-accent-soft border border-border-accent text-accent">
-            <svg class="icon w-6 h-6">
-              <use href="#i-chart" />
-            </svg>
+            class="reveal p-7 rounded-2xl bg-surface border border-border text-left card-hover accent-hover tilt-card">
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent shrink-0">
+                <svg class="icon w-6 h-6">
+                  <use href="#i-calendar" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg mb-1">Kalender</h3>
+                <p class="text-sm text-muted leading-relaxed">Blockplanung mit CSV-Import, IHK-Prüfungstermine,
+                  Berufsschulblöcke und Abgabefristen an einem Ort.</p>
+              </div>
+            </div>
           </div>
-          <h3 class="font-semibold mb-1">Leistungsbewertung</h3>
-          <p class="text-sm text-faint leading-snug">Personalisierte Bewertungen durch deinen Ausbilder.</p>
-        </div>
-        <div class="reveal p-6 rounded-2xl bg-surface border border-border text-center card-hover accent-hover">
-          <div
-            class="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center bg-accent-soft border border-border-accent text-accent">
-            <svg class="icon w-6 h-6">
-              <use href="#i-check" />
-            </svg>
+          <div class="reveal p-7 rounded-2xl border border-border text-left card-hover accent-hover tilt-card"
+            style="background:linear-gradient(135deg,rgba(255,26,26,.04),var(--color-surface));">
+            <div
+              class="w-12 h-12 rounded-xl bg-accent-soft border border-border-accent flex items-center justify-center text-accent mb-4">
+              <svg class="icon w-6 h-6">
+                <use href="#i-cloud" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-lg mb-1">Massenoperationen</h3>
+            <p class="text-sm text-muted leading-relaxed">Excel/CSV-Import und Batch-Workflows.</p>
           </div>
-          <h3 class="font-semibold mb-1">Arbeitszeugnisse</h3>
-          <p class="text-sm text-faint leading-snug">Juristisch geprüft, auf Knopfdruck generiert.</p>
-        </div>
-        <div class="reveal p-6 rounded-2xl bg-surface border border-border text-center card-hover accent-hover">
-          <div
-            class="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center bg-accent-soft border border-border-accent text-accent">
-            <svg class="icon w-6 h-6">
-              <use href="#i-calendar" />
-            </svg>
-          </div>
-          <h3 class="font-semibold mb-1">Kalender</h3>
-          <p class="text-sm text-faint leading-snug">Blockplanung mit CSV-Import und Prüfungen.</p>
-        </div>
-        <div class="reveal p-6 rounded-2xl bg-surface border border-border text-center card-hover accent-hover">
-          <div
-            class="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center bg-accent-soft border border-border-accent text-accent">
-            <svg class="icon w-6 h-6">
-              <use href="#i-cloud" />
-            </svg>
-          </div>
-          <h3 class="font-semibold mb-1">Massenoperationen</h3>
-          <p class="text-sm text-faint leading-snug">Excel/CSV-Import und Batch-Workflows.</p>
         </div>
       </div>
     </div>
@@ -1029,17 +1536,15 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #f8f9fb);"></div>
 
-  <!-- TÄTIGKEITSNACHWEIS & ARBEITSZEUGNIS : Premium Workflow -->
+  <!-- TÄTIGKEITSNACHWEIS & ARBEITSZEUGNIS : Separate Cards mit Prozess -->
   <section class="py-24 md:py-36" id="taetigkeitsnachweis"
     style="position:relative;overflow:hidden;background:#f8f9fb;">
-    <!-- Hintergrund-Glows (hell) -->
     <div
       style="position:absolute;top:10%;left:5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,26,26,.06),transparent 70%);pointer-events:none;">
     </div>
     <div
       style="position:absolute;top:10%;right:5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,180,30,.05),transparent 70%);pointer-events:none;">
     </div>
-    <!-- Dot-Muster (dunkel auf hell) -->
     <div
       style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.055) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;">
     </div>
@@ -1050,241 +1555,281 @@
       <div class="reveal text-center mb-14">
         <span
           class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded mb-5"
-          style="color:#ffb820;background:rgba(255,184,32,.08);border:1px solid rgba(255,184,32,.22);">&#10022; Nur bei
+          style="color:#ffb820;background:rgba(255,184,32,.08);border:1px solid rgba(255,184,32,.22);">&#10022;
+          Nur bei
           LFA</span>
         <h2 class="text-3xl md:text-5xl font-black leading-[1.05] tracking-tight mb-4" style="color:#111118;">
-          Tätigkeitsnachweis<br><span style="color:#ff3333;">&amp; Arbeitszeugnis.</span></h2>
-        <p class="text-base max-w-[520px] mx-auto leading-relaxed" style="color:#6a6a7a;">Von der wöchentlichen
-          Eintragung bis zum fertigen Zeugnis: alles läuft automatisch. Kein Papierkram, kein Aufwand.</p>
+          Tätigkeitsnachweis<br><span style="color:#ff3333;">&amp; Arbeitszeugnis</span></h2>
+        <p class="text-base max-w-[580px] mx-auto leading-relaxed" style="color:#6a6a7a;">Zwei Dokumente, die jeder
+          Ausbildungsbetrieb braucht &ndash; und die ohne LFA enormen Aufwand verursachen.</p>
       </div>
 
-      <!-- Split Layout mit Connector -->
-      <div class="reveal" style="position:relative;">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="align-items:stretch;">
+      <div class="grid grid-cols-1 gap-8">
 
-          <!-- ── LINKS: Tätigkeitsnachweis ── -->
-          <div class="rounded-2xl overflow-hidden"
-            style="background:#ffffff;border:1px solid rgba(255,26,26,.15);box-shadow:0 4px 32px rgba(0,0,0,.08);display:flex;flex-direction:column;">
-            <!-- Panel-Header -->
-            <div class="px-7 py-5 flex items-center gap-3"
-              style="background:rgba(255,26,26,.05);border-bottom:1px solid rgba(255,26,26,.1);">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.22);">
-                <svg class="icon w-4 h-4 text-accent">
-                  <use href="#i-clipboard" />
-                </svg>
-              </div>
-              <div>
-                <span class="block text-xs font-bold tracking-widest uppercase"
-                  style="color:#cc2222;">Tätigkeitsnachweis</span>
-                <span class="block text-xs" style="color:#9a9aaa;">Jede Woche, vollautomatisch</span>
-              </div>
+        <!-- ═══ Card 1: Tätigkeitsnachweis ═══ -->
+        <div class="reveal rounded-2xl overflow-hidden"
+          style="background:#fff;border:1px solid rgba(255,26,26,.15);box-shadow:0 4px 32px rgba(0,0,0,.06);">
+          <!-- Card Header -->
+          <div class="px-7 py-5 flex items-center gap-4"
+            style="background:rgba(255,26,26,.04);border-bottom:1px solid rgba(255,26,26,.1);">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+              style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.22);">
+              <svg class="icon w-5 h-5" style="color:#ff3333;">
+                <use href="#i-clipboard" />
+              </svg>
             </div>
-
-            <!-- Timeline : flex:1 füllt die Höhe -->
-            <div class="px-7 py-7" style="position:relative;flex:1;">
-              <!-- Vertikale Verbindungslinie -->
-              <div
-                style="position:absolute;left:calc(1.75rem + 16px);top:2rem;bottom:7.5rem;width:1px;background:linear-gradient(to bottom,rgba(255,26,26,.5),rgba(255,26,26,.08));pointer-events:none;">
-              </div>
-
-              <!-- Schritt 1 -->
-              <div class="flex gap-5 mb-7">
-                <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10"
-                  style="background:#ff2222;color:#fff;box-shadow:0 0 16px rgba(255,34,34,.45);">1</div>
-                <div>
-                  <h4 class="text-sm font-bold mb-1" style="color:#111118;">Azubi trägt seine Woche ein</h4>
-                  <p class="text-xs leading-relaxed" style="color:#7a7a88;">Nicht einfach Stunden zählen, sondern
-                    eintragen, <strong style="color:#cc2222;">was genau gemacht wurde</strong>. Direkt dem
-                    Ausbildungsplan zugeordnet.</p>
-                </div>
-              </div>
-
-              <!-- Schritt 2 -->
-              <div class="flex gap-5 mb-7">
-                <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10"
-                  style="background:rgba(255,26,26,.09);border:1px solid rgba(255,26,26,.28);color:#cc2222;">2</div>
-                <div>
-                  <h4 class="text-sm font-bold mb-1" style="color:#111118;">Ausbilder prüft &amp; benotet</h4>
-                  <p class="text-xs leading-relaxed" style="color:#7a7a88;">Nach <strong style="color:#cc2222;">festen
-                      Bewertungsmaßstäben</strong>. Die Note ist sofort für den Azubi sichtbar, volle Transparenz.</p>
-                </div>
-              </div>
-
-              <!-- Schritt 3 -->
-              <div class="flex gap-5 mb-7">
-                <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10"
-                  style="background:rgba(255,26,26,.09);border:1px solid rgba(255,26,26,.28);color:#cc2222;">3</div>
-                <div>
-                  <h4 class="text-sm font-bold mb-1" style="color:#111118;">Probleme früh erkennen</h4>
-                  <p class="text-xs leading-relaxed" style="color:#7a7a88;">Schlechte Note? Das System schlägt direkt
-                    Alarm: ein <strong style="color:#cc2222;">klärendes Gespräch</strong> kann sofort eingeleitet
-                    werden, bevor etwas eskaliert.</p>
-                </div>
-              </div>
-
-              <!-- Schritt 4 -->
-              <div class="flex gap-5 mb-7">
-                <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black z-10"
-                  style="background:rgba(255,26,26,.09);border:1px solid rgba(255,26,26,.28);color:#cc2222;">4</div>
-                <div>
-                  <h4 class="text-sm font-bold mb-1" style="color:#111118;">Nachweis wird automatisch erstellt</h4>
-                  <p class="text-xs leading-relaxed" style="color:#7a7a88;">Nach Freigabe: fertige <strong
-                      style="color:#cc2222;">PDF mit echter Unterschrift</strong> und WAMOCON-Siegel, kein Ausfüllen,
-                    kein Drucken, kein Ablegen.</p>
-                </div>
-              </div>
-
-              <!-- Schritt 5 : Übergang zum Arbeitszeugnis -->
-              <div class="flex gap-5">
-                <div class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center z-10"
-                  style="background:linear-gradient(135deg,rgba(255,26,26,.2),rgba(255,180,30,.2));border:1px solid rgba(255,180,30,.35);">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                    style="width:14px;height:14px;color:#ffb820;">
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
-                </div>
-                <div class="flex-1 rounded-xl px-4 py-3"
-                  style="background:linear-gradient(135deg,rgba(255,26,26,.05),rgba(255,180,30,.06));border:1px solid rgba(255,180,30,.18);">
-                  <h4 class="text-sm font-bold mb-0.5" style="color:#8a6000;">Alle Noten fließen ins Arbeitszeugnis</h4>
-                  <p class="text-xs" style="color:#7a7a88;">Jede Woche zählt. Am Ende der Ausbildung ist das Zeugnis
-                    bereits fertig.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Tags -->
-            <div class="px-7 pb-6 flex flex-wrap gap-2">
-              <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
-                style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);color:#ff7070;">Aufgaben-basiert</span>
-              <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
-                style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);color:#ff7070;">Prüfungskonform</span>
-              <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
-                style="background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);color:#ff7070;">0
-                Aufwand</span>
+            <div>
+              <h3 class="text-xl font-bold" style="color:#111118;">Tätigkeitsnachweis</h3>
+              <span class="text-xs" style="color:#9a9aaa;">Wöchentliche Dokumentation der
+                Ausbildungstätigkeiten</span>
             </div>
           </div>
-
-          <!-- ── RECHTS: Arbeitszeugnis ── -->
-          <div class="rounded-2xl overflow-hidden"
-            style="background:#ffffff;border:1px solid rgba(255,180,30,.28);box-shadow:0 4px 32px rgba(0,0,0,.08),0 0 60px rgba(255,180,30,.07);display:flex;flex-direction:column;">
-            <!-- Panel-Header -->
-            <div class="px-7 py-5 flex items-center gap-3"
-              style="background:rgba(255,180,30,.07);border-bottom:1px solid rgba(255,180,30,.14);">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                style="background:rgba(255,180,30,.15);border:1px solid rgba(255,180,30,.3);">
-                <svg class="icon w-4 h-4" style="color:#ffb820;">
-                  <use href="#i-shield" />
+          <!-- Card Body: Two Columns -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+            <!-- Links: Ohne LFA -->
+            <div class="p-6" style="background:rgba(255,60,60,.02);border-right:1px solid rgba(0,0,0,.06);">
+              <div class="text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-2"
+                style="color:#cc4444;">
+                <svg width="14" height="14" viewBox="0 0 16 16" style="color:#cc4444;">
+                  <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 </svg>
+                Ohne LFA
               </div>
-              <div>
-                <span class="block text-xs font-bold tracking-widest uppercase"
-                  style="color:#b8860b;">Arbeitszeugnis</span>
-                <span class="block text-xs" style="color:#9a9aaa;">Gesetzlich vorgeschrieben · automatisch
-                  erstellt</span>
+              <div class="space-y-3">
+                <div class="rounded-lg p-3" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.1);">
+                  <p class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">
+                    Word-Vorlage jede Woche manuell ausfüllen, drucken und unterschreiben lassen</p>
+                </div>
+                <div class="rounded-lg p-3" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.1);">
+                  <p class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">
+                    Keine standardisierte Bewertung &ndash; Qualität hängt vom einzelnen Ausbilder ab
+                  </p>
+                </div>
+                <div class="rounded-lg p-3" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.1);">
+                  <p class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">
+                    Nachweise in Ordnern ablegen, bei IHK-Prüfung mühsam zusammensuchen</p>
+                </div>
+                <div class="rounded-lg p-3" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.1);">
+                  <p class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">
+                    Probleme fallen erst bei der Abschlussprüfung auf &ndash; dann ist es zu spät</p>
+                </div>
               </div>
             </div>
-
-            <div class="p-7" style="flex:1;display:flex;flex-direction:column;">
-              <p class="text-xs leading-relaxed mb-6" style="color:#7a7a88;">Alle wöchentlichen Bewertungen werden
-                automatisch gesammelt. Am Ende der Ausbildung erstellt LFA das <strong
-                  style="color:#8a6000;">vollständige Arbeitszeugnis</strong>, fertig, rechtsgültig, ohne einen einzigen
-                Handgriff.</p>
-
-              <!-- Dokument-Mockup -->
-              <div class="rounded-xl overflow-hidden"
-                style="background:#fefbf3;border:1px solid rgba(255,180,30,.25);box-shadow:0 4px 20px rgba(0,0,0,.1),0 0 0 1px rgba(255,180,30,.1);">
-                <!-- Dokument-Header -->
-                <div class="px-5 py-4 flex items-center justify-between"
-                  style="background:rgba(255,180,30,.06);border-bottom:1px solid rgba(255,180,30,.12);">
-                  <div>
-                    <div class="text-xs font-black tracking-wider" style="color:#ffb820;">WAMOCON GmbH</div>
-                    <div class="text-xs" style="color:#4a4a58;">Ausbildungszeugnis · FIAE</div>
-                  </div>
-                  <!-- Siegel -->
-                  <div
-                    style="width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,180,30,.5);display:flex;align-items:center;justify-content:center;background:rgba(255,180,30,.08);box-shadow:0 0 12px rgba(255,180,30,.2);">
-                    <svg class="w-4 h-4" style="color:#ffb820;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="2">
-                      <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
-                    </svg>
-                  </div>
-                </div>
-
-                <!-- Dokument-Body -->
-                <div class="px-5 py-5">
-                  <!-- Platzhalter-Zeilen -->
-                  <div class="mb-4">
-                    <div class="text-xs mb-2" style="color:#4a4a58;">Auszubildende/r</div>
-                    <div style="height:10px;background:rgba(0,0,0,.08);border-radius:4px;width:65%;"></div>
-                  </div>
-                  <div class="flex gap-4 mb-4">
-                    <div class="flex-1">
-                      <div class="text-xs mb-2" style="color:#9a9aaa;">Ausbildungszeitraum</div>
-                      <div style="height:10px;background:rgba(0,0,0,.08);border-radius:4px;"></div>
-                    </div>
-                    <div class="flex-1">
-                      <div class="text-xs mb-2" style="color:#9a9aaa;">Beruf</div>
-                      <div style="height:10px;background:rgba(0,0,0,.08);border-radius:4px;width:60%;"></div>
-                    </div>
-                  </div>
-
-                  <!-- Bewertung -->
-                  <div class="rounded-lg px-4 py-3 mb-4"
-                    style="background:rgba(255,180,30,.07);border:1px solid rgba(255,180,30,.15);">
-                    <div class="flex items-center justify-between">
-                      <span class="text-xs font-bold" style="color:#ffc84a;">Gesamtbewertung</span>
-                      <div class="flex gap-1">
-                        <span style="color:#ffb820;font-size:13px;">★★★★</span><span
-                          style="color:#3a3020;font-size:13px;">★</span>
-                      </div>
-                    </div>
-                    <div class="text-xs mt-1" style="color:#5a5060;">Aus 48 wöchentlichen Nachweisen berechnet</div>
-                  </div>
-
-                  <!-- Textzeilen -->
-                  <div class="space-y-1.5 mb-5">
-                    <div style="height:8px;background:rgba(0,0,0,.07);border-radius:3px;width:100%;"></div>
-                    <div style="height:8px;background:rgba(0,0,0,.07);border-radius:3px;width:92%;"></div>
-                    <div style="height:8px;background:rgba(0,0,0,.07);border-radius:3px;width:85%;"></div>
-                  </div>
-
-                  <!-- Unterschrift & Siegel -->
-                  <div class="flex items-end justify-between pt-4" style="border-top:1px solid rgba(255,255,255,.06);">
-                    <div>
-                      <div style="height:1px;width:100px;background:rgba(255,255,255,.15);margin-bottom:4px;"></div>
-                      <div class="text-xs" style="color:#9a9aaa;">Unterschrift Ausbilder</div>
-                    </div>
-                    <div
-                      style="width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,180,30,.5);display:flex;align-items:center;justify-content:center;background:rgba(255,180,30,.1);box-shadow:0 0 16px rgba(255,180,30,.2);">
-                      <span
-                        style="font-size:8px;font-weight:900;color:#b8860b;letter-spacing:-.5px;text-align:center;line-height:1.1;">WMC<br>SIEGEL</span>
-                    </div>
-                    <div>
-                      <div style="height:1px;width:100px;background:rgba(0,0,0,.15);margin-bottom:4px;"></div>
-                      <div class="text-xs" style="color:#9a9aaa;">Digitale Signatur</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Rechtliche Note -->
-              <div class="mt-4 flex items-center gap-2">
-                <svg class="icon w-3.5 h-3.5 shrink-0" style="color:#ffb820;">
-                  <use href="#i-lock" />
+            <!-- Rechts: Mit LFA Prozess -->
+            <div class="p-6">
+              <div class="text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-2"
+                style="color:#22c55e;">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
                 </svg>
-                <span class="text-xs" style="color:#9a9aaa;">Gesetzlich vorgeschrieben (§16 BBiG) · Digital
-                  rechtsverbindlich seit 01.08.2024 · Automatisch gespeichert</span>
+                Mit LFA &ndash; automatisierter Prozess
+              </div>
+              <div class="relative">
+                <!-- Vertical Process Line -->
+                <div
+                  style="position:absolute;left:17px;top:20px;bottom:20px;width:2px;background:linear-gradient(to bottom,#ff3333,rgba(255,51,51,.15));pointer-events:none;">
+                </div>
+                <div class="space-y-5">
+                  <div class="flex items-start gap-4">
+                    <div class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-black z-10"
+                      style="background:#ff2222;color:#fff;box-shadow:0 0 12px rgba(255,34,34,.35);">
+                      01</div>
+                    <div>
+                      <h4 class="text-sm font-bold mb-1" style="color:#111118;">Azubi trägt seine
+                        Woche ein</h4>
+                      <p class="text-xs" style="color:#7a7a88;">Direkt dem Ausbildungsplan zugeordnet
+                        &ndash; nicht einfach Stunden zählen, sondern was genau gemacht wurde.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-black z-10"
+                      style="background:#fff;border:2px solid rgba(255,26,26,.3);color:#cc2222;">
+                      02</div>
+                    <div>
+                      <h4 class="text-sm font-bold mb-1" style="color:#111118;">Ausbilder prüft &amp;
+                        benotet</h4>
+                      <p class="text-xs" style="color:#7a7a88;">Nach festen Bewertungsmaßstäben. Note
+                        ist sofort für den Azubi sichtbar &ndash; volle Transparenz.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-black z-10"
+                      style="background:#fff;border:2px solid rgba(255,26,26,.3);color:#cc2222;">
+                      03</div>
+                    <div>
+                      <h4 class="text-sm font-bold mb-1" style="color:#111118;">Frühwarnsystem</h4>
+                      <p class="text-xs" style="color:#7a7a88;">Schlechte Note? Sofort Alarm für ein
+                        klärendes Gespräch, bevor etwas eskaliert.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-black z-10"
+                      style="background:#fff;border:2px solid rgba(255,26,26,.3);color:#cc2222;">
+                      04</div>
+                    <div>
+                      <h4 class="text-sm font-bold mb-1" style="color:#111118;">PDF automatisch
+                        erstellt</h4>
+                      <p class="text-xs" style="color:#7a7a88;">Fertige PDF mit Unterschrift &amp;
+                        Siegel. Kein Ausfüllen, kein Drucken, kein Ablegen.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
+          <!-- Tags -->
+          <div class="px-7 py-4 flex flex-wrap gap-2" style="border-top:1px solid rgba(255,26,26,.08);">
+            <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
+              style="background:rgba(255,26,26,.08);border:1px solid rgba(255,26,26,.18);color:#cc2222;">Aufgaben-basiert</span>
+            <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
+              style="background:rgba(255,26,26,.08);border:1px solid rgba(255,26,26,.18);color:#cc2222;">Prüfungskonform</span>
+            <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
+              style="background:rgba(255,26,26,.08);border:1px solid rgba(255,26,26,.18);color:#cc2222;">0
+              Aufwand</span>
+          </div>
         </div>
 
-        <!-- Connector-Pfeil entfernt: Beide Module sind eigenständig -->
+        <!-- ═══ Card 2: Arbeitszeugnis ═══ -->
+        <div class="reveal rounded-2xl overflow-hidden"
+          style="background:#fff;border:1px solid rgba(255,180,30,.2);box-shadow:0 4px 32px rgba(0,0,0,.06);">
+          <!-- Card Header -->
+          <div class="px-7 py-5 flex items-center gap-4"
+            style="background:rgba(255,180,30,.04);border-bottom:1px solid rgba(255,180,30,.12);">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+              style="background:rgba(255,180,30,.12);border:1px solid rgba(255,180,30,.3);">
+              <svg class="icon w-5 h-5" style="color:#ffb820;">
+                <use href="#i-shield" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold" style="color:#111118;">Arbeitszeugnis</h3>
+              <span class="text-xs" style="color:#9a9aaa;">Gesetzlich vorgeschrieben (§16 BBiG) &middot;
+                automatisch erstellt</span>
+            </div>
+          </div>
+          <!-- Card Body: Two Columns -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+            <!-- Links: Ohne LFA -->
+            <div class="p-6" style="background:rgba(255,60,60,.02);border-right:1px solid rgba(0,0,0,.06);">
+              <div class="text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-2"
+                style="color:#cc4444;">
+                <svg width="14" height="14" viewBox="0 0 16 16" style="color:#cc4444;">
+                  <line x1="3" y1="3" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <line x1="13" y1="3" x2="3" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                Ohne LFA
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg p-3" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.1);">
+                  <p class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">
+                    Zeugnis-Formulierungen selbst recherchieren &ndash; juristische Fehler drohen</p>
+                </div>
+                <div class="rounded-lg p-3" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.1);">
+                  <p class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">
+                    Bewertungsdaten aus Erinnerung zusammenstellen &ndash; subjektiv und unvollständig
+                  </p>
+                </div>
+                <div class="rounded-lg p-3" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.1);">
+                  <p class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">
+                    Zeugnis erst Wochen nach Ausbildungsende fertig &ndash; Verzug bei Bewerbungen</p>
+                </div>
+                <div class="rounded-lg p-3" style="background:rgba(255,60,60,.04);border:1px solid rgba(255,60,60,.1);">
+                  <p class="text-sm"
+                    style="color:#888;text-decoration:line-through;text-decoration-color:rgba(255,60,60,.3);">
+                    Ausdrucken, unterschreiben, einscannen und per Post versenden</p>
+                </div>
+              </div>
+            </div>
+            <!-- Rechts: Mit LFA Prozess -->
+            <div class="p-6">
+              <div class="text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-2"
+                style="color:#22c55e;">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Mit LFA &ndash; automatisierter Prozess
+              </div>
+              <div class="relative">
+                <!-- Vertical Process Line -->
+                <div
+                  style="position:absolute;left:17px;top:20px;bottom:20px;width:2px;background:linear-gradient(to bottom,#ffb820,rgba(255,184,32,.15));pointer-events:none;">
+                </div>
+                <div class="space-y-5">
+                  <div class="flex items-start gap-4">
+                    <div class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-black z-10"
+                      style="background:#ffb820;color:#fff;box-shadow:0 0 12px rgba(255,184,32,.35);">
+                      01</div>
+                    <div>
+                      <h4 class="text-sm font-bold mb-1" style="color:#111118;">Wöchentliche Noten
+                        fließen ein</h4>
+                      <p class="text-xs" style="color:#7a7a88;">Jede Woche zählt &ndash; 48
+                        Bewertungen bilden eine objektive, nachvollziehbare Gesamtnote.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-black z-10"
+                      style="background:#fff;border:2px solid rgba(255,180,30,.35);color:#b8860b;">
+                      02</div>
+                    <div>
+                      <h4 class="text-sm font-bold mb-1" style="color:#111118;">Juristisch geprüfte
+                        Formulierungen</h4>
+                      <p class="text-xs" style="color:#7a7a88;">Rechtskonforme Vorlagen, automatisch
+                        basierend auf echten Bewertungsdaten generiert.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-black z-10"
+                      style="background:#fff;border:2px solid rgba(255,180,30,.35);color:#b8860b;">
+                      03</div>
+                    <div>
+                      <h4 class="text-sm font-bold mb-1" style="color:#111118;">Sofort fertig am
+                        letzten Tag</h4>
+                      <p class="text-xs" style="color:#7a7a88;">Zeugnis ist bereits vollständig, weil
+                        jede Woche automatisch eingeflossen ist.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-black z-10"
+                      style="background:#fff;border:2px solid rgba(255,180,30,.35);color:#b8860b;">
+                      04</div>
+                    <div>
+                      <h4 class="text-sm font-bold mb-1" style="color:#111118;">Digital
+                        rechtsverbindlich</h4>
+                      <p class="text-xs" style="color:#7a7a88;">PDF mit Unterschrift und
+                        WAMOCON-Siegel, seit 01.08.2024 digital gültig.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Tags -->
+          <div class="px-7 py-4 flex flex-wrap gap-2" style="border-top:1px solid rgba(255,180,30,.08);">
+            <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
+              style="background:rgba(255,180,30,.08);border:1px solid rgba(255,180,30,.2);color:#b8860b;">§16
+              BBiG konform</span>
+            <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
+              style="background:rgba(255,180,30,.08);border:1px solid rgba(255,180,30,.2);color:#b8860b;">Automatisch
+              generiert</span>
+            <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
+              style="background:rgba(255,180,30,.08);border:1px solid rgba(255,180,30,.2);color:#b8860b;">Rechtsgültig
+              digital</span>
+          </div>
+        </div>
 
       </div>
     </div>
+  </section>
   </section>
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, #f8f9fb, #0f0f11);"></div>
@@ -1381,9 +1926,11 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg), #09111f);"></div>
 
-  <!-- HAI : KI-Assistent -->
+  <!-- HAI : KI-Assistent (Merged) -->
   <section class="py-24 md:py-28 section-hai" id="hai">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+
+      <!-- Heading + Logo/GIF -->
       <div class="text-center mb-16 md:mb-20">
         <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded mb-4"
           style="color:#38bdf8;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.2);">KI-Assistent</span>
@@ -1398,138 +1945,15 @@
               style="background:linear-gradient(135deg,#38bdf8,#0ea5e9,#7dd3fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">HAI</span>
           </h2>
         </div>
-        <p class="reveal text-lg max-w-[640px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Google. Kein Raten.
+        <p class="reveal text-lg max-w-[640px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Google. Kein
+          Raten.
           Nur Antworten aus deinen Kursinhalten: präzise, ehrlich und lernfördernd.</p>
       </div>
 
-      <!-- 2-col: GIF links, Features rechts -->
-      <div class="reveal grid md:grid-cols-2 gap-12 items-center mb-16">
-        <!-- Left: Visual -->
-        <div class="flex flex-col items-center gap-6">
-          <div class="hai-demo-card">
-            <div class="hai-bubble hai-bubble--bot">
-              <strong>HAI</strong><br>
-              Du fragst nach Polymorphismus. Guter Einstieg. Aber bevor ich antworte: Was vermutest du selbst, was der
-              Begriff bedeutet?
-            </div>
-            <div class="hai-bubble hai-bubble--user">
-              Irgendwas mit Klassen und Vererbung?
-            </div>
-            <div class="hai-bubble hai-bubble--bot">
-              Genau auf dem richtigen Weg. Schau dir den passenden <span
-                style="display:inline-flex;align-items:center;gap:2px;padding:1px 7px 1px 6px;border-radius:5px;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.3);font-weight:600;color:#7dd3fc;white-space:nowrap;">Enabler
-                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                  <polyline points="15,3 21,3 21,9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg></span> in deinem Kurs an, dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.
-            </div>
-          </div>
-          <p class="text-xs" style="color:#6e6e76;text-align:center;">HAI gibt Hinweise, keine fertigen Lösungen. So
-            lernst du wirklich.</p>
-        </div>
-        <!-- Right: Feature list -->
-        <div class="flex flex-col gap-5">
-          <div class="hai-feature">
-            <div class="hai-feature-icon" style="background:rgba(56,189,248,.12);">
-              <svg class="icon" style="color:#38bdf8;">
-                <use href="#i-book" />
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Nur aus deinen Kursinhalten</h4>
-              <p class="text-sm" style="color:#9999a1;">HAI antwortet ausschließlich aus den eingebetteten
-                Kursmaterialien. Keine Internetsuche im Standardmodus.</p>
-            </div>
-          </div>
-          <div class="hai-feature">
-            <div class="hai-feature-icon" style="background:rgba(56,189,248,.12);">
-              <svg class="icon" style="color:#38bdf8;">
-                <use href="#i-shield" />
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Keine Halluzinationen bei Plattformdaten
-              </h4>
-              <p class="text-sm" style="color:#9999a1;">Noten, Abgaben, Termine: HAI erfindet niemals Plattformdaten.
-                Bei unbekannten Themen verweist er klar an den Trainer.</p>
-            </div>
-          </div>
-          <div class="hai-feature">
-            <div class="hai-feature-icon" style="background:rgba(56,189,248,.12);">
-              <svg class="icon" style="color:#38bdf8;">
-                <use href="#i-zap" />
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Leitfragen statt Lösungen</h4>
-              <p class="text-sm" style="color:#9999a1;">Bei Szenarien gibt HAI Hinweise in kleinen Schritten und stellt
-                Gegenfragen. Das Denken bleibt bei dir.</p>
-            </div>
-          </div>
-          <div class="hai-feature">
-            <div class="hai-feature-icon" style="background:rgba(56,189,248,.12);">
-              <svg class="icon" style="color:#38bdf8;">
-                <use href="#i-bot" />
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-semibold text-sm mb-0.5" style="color:#f0f0f2;">Code erklären &amp; debuggen</h4>
-              <p class="text-sm" style="color:#9999a1;">Füge Code ein, HAI erklärt, was passiert und wo der Fehler
-                liegt, ohne die Lösung direkt zu liefern.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom stats row -->
-      <div class="reveal grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div class="hai-stat">
-          <span class="hai-stat-num">100%</span>
-          <span class="hai-stat-label">Kurs-Fokus</span>
-          <span class="hai-stat-sub">Jede Antwort stammt ausschließlich aus deinen Kursmaterialien</span>
-        </div>
-        <div class="hai-stat">
-          <span class="hai-stat-num">3 Stufen</span>
-          <span class="hai-stat-label">Quiz-Schwierigkeit</span>
-          <span class="hai-stat-sub">Leicht → Mittel → Schwer, schrittweise freigeschaltet</span>
-        </div>
-        <div class="hai-stat">
-          <span class="hai-stat-num">Quiz</span>
-          <span class="hai-stat-label">Mit HAI lernen</span>
-          <span class="hai-stat-sub">Lass dir Fragen dynamisch generieren und lerne im Dialog: kein Raten, echtes
-            Verstehen.</span>
-        </div>
-        <div class="hai-stat">
-          <span class="hai-stat-num">Immer</span>
-          <span class="hai-stat-label">Mit Quelle</span>
-          <span class="hai-stat-sub">HAI zeigt dir, aus welchem Kursinhalt die Antwort kommt</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HAI Deep : Technologie & Prinzipien -->
-  <section class="py-12 md:py-20 section-hai-deep" id="hai-deep">
-    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-
-      <!-- Heading -->
-      <div class="text-center mb-16 md:mb-20">
-        <span class="reveal inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded mb-4"
-          style="color:#818cf8;background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.2);">Technologie</span>
-        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Wie
-          HAI <span
-            style="background:linear-gradient(135deg,#38bdf8,#818cf8,#c084fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">denkt.</span>
-        </h2>
-        <p class="reveal text-lg max-w-[580px] mx-auto leading-relaxed" style="color:#9999a1;">HAI sucht gezielt in
-          deinen Kursmaterialien und antwortet mit Gegenfragen statt fertigen Lösungen. Gebaut für echtes Verstehen,
-          nicht für Durchklicken.</p>
-      </div>
-
       <!-- RAG Pipeline -->
-      <div class="mb-14" id="ragPipelineWrap">
-        <p class="text-xs font-semibold tracking-widest uppercase mb-5 text-center" style="color:#6e6e76;">So entsteht
+      <div class="reveal mb-16" id="ragPipelineWrap">
+        <p class="text-xs font-semibold tracking-widest uppercase mb-5 text-center" style="color:#6e6e76;">So
+          entsteht
           jede HAI-Antwort</p>
         <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
           <div class="rag-pipeline" style="min-width:680px;">
@@ -1603,39 +2027,222 @@
         </div>
       </div>
 
-      <!-- 3 Creative Cards -->
-      <div class="reveal grid md:grid-cols-3 gap-6">
+      <!-- 3 Creative Cards: 1 on top (full width), 2 below -->
+      <!-- Card 1: Chat Demo (full width, larger) -->
+      <div class="reveal mb-6" id="hai-chat-demo-card">
+        <div class="hai2-card" style="padding:0;overflow:hidden;">
+          <div class="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-0">
+            <!-- Left: Animated Chat -->
+            <div class="p-6 md:p-8" style="background:rgba(0,0,0,.25);border-right:1px solid rgba(255,255,255,.06);">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="hai2-card-icon" style="background:rgba(56,189,248,.12);">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#38bdf8" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                </div>
+                <h3 class="font-bold text-base" style="color:#f0f0f2;">Lernen durch Fragen</h3>
+                <div class="ml-auto w-2 h-2 rounded-full"
+                  style="background:#22c55e;box-shadow:0 0 6px rgba(34,197,94,.5);"></div>
+              </div>
 
-        <!-- Card 1: Sokrates-Methode -->
-        <div class="hai2-card">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="hai2-card-icon" style="background:rgba(56,189,248,.12);">
-              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#38bdf8" stroke-width="1.8"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
+              <div class="space-y-3" id="hai-demo-messages" style="min-height:250px;">
+                <!-- Message 1: HAI initial (visible) -->
+                <div class="hai-demo-msg" id="hai-demo-1">
+                  <div class="flex items-start gap-2.5">
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
+                      style="background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.2);">
+                      <svg class="w-3.5 h-3.5" style="color:#38bdf8;" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <use href="#i-bot" />
+                      </svg>
+                    </div>
+                    <div class="rounded-xl px-4 py-3"
+                      style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.15);max-width:88%;">
+                      <p class="text-sm leading-relaxed" style="color:#c8d0dc;">
+                        <strong style="color:#38bdf8;">HAI</strong><br>
+                        Du fragst nach Polymorphismus. Guter Einstieg. Aber bevor ich antworte: Was
+                        vermutest du selbst, was der Begriff bedeutet?
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Message 2: User types (animated) -->
+                <div class="hai-demo-msg" id="hai-demo-2" style="opacity:0;">
+                  <div class="flex items-start gap-2.5 justify-end">
+                    <div class="rounded-xl px-4 py-3"
+                      style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);max-width:88%;">
+                      <p class="text-sm leading-relaxed" style="color:#d0d0d8;" id="hai-demo-typing">
+                      </p>
+                    </div>
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
+                      style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);">
+                      <svg class="w-3.5 h-3.5" style="color:#999;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <!-- Message 3: HAI responds (delayed, animated) -->
+                <div class="hai-demo-msg" id="hai-demo-3" style="opacity:0;">
+                  <div class="flex items-start gap-2.5">
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
+                      style="background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.2);">
+                      <svg class="w-3.5 h-3.5" style="color:#38bdf8;" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <use href="#i-bot" />
+                      </svg>
+                    </div>
+                    <div class="rounded-xl px-4 py-3"
+                      style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.15);max-width:88%;">
+                      <p class="text-sm leading-relaxed" style="color:#c8d0dc;">
+                        <strong style="color:#38bdf8;">HAI</strong><br>
+                        <span id="hai-demo-response"></span><span id="hai-demo-cursor"
+                          style="display:none;width:2px;height:14px;background:#38bdf8;margin-left:2px;vertical-align:middle;animation:haiBlink 1s infinite;"
+                          class="inline-block"></span>
+                      </p>
+                      <div class="mt-2 flex items-center gap-1.5" id="hai-demo-source" style="display:none;">
+                        <svg class="w-3 h-3" style="color:#0ea5e9;" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2">
+                          <path
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <span class="text-xs" style="color:#4a6a8a;">Quelle: LF6 – Vererbung &amp;
+                          Interfaces</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h3 class="font-bold text-base" style="color:#f0f0f2;">Lernen durch Fragen</h3>
+            <!-- Right: Feature highlights -->
+            <div class="p-6 md:p-8 flex flex-col justify-center">
+              <h4 class="text-lg font-bold mb-4" style="color:#f0f0f2;">So lernt man mit HAI</h4>
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                    style="background:rgba(56,189,248,.12);font-size:10px;font-weight:800;color:#38bdf8;">
+                    1</div>
+                  <p class="text-sm" style="color:#9999a1;">Du stellst eine Frage in natürlicher
+                    Sprache</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                    style="background:rgba(56,189,248,.12);font-size:10px;font-weight:800;color:#38bdf8;">
+                    2</div>
+                  <p class="text-sm" style="color:#9999a1;">HAI stellt Gegenfragen, um dein Denken
+                    anzuregen</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                    style="background:rgba(56,189,248,.12);font-size:10px;font-weight:800;color:#38bdf8;">
+                    3</div>
+                  <p class="text-sm" style="color:#9999a1;">HAI verweist dich auf den passenden
+                    Kursinhalt mit Quelle</p>
+                </div>
+              </div>
+              <p class="text-xs mt-5" style="color:#6e6e76;">HAI gibt Hinweise, keine fertigen Lösungen. So
+                lernst du wirklich.</p>
+            </div>
           </div>
-          <div class="flex flex-col gap-2 mb-4">
-            <div
-              style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">
-              Was ist Polymorphismus?</div>
-            <div
-              style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">
-              Gute Frage. Was vermutest du selbst, was der Begriff bedeuten könnte?</div>
-            <div
-              style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 12px;font-size:.78rem;color:#b0b8c8;line-height:1.4;">
-              Vielleicht dass ein Objekt mehrere Formen hat?</div>
-            <div
-              style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.14);border-radius:2px 10px 10px 10px;padding:9px 12px;font-size:.78rem;color:#93c5fd;line-height:1.4;">
-              Genau richtig. Schau dir Kapitel 4 an und erkläre mir dann ein konkretes Beispiel dafür.</div>
-          </div>
-          <p class="text-xs" style="color:#6e6e76;">HAI führt dich hin, gibt keine Lösungen direkt.</p>
         </div>
+      </div>
+
+      <style>
+        @keyframes haiBlink {
+
+          0%,
+          50% {
+            opacity: 1;
+          }
+
+          51%,
+          100% {
+            opacity: 0;
+          }
+        }
+
+        /* Override reveal transitions for chat messages so they animate independently */
+        #hai-demo-2,
+        #hai-demo-3 {
+          transition: opacity 0.4s ease !important;
+          transform: none !important;
+        }
+      </style>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          let demoStarted = false;
+          const card = document.getElementById('hai-chat-demo-card');
+          if (!card) return;
+
+          const io = new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting && !demoStarted) {
+              const poll = setInterval(function () {
+                const op = parseFloat(getComputedStyle(card).opacity);
+                if (op > 0.5 && !demoStarted) {
+                  demoStarted = true;
+                  clearInterval(poll);
+                  runChatDemo();
+                }
+              }, 100);
+              setTimeout(function () { clearInterval(poll); }, 10000);
+            }
+          }, { threshold: 0.3 });
+          io.observe(card);
+
+          function runChatDemo() {
+            const userMsg = document.getElementById('hai-demo-2');
+            const botMsg = document.getElementById('hai-demo-3');
+            const typingEl = document.getElementById('hai-demo-typing');
+            const responseEl = document.getElementById('hai-demo-response');
+            const cursorEl = document.getElementById('hai-demo-cursor');
+            const sourceEl = document.getElementById('hai-demo-source');
+
+            const userText = 'Irgendwas mit Klassen und Vererbung?';
+            const botText = 'Genau auf dem richtigen Weg! Schau dir den passenden Enabler in deinem Kurs an – dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.';
+
+            // Step 1: User types after 1s delay
+            setTimeout(function () {
+              userMsg.style.opacity = '1';
+              let i = 0;
+              function typeUser() {
+                if (i <= userText.length) {
+                  typingEl.textContent = userText.substring(0, i) + (i < userText.length ? '│' : '');
+                  i++;
+                  setTimeout(typeUser, 50);
+                } else {
+                  typingEl.textContent = userText;
+                  // Step 2: HAI "thinking" dots then response
+                  setTimeout(function () {
+                    botMsg.style.opacity = '1';
+                    cursorEl.style.display = 'inline-block';
+                    let j = 0;
+                    function typeBot() {
+                      if (j <= botText.length) {
+                        responseEl.textContent = botText.substring(0, j);
+                        j++;
+                        setTimeout(typeBot, 18);
+                      } else {
+                        sourceEl.style.display = 'flex';
+                      }
+                    }
+                    typeBot();
+                  }, 1800);
+                }
+              }
+              typeUser();
+            }, 1000);
+          }
+        });
+      </script>
+
+      <!-- 2 Cards below: Quiz + Guarantees -->
+      <div class="grid md:grid-cols-2 gap-6 mb-16">
 
         <!-- Card 2: Quiz-Progression -->
-        <div class="hai2-card">
+        <div class="reveal hai2-card">
           <div class="flex items-center gap-3 mb-5">
             <div class="hai2-card-icon" style="background:rgba(129,140,248,.12);">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#818cf8" stroke-width="1.8"
@@ -1675,11 +2282,12 @@
             </div>
             <span class="text-xs" style="color:#6e6e76;flex-shrink:0;">🔒 Gesperrt</span>
           </div>
-          <p class="text-xs mt-4" style="color:#6e6e76;">Jede Stufe schaltet nach Bestehen frei. Je Quiz 1 Versuch.</p>
+          <p class="text-xs mt-4" style="color:#6e6e76;">Jede Stufe schaltet nach Bestehen frei. Je Quiz 1
+            Versuch.</p>
         </div>
 
-        <!-- Card 3: Vertrauensregeln -->
-        <div class="hai2-card">
+        <!-- Card 3: Was HAI garantiert -->
+        <div class="reveal hai2-card">
           <div class="flex items-center gap-3 mb-5">
             <div class="hai2-card-icon" style="background:rgba(14,165,233,.12);">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#0ea5e9" stroke-width="1.8"
@@ -1694,33 +2302,64 @@
             <div class="trust-dot" style="background:rgba(52,211,153,.12);color:#34d399;">✓</div>
             <div>
               <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Nur Kursinhalte</div>
-              <div class="text-xs" style="color:#6e6e76;">Antworten kommen aus eingebetteten Materialien</div>
+              <div class="text-xs" style="color:#6e6e76;">Antworten kommen ausschließlich aus eingebetteten
+                Materialien</div>
             </div>
           </div>
           <div class="trust-row">
             <div class="trust-dot" style="background:rgba(52,211,153,.12);color:#34d399;">✓</div>
             <div>
               <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Keine erfundenen Daten</div>
-              <div class="text-xs" style="color:#6e6e76;">Noten, Termine: HAI erfindet niemals Plattformdaten</div>
+              <div class="text-xs" style="color:#6e6e76;">Noten, Termine: HAI erfindet niemals Plattformdaten
+              </div>
+            </div>
+          </div>
+          <div class="trust-row">
+            <div class="trust-dot" style="background:rgba(52,211,153,.12);color:#34d399;">✓</div>
+            <div>
+              <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Code erklären &amp; debuggen
+              </div>
+              <div class="text-xs" style="color:#6e6e76;">Füge Code ein, HAI erklärt was passiert, ohne die
+                Lösung direkt zu liefern</div>
             </div>
           </div>
           <div class="trust-row">
             <div class="trust-dot" style="background:rgba(248,113,113,.1);color:#f87171;">✗</div>
             <div>
               <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Keine fertigen Lösungen</div>
-              <div class="text-xs" style="color:#6e6e76;">Bei Szenarien und Quizzen immer Leitfragen, nie Copy-Paste
-              </div>
+              <div class="text-xs" style="color:#6e6e76;">Bei Szenarien immer Leitfragen, nie Copy-Paste</div>
             </div>
           </div>
           <div class="trust-row">
             <div class="trust-dot" style="background:rgba(248,113,113,.1);color:#f87171;">✗</div>
             <div>
-              <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Kein unkontrolliertes Internet</div>
-              <div class="text-xs" style="color:#6e6e76;">Websuche ist optional. Standard: nur deine Kursinhalte</div>
+              <div class="text-sm font-semibold mb-0.5" style="color:#e2e8f0;">Kein unkontrolliertes Internet
+              </div>
+              <div class="text-xs" style="color:#6e6e76;">Websuche ist optional. Standard: nur deine
+                Kursinhalte</div>
             </div>
           </div>
         </div>
 
+      </div>
+
+      <!-- Stats Row (cleaned up) -->
+      <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="hai-stat">
+          <span class="hai-stat-num">100%</span>
+          <span class="hai-stat-label">Kurs-Fokus</span>
+          <span class="hai-stat-sub">Jede Antwort stammt ausschließlich aus deinen Kursmaterialien</span>
+        </div>
+        <div class="hai-stat">
+          <span class="hai-stat-num">3 Stufen</span>
+          <span class="hai-stat-label">Quiz-Schwierigkeit</span>
+          <span class="hai-stat-sub">Leicht → Mittel → Schwer, schrittweise freigeschaltet</span>
+        </div>
+        <div class="hai-stat">
+          <span class="hai-stat-num">Immer</span>
+          <span class="hai-stat-label">Mit Quelle</span>
+          <span class="hai-stat-sub">HAI zeigt dir, aus welchem Kursinhalt die Antwort kommt</span>
+        </div>
       </div>
     </div>
   </section>
@@ -1909,169 +2548,6 @@
     </div>
   </section>
 
-  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #0f0f11);"></div>
-
-  <!-- ROADMAP : Dark premium -->
-  <section class="py-24 md:py-36 section-dark" id="roadmap">
-    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-      <div class="text-center mb-20">
-
-        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#f0f0f2;">Sechs
-          Gründe.<br>Eine Plattform.</h2>
-        <p class="reveal text-lg max-w-[620px] mx-auto leading-relaxed" style="color:#9999a1;">Kein Feature-Bingo,
-          sondern echte Alleinstellungsmerkmale, die es so kein zweites Mal gibt.</p>
-      </div>
-
-      <div class="rm" id="roadmapTimeline">
-        <div class="rm__line" id="rmLine">
-          <svg preserveAspectRatio="none" id="rmSvg">
-            <defs>
-              <linearGradient id="rmGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#e01515" />
-                <stop offset="100%" stop-color="#ff6b6b" />
-              </linearGradient>
-            </defs>
-            <path class="rm__line-bg" id="rmPathBg" />
-            <path class="rm__line-progress" id="rmPathFill" />
-          </svg>
-          <div class="rm__line-glow" id="rmGlow"></div>
-        </div>
-
-        <!-- 1 : Closed-Context KI : left -->
-        <div class="rm__row" data-rm-progress="0.06">
-          <div class="rm__cell">
-            <div class="rm__card rm__card--l">
-              <span class="rm__label">Fundament</span>
-              <h3 class="rm__title">Closed-Context KI</h3>
-              <p class="rm__desc">Keine offene KI, die halluziniert. HAI antwortet ausschließlich auf Basis offizieller
-                IHK-Bücher und eurer Firmendaten, mit Quellenangabe in jeder Antwort.</p>
-              <div class="rm__tags"><span class="rm__tag">Closed-Context</span><span
-                  class="rm__tag">Anti-Halluzination</span><span class="rm__tag">Quellenangaben</span></div>
-            </div>
-          </div>
-          <div class="rm__center">
-            <div class="rm__branch rm__branch--l"></div>
-            <div class="rm__dot"></div>
-          </div>
-          <div class="rm__cell rm__cell--hide"></div>
-        </div>
-
-        <!-- 2 : Erste am Markt : right -->
-        <div class="rm__row" data-rm-progress="0.22">
-          <div class="rm__cell rm__cell--hide"></div>
-          <div class="rm__center">
-            <div class="rm__branch rm__branch--r"></div>
-            <div class="rm__dot"></div>
-          </div>
-          <div class="rm__cell">
-            <div class="rm__card rm__card--r">
-              <span class="rm__label">Pionierstatus</span>
-              <h3 class="rm__title">Erste Plattform dieser Art</h3>
-              <p class="rm__desc">LFA ist die erste Plattform auf dem deutschen Markt, die Ausbilder und Auszubildende
-                in einem geschlossenen Learning-Ecosystem , mit persönlichem Feedback, KI-Unterstützung und
-                IHK-Konformität in einer einzigen Lösung.</p>
-              <div class="rm__tags"><span class="rm__tag">Marktneuheit</span><span class="rm__tag">Trainer +
-                  Azubi</span><span class="rm__tag">Geschlossenes Ecosystem</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3 : Persönliches Feedback : left -->
-        <div class="rm__row" data-rm-progress="0.38">
-          <div class="rm__cell">
-            <div class="rm__card rm__card--l">
-              <span class="rm__label">Menschlich</span>
-              <h3 class="rm__title">Echtes Feedback, keine Automatik</h3>
-              <p class="rm__desc">Dein Ausbilder reviewed persönlich jede eingereichte Aufgabe und gibt dir
-                individuelles , abgestimmt auf deinen Lernstand. Keine automatischen Bewertungen.</p>
-              <div class="rm__tags"><span class="rm__tag">Trainer-Reviews</span><span class="rm__tag">Individuelles
-                  Feedback</span><span class="rm__tag">Lernfortschritt</span></div>
-            </div>
-          </div>
-          <div class="rm__center">
-            <div class="rm__branch rm__branch--l"></div>
-            <div class="rm__dot"></div>
-          </div>
-          <div class="rm__cell rm__cell--hide"></div>
-        </div>
-
-        <!-- 4 : Praxis statt Theorie : right -->
-        <div class="rm__row" data-rm-progress="0.54">
-          <div class="rm__cell rm__cell--hide"></div>
-          <div class="rm__center">
-            <div class="rm__branch rm__branch--r"></div>
-            <div class="rm__dot"></div>
-          </div>
-          <div class="rm__cell">
-            <div class="rm__card rm__card--r">
-              <span class="rm__label">Didaktik</span>
-              <h3 class="rm__title">Szenarien statt Schulbuch</h3>
-              <p class="rm__desc">Aus offiziellen IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze.
-                Lernen wird , nicht abstrakt aus dem Lehrbuch abgelesen.</p>
-              <div class="rm__tags"><span class="rm__tag">Use Cases</span><span class="rm__tag">Szenarien</span><span
-                  class="rm__tag">Adaptive Quizze</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5 : Dein Wissen, dein Mentor : left -->
-        <div class="rm__row" data-rm-progress="0.70">
-          <div class="rm__cell">
-            <div class="rm__card rm__card--l">
-              <span class="rm__label">Individuell</span>
-              <h3 class="rm__title">Dein Wissen. Dein Mentor.</h3>
-              <p class="rm__desc">Unternehmen laden eigene Dokumentation, Coding-Standards und Prozesse hoch. Die KI
-                wird , mit Wissen, das kein externes LMS jemals bieten kann.</p>
-              <div class="rm__tags"><span class="rm__tag">Firmendaten</span><span class="rm__tag">Eigene KI</span><span
-                  class="rm__tag">Onboarding</span></div>
-            </div>
-          </div>
-          <div class="rm__center">
-            <div class="rm__branch rm__branch--l"></div>
-            <div class="rm__dot"></div>
-          </div>
-          <div class="rm__cell rm__cell--hide"></div>
-        </div>
-
-        <!-- 6 : Alles in einem : right -->
-        <div class="rm__row" data-rm-progress="0.88">
-          <div class="rm__cell rm__cell--hide"></div>
-          <div class="rm__center">
-            <div class="rm__branch rm__branch--r"></div>
-            <div class="rm__dot"></div>
-          </div>
-          <div class="rm__cell">
-            <div class="rm__card rm__card--r">
-              <span class="rm__label"
-                style="background:linear-gradient(135deg,var(--color-accent-soft),rgba(255,107,107,.15))">Komplett</span>
-              <h3 class="rm__title">Alles an einem Ort</h3>
-              <p class="rm__desc">LMS, Berichtsheft, Arbeitszeugnisse, Kalender, KI-Assistent, Leistungsbewertung und
-                Massenoperationen, vereint in einer einzigen Plattform statt zehn verschiedener Tools.</p>
-              <div class="rm__tags"><span class="rm__tag">All-in-One</span><span class="rm__tag">Keine
-                  Fragmentierung</span><span class="rm__tag">Sofort einsetzbar</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- End node -->
-        <div class="rm__end">
-          <div class="rm__end-marker" id="rmEndDot">
-            <div class="rm__end-ring">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round" viewBox="0 0 24 24">
-                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
-                <polyline points="22 4 12 14.01 9 11.01" />
-              </svg>
-            </div>
-            <span class="rm__end-label">Und das ist erst der Anfang.</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
 
   <!-- FAQ -->
   <section class="py-24 md:py-36 section-organic" id="faq">
@@ -2187,11 +2663,7 @@
     <div class="max-w-[1100px] mx-auto px-5 md:px-10 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
       <div>
         <div class="flex items-center gap-5 mb-3">
-          <img src="wamocon-logo.png" alt="WAMOCON GmbH" class="logo-img h-36 w-auto">
-          <div>
-            <div class="font-bold text-xl">LFA</div>
-            <div class="text-xs text-faint">by WAMOCON GmbH</div>
-          </div>
+          <span style="font-size:2.5rem;font-weight:900;letter-spacing:-1px;color:#FE0404;">LFA</span>
         </div>
         <p class="text-sm text-muted leading-relaxed">Die KI-gestützte Plattform für die duale IT-Ausbildung.
           Entwickelt von WAMOCON GmbH für Ausbilder und Azubis.</p>
@@ -2207,7 +2679,7 @@
           <li><a href="#hai" class="hover:text-text-main transition-colors">HAI</a></li>
           <li><a href="#roi" class="hover:text-text-main transition-colors">Kosten</a></li>
           <li><a href="#architektur" class="hover:text-text-main transition-colors">Technik</a></li>
-          <li><a href="#roadmap" class="hover:text-text-main transition-colors">Stärken</a></li>
+          <li><a href="#roadmap" class="hover:text-text-main transition-colors">Roadmap</a></li>
           <li><a href="#faq" class="hover:text-text-main transition-colors">FAQ</a></li>
         </ul>
       </div>
@@ -2275,6 +2747,21 @@
             <rect x="70" y="98" width="60" height="8" rx="1" fill="#FFCC00" />
           </svg>
           <span style="font-size:11px;letter-spacing:.01em;" class="text-faint">Entwickelt in Deutschland</span>
+        </div>
+      </div>
+
+      <!-- Disclaimers -->
+      <div class="max-w-[1100px] mx-auto px-5 md:px-10 pb-8">
+        <div
+          class="text-[11px] leading-relaxed text-faint opacity-80 max-w-[850px] space-y-3 pt-6 border-t border-border/40">
+          <p><strong>Hinweis zu KI-generierten Inhalten:</strong> Texte, Bilder, Videos, Audios und Grafiken, die hier
+            bereitgestellt werden, können teilweise mit Künstlicher Intelligenz (KI) erstellt worden sein. Jeder
+            generierte Inhalt wurde sorgfältig überprüft, um Qualität und Genauigkeit sicherzustellen. Mit diesem
+            Hinweis erfüllen wir unsere Transparenzpflicht.</p>
+          <p>Für Rückfragen zu den verwendeten Quellen und Inhalten stehen wir Ihnen jederzeit gerne zur Verfügung.
+            Kontaktieren Sie uns hierfür einfach unter <a href="mailto:info@wamocon.com"
+              class="hover:text-text-main transition-colors underline decoration-border-accent underline-offset-2">info@wamocon.com</a>.
+          </p>
         </div>
       </div>
     </div>
