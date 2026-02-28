@@ -256,24 +256,59 @@ html::-webkit-scrollbar {
   transition: transform .22s ease, box-shadow .22s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .ov-manuell {
-  background: #fff;
+  background: #fafafa;
   border: 2px solid rgba(180,40,40,.18);
-  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  box-shadow: 0 4px 20px rgba(0,0,0,.05);
 }
 .ov-manuell:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(180,40,40,.12);
+  box-shadow: 0 14px 44px rgba(180,40,40,.14);
 }
 .ov-lfa {
-  background: #fff;
-  border: 2px solid rgba(200,30,30,.32);
-  box-shadow: 0 4px 28px rgba(200,30,30,.08);
+  background: linear-gradient(170deg, rgba(200,30,30,.05) 0%, #fff 42%);
+  border: 2px solid rgba(200,30,30,.5);
+  box-shadow: 0 8px 48px rgba(200,30,30,.2), 0 2px 8px rgba(0,0,0,.04);
+  animation: cardGlow 3.5s ease-in-out infinite;
 }
 .ov-lfa:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 48px rgba(200,30,30,.15);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 70px rgba(200,30,30,.32), 0 2px 8px rgba(0,0,0,.04);
+}
+
+/* ── Winner Ribbon ── */
+.winner-ribbon {
+  position: absolute;
+  top: 28px;
+  right: -30px;
+  width: 130px;
+  background: linear-gradient(135deg, #22aa66, #1a8f58);
+  color: #fff;
+  font-size: .57rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 7px 0;
+  text-align: center;
+  transform: rotate(38deg);
+  box-shadow: 0 3px 16px rgba(34,170,102,.5);
+  z-index: 6;
+  pointer-events: none;
+}
+
+@keyframes cardGlow {
+  0%, 100% { box-shadow: 0 8px 48px rgba(200,30,30,.2), 0 2px 8px rgba(0,0,0,.04); }
+  50%       { box-shadow: 0 14px 72px rgba(200,30,30,.38), 0 2px 8px rgba(0,0,0,.04); }
+}
+@keyframes vsPulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 4px 20px rgba(0,0,0,.22); }
+  50%       { transform: scale(1.13); box-shadow: 0 6px 34px rgba(0,0,0,.42); }
+}
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(200,130,0,.12); }
+  50%       { box-shadow: 0 0 28px rgba(200,130,0,.32); }
 }
 .ov-cta {
   margin: 16px 24px 20px;
@@ -281,7 +316,10 @@ html::-webkit-scrollbar {
   border-radius: 12px;
   font-size: .8rem;
   font-weight: 800;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   cursor: pointer;
   border: none;
   width: calc(100% - 48px);
@@ -304,9 +342,41 @@ html::-webkit-scrollbar {
   50%       { opacity: .75; box-shadow: 0 0 0 8px rgba(180,40,40,.0); }
 }
 @keyframes chainNodeIn {
-  from { opacity: 0; transform: translateY(18px) scale(.9); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; transform: translateY(24px) scale(.87); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);   filter: blur(0);   }
 }
 .chain-node-enter {
-  animation: chainNodeIn .45s cubic-bezier(.22,1,.36,1) both;
+  animation: chainNodeIn .5s cubic-bezier(.22,1,.36,1) both;
 }
+
+/* ── Card shimmer on hover ── */
+.ov-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.24), transparent);
+  transform: skewX(-18deg);
+  transition: left .7s ease;
+  pointer-events: none;
+  z-index: 4;
+}
+.ov-card:hover::after { left: 130%; }
+
+/* ── Directional card entrance ── */
+@keyframes cardFromLeft {
+  from { opacity: 0; transform: translateX(-52px) scale(.95); }
+  to   { opacity: 1; transform: translateX(0)     scale(1);   }
+}
+@keyframes cardFromRight {
+  from { opacity: 0; transform: translateX(52px) scale(.95); }
+  to   { opacity: 1; transform: translateX(0)    scale(1);   }
+}
+
+/* ── Impact number pop ── */
+@keyframes impactPop {
+  from { opacity: 0; transform: scale(.6) translateY(10px); }
+  to   { opacity: 1; transform: scale(1)  translateY(0);    }
+}
+.impact-pop { animation: impactPop .5s cubic-bezier(.22,1,.36,1) both; }

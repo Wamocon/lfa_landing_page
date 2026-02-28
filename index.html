@@ -957,22 +957,23 @@
     </div>
   </section>
 
-  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #f0f1f5);"></div>
+  <div style="height:220px;position:relative;z-index:2;pointer-events:none;margin-top:-1px;margin-bottom:-1px;background:linear-gradient(to bottom, #eeeef0 0%, #f8f8fb 48%, #e9eaf0 100%);"></div>
 
   <!-- TÄTIGKEITSNACHWEIS SKILL TREE -->
-  <section id="taetigkeitsnachweis" style="position:relative;overflow:hidden;background:#f0f1f5;padding:5rem 0 6rem;">
+  <section id="taetigkeitsnachweis" style="position:relative;overflow:hidden;background:linear-gradient(180deg,#e9eaf0 0%,#f0f1f5 45%,#e9eaf0 100%);padding:5rem 0 6rem;">
     <!-- Background effects -->
-    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
-    <div style="position:absolute;top:10%;left:-60px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,30,30,.05),transparent 70%);pointer-events:none;"></div>
-    <div style="position:absolute;bottom:15%;right:-60px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,180,30,.04),transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.035) 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
+    <div style="position:absolute;top:5%;left:-80px;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(255,30,30,.09),transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:8%;right:-80px;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(255,180,30,.07),transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(200,30,30,.03),transparent 60%);pointer-events:none;"></div>
 
     <div class="max-w-[1100px] mx-auto px-5 md:px-10" style="position:relative;">
 
       <!-- ── HEADER ── -->
       <div class="reveal text-center mb-14">
-        <span class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded mb-5" style="color:#b86e00;background:rgba(200,130,0,.1);border:1px solid rgba(200,130,0,.25);">&#9888; IHK-Pflicht</span>
-        <h2 class="text-3xl md:text-5xl font-black leading-[1.05] tracking-tight mb-4" style="color:#111118;">Tätigkeitsnachweis.<br><span style="color:#e02020;">Zwei Wege. Ein Sieger.</span></h2>
-        <p class="text-base max-w-[560px] mx-auto leading-relaxed" style="color:#6a6a7a;">Ohne Tätigkeitsnachweis keine IHK-Prüfung. Wähle deinen Weg — und sieh, was er wirklich kostet.</p>
+        <span class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6" style="color:#b86e00;background:rgba(200,130,0,.12);border:1.5px solid rgba(200,130,0,.38);box-shadow:0 0 20px rgba(200,130,0,.15);animation:badgePulse 3s ease-in-out infinite;">&#9888;&nbsp; IHK-Pflicht — ohne Nachweis keine Prüfungszulassung</span>
+        <h2 class="text-4xl md:text-6xl font-black leading-[1.02] tracking-tight mb-5" style="color:#111118;">Tätigkeitsnachweis.<br><span style="color:#e02020;">Zwei Wege. Ein Sieger.</span></h2>
+        <p class="text-base max-w-[580px] mx-auto leading-relaxed" style="color:#6a6a7a;">Pflicht für jeden Azubi — aber der Weg entscheidet, ob du <strong style="color:#111118;">78 Stunden</strong> verschwendest oder in <strong style="color:#22aa66;">&lt;5 Minuten</strong> fertig bist.</p>
       </div>
 
       <!-- ── SKILL TREE VIEWPORT ── -->
@@ -998,13 +999,24 @@
             <!-- MANUELL CARD -->
             <div onclick="showSkillView('st-view-manuell')" class="ov-card ov-manuell">
               <!-- Top band -->
-              <div style="background:rgba(180,40,40,.07);border-bottom:2px solid rgba(180,40,40,.12);padding:22px 24px;text-align:center;">
+              <div style="background:rgba(180,40,40,.06);border-bottom:2px solid rgba(180,40,40,.12);padding:24px 24px 18px;text-align:center;">
                 <div style="width:64px;height:64px;border-radius:50%;background:rgba(180,40,40,.1);border:2px solid rgba(180,40,40,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:30px;height:30px;color:#b83030;"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:30px;height:30px;color:#b83030;">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
                 </div>
                 <div style="font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#b83030;margin-bottom:4px;">Manueller Weg</div>
-                <div style="font-size:3.2rem;font-weight:900;color:#b83030;line-height:1;letter-spacing:-.02em;">30</div>
-                <div style="font-size:.88rem;font-weight:700;color:#b83030;opacity:.7;">Min. pro Nachweis</div>
+                <div style="font-size:4rem;font-weight:900;color:#b83030;line-height:1;letter-spacing:-.03em;">30</div>
+                <div style="font-size:.88rem;font-weight:700;color:#b83030;opacity:.7;margin-bottom:14px;">Min. pro Nachweis</div>
+                <!-- Time bar 100% -->
+                <div style="padding:0 8px;">
+                  <div style="height:7px;background:rgba(180,40,40,.15);border-radius:20px;overflow:hidden;">
+                    <div class="ov-timebar-fill" data-bar-width="100%" style="height:100%;width:0;background:linear-gradient(90deg,#b83030,#e04545);border-radius:20px;"></div>
+                  </div>
+                  <div style="font-size:.6rem;color:#b83030;font-weight:700;margin-top:5px;opacity:.75;">100% Zeitaufwand</div>
+                </div>
               </div>
               <!-- Body -->
               <div style="padding:24px 24px 28px;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
@@ -1022,27 +1034,36 @@
                     <span style="font-size:.85rem;color:#3a3a4a;line-height:1.4;"><strong>78 Stunden</strong> reine Bürokratie über 3 Jahre</span>
                   </li>
                 </ul>
-                <button class="ov-cta ov-cta-manuell">Workflow ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px;"><polyline points="9 18 15 12 9 6"/></svg></button>
+                <button class="ov-cta ov-cta-manuell">Workflow ansen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px;"><polyline points="9 18 15 12 9 6"/></svg></button>
               </div>
             </div>
 
             <!-- VS Badge -->
             <div style="position:relative;z-index:10;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:0;">
-              <div style="width:48px;height:48px;border-radius:50%;background:#111118;border:3px solid #f0f1f5;display:flex;align-items:center;justify-content:center;position:absolute;box-shadow:0 4px 20px rgba(0,0,0,.2);">
+              <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1c1c26,#111118);border:3px solid #e9eaf0;display:flex;align-items:center;justify-content:center;position:absolute;animation:vsPulse 2.5s ease-in-out infinite;">
                 <span style="font-size:.62rem;font-weight:900;color:#fff;letter-spacing:.04em;">VS</span>
               </div>
             </div>
 
             <!-- LFA CARD -->
             <div onclick="showSkillView('st-view-lfa')" class="ov-card ov-lfa">
+              <!-- Winner ribbon -->
+              <div class="winner-ribbon">&#127942; Sieger</div>
               <!-- Top band -->
-              <div style="background:rgba(200,30,30,.07);border-bottom:2px solid rgba(200,30,30,.15);padding:22px 24px;text-align:center;">
-                <div style="width:64px;height:64px;border-radius:50%;background:rgba(200,30,30,.12);border:2px solid rgba(200,30,30,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 0 28px rgba(200,30,30,.18);">
+              <div style="background:linear-gradient(160deg,rgba(200,30,30,.1) 0%,rgba(200,30,30,.03) 100%);border-bottom:2px solid rgba(200,30,30,.2);padding:24px 24px 18px;text-align:center;">
+                <div style="width:64px;height:64px;border-radius:50%;background:rgba(200,30,30,.14);border:2px solid rgba(200,30,30,.45);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 0 32px rgba(200,30,30,.22);">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:30px;height:30px;color:#e02020;"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 </div>
                 <div style="font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e02020;margin-bottom:4px;">LFA Weg</div>
-                <div style="font-size:3.2rem;font-weight:900;color:#22aa66;line-height:1;letter-spacing:-.02em;">&lt;5</div>
-                <div style="font-size:.88rem;font-weight:700;color:#22aa66;opacity:.8;">Min. pro Nachweis</div>
+                <div style="font-size:4rem;font-weight:900;color:#22aa66;line-height:1;letter-spacing:-.03em;">&lt;5</div>
+                <div style="font-size:.88rem;font-weight:700;color:#22aa66;opacity:.85;margin-bottom:14px;">Min. pro Nachweis</div>
+                <!-- Time bar ~16.7% -->
+                <div style="padding:0 8px;">
+                  <div style="height:7px;background:rgba(34,170,102,.18);border-radius:20px;overflow:hidden;">
+                    <div class="ov-timebar-fill" data-bar-width="16.7%" style="height:100%;width:0;background:linear-gradient(90deg,#22aa66,#44cc88);border-radius:20px;"></div>
+                  </div>
+                  <div style="font-size:.6rem;color:#22aa66;font-weight:700;margin-top:5px;">83% weniger als manuell</div>
+                </div>
               </div>
               <!-- Body -->
               <div style="padding:24px 24px 28px;flex:1;display:flex;flex-direction:column;justify-content:space-between;">
@@ -1277,48 +1298,87 @@
           <h3 style="font-size:1.65rem;font-weight:900;color:#111118;margin-top:8px;margin-bottom:4px;">Die Zahlen sprechen für sich.</h3>
           <p style="font-size:.82rem;color:#7a7a88;max-width:440px;margin:0 auto;line-height:1.5;">30 Min./Woche × 156 Wochen × 3 Jahre — berechnet auf echten Azubi-Stundensätzen.</p>
         </div>
-        <div class="kpi-grid">
 
-          <div class="kpi-card kpi-card-light">
-            <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(200,30,30,.08),transparent 70%);"></div>
-            <div class="kpi-label">Zeit gespart · pro Azubi</div>
-            <div class="kpi-value" style="color:#e02020;">78 h</div>
-            <div class="kpi-desc">30 Min. × 156 Wochen. Reine Pflichtbürokratie ohne Lernwert.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+
+          <!-- ── Betrieb & Ausbilder ── -->
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 16px;background:rgba(180,130,0,.08);border:1.5px solid rgba(180,130,0,.22);border-radius:12px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;color:#c89000;flex-shrink:0;">
+                <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                <line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
+              </svg>
+              <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#c89000;">Betrieb &amp; Ausbilder</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+
+              <div class="kpi-card kpi-card-light">
+                <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(180,130,0,.1),transparent 70%);"></div>
+                <div class="kpi-label">Gesamtstunden · 10 Azubis · 3 Jahre</div>
+                <div class="kpi-value" style="color:#c89000;" data-target="780" data-suffix=" h">780 h</div>
+                <div class="kpi-desc">Über 97 verlorene Arbeitstage — allein für Papierkram.</div>
+              </div>
+
+              <div class="kpi-card kpi-card-light">
+                <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(180,130,0,.1),transparent 70%);"></div>
+                <div class="kpi-label">Kostenersparnis · 10 Azubis</div>
+                <div class="kpi-value" style="color:#c89000;" data-target="25000" data-prefix="&gt;" data-suffix=" €" data-separator=".">&gt;25.000 €</div>
+                <div class="kpi-desc">Azubi- &amp; Ausbilderzeit kombiniert, gerechnet über 3 Jahre.</div>
+              </div>
+
+              <div class="kpi-card kpi-card-light">
+                <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(180,130,0,.1),transparent 70%);"></div>
+                <div class="kpi-label">Maximale Transparenz</div>
+                <div class="kpi-value" style="color:#c89000;" data-target="156" data-suffix="×">156×</div>
+                <div class="kpi-desc">Objektive Datenpunkte fürs Jahreszeugnis — kein subjektiver Endmomentaneindruck.</div>
+              </div>
+
+            </div>
           </div>
 
-          <div class="kpi-card kpi-card-light">
-            <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(200,30,30,.08),transparent 70%);"></div>
-            <div class="kpi-label">10 Azubis · 3 Jahre</div>
-            <div class="kpi-value" style="color:#e02020;">780 h</div>
-            <div class="kpi-desc">Über 97 verlorene Arbeitstage — allein für Papierkram.</div>
-          </div>
+          <!-- ── Azubi ── -->
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 16px;background:rgba(200,30,30,.07);border:1.5px solid rgba(200,30,30,.22);border-radius:12px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;color:#e02020;flex-shrink:0;">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e02020;">Azubi</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
 
-          <div class="kpi-card kpi-card-light">
-            <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(180,130,0,.07),transparent 70%);"></div>
-            <div class="kpi-label">Kostenersparnis · 10 Azubis</div>
-            <div class="kpi-value" style="color:#c89000;">&gt;15.000 €</div>
-            <div class="kpi-desc">Azubi- &amp; Ausbilderzeit kombiniert, gerechnet über 3 Jahre.</div>
-          </div>
+              <div class="kpi-card kpi-card-light">
+                <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(34,170,102,.1),transparent 70%);"></div>
+                <div class="kpi-label">Zeit gespart · pro Azubi</div>
+                <div class="kpi-value" style="color:#22aa66;" data-target="78" data-suffix=" h">78 h</div>
+                <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,170,102,.1);border:1px solid rgba(34,170,102,.25);border-radius:20px;padding:3px 10px;margin:6px 0 6px;">
+                  <span style="font-size:.62rem;font-weight:800;color:#22aa66;">✓ weniger private Lernzeit nötig</span>
+                </div>
+                <div class="kpi-desc">30 Min. × 156 Wochen. Reine Pflichtbürokratie ohne Lernwert.</div>
+                <div style="margin-top:8px;font-size:.65rem;color:#aaaabc;line-height:1.45;display:flex;align-items:flex-start;gap:5px;">
+                  <span style="flex-shrink:0;margin-top:1px;">ℹ</span>
+                  <span>Abwesenheitszeiten inkludiert (Urlaub, Krankheitstage, Feiertage)</span>
+                </div>
+              </div>
 
-          <div class="kpi-card kpi-card-light">
-            <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(200,30,30,.08),transparent 70%);"></div>
-            <div class="kpi-label">Aufwand pro Nachweis</div>
-            <div class="kpi-value" style="color:#e02020;">83%</div>
-            <div class="kpi-desc">weniger Zeitaufwand mit LFA gegenüber dem manuellen Weg.</div>
-          </div>
+              <div class="kpi-card kpi-card-light">
+                <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(34,170,102,.1),transparent 70%);"></div>
+                <div class="kpi-label">Aufwand pro Nachweis</div>
+                <div class="kpi-value" style="color:#22aa66;" data-target="83" data-suffix="%">83%</div>
+                <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,170,102,.1);border:1px solid rgba(34,170,102,.25);border-radius:20px;padding:3px 10px;margin:6px 0 6px;">
+                  <span style="font-size:.62rem;font-weight:800;color:#22aa66;">✓ weniger Papierkram</span>
+                </div>
+                <div class="kpi-desc">weniger Zeitaufwand mit LFA gegenüber dem manuellen Weg.</div>
+              </div>
 
-          <div class="kpi-card kpi-card-light">
-            <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(200,30,30,.08),transparent 70%);"></div>
-            <div class="kpi-label">Maximale Transparenz</div>
-            <div class="kpi-value" style="color:#e02020;">156×</div>
-            <div class="kpi-desc">Datenpunkte fürs Jahreszeugnis — statt einem subjektiven Endurteil.</div>
-          </div>
+              <div class="kpi-card kpi-card-light">
+                <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(34,170,102,.1),transparent 70%);"></div>
+                <div class="kpi-label">Umsetzbar für jeden</div>
+                <div class="kpi-value" style="color:#111118;">0</div>
+                <div class="kpi-desc">Installationen oder IT-Setup nötig. Browser öffnen — fertig.</div>
+              </div>
 
-          <div class="kpi-card kpi-card-light">
-            <div class="kpi-glow" style="background:radial-gradient(circle at 100% 0%,rgba(200,30,30,.08),transparent 70%);"></div>
-            <div class="kpi-label">Umsetzbar für jeden</div>
-            <div class="kpi-value" style="color:#e02020;">0</div>
-            <div class="kpi-desc">Installationen oder IT-Setup nötig. Browser öffnen — fertig.</div>
+            </div>
           </div>
 
         </div>
@@ -1682,7 +1742,7 @@
             <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background:rgba(40,200,64,.1);border:1px solid rgba(40,200,64,.2);">
               <svg class="w-5 h-5" style="color:#28c840;" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
             </div>
-            <div class="text-4xl md:text-5xl font-bold gradient-text leading-none tabular-nums shrink-0" data-target="40" data-suffix="%">0</div>
+            <div class="text-4xl md:text-5xl font-bold leading-none tabular-nums shrink-0" style="color:#22aa66;" data-target="40" data-suffix="%">0</div>
             <div class="text-left">
               <span class="block font-medium">weniger Papierkram</span>
               <span class="block text-sm text-faint mt-1">Berichtshefte, Zeugnisse und Berichte automatisch generiert</span>
@@ -1692,7 +1752,7 @@
             <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style="background:rgba(40,200,64,.1);border:1px solid rgba(40,200,64,.2);">
               <svg class="w-5 h-5" style="color:#28c840;" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
             </div>
-            <div class="text-4xl md:text-5xl font-bold gradient-text leading-none tabular-nums shrink-0" data-target="60" data-suffix="%">0</div>
+            <div class="text-4xl md:text-5xl font-bold leading-none tabular-nums shrink-0" style="color:#22aa66;" data-target="60" data-suffix="%">0</div>
             <div class="text-left">
               <span class="block font-medium">weniger private Lernzeit nötig</span>
               <span class="block text-sm text-faint mt-1">Gezielte Vorbereitung auf IHK-Prüfungen statt blindes Büffeln</span>

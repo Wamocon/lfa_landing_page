@@ -1523,6 +1523,7 @@
 
 /* ── Skill Tree: View Switching ── */
 var _stCurrentView = 'st-view-overview';
+var _stChainMap = { 'st-view-manuell': 'chain-manuell', 'st-view-lfa': 'chain-lfa' };
 
 function showSkillView(viewId) {
   if (viewId === _stCurrentView) return;
@@ -1530,29 +1531,42 @@ function showSkillView(viewId) {
   var target  = document.getElementById(viewId);
   if (!current || !target) return;
 
-  current.style.opacity   = '0';
-  current.style.transform = 'translateY(-10px)';
+  var toDetail = (viewId !== 'st-view-overview');
+  var exitX    = toDetail ? '-28px' : '28px';
+  var enterX   = toDetail ?  '36px' : '-36px';
+
+  // Exit current view
+  current.style.transition = 'opacity .24s ease, transform .24s ease';
+  current.style.opacity    = '0';
+  current.style.transform  = 'translateX(' + exitX + ') scale(.98)';
 
   setTimeout(function() {
-    current.style.display   = 'none';
-    current.style.transform = '';
+    current.style.display    = 'none';
+    current.style.transform  = '';
+    current.style.transition = '';
 
-    target.style.display   = 'block';
-    target.style.opacity   = '0';
-    target.style.transform = 'translateY(12px)';
+    // Prepare target
+    target.style.display    = 'block';
+    target.style.opacity    = '0';
+    target.style.transform  = 'translateX(' + enterX + ') scale(.98)';
+    target.style.transition = 'opacity .42s cubic-bezier(.22,1,.36,1), transform .42s cubic-bezier(.22,1,.36,1)';
 
     requestAnimationFrame(function() {
       requestAnimationFrame(function() {
         target.style.opacity   = '1';
-        target.style.transform = 'translateY(0)';
+        target.style.transform = 'translateX(0) scale(1)';
       });
     });
 
+    // Clean up after transition
+    setTimeout(function() {
+      target.style.transition = '';
+      target.style.transform  = '';
+    }, 460);
+
     _stCurrentView = viewId;
 
-    // Animate chain nodes if switching to a detail view
-    var chainMap = { 'st-view-manuell': 'chain-manuell', 'st-view-lfa': 'chain-lfa' };
-    if (chainMap[viewId]) animateChain(chainMap[viewId]);
+    if (_stChainMap[viewId]) animateChain(_stChainMap[viewId]);
 
     var section = document.getElementById('taetigkeitsnachweis');
     if (section) {
@@ -1560,28 +1574,103 @@ function showSkillView(viewId) {
         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 60);
     }
-  }, 300);
+  }, 260);
 }
 
 function animateChain(chainId) {
   var chain = document.getElementById(chainId);
   if (!chain) return;
-  // Select direct child nodes (st-chain-node) and arrows
   var items = chain.querySelectorAll('.st-chain-node, .st-arrow');
   items.forEach(function(el, i) {
     el.classList.remove('chain-node-enter');
-    el.style.opacity = '0';
+    el.style.opacity   = '0';
     el.style.animation = 'none';
-    // stagger: nodes get longer delays, arrows are quick
-    var delay = i * 90;
+    var delay = i * 70; // tighter, snappier stagger
     setTimeout(function() {
       el.style.animation = '';
-      el.style.opacity = '';
+      el.style.opacity   = '';
       el.classList.add('chain-node-enter');
-      el.style.animationDelay = '0ms';
     }, delay);
   });
 }
+
+/* ── Tätigkeitsnachweis: Card Entrance + Timebar + Impact Pop ── */
+(function() {
+  var viewport = document.getElementById('st-viewport');
+  if (!viewport) return;
+
+  var cardsDone = false;
+  var cardObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting || cardsDone) return;
+      cardsDone = true;
+
+      var manuell = document.querySelector('.ov-manuell');
+      var lfa     = document.querySelector('.ov-lfa');
+
+      // Slide manuell in from left
+      if (manuell) {
+        manuell.style.opacity    = '0';
+        manuell.style.transform  = 'translateX(-52px) scale(.95)';
+        setTimeout(function() {
+          manuell.style.transition = 'opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)';
+          manuell.style.opacity    = '1';
+          manuell.style.transform  = 'translateX(0) scale(1)';
+          setTimeout(function() { manuell.style.transition = manuell.style.transform = ''; }, 750);
+        }, 80);
+      }
+
+      // Slide LFA in from right (slight delay)
+      if (lfa) {
+        lfa.style.opacity    = '0';
+        lfa.style.transform  = 'translateX(52px) scale(.95)';
+        setTimeout(function() {
+          lfa.style.transition = 'opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)';
+          lfa.style.opacity    = '1';
+          lfa.style.transform  = 'translateX(0) scale(1)';
+          setTimeout(function() { lfa.style.transition = lfa.style.transform = ''; }, 750);
+        }, 200);
+      }
+
+      // Animate time bars
+      var bars = document.querySelectorAll('.ov-timebar-fill');
+      bars.forEach(function(bar) {
+        var targetW = bar.dataset.barWidth || '100%';
+        bar.style.width = '0';
+        setTimeout(function() {
+          bar.style.transition = 'width 1s cubic-bezier(.22,1,.36,1)';
+          bar.style.width = targetW;
+          setTimeout(function() { bar.style.transition = ''; }, 1100);
+        }, 450);
+      });
+    });
+  }, { threshold: 0.25 });
+
+  cardObs.observe(viewport);
+
+  // Impact bar pop-in
+  var impacts = document.querySelectorAll('.st-impact');
+  if (impacts.length) {
+    var impactObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        var nums = entry.target.querySelectorAll('.st-impact-num');
+        nums.forEach(function(num, i) {
+          num.style.opacity   = '0';
+          num.style.animation = 'none';
+          setTimeout(function() {
+            num.style.animation = '';
+            num.style.opacity   = '';
+            num.classList.remove('impact-pop');
+            void num.offsetWidth; // reflow
+            num.classList.add('impact-pop');
+          }, i * 130);
+        });
+      });
+    }, { threshold: 0.5 });
+    impacts.forEach(function(el) { impactObs.observe(el); });
+  }
+})();
 
 function toggleAZ() {
   var panel = document.getElementById('az-details');
