@@ -1520,3 +1520,89 @@
     init();
   }
 })();
+
+/* ── Skill Tree: View Switching ── */
+var _stCurrentView = 'st-view-overview';
+
+function showSkillView(viewId) {
+  if (viewId === _stCurrentView) return;
+  var current = document.getElementById(_stCurrentView);
+  var target  = document.getElementById(viewId);
+  if (!current || !target) return;
+
+  current.style.opacity   = '0';
+  current.style.transform = 'translateY(-10px)';
+
+  setTimeout(function() {
+    current.style.display   = 'none';
+    current.style.transform = '';
+
+    target.style.display   = 'block';
+    target.style.opacity   = '0';
+    target.style.transform = 'translateY(12px)';
+
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        target.style.opacity   = '1';
+        target.style.transform = 'translateY(0)';
+      });
+    });
+
+    _stCurrentView = viewId;
+
+    // Animate chain nodes if switching to a detail view
+    var chainMap = { 'st-view-manuell': 'chain-manuell', 'st-view-lfa': 'chain-lfa' };
+    if (chainMap[viewId]) animateChain(chainMap[viewId]);
+
+    var section = document.getElementById('taetigkeitsnachweis');
+    if (section) {
+      setTimeout(function() {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    }
+  }, 300);
+}
+
+function animateChain(chainId) {
+  var chain = document.getElementById(chainId);
+  if (!chain) return;
+  // Select direct child nodes (st-chain-node) and arrows
+  var items = chain.querySelectorAll('.st-chain-node, .st-arrow');
+  items.forEach(function(el, i) {
+    el.classList.remove('chain-node-enter');
+    el.style.opacity = '0';
+    el.style.animation = 'none';
+    // stagger: nodes get longer delays, arrows are quick
+    var delay = i * 90;
+    setTimeout(function() {
+      el.style.animation = '';
+      el.style.opacity = '';
+      el.classList.add('chain-node-enter');
+      el.style.animationDelay = '0ms';
+    }, delay);
+  });
+}
+
+function toggleAZ() {
+  var panel = document.getElementById('az-details');
+  var chev  = document.getElementById('az-chev');
+  if (!panel) return;
+
+  if (panel.style.display === 'none' || panel.style.display === '') {
+    panel.style.display   = 'block';
+    panel.style.opacity   = '0';
+    panel.style.transform = 'translateY(10px)';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        panel.style.opacity   = '1';
+        panel.style.transform = 'translateY(0)';
+      });
+    });
+    if (chev) chev.style.transform = 'rotate(180deg)';
+  } else {
+    panel.style.opacity   = '0';
+    panel.style.transform = 'translateY(10px)';
+    setTimeout(function() { panel.style.display = 'none'; }, 300);
+    if (chev) chev.style.transform = '';
+  }
+}
