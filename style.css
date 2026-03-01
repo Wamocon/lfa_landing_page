@@ -91,6 +91,13 @@ html::-webkit-scrollbar {
   box-shadow: 0 0 20px rgba(200,30,30,.1);
 }
 .lfa-circle:hover { box-shadow: 0 0 32px rgba(200,30,30,.2); }
+#chain-lfa .st-chain-node {
+  display: grid;
+  grid-template-rows: 100px 36px 30px auto;
+  justify-items: center;
+  align-items: start;
+}
+#chain-lfa .stn-circle { width: 88px; height: 88px; margin-bottom: 0; }
 .az-circle {
   background: rgba(180,130,0,.08);
   border: 2px dashed rgba(180,130,0,.4);
@@ -133,7 +140,7 @@ html::-webkit-scrollbar {
   color: #d8d8e0;
 }
 .manuell-arrow { color: rgba(180,40,40,.35); }
-.lfa-arrow     { color: rgba(200,30,30,.45); }
+.lfa-arrow     { color: rgba(200,30,30,.45); margin-top: 32px; }
 
 /* ── Impact Bar ── */
 .st-impact {
@@ -312,7 +319,7 @@ html::-webkit-scrollbar {
   to   { opacity: 1; transform: translateY(0)   scale(1);   filter: blur(0);   }
 }
 .chain-node-enter {
-  animation: chainNodeIn .5s cubic-bezier(.22,1,.36,1) both;
+  animation: chainNodeIn .5s cubic-bezier(.22,1,.36,1) backwards;
 }
 
 /* ── Card shimmer on hover ── */
