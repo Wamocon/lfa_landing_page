@@ -11,39 +11,6 @@ html::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
 
-/* ── Skill Tree: View Switching ── */
-.st-choice-card {
-  flex: 1;
-  cursor: pointer;
-  border-radius: 20px;
-  padding: 24px 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-}
-.manuell-card {
-  background: #fff;
-  border: 2px solid rgba(180,40,40,.18);
-  box-shadow: 0 4px 20px rgba(0,0,0,.06);
-}
-.manuell-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(180,40,40,.38);
-  box-shadow: 0 8px 32px rgba(180,40,40,.1);
-}
-.lfa-card {
-  background: #fff;
-  border: 2px solid rgba(200,30,30,.38);
-  box-shadow: 0 4px 28px rgba(200,30,30,.1);
-}
-.lfa-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(200,30,30,.6);
-  box-shadow: 0 12px 48px rgba(200,30,30,.16);
-}
-
 /* ── Back button ── */
 .st-back-btn {
   display: inline-flex;
@@ -74,7 +41,6 @@ html::-webkit-scrollbar {
   gap: 0;
   overflow-x: auto;
   padding: 8px 0 24px;
-  -webkit-overflow-scrolling: touch;
 }
 @media (max-width: 680px) {
   .st-chain { flex-direction: column; align-items: center; }
@@ -337,10 +303,6 @@ html::-webkit-scrollbar {
 }
 
 /* ── Animations ── */
-@keyframes roleRingPulse {
-  0%, 100% { transform: scale(1);   opacity: .6; }
-  50%       { transform: scale(1.22); opacity: 0; }
-}
 @keyframes loopPulse {
   0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(180,40,40,.0); }
   50%       { opacity: .75; box-shadow: 0 0 0 8px rgba(180,40,40,.0); }
@@ -367,16 +329,6 @@ html::-webkit-scrollbar {
   z-index: 4;
 }
 .ov-card:hover::after { left: 130%; }
-
-/* ── Directional card entrance ── */
-@keyframes cardFromLeft {
-  from { opacity: 0; transform: translateX(-52px) scale(.95); }
-  to   { opacity: 1; transform: translateX(0)     scale(1);   }
-}
-@keyframes cardFromRight {
-  from { opacity: 0; transform: translateX(52px) scale(.95); }
-  to   { opacity: 1; transform: translateX(0)    scale(1);   }
-}
 
 /* ── Impact number pop ── */
 @keyframes impactPop {

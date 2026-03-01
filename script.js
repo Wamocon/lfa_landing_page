@@ -195,6 +195,7 @@
     var faqList = $('#faqList');
     if (!faqList) return;
 
+    /* Accordion */
     faqList.addEventListener('click', function (e) {
       var button = e.target.closest('.faq-question');
       if (!button) return;
@@ -202,8 +203,9 @@
       var item = button.parentElement;
       var isOpen = item.classList.contains('faq-item--open');
 
-      /* Close all */
-      $$('.faq-item--open', faqList).forEach(function (openItem) {
+      /* Close all in current panel */
+      var panel = button.closest('.faq-tab-panel') || faqList;
+      $$('.faq-item--open', panel).forEach(function (openItem) {
         openItem.classList.remove('faq-item--open');
         openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
       });
@@ -214,15 +216,37 @@
         button.setAttribute('aria-expanded', 'true');
       }
     });
+
+    /* Tab switching */
+    $$('.faq-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = tab.getAttribute('data-faq-tab');
+
+        /* Update tab buttons */
+        $$('.faq-tab').forEach(function (t) {
+          t.classList.remove('faq-tab--active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('faq-tab--active');
+        tab.setAttribute('aria-selected', 'true');
+
+        /* Close all open items */
+        $$('.faq-item--open', faqList).forEach(function (openItem) {
+          openItem.classList.remove('faq-item--open');
+          openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        /* Switch panels */
+        $$('.faq-tab-panel', faqList).forEach(function (p) {
+          p.style.display = p.getAttribute('data-faq-panel') === target ? '' : 'none';
+        });
+      });
+    });
   }
 
   /* ==============================================
      6. SUBTLE PARALLAX ON SCROLL
      ============================================== */
-  function initScrollEffects() {
-    /* Removed : section opacity animation caused gray bleed-through
-       during scrolling. Sections use reveal animations instead. */
-  }
 
   /* ==============================================
      7. IMMERSIVE ROADMAP
@@ -1723,7 +1747,7 @@
     initRoadmap();
     initSolarSystem();
     initParticles();
-    initScrollEffects();
+
     initMagneticButtons();
     initTyping();
     initTiltCards();
