@@ -519,6 +519,7 @@
           <a href="#hai" class="nav-link magnetic-btn" data-nav-section="hai">HAI</a>
           <a href="#roi" class="nav-link magnetic-btn" data-nav-section="roi">Kosten</a>
           <a href="#architektur" class="nav-link magnetic-btn" data-nav-section="architektur">Technik</a>
+          <a href="#team" class="nav-link magnetic-btn" data-nav-section="team">Team</a>
           <a href="#faq" class="nav-link magnetic-btn" data-nav-section="faq">FAQ</a>
         </div>
       </div>
@@ -552,6 +553,7 @@
       <a href="#hai" class="mm-link" onclick="closeMobileMenu()">HAI</a>
       <a href="#roi" class="mm-link" onclick="closeMobileMenu()">Kosten</a>
       <a href="#architektur" class="mm-link" onclick="closeMobileMenu()">Technik</a>
+      <a href="#team" class="mm-link" onclick="closeMobileMenu()">Team</a>
       <a href="#faq" class="mm-link mm-link--full" onclick="closeMobileMenu()">FAQ</a>
     </div>
   </div>
@@ -581,31 +583,23 @@
       style="background:linear-gradient(to bottom, transparent, #0f0f11);"></div>
   </section>
 
-  <!-- TRUST BAR -->
-  <div class="relative z-10" style="padding:2.5rem 0 3rem;background:#0f0f11;border-bottom:1px solid var(--color-border);">
-    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
-      <div class="flex items-center justify-center gap-12 md:gap-20 flex-wrap">
-        <!-- IHK -->
-        <a href="https://www.frankfurt-main.ihk.de/" target="_blank" rel="noopener" class="flex items-center gap-4 group" style="text-decoration:none;">
-          <div style="background:#fff;border-radius:10px;padding:8px 12px;display:flex;align-items:center;">
-            <img src="IHK-Logo_2.png" alt="IHK — Hessischer Industrie- und Handelskammertag" style="height:56px;">
-          </div>
-          <span class="text-sm text-faint group-hover:text-muted transition-colors" style="max-width:120px;line-height:1.3;">IHK-konforme Inhalte</span>
-        </a>
-        <!-- KI Innovator -->
-        <div class="flex items-center gap-4">
-          <img src="KI-Siegel%20WAMOCON.png" alt="KI Innovator — Deutsches Innovationsinstitut" style="height:80px;">
-          <span class="text-sm text-faint" style="max-width:120px;line-height:1.3;">Ausgezeichnet als KI&nbsp;Innovator</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- PROBLEM : Dramatische Darstellung des Systemversagens -->
   <section class="relative section-dark" id="problem" style="padding:7rem 0 6rem;margin-top:-2px;">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
 
-
+      <!-- Trust-Badges -->
+      <div class="reveal flex items-center gap-6 md:gap-10 flex-wrap mb-10">
+        <a href="https://www.frankfurt-main.ihk.de/" target="_blank" rel="noopener" class="flex items-center gap-3 group" style="text-decoration:none;">
+          <div style="background:#fff;border-radius:8px;padding:6px 10px;display:flex;align-items:center;">
+            <img src="IHK-Logo_2.png" alt="IHK — Hessischer Industrie- und Handelskammertag" style="height:40px;">
+          </div>
+          <span class="text-xs group-hover:text-muted transition-colors" style="color:#6e6e76;max-width:100px;line-height:1.3;">IHK-konforme Inhalte</span>
+        </a>
+        <div class="flex items-center gap-3">
+          <img src="KI-Siegel%20WAMOCON.png" alt="KI Innovator — Deutsches Innovationsinstitut" style="height:56px;">
+          <span class="text-xs" style="color:#6e6e76;max-width:100px;line-height:1.3;">Ausgezeichnet als KI&nbsp;Innovator</span>
+        </div>
+      </div>
 
       <!-- Dramatische Headline -->
       <h2 class="reveal text-4xl md:text-6xl font-black leading-[1.05] tracking-tight mb-6" style="color:#f0f0f2;">
@@ -716,7 +710,7 @@
   </div>
 
   <!-- LÖSUNG : LFA als Antwort -->
-  <section class="relative section-dark" id="loesung" style="padding:5rem 0 7rem;">
+  <section class="relative section-dark" id="loesung" style="padding:5rem 0 7rem;background:#050508;">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
 
       <!-- 3 Lösungskarten -->
@@ -781,7 +775,7 @@
   </section>
 
   <!-- ROADMAP : Dark premium -->
-  <section class="py-24 md:py-36 section-dark" id="roadmap">
+  <section class="py-24 md:py-36 section-dark" id="roadmap" style="background:#050508;">
     <div class="max-w-[1100px] mx-auto px-5 md:px-10">
       <div class="text-center mb-20">
 
@@ -1611,20 +1605,28 @@
             <button onclick="showSkillView('st-view-overview')" class="st-back-btn">&#8592; Zurück</button>
             <div style="text-align:right;">
               <div style="font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#b83030;">Manueller Weg</div>
-              <div style="font-size:.82rem;color:#7a7a88;margin-top:2px;">5 Schritte · bis zu 45 Min./Woche · 156× wiederholt</div>
+              <div style="font-size:.82rem;color:#7a7a88;margin-top:2px;">6 Schritte · bis zu 45 Min./Woche · 156× wiederholt</div>
             </div>
           </div>
 
-          <!-- Loop banner -->
-          <div style="max-width:900px;margin:0 auto 0;display:flex;justify-content:center;">
-            <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(180,40,40,.07);border:1.5px solid rgba(180,40,40,.2);border-bottom:none;border-radius:12px 12px 0 0;padding:8px 20px;animation:loopPulse 2.4s ease-in-out infinite;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px;color:#b83030;"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-              <span style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#b83030;">Feedback-Schleife — Überarbeitung nötig?  Wieder von vorn.</span>
-            </div>
+          <!-- Subtitle -->
+          <div style="text-align:center;margin-bottom:2.2rem;">
+            <p style="font-size:1.05rem;font-weight:800;color:#111118;margin:0 0 6px;">Jede Woche dasselbe. 30+ Minuten. Ohne Struktur.</p>
+            <p style="font-size:.82rem;color:#7a7a88;margin:0;">Freitext ohne Template · Feedback-Schleifen · Kein ARP-Bezug</p>
           </div>
 
           <!-- Chain -->
           <div class="st-chain" id="chain-manuell">
+            <!-- IHK-Startknoten -->
+            <div class="st-chain-node">
+              <div class="stn-circle manuell-circle"><span class="stn-step" style="background:#b83030;color:#fff;">§</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:#b83030;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="stn-name">IHK-Anforderung</div>
+              <div class="stn-sub">ARP-Pflichtthemen §14 BBiG</div>
+              <div class="stn-badge manuell-badge">Pflicht</div>
+            </div>
+            <div class="st-arrow manuell-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><polyline points="9 18 15 12 9 6"/></svg></div>
             <div class="st-chain-node">
               <div class="stn-circle manuell-circle"><span class="stn-step">1</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:32px;height:32px;color:#b83030;"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -1644,8 +1646,7 @@
             </div>
             <div class="st-arrow manuell-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><polyline points="9 18 15 12 9 6"/></svg></div>
             <div class="st-chain-node">
-              <div class="stn-circle" style="background:rgba(180,40,40,.12);border:2px dashed rgba(180,40,40,.4);width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;position:relative;animation:loopPulse 2.4s ease-in-out infinite;">
-                <span class="stn-step">3</span>
+              <div class="stn-circle manuell-circle" style="border-style:dashed;"><span class="stn-step">3</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:32px;height:32px;color:#b83030;"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
               </div>
               <div class="stn-name" style="color:#b83030;">Überarbeitung</div>
@@ -1678,7 +1679,7 @@
             <div class="st-impact-div"></div>
             <div class="st-impact-item"><div class="st-impact-num">780 h</div><div class="st-impact-lbl">bei 10 Azubis</div></div>
             <div class="st-impact-div"></div>
-            <div class="st-impact-item"><div class="st-impact-num">0</div><div class="st-impact-lbl">Mehrwert für die Ausbildung</div></div>
+            <div class="st-impact-item"><div class="st-impact-num">0 %</div><div class="st-impact-lbl">Transparenz über Lernfortschritt</div></div>
           </div>
           <p style="font-size:.6rem;color:#aaaabc;text-align:center;margin-top:10px;line-height:1.5;">
             ¹ 30 Min./Woche × 156 Wochen (3 Jahre, §14 BBiG) &nbsp;·&nbsp; ² 10 Azubis als Referenzgröße &nbsp;·&nbsp; Quelle: eigene Berechnung auf Basis BIBB-Datenreport 2023
@@ -1703,11 +1704,24 @@
             <p style="font-size:.82rem;color:#7a7a88;margin:0;">Strukturiert nach Ausbildungsrahmenplan · IHK-konform · Vollautomatisch</p>
           </div>
 
-          <!-- Node chain (5 big nodes, 88px) -->
+          <!-- Node chain (IHK + 5 big nodes, 88px) -->
           <div class="st-chain" id="chain-lfa">
+            <!-- IHK-Startknoten -->
+            <div class="st-chain-node">
+              <div class="stn-circle lfa-circle">
+                <span class="stn-step lfa-step" style="background:#22aa66;">§</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:#22aa66;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="stn-name">IHK-Anforderung</div>
+              <div class="stn-sub">ARP-Pflichtthemen §14 BBiG</div>
+              <div class="stn-badge lfa-badge-t">Integriert</div>
+            </div>
+            <div class="st-arrow lfa-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:24px;height:24px;"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
             <!-- N1: Formular -->
             <div class="st-chain-node">
-              <div class="stn-circle lfa-circle" style="width:88px;height:88px;">
+              <div class="stn-circle lfa-circle">
                 <span class="stn-step lfa-step">1</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:#e02020;"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
               </div>
@@ -1720,7 +1734,7 @@
             </div>
             <!-- N2: Aufwandschätzung -->
             <div class="st-chain-node">
-              <div class="stn-circle lfa-circle" style="width:88px;height:88px;">
+              <div class="stn-circle lfa-circle">
                 <span class="stn-step lfa-step">2</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:#e02020;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
               </div>
@@ -1733,11 +1747,11 @@
             </div>
             <!-- N3: Azubi Benotung -->
             <div class="st-chain-node">
-              <div class="stn-circle lfa-circle" style="width:88px;height:88px;">
+              <div class="stn-circle lfa-circle">
                 <span class="stn-step lfa-step">3</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:#e02020;"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
               </div>
-              <div class="stn-name">Azubi­ Benotung</div>
+              <div class="stn-name">Azubi Benotung</div>
               <div class="stn-sub">Selbstbewertung</div>
               <div class="stn-badge lfa-badge-t">Kurz & effektiv</div>
             </div>
@@ -1746,11 +1760,11 @@
             </div>
             <!-- N4: Ausbilder Benotung -->
             <div class="st-chain-node">
-              <div class="stn-circle lfa-circle" style="width:88px;height:88px;">
+              <div class="stn-circle lfa-circle">
                 <span class="stn-step lfa-step">4</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:#e02020;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               </div>
-              <div class="stn-name">Ausbilder­ Benotung</div>
+              <div class="stn-name">Ausbilder-Benotung</div>
               <div class="stn-sub">Feste Maßstäbe</div>
               <div class="stn-badge lfa-badge-t">&lt;3 Min. ✓</div>
             </div>
@@ -1759,7 +1773,7 @@
             </div>
             <!-- N5: Zeugnis -->
             <div class="st-chain-node">
-              <div class="stn-circle lfa-circle" style="width:88px;height:88px;box-shadow:0 0 28px rgba(200,30,30,.2);">
+              <div class="stn-circle lfa-circle">
                 <span class="stn-step lfa-step">5</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:#e02020;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
               </div>
@@ -1938,7 +1952,7 @@
     </div>
   </section>
 
-  <div class="divider-gradient" style="background:linear-gradient(to bottom, #f8f9fb, #0f0f11);"></div>
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, #e9eaf0, #0f0f11);"></div>
 
   <!-- SOLAR SYSTEM : Lernuniversum -->
   <section class="section-dark" id="solarsystem" style="position:relative;overflow:hidden;">
@@ -2473,8 +2487,7 @@
               <line x1="12" y1="17" x2="12.01" y2="17" />
             </svg>
           </div>
-          <div class="text-4xl md:text-5xl font-bold gradient-text leading-none mb-1 tabular-nums" style="letter-spacing:-.03em;">89.435 –</div>
-          <div class="text-4xl md:text-5xl font-bold gradient-text leading-none mb-3 tabular-nums" style="letter-spacing:-.03em;">98.634 €</div>
+          <div class="text-3xl md:text-[2.6rem] font-bold gradient-text leading-none mb-3 tabular-nums" style="letter-spacing:-.02em;">89.435 – 98.634&nbsp;€</div>
           <span class="block text-lg font-medium mb-1">Gesamtinvestition pro FIAE-Azubi</span>
           <span class="block text-sm text-faint mb-1">3 Jahre · ohne Opportunitätskosten</span>
           <span class="block text-xs text-faint mb-5" style="opacity:.6;">Eigene Berechnung · BBiG · BIBB-Datenreport 2023</span>
@@ -2764,12 +2777,191 @@
     </div>
   </section>
 
-  <!-- CTA vor FAQ -->
-  <div class="reveal py-16 text-center" style="background:linear-gradient(180deg,#f4f4f6 0%,#ededf0 100%);">
-    <p class="text-lg font-semibold mb-2" style="color:#18181b;">Bereit für den nächsten Schritt?</p>
-    <p class="text-sm mb-6" style="color:#71717a;max-width:480px;margin:0 auto;">Erzähl uns von deiner Ausbildungssituation. Wir zeigen dir, wie LFA bei dir aussehen kann.</p>
-    <a href="mailto:info@wamocon.com" class="magnetic-btn" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--color-accent);color:#fff;font-size:.95rem;font-weight:700;border-radius:12px;text-decoration:none;transition:all .25s ease;box-shadow:0 4px 24px rgba(255,26,26,.25);" onmouseover="this.style.background='#e01515';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 32px rgba(255,26,26,.35)'" onmouseout="this.style.background='var(--color-accent)';this.style.transform='translateY(0)';this.style.boxShadow='0 4px 24px rgba(255,26,26,.25)'">Erstgespräch vereinbaren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px;"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg></a>
-  </div>
+  <!-- Gradient: Architektur (hell) → Team (dunkel) -->
+  <div style="height:100px;background:linear-gradient(to bottom,#eeeef0,#0a0a0c);"></div>
+
+  <!-- TEAM : Wer steckt dahinter? -->
+  <section class="py-24 md:py-36" id="team" data-nav-section="team" style="background:#0a0a0c;margin-top:-1px;">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+
+      <div class="text-center mb-14">
+        <h2 class="reveal text-3xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5" style="color:#fff;">Wer steckt dahinter?</h2>
+        <p class="reveal text-lg leading-relaxed max-w-xl mx-auto" style="color:rgba(255,255,255,.5);">Ein Team, das Ausbildung nicht nur plant, sondern selbst lebt.</p>
+      </div>
+
+      <div class="team-timeline">
+
+        <!-- ── Waleri Moretz ── -->
+        <div class="team-node">
+          <span class="team-dot"></span>
+          <div class="team-card-wrap">
+            <div class="team-card">
+              <div class="team-card-inner">
+                <img src="https://onlinekurs.test-it-academy.com/WMA_Waleri_Moretz_Profilfoto.png" alt="Waleri Moretz" class="team-photo" loading="lazy">
+                <div class="team-card-content">
+                  <div class="team-name">Waleri</div>
+                  <div class="team-role">Gr&uuml;nder &amp; Ausbilder</div>
+                  <div style="margin-bottom:10px;">
+                    <span class="team-badge team-badge--ausbilder">IHK-Ausbilder</span>
+                    <span class="team-badge team-badge--ausbilder">ISTQB-Trainer</span>
+                  </div>
+                  <div class="team-quote">Ich war selbst der Azubi, der nach dem zweiten Schulblock kurz davor war aufzugeben. Trotz guter Noten. Deshalb habe ich das Lernzentrum gebaut.</div>
+
+                  <div class="team-section-label">Qualifikation</div>
+                  <ul class="team-bullets">
+                    <li>IHK IT-Systemkaufmann</li>
+                    <li>FH Diplom-Wirtschaftsingenieur</li>
+                    <li>IHK-zertifizierter Ausbilder (AEVO)</li>
+                    <li>Akkreditierter ISTQB-Trainer</li>
+                    <li>SAP-zertifizierter Berater FI, CO, SD (S/4HANA)</li>
+                  </ul>
+
+                  <div class="team-section-label">Erfahrung</div>
+                  <ul class="team-bullets">
+                    <li>21 Jahre IT-Projekterfahrung, 30+ Projekte, 5.200+ Projekttage</li>
+                    <li>Deutschlands bekannteste Konzerne und gro&szlig;e Mittelst&auml;ndler</li>
+                    <li>Automotive, Banken, Versicherungen, Energie, Handel, Logistik, Telekommunikation, Immobilien, Industrie, Diagnostik, Verkehrstechnik, Bildung</li>
+                  </ul>
+
+                  <div class="team-section-label">Rolle bei LFA</div>
+                  <ul class="team-bullets">
+                    <li>Ausbilder</li>
+                    <li>Gr&uuml;nder und Gesch&auml;ftsf&uuml;hrer der WAMOCON GmbH und WAMOCON Academy GmbH</li>
+                    <li>Agiler Projektleiter des gesamten LFA-Systems</li>
+                    <li>Akkreditierter ISTQB-Trainer</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Daniel Moretz ── -->
+        <div class="team-node">
+          <span class="team-dot"></span>
+          <div class="team-card-wrap">
+            <div class="team-card">
+              <div class="team-card-inner">
+                <img src="https://onlinekurs.test-it-academy.com/WMA_Daniel_Moretz_Profilfoto.JPG" alt="Daniel Moretz" class="team-photo" loading="lazy">
+                <div class="team-card-content">
+                  <div class="team-name">Daniel</div>
+                  <div class="team-role">Ausbilder &amp; Fachlicher Leiter</div>
+                  <div style="margin-bottom:10px;">
+                    <span class="team-badge team-badge--ausbilder">IHK-Ausbilder</span>
+                    <span class="team-badge team-badge--ausbilder">ISTQB-Trainer</span>
+                  </div>
+                  <div class="team-quote">Daniel bildet Menschen aus, seit er denken kann. Erst Nachhilfe in Mathe und Deutsch, heute IT-Fachkr&auml;fte in der Praxis.</div>
+
+                  <div class="team-section-label">Qualifikation</div>
+                  <ul class="team-bullets">
+                    <li>Bachelor Wirtschaftsinformatik</li>
+                    <li>IHK-zertifizierter Ausbilder (AEVO)</li>
+                    <li>Akkreditierter ISTQB-Trainer</li>
+                  </ul>
+
+                  <div class="team-section-label">Erfahrung</div>
+                  <ul class="team-bullets">
+                    <li>9 Jahre IT-Projekterfahrung, 13 Projekte, 2.900+ Projekttage</li>
+                    <li>8+ Jahre Qualit&auml;tssicherung bei Deutschlands f&uuml;hrendem Logistikkonzern</li>
+                    <li>Branchen: Logistik, IT-Consulting, Banken, Bildung</li>
+                  </ul>
+
+                  <div class="team-section-label">Rolle bei LFA</div>
+                  <ul class="team-bullets">
+                    <li>Ausbilder</li>
+                    <li>Fachlicher Anwendungsverantwortlicher des LFA-Systems</li>
+                    <li>Akkreditierter ISTQB-Trainer</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Leon ── -->
+        <div class="team-node">
+          <span class="team-dot"></span>
+          <div class="team-card-wrap">
+            <div class="team-card">
+              <div class="team-card-inner">
+                <div class="team-photo-placeholder">Foto<br>folgt</div>
+                <div class="team-card-content">
+                  <div class="team-name">Leon</div>
+                  <div class="team-role">Auszubildender FIAE</div>
+                  <div style="margin-bottom:10px;">
+                    <span class="team-badge team-badge--azubi">FIAE-Azubi seit 08/2025</span>
+                  </div>
+
+                  <div class="team-section-label">Ausbildung</div>
+                  <ul class="team-bullets">
+                    <li>Fachinformatiker Anwendungsentwicklung</li>
+                    <li>Lernt und arbeitet nach dem LFA-System bei WAMOCON</li>
+                  </ul>
+
+                  <div class="team-section-label">Beitrag zum LFA-System</div>
+                  <ul class="team-bullets">
+                    <li>Operativ an der Entwicklung von LFA mitgewirkt</li>
+                    <li>Komplexe Module mitprogrammiert und getestet</li>
+                    <li>KI-gest&uuml;tzte Entwicklungswerkzeuge erfolgreich eingesetzt</li>
+                  </ul>
+
+                  <div class="team-section-label">Was ihn auszeichnet</div>
+                  <ul class="team-bullets">
+                    <li>Arbeitet eigenst&auml;ndig und im Team an produktiven Projekten</li>
+                    <li>Nutzt Methoden, die &uuml;ber den Berufsschulstoff hinausgehen</li>
+                    <li>Wei&szlig; jederzeit, wo er steht und was als n&auml;chstes kommt</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Elias ── -->
+        <div class="team-node">
+          <span class="team-dot"></span>
+          <div class="team-card-wrap">
+            <div class="team-card">
+              <div class="team-card-inner">
+                <div class="team-photo-placeholder">Foto<br>folgt</div>
+                <div class="team-card-content">
+                  <div class="team-name">Elias</div>
+                  <div class="team-role">Auszubildender FIAE</div>
+                  <div style="margin-bottom:10px;">
+                    <span class="team-badge team-badge--azubi">FIAE-Azubi seit 08/2025</span>
+                  </div>
+
+                  <div class="team-section-label">Ausbildung</div>
+                  <ul class="team-bullets">
+                    <li>Fachinformatiker Anwendungsentwicklung</li>
+                    <li>Lernt und arbeitet nach dem LFA-System bei WAMOCON</li>
+                  </ul>
+
+                  <div class="team-section-label">Beitrag zum LFA-System</div>
+                  <ul class="team-bullets">
+                    <li>Operativ an der Entwicklung von LFA mitgewirkt</li>
+                    <li>Komplexe Module mitprogrammiert und getestet</li>
+                    <li>KI-gest&uuml;tzte Entwicklungswerkzeuge erfolgreich eingesetzt</li>
+                  </ul>
+
+                  <div class="team-section-label">Was ihn auszeichnet</div>
+                  <ul class="team-bullets">
+                    <li>Arbeitet eigenst&auml;ndig und im Team an produktiven Projekten</li>
+                    <li>Nutzt Methoden, die &uuml;ber den Berufsschulstoff hinausgehen</li>
+                    <li>Wei&szlig; jederzeit, wo er steht und was als n&auml;chstes kommt</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /team-timeline -->
+    </div>
+  </section>
+
+  <!-- Gradient: Team (dunkel) → FAQ (hell) -->
+  <div style="height:100px;background:linear-gradient(to bottom,#0a0a0c,#f5f5f7);margin-bottom:-1px;"></div>
 
   <!-- FAQ -->
   <section class="py-24 md:py-36 section-organic" id="faq">
@@ -3039,27 +3231,32 @@
       </div>
     </div>
     <div class="border-t border-border"></div>
-    <div class="max-w-[1100px] mx-auto px-5 md:px-10 py-5 grid grid-cols-2 md:grid-cols-4 gap-6 items-start">
+    <div class="max-w-[1100px] mx-auto px-5 md:px-10 py-5 grid grid-cols-2 md:grid-cols-5 gap-6 items-start">
       <div class="col-span-2 md:col-span-1">
         <div class="mb-2">
           <span style="font-size:1.8rem;font-weight:900;letter-spacing:-1px;color:#FE0404;">LFA</span>
         </div>
         <p class="text-xs text-muted leading-relaxed">Die KI-gestützte Plattform für die duale IT-Ausbildung. Entwickelt von WAMOCON GmbH.</p>
       </div>
-      <div>
+      <div class="col-span-2 flex flex-col items-center">
         <div class="font-semibold text-xs mb-2 text-faint uppercase tracking-widest">Plattform</div>
-        <ul class="space-y-1 text-sm text-muted">
-          <li><a href="#problem" class="hover:text-text-main transition-colors">Problem</a></li>
-          <li><a href="#roadmap" class="hover:text-text-main transition-colors">Warum LFA</a></li>
-          <li><a href="#rollen" class="hover:text-text-main transition-colors">Rollen</a></li>
-          <li><a href="#funktionen" class="hover:text-text-main transition-colors">Funktionen</a></li>
-          <li><a href="#solarsystem" class="hover:text-text-main transition-colors">Universum</a></li>
-          <li><a href="#demo" class="hover:text-text-main transition-colors">Demo</a></li>
-          <li><a href="#hai" class="hover:text-text-main transition-colors">HAI</a></li>
-          <li><a href="#roi" class="hover:text-text-main transition-colors">Kosten</a></li>
-          <li><a href="#architektur" class="hover:text-text-main transition-colors">Technik</a></li>
-          <li><a href="#faq" class="hover:text-text-main transition-colors">FAQ</a></li>
-        </ul>
+        <div class="flex gap-10">
+          <ul class="space-y-1 text-sm text-muted">
+            <li><a href="#problem" class="hover:text-text-main transition-colors">Problem</a></li>
+            <li><a href="#roadmap" class="hover:text-text-main transition-colors">Warum LFA</a></li>
+            <li><a href="#rollen" class="hover:text-text-main transition-colors">Rollen</a></li>
+            <li><a href="#funktionen" class="hover:text-text-main transition-colors">Funktionen</a></li>
+            <li><a href="#solarsystem" class="hover:text-text-main transition-colors">Universum</a></li>
+            <li><a href="#demo" class="hover:text-text-main transition-colors">Demo</a></li>
+          </ul>
+          <ul class="space-y-1 text-sm text-muted">
+            <li><a href="#hai" class="hover:text-text-main transition-colors">HAI</a></li>
+            <li><a href="#roi" class="hover:text-text-main transition-colors">Kosten</a></li>
+            <li><a href="#architektur" class="hover:text-text-main transition-colors">Technik</a></li>
+            <li><a href="#team" class="hover:text-text-main transition-colors">Team</a></li>
+            <li><a href="#faq" class="hover:text-text-main transition-colors">FAQ</a></li>
+          </ul>
+        </div>
       </div>
       <div>
         <div class="font-semibold text-xs mb-2 text-faint uppercase tracking-widest">Unternehmen</div>
@@ -3468,7 +3665,6 @@
                 <td style="padding:12px 10px;">
                   <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap;">
                     <span style="font-weight:600;color:#111113;">Ausbildungsmittel (Notebook, Software, Bücher)</span>
-                    <span style="font-size:.63rem;font-weight:800;color:#fff;background:#e01515;padding:2px 7px;border-radius:4px;white-space:nowrap;">Ja!</span>
                   </div>
                   <div style="font-size:.7rem;color:#8e8e93;margin-top:2px;">Kostenlos bereitzustellen · BBiG §15</div>
                   <div style="font-size:.7rem;font-weight:600;color:#b01010;margin-top:5px;background:rgba(224,21,21,.06);border:1px solid rgba(224,21,21,.18);padding:4px 9px;border-radius:6px;display:inline-block;">⚠ Gesetzliche Pflicht – wird oft als freiwillig behandelt</div>

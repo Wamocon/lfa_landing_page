@@ -1913,5 +1913,24 @@ function animateChain(chainId) {
     }, { threshold: 0.5 });
     impacts.forEach(function(el) { impactObs.observe(el); });
   }
+
+  /* ==============================================
+     TEAM SECTION — Scroll-triggered reveal
+     ============================================== */
+  var teamNodes = document.querySelectorAll('.team-node');
+  if (teamNodes.length) {
+    var teamObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    teamNodes.forEach(function(node, i) {
+      node.style.transitionDelay = (i * 0.18) + 's';
+      teamObs.observe(node);
+    });
+  }
 })();
 
