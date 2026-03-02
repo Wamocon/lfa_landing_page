@@ -195,6 +195,7 @@
     var faqList = $('#faqList');
     if (!faqList) return;
 
+    /* Accordion */
     faqList.addEventListener('click', function (e) {
       var button = e.target.closest('.faq-question');
       if (!button) return;
@@ -202,8 +203,9 @@
       var item = button.parentElement;
       var isOpen = item.classList.contains('faq-item--open');
 
-      /* Close all */
-      $$('.faq-item--open', faqList).forEach(function (openItem) {
+      /* Close all in current panel */
+      var panel = button.closest('.faq-tab-panel') || faqList;
+      $$('.faq-item--open', panel).forEach(function (openItem) {
         openItem.classList.remove('faq-item--open');
         openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
       });
@@ -214,15 +216,37 @@
         button.setAttribute('aria-expanded', 'true');
       }
     });
+
+    /* Tab switching */
+    $$('.faq-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = tab.getAttribute('data-faq-tab');
+
+        /* Update tab buttons */
+        $$('.faq-tab').forEach(function (t) {
+          t.classList.remove('faq-tab--active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('faq-tab--active');
+        tab.setAttribute('aria-selected', 'true');
+
+        /* Close all open items */
+        $$('.faq-item--open', faqList).forEach(function (openItem) {
+          openItem.classList.remove('faq-item--open');
+          openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        /* Switch panels */
+        $$('.faq-tab-panel', faqList).forEach(function (p) {
+          p.style.display = p.getAttribute('data-faq-panel') === target ? '' : 'none';
+        });
+      });
+    });
   }
 
   /* ==============================================
      6. SUBTLE PARALLAX ON SCROLL
      ============================================== */
-  function initScrollEffects() {
-    /* Removed : section opacity animation caused gray bleed-through
-       during scrolling. Sections use reveal animations instead. */
-  }
 
   /* ==============================================
      7. IMMERSIVE ROADMAP
@@ -406,6 +430,8 @@
     function resize() {
       canvas.width = hero.offsetWidth;
       canvas.height = hero.offsetHeight;
+      /* Re-centre LFA text targets whenever canvas dimensions change */
+      if (particles.length > 0) assignTargets();
     }
 
     /* Sample pixel positions from rendered text "LFA" – outline only */
@@ -423,8 +449,8 @@
       offCtx.textAlign = 'center';
       offCtx.textBaseline = 'middle';
 
-      /* Position: vertically centered */
-      textCenterX = oW / 2;
+      /* Position: use visible viewport centre so LFA is always centred on screen */
+      textCenterX = window.innerWidth / 2;
       textCenterY = oH * 0.42;
 
       /* Draw each letter individually with increased spacing */
@@ -836,8 +862,8 @@
 
     window.addEventListener('resize', resize);
 
-    seed();
-    animate();
+    /* Defer one frame so layout is fully settled before measuring hero.offsetWidth */
+    requestAnimationFrame(function () { seed(); animate(); });
   }
 
   /* ==============================================
@@ -1721,7 +1747,7 @@
     initRoadmap();
     initSolarSystem();
     initParticles();
-    initScrollEffects();
+
     initMagneticButtons();
     initTyping();
     initTiltCards();
@@ -1887,28 +1913,24 @@ function animateChain(chainId) {
     }, { threshold: 0.5 });
     impacts.forEach(function(el) { impactObs.observe(el); });
   }
+
+  /* ==============================================
+     TEAM SECTION — Scroll-triggered reveal
+     ============================================== */
+  var teamNodes = document.querySelectorAll('.team-node');
+  if (teamNodes.length) {
+    var teamObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    teamNodes.forEach(function(node, i) {
+      node.style.transitionDelay = (i * 0.18) + 's';
+      teamObs.observe(node);
+    });
+  }
 })();
 
-function toggleAZ() {
-  var panel = document.getElementById('az-details');
-  var chev  = document.getElementById('az-chev');
-  if (!panel) return;
-
-  if (panel.style.display === 'none' || panel.style.display === '') {
-    panel.style.display   = 'block';
-    panel.style.opacity   = '0';
-    panel.style.transform = 'translateY(10px)';
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        panel.style.opacity   = '1';
-        panel.style.transform = 'translateY(0)';
-      });
-    });
-    if (chev) chev.style.transform = 'rotate(180deg)';
-  } else {
-    panel.style.opacity   = '0';
-    panel.style.transform = 'translateY(10px)';
-    setTimeout(function() { panel.style.display = 'none'; }, 300);
-    if (chev) chev.style.transform = '';
-  }
-}
