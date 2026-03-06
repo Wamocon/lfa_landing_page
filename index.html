@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de" class="scroll-smooth">
 
 <head>
@@ -520,7 +520,6 @@
           <a href="#roi" class="nav-link magnetic-btn" data-nav-section="roi">Kosten</a>
           <a href="#architektur" class="nav-link magnetic-btn" data-nav-section="architektur">Technik</a>
           <a href="#team" class="nav-link magnetic-btn" data-nav-section="team">Team</a>
-          <a href="#faq" class="nav-link magnetic-btn" data-nav-section="faq">FAQ</a>
         </div>
       </div>
       <!-- Mobile hamburger -->
@@ -554,7 +553,6 @@
       <a href="#roi" class="mm-link" onclick="closeMobileMenu()">Kosten</a>
       <a href="#architektur" class="mm-link" onclick="closeMobileMenu()">Technik</a>
       <a href="#team" class="mm-link" onclick="closeMobileMenu()">Team</a>
-      <a href="#faq" class="mm-link mm-link--full" onclick="closeMobileMenu()">FAQ</a>
     </div>
   </div>
 
@@ -589,12 +587,12 @@
 
       <!-- Trust-Badges -->
       <div class="reveal flex items-center gap-6 md:gap-10 flex-wrap mb-10">
-        <a href="https://www.frankfurt-main.ihk.de/" target="_blank" rel="noopener" class="flex items-center gap-3 group" style="text-decoration:none;">
+        <div class="flex items-center gap-3">
           <div style="background:#fff;border-radius:8px;padding:6px 10px;display:flex;align-items:center;">
-            <img src="IHK-Logo_2.png" alt="IHK — Hessischer Industrie- und Handelskammertag" style="height:40px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;color:#22aa66;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
-          <span class="text-xs group-hover:text-muted transition-colors" style="color:#6e6e76;max-width:100px;line-height:1.3;">IHK-konforme Inhalte</span>
-        </a>
+          <span class="text-xs" style="color:#6e6e76;max-width:100px;line-height:1.3;">IHK-konforme Inhalte</span>
+        </div>
         <div class="flex items-center gap-3">
           <img src="KI-Siegel%20WAMOCON.png" alt="KI Innovator — Deutsches Innovationsinstitut" style="height:56px;">
           <span class="text-xs" style="color:#6e6e76;max-width:100px;line-height:1.3;">Ausgezeichnet als KI&nbsp;Innovator</span>
@@ -729,7 +727,7 @@
           style="background:rgba(255,26,26,.05);border:1px solid rgba(255,26,26,.22);display:flex;flex-direction:column;">
           <span class="block text-xs font-bold tracking-widest uppercase mb-4" style="color:#ff6060;">Lernen</span>
           <h3 class="text-xl font-bold tracking-tight mb-3" style="color:#f0f0f2;">Praxisnahes KI-Lernen</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#7a7a88;">Aus IHK-Büchern entstehen praxisnahe Szenarien,
+          <p class="text-sm leading-relaxed mb-6" style="color:#7a7a88;">Aus IHK-konformen Fachinhalten entstehen praxisnahe Szenarien,
             Use Cases und Quizze. So wird Lernen greifbar statt abstrakt.</p>
           <div style="margin-top:auto;border-top:1px solid rgba(255,26,26,.18);padding-top:1rem;">
             <span class="text-sm font-bold" style="color:#ff7070;">&#10003;&ensp;LFA macht Theorie zur Praxis.</span>
@@ -868,7 +866,7 @@
             <div class="rm__card rm__card--r">
               <span class="rm__label">Didaktik</span>
               <h3 class="rm__title">Szenarien statt Schulbuch</h3>
-              <p class="rm__desc">Aus offiziellen IHK-Büchern entstehen praxisnahe Szenarien, Use Cases und Quizze.
+              <p class="rm__desc">Aus offiziellen IHK-konformen Fachinhalten entstehen praxisnahe Szenarien, Use Cases und Quizze.
                 Lernen wird greifbar, nicht abstrakt aus dem Lehrbuch abgelesen.</p>
               <div class="rm__tags"><span class="rm__tag">Use Cases</span><span class="rm__tag">Szenarien</span><span
                   class="rm__tag">Adaptive Quizze</span></div>
@@ -1159,8 +1157,8 @@
               </svg>
             </div>
             <h3 class="text-xl font-bold mb-3">Lernmanagement</h3>
-            <p class="text-sm text-muted leading-relaxed">Kurse, Szenarien, Enabler und Use Cases, strukturiert nach
-              IHK-Lernfeldern. Alle Inhalte basieren auf offiziellen IHK-Büchern.</p>
+            <p class="text-sm text-muted leading-relaxed">Kurse, Szenarien, Themenkreise und Use Cases, strukturiert nach
+              IHK-Lernfeldern. Alle Inhalte basieren auf offiziellen IHK-konformen Fachinhalten.</p>
           </div>
           <div class="bg-[#111113] flex items-center justify-center p-4">
             <div class="lightbox-wrap rounded-xl overflow-hidden w-full"
@@ -1286,7 +1284,7 @@
               </svg>
             </div>
             <h3 class="text-xl font-bold mb-3">KI-Assistent HAI</h3>
-            <p class="text-sm text-muted leading-relaxed">Antwortet nur aus deinen Kursmaterialien. Kein freies Internet. Basierend auf offiziellen IHK-Büchern. Jede Antwort enthält eine Quellenangabe.</p>
+            <p class="text-sm text-muted leading-relaxed">Antwortet nur aus deinen Kursmaterialien. Kein freies Internet. Basierend auf IHK-konformen Fachinhalten. Jede Antwort enthält eine Quellenangabe.</p>
           </div>
         </div>
       </div>
@@ -1461,8 +1459,8 @@
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg-alt), #f8f9fb);"></div>
 
-  <!-- TÄTIGKEITSNACHWEIS & ARBEITSZEUGNIS : Separate Cards mit Prozess -->
-  <section id="taetigkeitsnachweis" style="position:relative;overflow:hidden;background:linear-gradient(180deg,#e9eaf0 0%,#f0f1f5 45%,#e9eaf0 100%);padding:5rem 0 6rem;">
+  <!-- AUSBILDUNGSNACHWEIS & ARBEITSZEUGNIS : Separate Cards mit Prozess -->
+  <section id="ausbildungsnachweis" style="position:relative;overflow:hidden;background:linear-gradient(180deg,#e9eaf0 0%,#f0f1f5 45%,#e9eaf0 100%);padding:5rem 0 6rem;">
     <!-- Background effects -->
     <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.035) 1px,transparent 1px);background-size:26px 26px;pointer-events:none;"></div>
     <div style="position:absolute;top:5%;left:-80px;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(255,30,30,.09),transparent 65%);pointer-events:none;"></div>
@@ -1474,9 +1472,9 @@
       <!-- ── HEADER ── -->
       <div class="reveal text-center mb-14">
         <span class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6" style="color:#b86e00;background:rgba(200,130,0,.12);border:1.5px solid rgba(200,130,0,.38);box-shadow:0 0 20px rgba(200,130,0,.15);animation:badgePulse 3s ease-in-out infinite;">&#9888;&nbsp; IHK-Pflicht — ohne Nachweis keine Prüfungszulassung</span>
-        <h2 class="text-4xl md:text-6xl font-black leading-[1.02] tracking-tight mb-5" style="color:#111118;">Tätigkeitsnachweis.<br><span style="color:#e02020;">Zwei Wege. Ein Sieger.</span></h2>
+        <h2 class="text-4xl md:text-6xl font-black leading-[1.02] tracking-tight mb-5" style="color:#111118;">Ausbildungsnachweis.<br><span style="color:#e02020;">Zwei Wege. Ein Sieger.</span></h2>
         <p class="text-base max-w-[600px] mx-auto leading-relaxed" style="color:#6a6a7a;">Pflicht für jeden Azubi. Der Weg entscheidet, ob du <strong style="color:#111118;">78 Stunden</strong> verschwendest oder in <strong style="color:#22aa66;">&lt;5 Minuten</strong> fertig bist.</p>
-        <p class="text-sm max-w-[560px] mx-auto mt-3 leading-relaxed" style="color:#8a8a9a;">Was kaum jemand weiß: Jeder Tätigkeitsnachweis ist ein direkter Spiegel des Ausbildungsrahmenplans — und damit die <strong style="color:#111118;">Landkarte deiner IHK-Prüfung</strong>. Wer ihn strukturiert führt, lernt automatisch prüfungsrelevant.</p>
+        <p class="text-sm max-w-[560px] mx-auto mt-3 leading-relaxed" style="color:#8a8a9a;">Was kaum jemand weiß: Jeder Ausbildungsnachweis ist ein direkter Spiegel des Ausbildungsrahmenplans — und damit die <strong style="color:#111118;">Landkarte deiner IHK-Prüfung</strong>. Wer ihn strukturiert führt, lernt automatisch prüfungsrelevant.</p>
       </div>
 
       <!-- ── SKILL TREE VIEWPORT ── -->
@@ -1491,7 +1489,7 @@
           <div style="display:flex;justify-content:center;margin-bottom:20px;">
             <div style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid rgba(180,130,0,.35);border-radius:50px;padding:8px 20px;box-shadow:0 4px 18px rgba(180,130,0,.1);">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px;color:#c89000;"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              <span style="font-size:.78rem;font-weight:800;color:#c89000;letter-spacing:.04em;">IHK-Pflicht: Tätigkeitsnachweis</span>
+              <span style="font-size:.78rem;font-weight:800;color:#c89000;letter-spacing:.04em;">IHK-Pflicht: Ausbildungsnachweis</span>
               <span style="font-size:.72rem;color:#9a9aaa;">· ohne ihn: keine Prüfungszulassung</span>
             </div>
           </div>
@@ -2297,7 +2295,7 @@
             const sourceEl = document.getElementById('hai-demo-source');
 
             const userText = 'Irgendwas mit Klassen und Vererbung?';
-            const botText = 'Genau auf dem richtigen Weg! Schau dir den passenden Enabler in deinem Kurs an – dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.';
+            const botText = 'Genau auf dem richtigen Weg! Schau dir den passenden Themenkreis in deinem Kurs an – dort ist genau dieses Konzept mit einem Praxisbeispiel erklärt.';
 
             // Step 1: User types after 1s delay
             setTimeout(function () {
@@ -2514,7 +2512,7 @@
             <div class="text-4xl md:text-5xl font-bold leading-none tabular-nums shrink-0"
               style="color:#22aa66;" data-target="83" data-suffix="%">0</div>
             <div class="text-left">
-              <span class="block font-medium">weniger Aufwand pro Tätigkeitsnachweis</span>
+              <span class="block font-medium">weniger Aufwand pro Ausbildungsnachweis</span>
               <span class="block text-sm text-faint mt-1">Berichtshefte, Zeugnisse und Berichte automatisch
                 generiert</span>
             </div>
@@ -2534,7 +2532,7 @@
               style="color:#22aa66;" data-target="100" data-suffix="%">0</div>
             <div class="text-left">
               <span class="block font-medium">Ausbildungsplan-Abdeckung</span>
-              <span class="block text-sm text-faint mt-1">Jeder Tätigkeitsnachweis wird automatisch einer Position im Ausbildungsrahmenplan zugeordnet. Dein Azubi dokumentiert die Arbeit — und hat den Prüfungsplan gleich mit.</span>
+              <span class="block text-sm text-faint mt-1">Jeder Ausbildungsnachweis wird automatisch einer Position im Ausbildungsrahmenplan zugeordnet. Dein Azubi dokumentiert die Arbeit — und hat den Prüfungsplan gleich mit.</span>
             </div>
           </div>
         </div>
@@ -2671,7 +2669,7 @@
             </svg>
           </div>
           <h3 class="text-lg font-semibold mb-2">KI, die keine Fakten erfindet</h3>
-          <p class="text-sm text-muted leading-relaxed">Unsere KI antwortet nur mit Wissen aus echten IHK-Büchern und
+          <p class="text-sm text-muted leading-relaxed">Unsere KI antwortet nur mit Wissen aus IHK-konformen Fachinhalten und
             Firmendaten. Eingebaute Regeln verhindern, dass sie sich Antworten ausdenkt.</p>
         </div>
         <div class="reveal p-7 rounded-2xl bg-surface border border-border card-hover accent-hover tilt-card">
@@ -2927,255 +2925,14 @@
     </div>
   </section>
 
-  <!-- Gradient: Team (dunkel) → FAQ (hell) -->
-  <div style="height:100px;background:linear-gradient(to bottom,#0a0a0c,#f5f5f7);margin-bottom:-1px;"></div>
+  <!-- FOOTER FOLLOWS DIRECTLY AFTER TEAM -->
+  <!-- FAQ section removed per IHK protocol compliance -->
 
-  <!-- FAQ -->
-  <section class="py-24 md:py-36 section-organic" id="faq">
-    <div class="max-w-[1100px] mx-auto px-5 md:px-10">
+  <!-- Placeholder to maintain gradient transition to footer -->
+  <div style="height:60px;background:linear-gradient(to bottom,#0a0a0c,var(--color-bg));margin-bottom:-1px;"></div>
 
-      <!-- Header -->
-      <div class="text-center mb-6">
-        <h2 class="reveal text-3xl md:text-4xl font-bold leading-[1.1] tracking-tight mb-5">Noch Fragen?</h2>
-        <p class="reveal text-sm text-muted leading-relaxed max-w-xl mx-auto">Hier findest du Antworten auf die häufigsten Fragen — sortiert nach Perspektive.</p>
-      </div>
-
-      <!-- Tabs -->
-      <div class="flex justify-center gap-2 sm:gap-3 mb-12 flex-wrap" role="tablist">
-        <button class="faq-tab faq-tab--active" data-faq-tab="azubi" role="tab" aria-selected="true">Auszubildende</button>
-        <button class="faq-tab" data-faq-tab="ausbilder" role="tab" aria-selected="false">Ausbilder</button>
-        <button class="faq-tab" data-faq-tab="ihk" role="tab" aria-selected="false">IHK</button>
-      </div>
-
-      <!-- Tab panels -->
-      <div class="max-w-[860px] mx-auto" id="faqList">
-
-        <!-- ═══ AUSZUBILDENDE ═══ -->
-        <div class="faq-tab-panel" data-faq-panel="azubi" role="tabpanel">
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">01</span><span class="font-semibold text-base leading-snug">Warum sollte ich mich hier einloggen, statt mir bei Problemen einfach ein YouTube-Tutorial anzuschauen?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Weil dir hier sofort ein interaktiver Lern-Assistent (HAI.ai) zur Seite steht, der nicht nur Videos abspielt, sondern genau deinen Code debuggt und dir individuelle Fragen beantwortet. Außerdem siehst du in deinem Dashboard immer genau, wo du gerade stehst und was dir noch fehlt.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">02</span><span class="font-semibold text-base leading-snug">Wenn ich HAI.ai beim Lernen nutze, gilt das in Prüfungen und Quizzes dann noch als meine eigene Leistung?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja, denn du kannst die KI nicht als „Abkürzung" missbrauchen. Bei den Quizzes hast du pro Frage nur einen echten Versuch. Außerdem gibt dir HAI.ai absichtlich niemals die direkte Lösung, sondern stellt dir gezielte Leitfragen, damit du selbst auf den Lösungsweg kommst.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">03</span><span class="font-semibold text-base leading-snug">Woher weiß ich sicher, ob ich wirklich alle IHK-Themen für die Prüfung gelernt habe?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Jeder Abschnitt des offiziellen Ausbildungsrahmenplans ist im System als Baustein hinterlegt. Das Dashboard zeigt dir über Fortschrittsbalken deinen prozentualen Stand für jedes einzelne Thema an. Wenn alle Bausteine auf 100 % stehen, hast du den kompletten IHK-Rahmenplan abgedeckt.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">04</span><span class="font-semibold text-base leading-snug">Was passiert, wenn HAI.ai eine Frage nicht beantworten kann?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Wenn die KI in den hinterlegten Unterlagen keine passende Antwort auf deine fachliche Frage findet, erfindet sie keine Lügen. Sie sagt dir dann ehrlich: „Dazu habe ich keine Informationen, bitte frage deinen Trainer." Bei allgemeinen IT-Fragen kann sie dir aber wie ein normaler Tutor weiterhelfen.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">05</span><span class="font-semibold text-base leading-snug">Wie bereitet mich die Plattform konkret auf die schriftliche IHK-Prüfung vor?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Einerseits über Szenarien, die stark an reale IHK-Aufgaben angelehnt sind. Andererseits durch Quizzes, die Prüfungsbedingungen simulieren (inkl. Timer und drei verschiedenen Schwierigkeitsgraden). Das System zeigt dir dann exakt, in welchen Lernfeldern du noch Lücken hast.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">06</span><span class="font-semibold text-base leading-snug">Was bringt mir dieses Reflexionstool konkret?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Es hilft dir, nicht nur stumpfes Wissen anzuhäufen, sondern aus deinen eigenen Fehlern zu lernen. Wenn du eine Aufgabe abgeschlossen hast und kurz darüber reflektierst, kann dir dein Ausbilder dazu gezielteres Feedback geben. Zusammen mit deinen Softskill-Bewertungen siehst du so nicht nur deine fachliche, sondern auch deine persönliche Entwicklung.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">07</span><span class="font-semibold text-base leading-snug">Kann ich die Plattform eigentlich auch unterwegs auf dem Handy nutzen?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja, absolut. Du musst keine App installieren; lade einfach die Seite im Browser auf deinem Smartphone.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">08</span><span class="font-semibold text-base leading-snug">Kann ich eigentlich mein IHK-Abschlussprojekt auch über die Plattform organisieren?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Technisch ist die Plattform genau dafür vorbereitet. Durch den Editor und die Praxisszenario-Strukturen lassen sich Projektdokumentationen und Meilensteine in Zukunft problemlos einbinden. Das ist definitiv einer der nächsten logischen Schritte.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">09</span><span class="font-semibold text-base leading-snug">Wird mir die Plattform irgendwann auch automatisch sagen können, was ich als Nächstes lernen sollte?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja, genau das ist der Plan. Da die Plattform genau weiß, in welchen Bereichen du stark bist und wo du noch Defizite hast, wird sie dir in Zukunft personalisierte Lernpfade vorschlagen können. Zum Beispiel: „Dein Datenbank-Wissen ist top, aber hier ist noch ein Modul zum Thema Netzwerk-Sicherheit, das dir helfen könnte."</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">10</span><span class="font-semibold text-base leading-snug">Darf ich als angehender FIAE-Entwickler eigentlich auch selbst an der Plattform mitprogrammieren?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja! Die Plattform ist mit Next.js, TypeScript und React gebaut — das sind genau die Technologien, die du ohnehin lernen sollst. Eigene Feature-Vorschläge einzubringen oder Fehler per Pull-Request zu beheben, ist reale Praxis an echten Projekten.</div></div>
-          </div>
-        </div>
-
-        <!-- ═══ AUSBILDER ═══ -->
-        <div class="faq-tab-panel" data-faq-panel="ausbilder" role="tabpanel" style="display:none">
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">01</span><span class="font-semibold text-base leading-snug">Wie genau entlastet mich WAMOCON in meinem echten und stressigen Ausbilder-Alltag?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Vor allem dadurch, dass Sie nicht mehr jede Grundlagen-Frage selbst beantworten müssen — das fängt der KI-Assistent ab. Zweitens nimmt Ihnen das System administrative Fleißarbeit ab: Sie vergeben die Noten fürs Berichtsheft, aber das System berechnet den Schnitt, warnt bei Problemen und generiert automatisch Zeugnisentwürfe.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">02</span><span class="font-semibold text-base leading-snug">Behalte ich die Kontrolle über die Noten, oder bewertet am Ende die KI meine Azubis?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Der Ausbilder behält die 100-prozentige Kontrolle. Die KI ist ein Lernwerkzeug, kein Benotungstool. Sie vergeben manuell die Noten (1–6) sowie alle Softskill-Bewertungen und schreiben freies Feedback. Nichts davon passiert automatisch oder ohne Ihr Einverständnis.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">03</span><span class="font-semibold text-base leading-snug">Was passiert, wenn HAI.ai meinem Azubi fachlichen Unsinn beibringt?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Diese Gefahr ist minimal, weil unsere KI im Kern nur mit den abgegrenzten IHK-Materialien und Ihren betrieblichen Vorgaben arbeitet (kein offenes Internet). Wenn die KI zu einem Begriff nichts in den Dokumenten findet, wird sie die Frage nicht beantworten, sondern den Azubi direkt an Sie verweisen. Desweiteren sieht der Ausbilder täglich den Lernfortschritt der Auszubildenden, indem die Auszubildenden im Daily über ihren Fortschritt der Arbeitspakete einen Status abgeben, bei Bedarf Risiken melden und Ideen vorbringen.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">04</span><span class="font-semibold text-base leading-snug">Wie viel Zeit muss ich für die technische Einrichtung und Pflege der Plattform einplanen?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Fast keine. Da die Plattform cloudbasiert ist, braucht der Ausbilder keinen eigenen Server. Sie legen einen Zugang an, laden die Blockpläne der Berufsschule per simplem Datei-Import hoch und schalten die Azubis frei, die sich registriert haben.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">05</span><span class="font-semibold text-base leading-snug">Wie transparent und anpassbar ist diese automatische Zeugniserstellung?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Sie ist total flexibel. Das System schlägt Ihnen basierend auf den Noten und Softskill-Daten der letzten drei Jahre einen rechtssicheren Text vor. Das ist aber nur ein Entwurf. Erst wenn Sie den Text geprüft (und bei Bedarf umgeschrieben) haben und formell freigeben, wird das Zeugnis unveränderbar und erhält zur Verifizierung einen Sicherheits-QR-Code.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">06</span><span class="font-semibold text-base leading-snug">Wir haben mehrere Ausbilder im Betrieb — können wir uns die Betreuung aufteilen?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja, absolut. Das System kennt verschiedene Rollen. Jeder Ausbilder kann genau seiner eigenen Gruppe von Azubis zugewiesen werden. So sieht jeder nur das, was für ihn relevant ist. Es gibt aber auch eine Admin-Ansicht für den Ausbildungsleiter, der dann den Überblick über alle hat.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">07</span><span class="font-semibold text-base leading-snug">Woran erkenne ich rechtzeitig, wenn ein Azubi den Anschluss verliert?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Über das Dashboard. Es verfügt über Frühwarnindikatoren. Wenn der Notendurchschnitt eines Azubis schlechter als 3,5 wird, bekommen Sie eine visuelle Warnung. Diese Azubis mit Handlungsbedarf werden Ihnen in Ihrer Übersicht immer priorisiert oben angezeigt.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">08</span><span class="font-semibold text-base leading-snug">Kann ich auch eigene, ganz betriebsspezifische Inhalte in die Plattform einbauen?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja. Sie sind nicht an die Standardinhalte gekoppelt. Es gibt ein einfaches Content-Management-System mit einem Texteditor. Dort können Sie völlig frei eigene Module, Quizfragen und Projektaufgaben anlegen, die exakt zu Ihren internen Systemen und Abläufen passen. Genauso geht es mit allen Inhalten aus der Berufsschule.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">09</span><span class="font-semibold text-base leading-snug">Wir haben mehrere Standorte — können Ausbilder dort auch problemlos auf die Plattform zugreifen?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja. Wir haben das Datenmodell extra so aufgebaut, dass später auch sogenannte „Mandanten" gebildet werden können. Das heißt, Sie können Lerninhalte zentral vorgeben, aber der Standort Hamburg betreut seine Azubis trotzdem völlig getrennt vom Standort Frankfurt.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">10</span><span class="font-semibold text-base leading-snug">Können wir auch die Berufsschullehrer in die Plattform einbinden, um den Stand abzugleichen?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja. Wir müssten dem System lediglich eine neue Zugangsberechtigung namens „Berufsschullehrer" beibringen. Dieser könnte dann beispielsweise Lesezugriff auf den Praxis-Fortschritt bekommen, um Theorie und Praxis noch besser abzustimmen.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">11</span><span class="font-semibold text-base leading-snug">Wie kann die Plattform mit bestehenden Unternehmens-Tools integriert werden?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Die Plattform bietet Schnittstellen, über die sie mit anderen Systemen kommunizieren kann. Zukünftig wären z.&nbsp;B. eine Anbindung an die bestehende Mitarbeiter-Anmeldung (Single Sign-On), automatische Benachrichtigungen und Datenaustausch mit HR- oder Lernmanagement-Systemen umsetzbar.</div></div>
-          </div>
-        </div>
-
-        <!-- ═══ IHK ═══ -->
-        <div class="faq-tab-panel" data-faq-panel="ihk" role="tabpanel" style="display:none">
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">01</span><span class="font-semibold text-base leading-snug">Wie stellen Sie sicher, dass Ihre Plattform überhaupt konform mit dem Ausbildungsrahmenplan ist?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Die Plattform ist strukturell um den IHK-Rahmenplan herum gebaut. Jeder Lernbereich („Enabler") ist an den entsprechenden Paragraphen aus dem Rahmenplan gekoppelt. Wenn sich ein Azubi durch die Plattform arbeitet, arbeitet er automatisch die IHK-Vorgaben ab.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">02</span><span class="font-semibold text-base leading-snug">Was genau macht WAMOCON und LFA besser als bisherige IHK-Lösungen wie z.&nbsp;B. u-form?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Bestehende Lösungen verwalten primär Daten wie Berichtshefte oder Noten, d.h. sie sind eine reine „Ablage". WAMOCON hingegen ist ein aktiver KI-Lernbegleiter. Es befähigt den Auszubildenden fachlich, z.&nbsp;B. indem die KI Code erklärt, und bindet Praxis, Berufsschule und Reflexion an einem zentralen Ort zusammen.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">03</span><span class="font-semibold text-base leading-snug">Wie verhindern Sie, dass die KI „halluziniert" und Azubis falsche Informationen als Fakten darstellt?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Wir haben der KI ihre Grenzen technisch hart einprogrammiert (Closed-Context). Sie gleicht Fragen des Azubis im ersten Schritt immer nur mit den offiziell freigegebenen IHK- und Betriebs-Dokumenten ab. Stellt sie fest, dass das gesuchte Stichwort dort nicht vorkommt, rät sie nicht wild drauf los, sondern gibt die Frage an den Ausbilder zurück.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">04</span><span class="font-semibold text-base leading-snug">Wie gewährleisten Sie den Schutz der Azubi-Daten, gerade bei der Nutzung moderner KI-Modelle?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Es werden keine Daten an ein unkontrolliertes, offenes Internet-Sprachmodell gesendet. Wir nutzen ausschließlich DSGVO-konforme KI-Schnittstellen und reichen dabei nur die winzigen, abgegrenzten Textschnipsel der IHK-Materialien durch. Alle Server stehen in der EU. Außerdem stellt unsere Berechtigungsstruktur sicher, dass wirklich jeder Benutzer nur seine eigenen Daten sehen kann.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">05</span><span class="font-semibold text-base leading-snug">Sind die digitalen Berichtshefte aus der Plattform bei der IHK-Prüfung rechtssicher verwertbar?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja. Da Einträge und Bewertungen dauerhaft in der Datenbank (mitsamt Zeitstempel) gespeichert werden, ist die Historie nachvollziehbar. Die Nachweise können bei Bedarf jederzeit als gebündelte PDF- oder ZIP-Datei regulär über das bestehende IHK-Portal eingereicht werden. Arbeitszeugnisse sind zudem fälschungssicher per QR-Code überprüfbar.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">06</span><span class="font-semibold text-base leading-snug">Ist das Konzept perspektivisch auch auf andere IHK-Ausbildungsberufe übertragbar?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">Ja, problemlos. Wir haben Kernmechanismen wie die „Lernbereiche" und „Fortschrittsbalken" völlig abstrakt programmiert. Wenn Sie morgen die Dokumente für Kaufleute für IT-System-Management hochladen, lassen sich diese Rollen und Dashboards sofort für den neuen Berufszweig einsetzen.</div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">07</span><span class="font-semibold text-base leading-snug">Was sind die zwei größten Herausforderungen der IHK in Bezug auf die Berufsschulen?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">
-              <strong>Technologie-Gap &amp; Lehrkräftemangel:</strong> Die Schulausstattung und das IT-Wissen der Lehrkräfte hinken der rasanten technologischen Entwicklung in der Wirtschaft oft stark hinterher.<br><br>
-              <strong>Überforderung durch neue Prüfungsstandards:</strong> Berufsschulen tun sich schwer, bei heterogenen Klassen das gestiegene, sehr anspruchsvolle IHK-Prüfungsniveau (z.&nbsp;B. Gestreckte Abschlussprüfung) flächendeckend zu vermitteln.
-            </div></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question w-full flex items-start justify-between py-6 text-left cursor-pointer bg-transparent border-none" style="color:var(--color-text-main)" aria-expanded="false">
-              <span class="flex gap-4 items-start"><span class="faq-num">08</span><span class="font-semibold text-base leading-snug">Was sind die zwei größten Herausforderungen der IHK in Bezug auf die Betriebe?</span></span>
-              <span class="faq-question__icon relative w-5 h-5 shrink-0 ml-6 mt-1"></span>
-            </button>
-            <div class="faq-answer"><div class="pb-7 pl-[42px] text-sm text-muted leading-relaxed">
-              <strong>Mangelnde Ausbildungsreife &amp; Bewerberschwund:</strong> Betriebe finden kaum noch geeignete Kandidaten, da vielen Bewerbern elementare Grundlagen (z.&nbsp;B. in Mathematik, logischem Denken und Belastbarkeit) fehlen.<br><br>
-              <strong>Begrenzte Kapazitäten für komplexe Ausbildungsinhalte:</strong> Die gestiegenen IHK-Anforderungen der neu geordneten IT-Berufe erfordern eine sehr intensive Betreuung, die viele Betriebe neben dem Tagesgeschäft personell und zeitlich kaum noch stemmen können.
-            </div></div>
-          </div>
-        </div>
-
-      </div>
-
-      <p class="reveal text-center mt-10 text-xs text-faint">Weitere Fragen? <a href="mailto:info@wamocon.com" class="text-accent hover:underline">Schreib uns direkt.</a></p>
-    </div>
-  </section>
+  <!-- Hidden anchor for backwards compatibility -->
+  <div id="faq" style="display:none;"></div>
 
   <!-- FOOTER -->
   <footer class="border-t border-border" id="footer">
@@ -3187,11 +2944,7 @@
             <img src="WMC_Logo_Schriftzug%20IT_schwarz.svg" alt="WAMOCON IT-Testmanagement" style="height:40px;filter:url(#remove-white);">
           </div>
         </a>
-        <a href="https://www.frankfurt-main.ihk.de/" target="_blank" rel="noopener" style="text-decoration:none;">
-          <div style="background:#fff;border-radius:8px;padding:5px 8px;display:inline-flex;align-items:center;opacity:.7;transition:opacity .3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.7'">
-            <img src="IHK-Logo_2.png" alt="IHK — Hessischer Industrie- und Handelskammertag" style="height:30px;">
-          </div>
-        </a>
+
         <div style="opacity:.7;transition:opacity .3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.7'">
           <img src="KI-Siegel%20WAMOCON.png" alt="KI Innovator — Deutsches Innovationsinstitut" style="height:48px;">
         </div>
@@ -3221,7 +2974,6 @@
             <li><a href="#roi" class="hover:text-text-main transition-colors">Kosten</a></li>
             <li><a href="#architektur" class="hover:text-text-main transition-colors">Technik</a></li>
             <li><a href="#team" class="hover:text-text-main transition-colors">Team</a></li>
-            <li><a href="#faq" class="hover:text-text-main transition-colors">FAQ</a></li>
           </ul>
         </div>
       </div>
