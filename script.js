@@ -182,7 +182,7 @@
         var target = $(id);
         if (!target) return;
         e.preventDefault();
-        var top = target.getBoundingClientRect().top + window.scrollY - 70;
+        var top = target.getBoundingClientRect().top + window.scrollY - 118;
         window.scrollTo({ top: top, behavior: 'smooth' });
       });
     });

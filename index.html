@@ -48,6 +48,10 @@
     .orb--1 { width:600px; height:600px; background:#e01515; opacity:.04; top:5%; left:10%; animation:orb-drift-1 25s ease-in-out infinite; }
     .orb--2 { width:500px; height:500px; background:#6432b4; opacity:.035; top:40%; right:5%; animation:orb-drift-2 30s ease-in-out infinite; }
     .orb--3 { width:450px; height:450px; background:#e01515; opacity:.03; bottom:15%; left:50%; animation:orb-drift-3 22s ease-in-out infinite; }
+    /* Ticker */
+    @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .ticker-item { display:inline-block; padding:0 3.5rem; font-size:1.05rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.9); }
+    .ticker-item::before { content:'\25C6'; margin-right:1.75rem; color:#ff2222; font-size:.7rem; vertical-align:middle; }
     @keyframes orb-drift-1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(80px,-50px) scale(1.15)} 66%{transform:translate(-40px,60px) scale(.9)} }
     @keyframes orb-drift-2 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(-60px,40px) scale(1.1)} 70%{transform:translate(50px,-70px) scale(.85)} }
     @keyframes orb-drift-3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-80px,-50px) scale(1.2)} }
@@ -501,8 +505,22 @@
     </symbol>
   </svg>
 
+  <!-- TICKER BAR -->
+  <div class="fixed top-0 left-0 right-0 z-[60] overflow-hidden" style="height:48px;background:#0a0a0c;border-bottom:1px solid rgba(255,26,26,.25);">
+    <div class="ticker-track" style="display:flex;align-items:center;height:100%;white-space:nowrap;animation:ticker-scroll 18s linear infinite;">
+      <span class="ticker-item">DEMO&ensp;&mdash;&ensp;Kein Marketing</span>
+      <span class="ticker-item">DEMO&ensp;&mdash;&ensp;Kein Marketing</span>
+      <span class="ticker-item">DEMO&ensp;&mdash;&ensp;Kein Marketing</span>
+      <span class="ticker-item">DEMO&ensp;&mdash;&ensp;Kein Marketing</span>
+      <span class="ticker-item">DEMO&ensp;&mdash;&ensp;Kein Marketing</span>
+      <span class="ticker-item">DEMO&ensp;&mdash;&ensp;Kein Marketing</span>
+      <span class="ticker-item">DEMO&ensp;&mdash;&ensp;Kein Marketing</span>
+      <span class="ticker-item">DEMO&ensp;&mdash;&ensp;Kein Marketing</span>
+    </div>
+  </div>
+
   <!-- NAV -->
-  <nav class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center transition-all duration-400" id="nav">
+  <nav class="fixed top-[48px] left-0 right-0 z-50 h-16 flex items-center transition-all duration-400" id="nav">
     <div class="w-full max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
       <a href="#" class="flex items-center hover:opacity-70 transition-opacity">
         <span style="font-size:2rem;font-weight:900;letter-spacing:-1px;color:#FE0404;">LFA</span>
