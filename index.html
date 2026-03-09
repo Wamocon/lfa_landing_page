@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de" class="scroll-smooth">
 
 <head>
@@ -384,6 +384,40 @@
     @media (max-width:479px) {
       .solar-wrap { height:360px !important; }
     }
+
+    /* Light vs Pro: dynamisch, lebendig, Cursor-inspiriert */
+    .light-pro-section { background: var(--color-bg); }
+    .light-pro-orb { position: absolute; border-radius: 50%; filter: blur(80px); will-change: transform; pointer-events: none; }
+    .light-pro-orb--1 { width: 400px; height: 400px; background: rgba(255,26,26,.12); top: 10%; left: 5%; animation: light-pro-orb-1 20s ease-in-out infinite; }
+    .light-pro-orb--2 { width: 350px; height: 350px; background: rgba(56,189,248,.1); top: 50%; right: 0; animation: light-pro-orb-2 22s ease-in-out infinite; }
+    .light-pro-orb--3 { width: 300px; height: 300px; background: rgba(255,26,26,.08); bottom: 15%; left: 20%; animation: light-pro-orb-3 18s ease-in-out infinite; }
+    @keyframes light-pro-orb-1 { 0%, 100% { transform: translate(0,0) scale(1); } 33% { transform: translate(40px,-30px) scale(1.1); } 66% { transform: translate(-20px,20px) scale(0.95); } }
+    @keyframes light-pro-orb-2 { 0%, 100% { transform: translate(0,0) scale(1); } 40% { transform: translate(-30px,25px) scale(1.08); } 70% { transform: translate(20px,-20px) scale(0.92); } }
+    @keyframes light-pro-orb-3 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(25px,-25px) scale(1.05); } }
+    .light-pro-float { animation: light-pro-float 6s ease-in-out infinite; }
+    .light-pro-float--delay { animation-delay: -3s; }
+    @keyframes light-pro-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .light-pro-card__icon-wrap { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .light-pro-twin { transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s ease, border-color .4s ease; }
+    .light-pro-twin:hover { transform: translateY(-8px); }
+    .light-pro-twin--light:hover { box-shadow: 0 28px 72px rgba(0,0,0,.1), 0 0 60px rgba(56,189,248,.15) !important; border-color: rgba(56,189,248,.35) !important; }
+    .light-pro-twin--pro:hover { box-shadow: 0 28px 72px rgba(0,0,0,.1), 0 0 80px rgba(255,26,26,.2) !important; border-color: rgba(255,26,26,.4) !important; }
+    .light-pro-twin__icon { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .light-pro-twin:hover .light-pro-twin__icon { transform: scale(1.08); }
+    .light-pro-list li { opacity: 0; }
+    .light-pro-twin.reveal--visible .light-pro-list li { animation: light-pro-list-in .5s ease forwards; }
+    .light-pro-twin.reveal--visible .light-pro-list li:nth-child(1) { animation-delay: .15s; }
+    .light-pro-twin.reveal--visible .light-pro-list li:nth-child(2) { animation-delay: .3s; }
+    .light-pro-twin.reveal--visible .light-pro-list li:nth-child(3) { animation-delay: .45s; }
+    .light-pro-twin.reveal--visible .light-pro-list li:nth-child(4) { animation-delay: .6s; }
+    @keyframes light-pro-list-in { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+    .light-pro-headline { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .light-pro-headline.reveal--visible { opacity: 1; transform: translateY(0); }
+    .light-pro-headline--1 { transition-delay: 0s; }
+    .light-pro-headline--2 { transition-delay: .1s; }
+    .light-pro-headline--3 { transition-delay: .2s; }
+    .light-pro-headline--4 { transition-delay: .3s; }
+    .light-pro-section .light-pro-grid-dots { background-image: radial-gradient(circle, rgba(0,0,0,.06) 1px, transparent 1px); background-size: 28px 28px; }
   </style>
 </head>
 
@@ -885,6 +919,84 @@
   </section>
 
   <div class="divider-gradient" style="background:linear-gradient(to bottom, #0f0f11, var(--color-bg));"></div>
+
+  <!-- LIGHT vs PRO : Beide stark sichtbar, Wow wie Rest der Landingpage -->
+  <section class="light-pro-section relative min-h-[90vh] md:min-h-[95vh] flex items-center py-20 md:py-28 overflow-hidden light-pro-grid-dots" id="light-pro">
+    <div class="light-pro-orb light-pro-orb--1" aria-hidden="true"></div>
+    <div class="light-pro-orb light-pro-orb--2" aria-hidden="true"></div>
+    <div class="light-pro-orb light-pro-orb--3" aria-hidden="true"></div>
+    <!-- Dezentes Grid wie im Hero (starke visuelle Komponente) -->
+    <div class="absolute inset-0 z-0 opacity-[0.4]" style="background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 70% at 50% 50%, black 0%, transparent 70%);" aria-hidden="true"></div>
+    <div class="relative z-10 w-full max-w-[1200px] mx-auto px-5 md:px-10">
+      <div class="text-center mb-14 md:mb-16">
+        <span class="reveal light-pro-headline light-pro-headline--1 inline-block text-sm font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full mb-5" style="color:var(--color-accent);background:rgba(255,26,26,.1);border:1px solid rgba(255,26,26,.2);">Dein Weg. Deine Wahl.</span>
+        <h2 class="reveal light-pro-headline light-pro-headline--2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight mb-5" style="letter-spacing:-0.03em;">Wie willst du lernen?</h2>
+        <p class="reveal light-pro-headline light-pro-headline--3 text-lg md:text-xl text-muted max-w-[560px] mx-auto leading-relaxed">Theorie in Buechern suchen kostet Zeit und Nerven. Oder du hast alles an einem Ort.</p>
+      </div>
+
+      <!-- Zentrales VS-Element mit Gradient-Linie (wie Bridge auf der LP) -->
+      <div class="reveal flex flex-col items-center gap-2 mb-8 md:mb-10">
+        <div class="w-0.5 h-12 rounded-full opacity-90" style="background:linear-gradient(to bottom, transparent, rgba(255,26,26,.5), rgba(56,189,248,.5), transparent);"></div>
+        <span class="text-xs font-black tracking-[0.3em] uppercase text-muted">VS</span>
+        <div class="w-0.5 h-12 rounded-full opacity-90" style="background:linear-gradient(to bottom, transparent, rgba(56,189,248,.5), rgba(255,26,26,.5), transparent);"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch relative">
+        <!-- Light: volle Karte mit eigenem Akzent (wie Azubi-Karte in Rollen) -->
+        <div class="reveal light-pro-twin light-pro-twin--light rounded-2xl overflow-hidden flex flex-col relative light-pro-float" style="border:2px solid rgba(56,189,248,.22);background:linear-gradient(165deg,rgba(56,189,248,.06) 0%,var(--color-surface) 40%);box-shadow:0 20px 60px rgba(56,189,248,.08),0 0 0 1px rgba(56,189,248,.06);">
+          <div class="absolute top-0 left-0 right-0 h-1 rounded-t-2xl opacity-90" style="background:linear-gradient(90deg, transparent, #38bdf8, transparent);"></div>
+          <div class="px-8 py-7 flex items-center gap-5" style="background:linear-gradient(135deg,rgba(56,189,248,.1) 0%,rgba(56,189,248,.03) 100%);border-bottom:1px solid rgba(56,189,248,.14);">
+            <div class="light-pro-twin__icon w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(56,189,248,.2),rgba(56,189,248,.08));border:1px solid rgba(56,189,248,.28);box-shadow:0 8px 24px rgba(56,189,248,.12);">
+              <svg class="icon w-8 h-8 md:w-10 md:h-10" style="color:#38bdf8;"><use href="#i-link"/></svg>
+            </div>
+            <div>
+              <span class="block text-xs font-bold tracking-widest uppercase mb-1" style="color:#38bdf8;">Version</span>
+              <h3 class="text-2xl md:text-3xl font-bold">Light</h3>
+              <p class="text-sm md:text-base text-muted mt-1">Quellen und Verweise. Du schlaegst die Theorie selbst nach.</p>
+            </div>
+          </div>
+          <div class="px-8 py-7 flex-1 flex flex-col">
+            <p class="text-sm md:text-base text-muted mb-5">Die Theorie steht nicht in LFA. Du bekommst Verweise auf Buecher, Seiten oder Links. Ideal, wenn du mit eigenen Unterlagen arbeitest.</p>
+            <ul class="light-pro-list space-y-3 text-sm md:text-base text-muted">
+              <li class="flex items-center gap-3"><svg class="icon w-5 h-5 shrink-0" style="color:#38bdf8;"><use href="#i-check"/></svg><span>Verweise auf offizielle Quellen</span></li>
+              <li class="flex items-center gap-3"><svg class="icon w-5 h-5 shrink-0" style="color:#38bdf8;"><use href="#i-check"/></svg><span>Du liest die Theorie woanders nach</span></li>
+              <li class="flex items-center gap-3"><svg class="icon w-5 h-5 shrink-0" style="color:#38bdf8;"><use href="#i-check"/></svg><span>Fuer alle, die lieber mit eigenen Buechern lernen</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pro: volle Karte mit Rot-Akzent + Empfohlen (wie Ausbilder-Karte) -->
+        <div class="reveal light-pro-twin light-pro-twin--pro rounded-2xl overflow-hidden flex flex-col relative light-pro-float light-pro-float--delay" style="border:2px solid rgba(255,26,26,.25);background:linear-gradient(165deg,rgba(255,26,26,.08) 0%,var(--color-surface) 40%);box-shadow:0 20px 60px rgba(255,26,26,.1),0 0 60px rgba(255,26,26,.08),0 0 0 1px rgba(255,26,26,.08);">
+          <div class="absolute top-0 left-0 right-0 h-1 rounded-t-2xl opacity-90" style="background:linear-gradient(90deg, transparent, var(--color-accent), transparent);"></div>
+          <div class="px-8 py-7 flex items-center gap-5" style="background:linear-gradient(135deg,rgba(255,26,26,.12) 0%,rgba(255,26,26,.04) 100%);border-bottom:1px solid rgba(255,26,26,.18);">
+            <div class="light-pro-twin__icon w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(255,26,26,.2),rgba(255,26,26,.08));border:1px solid rgba(255,26,26,.3);box-shadow:0 8px 24px rgba(255,26,26,.15);">
+              <svg class="icon w-8 h-8 md:w-10 md:h-10" style="color:var(--color-accent);"><use href="#i-book"/></svg>
+            </div>
+            <div>
+              <span class="inline-block text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-2" style="background:rgba(255,26,26,.2);color:var(--color-accent);border:1px solid rgba(255,26,26,.3);">Empfohlen</span>
+              <span class="block text-xs font-bold tracking-widest uppercase mt-1" style="color:var(--color-accent);">Version</span>
+              <h3 class="text-2xl md:text-3xl font-bold">Pro</h3>
+              <p class="text-sm md:text-base text-muted mt-1">Theorie direkt in LFA. Kurz, verstaendlich, zum Lernen gemacht.</p>
+            </div>
+            <span class="ml-auto text-sm font-bold px-4 py-2 rounded-full hidden sm:inline-block" style="background:rgba(255,26,26,.15);color:var(--color-accent);border:1px solid rgba(255,26,26,.3);">Enabler</span>
+          </div>
+          <div class="px-8 py-7 flex-1 flex flex-col">
+            <p class="text-sm md:text-base text-muted mb-5">Kein Suchen in Buechern. Die Theorie ist in LFA aufbereitet: in kurzen Texten, die du sofort verstehst und behaeltst.</p>
+            <ul class="light-pro-list grid grid-cols-1 sm:grid-cols-2 gap-2 gap-x-4 text-sm md:text-base text-muted">
+              <li class="flex items-center gap-3"><svg class="icon w-5 h-5 shrink-0" style="color:var(--color-accent);"><use href="#i-check"/></svg><span>Theorie in LFA</span></li>
+              <li class="flex items-center gap-3"><svg class="icon w-5 h-5 shrink-0" style="color:var(--color-accent);"><use href="#i-check"/></svg><span>Leicht lesen und behalten</span></li>
+              <li class="flex items-center gap-3"><svg class="icon w-5 h-5 shrink-0" style="color:var(--color-accent);"><use href="#i-check"/></svg><span>Alles an einem Ort</span></li>
+              <li class="flex items-center gap-3"><svg class="icon w-5 h-5 shrink-0" style="color:var(--color-accent);"><use href="#i-check"/></svg><span>Lernen ohne woanders suchen</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <p class="reveal text-center text-sm text-muted mt-8 max-w-[420px] mx-auto">Beide Versionen sind vollwertig. Pro ist fuer die meisten Azubis die bequemere Wahl.</p>
+    </div>
+  </section>
+
+  <div class="divider-gradient" style="background:linear-gradient(to bottom, var(--color-bg), var(--color-bg));height:1px;"></div>
 
   <!-- ROLLEN : Für wen ist LFA? -->
   <section class="py-24 md:py-32" id="rollen" style="position:relative;overflow:hidden;">
