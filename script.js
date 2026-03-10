@@ -530,7 +530,7 @@
         baseSize: size,
         opacity: opacity,
         baseOpacity: opacity,
-        hue: Math.random() < 0.7 ? 0 : (Math.random() * 30 - 10),
+        hu: Math.random() < 0.7 ? 0 : (Math.random() * 30 - 10),
         pulse: Math.random() * Math.PI * 2,
         pulseSpeed: Math.random() * 0.02 + 0.005,
         life: isBurst ? 1 : -1,
@@ -741,8 +741,8 @@
         }
 
         /* Draw particle with glow */
-        var r = p.hue >= 0 ? Math.min(224 + p.hue, 255) : 224;
-        var g = Math.max(21 + p.hue, 0);
+        var r = p.hu >= 0 ? Math.min(224 + p.hu, 255) : 224;
+        var g = Math.max(21 + p.hu, 0);
         var b = 21;
 
         if (p.size > 3) {
@@ -1766,7 +1766,7 @@
 
 /* ── Skill Tree: View Switching ── */
 var _stCurrentView = 'st-view-overview';
-var _stChainMap = { 'st-view-manuell': 'chain-manuell', 'st-view-lfa': 'chain-lfa' };
+var _stChainMap = { 'st-view-manual': 'chain-manual', 'st-view-lfa': 'chain-lfa' };
 
 function showSkillView(viewId) {
   if (viewId === _stCurrentView) return;
@@ -1811,7 +1811,7 @@ function showSkillView(viewId) {
 
     if (_stChainMap[viewId]) animateChain(_stChainMap[viewId]);
 
-    var section = document.getElementById('taetigkeitsnachweis');
+    var section = document.getElementById('ausbildungsnachweis');
     if (section) {
       setTimeout(function() {
         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1848,18 +1848,18 @@ function animateChain(chainId) {
       if (!entry.isIntersecting || cardsDone) return;
       cardsDone = true;
 
-      var manuell = document.querySelector('.ov-manuell');
+      var manual = document.querySelector('.ov-manual');
       var lfa     = document.querySelector('.ov-lfa');
 
-      // Slide manuell in from left
-      if (manuell) {
-        manuell.style.opacity    = '0';
-        manuell.style.transform  = 'translateX(-52px) scale(.95)';
+      // Slide manual in from left
+      if (manual) {
+        manual.style.opacity    = '0';
+        manual.style.transform  = 'translateX(-52px) scale(.95)';
         setTimeout(function() {
-          manuell.style.transition = 'opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)';
-          manuell.style.opacity    = '1';
-          manuell.style.transform  = 'translateX(0) scale(1)';
-          setTimeout(function() { manuell.style.transition = manuell.style.transform = ''; }, 750);
+          manual.style.transition = 'opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)';
+          manual.style.opacity    = '1';
+          manual.style.transform  = 'translateX(0) scale(1)';
+          setTimeout(function() { manual.style.transition = manual.style.transform = ''; }, 750);
         }, 80);
       }
 
@@ -1932,5 +1932,31 @@ function animateChain(chainId) {
       teamObs.observe(node);
     });
   }
+})();
+
+/* ── Ticker: rAF-basiert, kein CSS-Animation ── */
+(function () {
+  var track = document.querySelector('.ticker-track');
+  if (!track) return;
+
+  var speed = 0.35;
+  var pos = 0;
+  var half = 0;
+
+  function measure() {
+    half = track.scrollWidth / 2;
+  }
+
+  measure();
+  window.addEventListener('resize', measure);
+
+  function step() {
+    pos -= speed;
+    if (pos <= -half) pos += half;
+    track.style.transform = 'translate3d(' + pos + 'px,0,0)';
+    requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
 })();
 
